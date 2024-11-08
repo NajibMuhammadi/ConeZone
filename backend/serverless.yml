@@ -12,7 +12,8 @@ provider:
   runtime: nodejs20.x
   region: eu-north-1
   deploymentMethod: direct
-  
+  iam:
+    role: ${self:custom.localEnv.myLambda}
 
 functions:
   hello:
