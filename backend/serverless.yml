@@ -1,0 +1,23 @@
+custom:
+  localEnv: ${file(./local.yml)}
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: ${self:custom.localEnv.myOrg}
+# "app" enables Serverless Framework Dashboard features and sharing them with other Services.
+app: conezone
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: backend
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: eu-north-1
+  deploymentMethod: direct
+  
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - httpApi:
+          path: /
+          method: get
