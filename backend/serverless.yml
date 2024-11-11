@@ -21,7 +21,7 @@ functions:
     events:
       - httpApi:
           path: /
-          method: put
+          method: post
 
 resources:
   Resources:
