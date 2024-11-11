@@ -16,12 +16,12 @@ provider:
     role: ${self:custom.localEnv.myLambda}
 
 functions:
-  getMenu:
-    handler: functions/getMenu/index.handler
+  addToMenu:
+    handler: functions/addToMenu/index.handler
     events:
       - httpApi:
           path: /
-          method: get
+          method: put
 
 resources:
   Resources:
