@@ -29,3 +29,8 @@ exports.handler = async (event) => {
     return sendError (500, {success: false, message: error.message})
   }
 }
+
+/**
+  * Författare: Ida
+  * Funktion som lägger till nya items till vår meny databas
+*/
