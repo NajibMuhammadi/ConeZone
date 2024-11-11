@@ -20,31 +20,31 @@ functions:
     handler: functions/PostItem/index.handler
     events:
       - httpApi:
-          path: /
+          path: /item
           method: post
   DeleteItem:
     handler: functions/DeleteItem/index.handler
     events:
       - httpApi:
-          path: /{id}
+          path: /item/{id}
           method: delete
   GetItem:
-    handler: functions/GetItem/index.handler
+    handler: functions/GetItems/index.handler
     events:
       - httpApi:
-          path: /
+          path: /item
           method: get
   PutItem:
     handler: functions/PutItem/index.handler
     events:
       - httpApi:
-          path: /{id}
+          path: /item/{id}
           method: put
   GetItemById:
-    handler: functions/GetItemById/index.handler
+    handler: functions/GetItem/index.handler
     events:
       - httpApi:
-          path: /{id}
+          path: /item/{id}
           method: get
   
 
