@@ -51,3 +51,8 @@ exports.handler = async (event) => {
         }
     } 
 }
+
+/**
+  * Författare: Ida
+  * Funktion som gör att man kan ändra i alla våra produkter som tillhör typen icecream
+*/
