@@ -16,8 +16,8 @@ provider:
     role: ${self:custom.localEnv.myLambda}
 
 functions:
-  addToMenu:
-    handler: functions/addToMenu/index.handler
+  PostItem:
+    handler: functions/PostItem/index.handler
     events:
       - httpApi:
           path: /
@@ -40,6 +40,12 @@ functions:
       - httpApi:
           path: /{id}
           method: put
+  GetItemById:
+    handler: functions/GetItemById/index.handler
+    events:
+      - httpApi:
+          path: /{id}
+          method: get
   
 
 resources:
