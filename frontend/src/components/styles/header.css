@@ -1,0 +1,47 @@
+.header {
+    background-color: var(--black);
+}
+
+.header__nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    height: 225px;
+}
+
+.header__logo {
+    width: 196px;
+}
+
+.nav__link {
+    font-size: 36px;
+    color: var(--white);
+    text-decoration: none;
+    padding: 2rem 0;
+    cursor: pointer;
+    position: relative;
+    font-family: 'Inter';
+}
+
+.nav__link::after {
+    content: '';
+    position: absolute;
+    bottom: 2rem;
+    left: 0;
+    width: 0;
+    height: 5px;
+    background-color: var(--pink);
+    transition: width 1s ease-in-out;
+}
+
+.nav__link:hover::after {
+    width: 100%;
+}
+
+.nav__link--active::after {
+    width: 100%;
+}
+
+
+
