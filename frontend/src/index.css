@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -6,12 +6,12 @@
 
 :root {
   --pink: #F0C9C4;
-  --pink70: rgba(240, 201, 196, 0.698, 0.7);
-  --pink40: rgba(240, 201, 196, 0.698, 0.4);
+  --pink70: rgba(240, 201, 196, 0.7);
+  --pink40: rgba(240, 201, 196, 0.4);
   --white: #ffffff;
   --black: #353535;
   --blue: #C4EBF0;
-  --blue40: rgba(196, 235, 240, 0.4); 
+  --blue40: rgba(196, 235, 240, 0.4);
   --purple: #DFC4F0;
   --gray: #D9d9d9;
   --green: #D5F0C4;
