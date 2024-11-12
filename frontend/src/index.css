@@ -6,8 +6,8 @@
 
 :root {
   --pink: #F0C9C4;
-  --pink70: rgba(240, 201, 196, 0.698, 0.7);
-  --pink40: rgba(240, 201, 196, 0.698, 0.4);
+  --pink70: rgba(240, 201, 196, 0.7);
+  --pink40: rgba(240, 201, 196, 0.4);
   --white: #ffffff;
   --black: #353535;
   --blue: #C4EBF0;
