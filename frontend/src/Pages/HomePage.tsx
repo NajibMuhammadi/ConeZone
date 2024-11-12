@@ -42,15 +42,15 @@ function HomePage() {
           <section className="homePage__reviews-list">
             <article className="homePage__review">
               <img className="homePage__review-img" src={SoyoBoy} alt="reviewPerson1" />
-              <p className="homePage__review-text"> - from SoyoBoy</p>
+              <p className="homePage__review-text"> <span className='homePage__review-boldtext'>"Blablabla"</span> - from SoyoBoy</p>
             </article>
             <article className="homePage__review">
               <img className="homePage__review-img" src={FancyLady} alt="reviewPerson2" />
-              <p className="homePage__review-text"> - from FancyLady</p>
+              <p className="homePage__review-text"><span className='homePage__review-boldtext'>"Yummy!"</span> - from FancyLady</p>
             </article>
             <article className="homePage__review">
               <img className="homePage__review-img" src={IceCreamLover} alt="reviewPerson3" />
-              <p className="homePage__review-text"> - from IceCreamLover192</p>
+              <p className="homePage__review-text"><span className='homePage__review-boldtext'>"So, so good!"</span> - from IceCreamLover192</p>
             </article>
           </section>
         </section>
