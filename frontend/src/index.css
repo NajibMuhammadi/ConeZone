@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -11,7 +11,7 @@
   --white: #ffffff;
   --black: #353535;
   --blue: #C4EBF0;
-  --blue40: rgba(196, 235, 240, 0.4); 
+  --blue40: rgba(196, 235, 240, 0.4);
   --purple: #DFC4F0;
   --gray: #D9d9d9;
   --green: #D5F0C4;
