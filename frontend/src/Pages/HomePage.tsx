@@ -5,11 +5,14 @@ import star from '../assets/material-symbols_star.png'
 import SoyoBoy from '../assets/SoyoBoy.png'
 import FancyLady from '../assets/FancyLady.png'
 import IceCreamLover from '../assets/IceCreamLover.png'
+import Header from '../Components/Header';
+import Footer from '../Components/Footer';
 
 function HomePage() {
 
   return (
     <>
+      <Header />
       <section className='homePage__wrapper'>
         <section className="homePage__jumbotron">
           <h1 className="homePage__jumbotron-header">Where Sweet Meets Street!</h1>
@@ -55,6 +58,7 @@ function HomePage() {
           </section>
         </section>
       </section>
+      <Footer />
     </>
   )
 }
