@@ -1,0 +1,196 @@
+.about-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.history__container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 50px;
+}
+
+.history__heading,
+.employees__heading {
+    text-align: center;
+    margin: 30px;
+}
+
+.history__heading {
+    font-size: 30px;
+}
+
+.history__img {
+    border-radius: 11px;
+    width: 400px;
+    height: 400px;
+    margin: 30px;
+}
+
+.history__text {
+    margin: 30px; 
+}
+
+.employees {
+    background-image: url(../../src/assets/strossel.png);
+    background-size: contain;
+    width: 100vw;
+    padding: 50px;
+}
+
+.employees__container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 50px;
+}
+
+.employees__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 50px;
+}
+
+.employees__desc-container {
+    background-color: white;
+    text-align: center;
+    padding: 15px 25px 15px 25px;
+    border-radius: 10px;
+    border: 2px solid gray;
+    font-size: 22px;
+    width: 200px;
+}
+
+.employees__img {
+    border-radius: 50%;
+    width: 150px;
+    margin: 30px;
+}
+
+.employees__name {
+    color: black;
+    padding: 10px;
+}
+
+.employees__position {
+    color: gray;
+    padding: 10px;
+}
+
+.ice-cream {
+    margin: 0;
+}
+
+.ice-cream__img {
+    height: 100%;
+    width: 100vw;
+    display: block;
+}
+
+.quote {
+    text-align: center;
+    background-color: var(--purple);
+    width: 100vw;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .history__heading {
+        margin: 30px 0 10px 0;
+    }
+
+    .history__container {
+        flex-direction: column;
+        margin: 0;
+    }
+
+    .history__img {
+        width: 100vw;
+        height: auto;
+        margin: 0;
+        border-radius: 0;
+    }
+
+    .history__text {
+        margin: 0 20px 20px 20px;
+        padding: 20px;
+    }
+
+    .employees {
+        padding: 20px;
+        background-position: center;
+        background-size: contain;
+    }
+
+    .employees__container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+    }
+
+    .employees__item {
+        margin: 20px;
+    }
+
+    .employees__img {
+        width: 100px;
+        margin: 20px 0;
+    }
+
+    .employees__desc-container {
+        padding: 0 10px;
+        font-size: 14px;
+        width: 130px;
+    }
+
+    .ice-cream {
+        margin: 0;
+    }
+
+    .ice-cream__img {
+        width: 100%;
+        height: auto;
+    }
+
+    .quote {
+        
+        padding: 20px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .employees__container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        align-items: center;
+        margin: 0;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1200px) {
+    .employees__container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        align-items: center;
+        margin: 0;
+    }
+}
+
+/*
+/* Författare: Diliara
+/* About us sidas styling.
+*/
