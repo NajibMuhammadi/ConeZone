@@ -3,7 +3,7 @@ import HomePage from "../pages/HomePage";
 import AboutPage from "../pages/AboutPage";
 import LoginPage from "../pages/LoginPage";
 import MenuPage from "../pages/MenuPage";
-import BasketPage from "../pages/BasketPage";
+import CartPage from "../pages/CartPage";
 
 
 function Routers() {
@@ -14,7 +14,7 @@ function Routers() {
                 <Route path="/about" element={<AboutPage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/menu" element={<MenuPage />} />
-                <Route path="/basket" element={<BasketPage />} />
+                <Route path="/cart" element={<CartPage />} />
             </Routes>
         </BrowserRouter>
     )

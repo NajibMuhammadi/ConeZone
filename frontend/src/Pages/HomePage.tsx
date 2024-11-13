@@ -5,8 +5,8 @@ import star from '../assets/material-symbols_star.png'
 import SoyoBoy from '../assets/SoyoBoy.png'
 import FancyLady from '../assets/FancyLady.png'
 import IceCreamLover from '../assets/IceCreamLover.png'
-import Header from '../Components/Header';
-import Footer from '../Components/Footer';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 function HomePage() {
 
