@@ -4,6 +4,7 @@ import AboutPage from "../pages/AboutPage";
 import LoginPage from "../pages/LoginPage";
 import MenuPage from "../pages/MenuPage";
 import CartPage from "../pages/CartPage";
+import Register from "../pages/RegisterPage";
 
 
 function Routers() {
@@ -15,6 +16,7 @@ function Routers() {
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/menu" element={<MenuPage />} />
                 <Route path="/cart" element={<CartPage />} />
+                <Route path="/register" element={<Register />} />
             </Routes>
         </BrowserRouter>
     )

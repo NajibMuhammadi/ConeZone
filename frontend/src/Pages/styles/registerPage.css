@@ -1,4 +1,4 @@
-.login__wrapper {
+.register__wrapper {
     background-color: var(--pink70);
     margin: auto;
     display: flex;
@@ -7,7 +7,7 @@
     align-items: center;
 }
 
-.login__form {
+.register__form {
     width: 80%;
     max-width: 560px;
     background-color: var(--white);
@@ -20,7 +20,7 @@
     font-family: Inter;
 }
 
-.login__header {
+.register__header {
     color: var(--black);
     font-size: 40px;
     text-align: center;
@@ -29,14 +29,14 @@
     margin-bottom: 2rem;
 }
 
-.login__form label {
+.register__form label {
     font-size: 32px;
     font-weight: 700;
     color: var(--black70);
     margin: 1rem 0;
 }
 
-.login__form input {
+.register__form input {
     font-size: 26px;
     color: var(--black70);
     padding: .5rem;
@@ -47,12 +47,12 @@
     height: 90px;
 }
 
-.login__form input:focus {
-    outline: 3px solid var(--purple)
+.register__form input:focus {
+    outline: 3px solid var(--blue)
 }
 
-.login__form .login__submit {
-    background-color: var(--purple);
+.register__form .register__submit {
+    background-color: var(--blue);
     font-size: 40px;
     margin: 6rem auto 0;
     border-radius: 10px;
@@ -61,15 +61,4 @@
     width: 80%;
     font-family: Intel;
     font-weight: 700;
-}
-
-.login__register {
-    background-color: var(--white);
-    margin: 5rem;
-    padding: 2rem;
-    border-radius: 10px;
-    font-family: Intel;
-    font-weight: 700;
-    color: var(--black);
-    font-size: 28px;
 }
