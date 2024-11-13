@@ -9,7 +9,7 @@ function Header() {
                     <NavLink to="/menu" className={({ isActive } : NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>Menu</NavLink>
                     <NavLink to="/about" className={({ isActive } : NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>About Us</NavLink>
                     <NavLink to="/login" className={({ isActive } : NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>Login</NavLink>
-                <NavLink to="/basket" className={({ isActive } : NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}><img className="header__basket" src="../../src/assets/basket.svg"></img></NavLink>
+                <NavLink to="/cart" className={({ isActive } : NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}><img className="header__basket" src="../../src/assets/basket.svg"></img></NavLink>
             </nav>
         </header>
     )
