@@ -17,6 +17,7 @@
 .employees__heading {
     text-align: center;
     margin: 30px;
+    font-family: "Inter", sans-serif;
 }
 
 .history__heading {
@@ -31,7 +32,10 @@
 }
 
 .history__text {
-    margin: 30px; 
+    margin: 30px;
+    font-family: "Inter", sans-serif;
+    font-size: 18px;
+    text-align: justify;
 }
 
 .employees {
@@ -76,11 +80,13 @@
 .employees__name {
     color: black;
     padding: 10px;
+    font-family: "Inter", sans-serif;
 }
 
 .employees__position {
     color: gray;
     padding: 10px;
+    font-family: "Inter", sans-serif;
 }
 
 .ice-cream {
@@ -97,11 +103,19 @@
     text-align: center;
     background-color: var(--purple);
     width: 100vw;
-    height: 300px;
+    height: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    font-family: "Calligraffitti", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.quote__text {
+    font-size: 46px;
+    padding: 70px;
 }
 
 @media (max-width: 768px) {
@@ -151,8 +165,8 @@
 
     .employees__desc-container {
         padding: 0 10px;
-        font-size: 14px;
-        width: 130px;
+        font-size: 16px;
+        width: 170px;
     }
 
     .ice-cream {
@@ -165,7 +179,12 @@
     }
 
     .quote {
-        
+        padding: 20px;
+        height: 300px;
+    }
+
+    .quote__text {
+        font-size: 20px;
         padding: 20px;
     }
 }
@@ -178,14 +197,34 @@
         align-items: center;
         margin: 0;
     }
+
+    .quote__text {
+        font-size: 34px;
+        padding: 30px;
+    }
 }
 
-@media (min-width: 1025px) and (max-width: 1200px) {
+@media (min-width: 1025px) and (max-width: 1299px) {
     .employees__container {
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr;
         align-items: center;
+        margin: 0;
+    }
+
+    .quote__text {
+        font-size: 40px;
+        padding: 40px;
+    }
+}
+
+@media (min-width: 1300px) and (max-width: 1800px) {
+    .employees__container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
         margin: 0;
     }
 }
