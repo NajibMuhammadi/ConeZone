@@ -1,0 +1,181 @@
+.homePage__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.homePage__jumbotron {
+    background-color: var(--pink70);
+    height: 40vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.homePage__jumbotron-header {
+    font-family: "Calligraffitti", cursive;
+    font-weight: 400;
+    font-size: 2rem;
+    font-style: italic;
+    margin: 1rem;
+}
+
+.homePage__jumbotron-text {
+    font-family: "Inter", sans-serif;
+    margin: 1rem 3rem;
+    text-align: center;
+}
+
+.homePage__content {
+    display: flex;
+}
+
+.homePage__picture {
+    margin: 4rem 2rem 3rem 0;
+    max-width: 50vw;
+}
+
+.homePage__aside {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem;
+}
+
+.homePage__text {
+    font-family: "Inter", sans-serif;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.homePage__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 2rem;
+    border-radius: 3rem;
+    border: none;
+    background-color: #C4EBF0;
+}
+
+.homePage__button-text {
+    font-family: "Inter", sans-serif;
+    font-size: 1.2rem;
+}
+
+.homePage__arrow {
+    width: 2rem;
+    margin-left: 1rem;
+}
+
+.homePage__slogan {
+    background-color: var(--purple);
+    width: 60vw;
+    padding: 1rem 2rem;
+    margin: 5rem 0rem;
+    border-radius: 5px;
+}
+
+.homePage__slogan-text {
+    font-family: "Calligraffitti", cursive;
+    font-weight: 400;
+    font-size: 1.2rem;
+    font-style: italic;
+    margin: 1rem;
+    text-align: center;
+}
+
+.homePage__reviews {
+    background-image: url('../../assets/sprinkles.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 50vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.homePage__ourRating {
+    background-color: var(--black);
+    width: 11rem;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-left: 1rem;
+}
+
+.homePage__ourRating-header {
+    color: var(--white);
+    font-family: "Inter", sans-serif;
+    text-align: center;
+    margin-bottom: 0.8rem;
+    font-size: 1.2rem;
+}
+
+.homePage__ourRating-starsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.homePage__ourRating-stars {
+    width: 2rem;
+    height: 2rem;
+    margin: 0.2rem;
+}
+
+.homePage__review {
+    background-color: var(--pink);
+    margin: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1rem;
+    background-color: var(--pink);
+    margin: 1rem;
+    border-radius: 5px;
+    padding: 1rem;
+    align-items: center;
+    max-width: 400px;
+}
+
+.homePage__review-img {
+    height: 4rem;
+    border-radius: 5px;
+}
+
+.homePage__review-text {
+    font-family: "Inter", sans-serif;
+    color: rgba(53, 53, 53, 0.5);
+}
+
+.homePage__review-boldtext {
+    color: rgba(53, 53, 53);
+    font-weight: 700;
+}
+
+@media screen and (max-width:550px) {
+
+    .homePage__reviews {
+        padding: 3rem;
+        flex-direction: column;
+    }
+
+    .homePage__content {
+        flex-direction: column-reverse;
+        align-items: center;
+        margin-top: 3rem;
+    }
+
+    .homePage__picture {
+        margin: 2rem 0rem;
+        max-width: 100%;
+    }
+}
