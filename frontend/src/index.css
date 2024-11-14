@@ -10,10 +10,12 @@
   --pink40: rgba(240, 201, 196, 0.4);
   --white: #ffffff;
   --black: #353535;
+  --black70: rgba(0, 0, 0, 0.7);
   --blue: #C4EBF0;
   --blue40: rgba(196, 235, 240, 0.4);
   --purple: #DFC4F0;
   --gray: #D9d9d9;
+  --gray30: rgb(217, 217, 217, 0.3);
   --green: #D5F0C4;
   --green40: rgba(213, 240, 196, 0.4);
 }

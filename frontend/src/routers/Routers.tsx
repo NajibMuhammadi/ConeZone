@@ -5,7 +5,7 @@ import LoginPage from "../pages/LoginPage";
 import MenuPage from "../pages/MenuPage";
 import CartPage from "../pages/CartPage";
 import ProductPage from "../pages/ProductPage";
-
+import Register from "../pages/RegisterPage";
 
 function Routers() {
     return (
@@ -17,6 +17,7 @@ function Routers() {
                 <Route path="/menu" element={<MenuPage />} />
                 <Route path="/cart" element={<CartPage />} />
                 <Route path="/menu/:id" element={<ProductPage />} />
+                <Route path="/register" element={<Register />} />
             </Routes>
         </BrowserRouter>
     )

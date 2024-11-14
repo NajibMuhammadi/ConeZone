@@ -64,3 +64,5 @@ function HomePage() {
 }
 
 export default HomePage
+
+// Design och utförande i frontend gjord av Lisa
