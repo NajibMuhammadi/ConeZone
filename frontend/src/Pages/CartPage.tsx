@@ -5,6 +5,7 @@ import './styles/cartPage.css';
 
 import icecreamImage from '../assets/ice cream.jpg';
 import deleteIcon from '../assets/Vector.png';
+import { Link } from "react-router-dom";
 
 function BasketPage() {
     return (
@@ -37,7 +38,7 @@ function BasketPage() {
                         <span className="cart__total-text">Total</span>
                         <span className="cart__total-price">50 Sek</span>
                     </article>
-                    <button className="cart__checkout">Checkout</button>
+                    <Link to="/order" className="cart__checkout">Checkout</Link>
                 </section>
                 
             </main>
@@ -46,3 +47,10 @@ function BasketPage() {
     )
 }  
 export default BasketPage
+
+/**
+ * Författare: Najib
+ * 
+ * Edited: Diliara
+ * La till en Link element för att navigera till OrderPage
+ */
