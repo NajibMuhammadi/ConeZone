@@ -1,15 +1,32 @@
 import { create } from "zustand";
 import { MenuStore } from '../types/interfaces'
+import { ItemType } from "../types/interfaces";
 
 const useMenuStore = create<MenuStore>((set, get) => ({
-    menu: {
-        iceCream: []
-    },
-    setMenu: (newMenu) => {
-        set({ menu: newMenu })
-    },
+    // menu: {
+    //     iceCream: []
+    // },
+    // setMenu: (newMenu) => {
+    //     set({ menu: newMenu })
+    // },
     cart: [],
     setCart: (newCart) => set({ cart: newCart }),
+    addToCart: (item: ItemType) => {
+        const currentCart = get().cart;
+        const existingItemIndex = currentCart.findIndex(cartItem => cartItem.sk === item.sk);
+        if (existingItemIndex > -1) {
+            // Om varan redan finns i cart, öka dess kvantitet
+            const updatedCart = [...currentCart];
+            updatedCart[existingItemIndex].qty += 1;
+            set({ cart: updatedCart });
+        } else {
+            // Lägg till ny vara med kvantitet 1
+            const updatedCart = [...currentCart, { ...item, qty: 1 }];
+            set({ cart: updatedCart });
+            console.log('Cart after adding item:', updatedCart);
+        }
+    },
+
     totalQuantity: () => get().cart.reduce((total, item) => total + item.qty, 0),
     order: null,
     setOrder: () => {
