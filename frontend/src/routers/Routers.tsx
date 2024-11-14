@@ -6,6 +6,7 @@ import MenuPage from "../pages/MenuPage";
 import CartPage from "../pages/CartPage";
 import ProductPage from "../pages/ProductPage";
 import Register from "../pages/RegisterPage";
+import OrderPage from "../pages/OrderPage";
 
 function Routers() {
     return (
@@ -18,6 +19,7 @@ function Routers() {
                 <Route path="/cart" element={<CartPage />} />
                 <Route path="/menu/:id" element={<ProductPage />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/order" element={<OrderPage />} />
             </Routes>
         </BrowserRouter>
     )
@@ -30,5 +32,5 @@ export default Routers;
  * Här skapas de olika routes upp som vi kommer använda för att navigera på sidan
  * 
  * Edited: Diliara
- * La till en route för ProductPage
+ * La till en route för ProductPage, OrderPage
  */
