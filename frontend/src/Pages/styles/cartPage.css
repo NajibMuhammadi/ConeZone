@@ -16,7 +16,6 @@
     font-family: inter, sans-serif;
     font-size: 50px;
     font-weight: 700;
-    line-height: 59px;
     color: var(--black);
     text-align: center;
 }
@@ -33,7 +32,7 @@
 
 .cart__item-container{
     display: flex;
-    gap: 2rem; 
+    gap: 1rem; 
 }
 
 .cart__item-image{
@@ -133,9 +132,6 @@
     .cart{
         padding: 2rem;
     }
-    .cart__item-container{
-        gap: 1rem;
-    }
     .cart__item-image{
         height: 160px;
     }
@@ -155,4 +151,22 @@
 }
 
 @media (max-width: 600px) {
+    .cart{
+        padding: 2rem;
+        width: 90%;
+    }
+    .cart__item-container{
+        gap: 2rem;
+        flex-direction: column;
+    }
+    .cart__item-image{
+        width: 100%;
+        height: auto;
+    }
+    .cart__item-details{
+        gap: .5rem;
+    }
+    .cart__total{
+        padding-left: 0;
+    }
 }
