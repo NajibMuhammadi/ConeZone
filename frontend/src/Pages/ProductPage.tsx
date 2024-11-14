@@ -5,12 +5,14 @@ import Header from '../components/Header';
 import './styles/productPage.css';
 import { ItemType } from '../types/interfaces';
 import { fetchItems } from '../services/fetchItems';
+import useMenuStore from '../stores/cartStore';
 
 function ProductPage() {
     const { id } = useParams<{ id: string }>();
     const url = 'localUrl';
     const [item, setItem] = useState<ItemType | null>(null);
     const [error, setError] = useState<string | null>(null);
+    const addToCart = useMenuStore(state => state.addToCart);
 
     useEffect(() => {
         const fetchItem = async () => {
@@ -52,15 +54,17 @@ function ProductPage() {
                         <p className="product__name">{item.name}</p>
                         <p className="product__desc">{item.desc}</p>
                         <article className="product__lists">
-                        <ul className="product__components">
-                            <strong>Ingridients:</strong>
-                            {item.components.map((component, index) => (
-                                <li className="product__component-item" key={index}>{component}</li>
-                            ))}
-                        </ul>
-                        <p className="product__allergens">Allergens:</p>
+                            <ul className="product__components">
+                                <strong>Ingridients:</strong>
+                                {item.components.map((component, index) => (
+                                    <li className="product__component-item" key={index}>{component}</li>
+                                ))}
+                            </ul>
+                            <p className="product__allergens">Allergens:</p>
                         </article>
-                        <button className="product__button">Give me one!</button>
+                        <button className="product__button"
+                            onClick={() => addToCart(item)}
+                        >Give me one!</button>
                     </article>
                 </section>
             </div>
@@ -75,3 +79,5 @@ export default ProductPage;
  * Författare: Diliara
  * Product sida som innehåller information om produkten.
  */
+
+// Författare: Lisa. Lägger in funktion addToCart med vår store

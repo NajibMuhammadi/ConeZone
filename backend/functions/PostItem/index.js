@@ -1,11 +1,16 @@
 const {db} = require('../../services/index.js')
 const {sendResponse, sendError } = require('../../responses/index')
 const {v4 : uuid} = require('uuid')
+const { itemSchema } = require('../../models/itemSchema')
 
 
 exports.handler = async (event) => {
+  const {error} = itemSchema.validate(JSON.parse(event.body))
 
-  console.log('Received event:', event);
+  if (error) {
+    return sendError(400, error.details[0].message)
+  }
+
   const {pk, name, desc, price, category, popular, components, image} = JSON.parse(event.body)
   const id = uuid().substring(0, 8)
 
@@ -24,7 +29,7 @@ exports.handler = async (event) => {
         image: image
       }
     })
-      return sendResponse(200, {success: true, message: 'New item added'})
+      return sendResponse(200, {success: true, message: 'New item added'})
   } catch (error) {
     return sendError (500, {success: false, message: error.message})
   }

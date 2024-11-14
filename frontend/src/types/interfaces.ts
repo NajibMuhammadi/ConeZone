@@ -25,13 +25,15 @@ export interface Order {
     isApproved: boolean,
 }
 export interface MenuStore {
-    menu: {
-        iceCream: ItemType[];
-    };
-    setMenu: (newMenu: { iceCream: ItemType[] }) => void;
+    // menu: {
+    //     iceCream: ItemType[];
+    // };
+    // setMenu: (newMenu: { iceCream: ItemType[] }) => void;
     cart: CartItem[];
     setCart: (newCart: CartItem[]) => void;
+    addToCart: (item: ItemType) => void;
     totalQuantity: () => number;
+    totalPrice: () => number;
     order: Order | null;
     setOrder: () => void;
     approveOrder: () => void;

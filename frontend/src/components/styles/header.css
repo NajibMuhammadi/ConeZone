@@ -1,5 +1,7 @@
 .header {
     background-color: var(--black);
+    position: sticky;
+    top: 0;
 }
 
 .header__nav {
@@ -61,7 +63,24 @@
     height: 50px;
 }
 
-@media (max-width: 600px) {  
+.badge {
+    z-index: 99;
+    position: absolute;
+    top: 1.3rem;
+    right: 1.3rem;
+    width: 1.8rem;
+    height: 1.8rem;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+}
+
+@media (max-width: 600px) {
     .header__nav {
         display: none;
     }
