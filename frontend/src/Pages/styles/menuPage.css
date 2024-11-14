@@ -58,6 +58,11 @@
     cursor: pointer;
 }
 
+.main__menu-link {
+    text-decoration: none;
+    color: var(--black);
+}
+
 
 @media (min-width: 800px) and (max-width: 1000px) {
    .main__menu-title{
@@ -89,3 +94,8 @@
         gap: 3rem;
     }
 }
+
+/* Författare: Najib
+Edited: Diliara
+La till .main__menu-link styling
+*/

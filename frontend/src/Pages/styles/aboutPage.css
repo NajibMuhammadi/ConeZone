@@ -78,7 +78,7 @@
 }
 
 .employees__name {
-    color: black;
+    color: var(--black);
     padding: 10px;
     font-family: "Inter", sans-serif;
 }

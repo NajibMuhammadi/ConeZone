@@ -1,0 +1,234 @@
+.product__wrapper {
+    background-color: var(--pink70);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.product {
+    font-family: "Inter", sans-serif;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 50px;
+    background-color: white;
+    border-radius: 10px;
+    width: 70%;
+}
+
+.product__card {
+    margin: 50px 0;
+    text-align: center;
+}
+
+.product__img {
+    width: 300px;
+    height: 350px;
+    margin-left: 10px;
+}
+
+.product__name {
+    font-size: 20px;
+    font-weight: 600;
+    padding: 10px;
+}
+
+.product__desc {
+    font-size: 18px;
+    padding: 10px;
+}
+
+.product__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 20px;
+}
+
+.product__component-item {
+    padding-left: 10px;
+}
+
+.product__allergens {
+    font-weight: 600;
+}
+
+.product__button {
+    background-color: var(--blue);
+    border-radius: 10px;
+    width: 17vw;
+    height: 5vh;
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+@media (max-width: 517px) {
+    .product {
+        grid-template-columns: 1fr;
+        width: 83%;
+        margin: 40px 0;
+    }
+
+    .product__img {
+        width: 220px;
+        height: 250px;
+        margin: 0;
+    }
+
+    .product__info {
+        margin-top: -50px;
+        gap: 10px;
+        padding: 50px 0;
+    }
+
+    .product__button {
+        width: 220px;
+        height: 70px;
+        margin-top: 30px;
+    }
+
+    .product__lists {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        margin-bottom: 15px;
+    }
+}
+
+@media (min-width: 518px) and (max-width: 721px) {
+    .product {
+        grid-template-columns: 1fr;
+        width: 75%;
+        margin: 40px 0;
+    }
+
+    .product__img {
+        width: 290px;
+        height: 300px;
+        margin: 0;
+    }
+
+    .product__info {
+        margin-top: -50px;
+        gap: 10px;
+        padding: 40px 0;
+    }
+
+    .product__button {
+        width: 220px;
+        height: 70px;
+        margin-top: 30px;
+    }
+
+    .product__lists {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        margin: 10px;
+    }
+}
+
+@media (min-width: 722px) and (max-width: 853px) {
+    .product {
+        grid-template-columns: 1fr;
+        width: 70%;
+        margin: 40px 0;
+    }
+
+    .product__img {
+        width: 330px;
+        height: 330px;
+        margin: 0;
+    }
+
+    .product__info {
+        margin-top: -50px;
+        gap: 10px;
+        padding: 40px 0;
+    }
+
+    .product__button {
+        width: 220px;
+        height: 70px;
+        margin-top: 30px;
+    }
+
+    .product__lists {
+        display: flex;
+        flex-direction: row;
+        gap: 150px;
+        margin: 30px;
+    }
+}
+
+@media (min-width: 854px) and (max-width: 1054px) {
+    .product {
+        width: 85%;
+        /* padding: 70px 0; */
+    }
+
+    .product__wrapper {
+        height: 60vh;
+    }
+
+    .product__lists {
+        display: flex;
+        flex-direction: row;
+        gap: 150px;
+        margin: 30px;
+    }
+}
+
+@media (min-width: 1055px) and (max-width: 1299px) {
+    .product__wrapper {
+        height: 60vh;
+    }
+
+    .product {
+        width: 80%;
+    }
+
+    .product__lists {
+        display: flex;
+        flex-direction: row;
+        gap: 150px;
+        margin: 30px;
+    }
+
+    .product__img {
+        width: 350px;
+        height: 350px;
+        margin: 0;
+    }
+}
+
+@media (min-width: 1300px) and (max-width: 1800px) {
+    .product__wrapper {
+        height: 60vh;
+    }
+
+    .product {
+        width: 75%;
+    }
+
+    .product__img {
+        width: 450px;
+        height: 450px;
+        margin: 0;
+    }
+
+    .product__lists {
+        display: flex;
+        flex-direction: row;
+        gap: 150px;
+        margin: 30px;
+    }
+}
+
+/*
+Författare: Diliara
+Product sidas styling 
+*/
