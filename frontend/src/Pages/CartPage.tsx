@@ -67,9 +67,13 @@ export default CartPage
 /**
  * Författare: Najib
  *
+ * en sida som visar varukorgen och möjlighet att ta bort varor från varukorgen
+ * 
  * Edited: Diliara
  * La till en Link element för att navigera till OrderPage
  */
 
-// Författare: Lisa
-// Kopplar ihop CartPage med Zustand och våran Cart. Renderar ut på sidan så man ser Cart
+/** 
+  * Författare: Lisa
+  * Kopplar ihop CartPage med Zustand och våran Cart. Renderar ut på sidan så man ser Cart
+*/
