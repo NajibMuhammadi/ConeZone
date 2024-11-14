@@ -1,12 +1,13 @@
 import { NavLink, NavLinkRenderProps } from 'react-router-dom';
 import { useState } from 'react';
 import './styles/header.css'
-import useMenuStore from '../stores/cartStore';
+// import useMenuStore from '../stores/cartStore';
+// import { useEffect } from 'react';
 
 function Header() {
 
     const [isOpen, setIsOpen] = useState(false);
-    const totalQuantity = useMenuStore(state => state.totalQuantity); // Hämta totalQuantity-funktionen
+    // const totalQuantity = useMenuStore(state => state.totalQuantity); 
 
     const toggleNav = (): void => {
         setIsOpen(!isOpen)
@@ -30,11 +31,11 @@ function Header() {
                     <NavLink to="/login" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>Login</NavLink>
                     <NavLink to="/cart" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>
                         <img className="header__basket" src="../../src/assets/basket.svg"></img>
-                        {totalQuantity() > 0 && (
+                        {/* {totalQuantity() > 0 && (
                             <div className='badge'>
                                 {totalQuantity()}
                             </div>
-                        )}
+                        )} */}
                     </NavLink>
                 </section>
             </nav>

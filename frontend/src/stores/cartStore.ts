@@ -26,8 +26,8 @@ const useMenuStore = create<MenuStore>((set, get) => ({
             console.log('Cart after adding item:', updatedCart);
         }
     },
-
     totalQuantity: () => get().cart.reduce((total, item) => total + item.qty, 0),
+    totalPrice: () => get().cart.reduce((total, item) => total + item.price * item.qty, 0),
     order: null,
     setOrder: () => {
         const cart = get().cart;

@@ -5,9 +5,10 @@ import deleteIcon from '../assets/Vector.png';
 import { Link } from "react-router-dom";
 import useMenuStore from "../stores/cartStore";
 
-function BasketPage() {
+function CartPage() {
 
     const cart = useMenuStore(state => state.cart);  // Hämta cart från store
+    const totalPrice = useMenuStore(state => state.totalPrice());
 
     // const handleRemoveItem = (itemSk: string) => {
     //     // Lägg till logik för att ta bort varor från kundvagnen här (baserat på itemSk)
@@ -51,8 +52,7 @@ function BasketPage() {
                 <span className="cart__divider"></span>
                 <section className="cart__summmary">
                     <article className="cart__total">
-                        <span className="cart__total-text">Total</span>
-                        <span className="cart__total-price"> SEK</span>
+                        <span className="cart__total-price">{totalPrice} SEK</span>
                     </article>
                     <Link to="/order" className="cart__checkout">Checkout</Link>
                 </section>
@@ -62,11 +62,14 @@ function BasketPage() {
         </div>
     )
 }
-export default BasketPage
+export default CartPage
 
 /**
  * Författare: Najib
- * 
+ *
  * Edited: Diliara
  * La till en Link element för att navigera till OrderPage
  */
+
+// Författare: Lisa
+// Kopplar ihop CartPage med Zustand och våran Cart. Renderar ut på sidan så man ser Cart

@@ -33,6 +33,7 @@ export interface MenuStore {
     setCart: (newCart: CartItem[]) => void;
     addToCart: (item: ItemType) => void;
     totalQuantity: () => number;
+    totalPrice: () => number;
     order: Order | null;
     setOrder: () => void;
     approveOrder: () => void;
