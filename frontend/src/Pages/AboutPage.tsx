@@ -1,7 +1,11 @@
+import Footer from '../components/Footer';
+import Header from '../components/Header';
 import './styles/aboutPage.css';
 
 function AboutPage() {
     return (
+        <>
+        <Header />
         <div className="about-wrapper">
             <article className="history">
                 <h2 className="history__heading">
@@ -62,6 +66,8 @@ function AboutPage() {
                 <p className="quote__text">“We strive to make the best Ice Cream in the world and having fun while we do it!”</p>
             </article>
         </div>
+        <Footer />
+        </>
     )
 }
 export default AboutPage
