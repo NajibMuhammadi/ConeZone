@@ -1,11 +1,14 @@
 .cart__wrapper {
     background-color: var(--pink);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .cart {
+    flex: 1;
     background-color: var(--white);
     width: 80%;
-    margin: 0 auto;
     padding: 3rem;
     border-radius: 1rem;
     margin: 2rem auto;

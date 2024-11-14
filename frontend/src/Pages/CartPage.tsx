@@ -6,13 +6,13 @@ import { Link } from "react-router-dom";
 import useMenuStore from "../stores/cartStore";
 
 function CartPage() {
-
     const cart = useMenuStore(state => state.cart);  // Hämta cart från store
     const totalPrice = useMenuStore(state => state.totalPrice());
+    const removeFromCart = useMenuStore(state => state.removeFromCart);
 
-    // const handleRemoveItem = (itemSk: string) => {
-    //     // Lägg till logik för att ta bort varor från kundvagnen här (baserat på itemSk)
-    // };
+    const handleRemoveItem = (itemSk: string) => {
+        removeFromCart(itemSk);
+    };
 
     return (
         <div className="cart__wrapper">
@@ -34,7 +34,7 @@ function CartPage() {
                                         </div>
                                         <button
                                             className="cart__item-delete"
-                                        // onClick={() => handleRemoveItem(item.sk)}
+                                            onClick={() => handleRemoveItem(item.sk)}
                                         >
                                             <img className="cart__item-delete-icon" src={deleteIcon} alt="Delete" />
                                         </button>
@@ -52,11 +52,10 @@ function CartPage() {
                 <span className="cart__divider"></span>
                 <section className="cart__summmary">
                     <article className="cart__total">
-                        <span className="cart__total-price">{totalPrice} SEK</span>
+                        <span className="cart__total-price">Totalt: {totalPrice} SEK</span>
                     </article>
                     <Link to="/order" className="cart__checkout">Checkout</Link>
                 </section>
-
             </main>
             <Footer />
         </div>
