@@ -1,13 +1,20 @@
 import { NavLink, NavLinkRenderProps } from 'react-router-dom';
 import { useState } from 'react';
 import './styles/header.css'
-// import useMenuStore from '../stores/cartStore';
-// import { useEffect } from 'react';
+import useMenuStore from '../stores/cartStore';
+import { useEffect } from 'react';
 
 function Header() {
+    const cart = useMenuStore(state => state.cart);
+    const totalQuantity = useMenuStore(state => state.totalQuantity);
+    const [quantity, setQuantity] = useState(0);
+
+    //Uppdaterar när cart ändras
+    useEffect(() => {
+        setQuantity(totalQuantity());
+    }, [cart, totalQuantity]);
 
     const [isOpen, setIsOpen] = useState(false);
-    // const totalQuantity = useMenuStore(state => state.totalQuantity); 
 
     const toggleNav = (): void => {
         setIsOpen(!isOpen)
@@ -21,7 +28,12 @@ function Header() {
                 <NavLink to="/menu" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>Menu</NavLink>
                 <NavLink to="/about" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>About Us</NavLink>
                 <NavLink to="/login" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>Login</NavLink>
-                <NavLink to="/cart" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}><img className="header__basket" src="../../src/assets/basket.svg"></img></NavLink>
+                <NavLink to="/cart" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>
+                    <img className="header__basket" src="../../src/assets/basket.svg"></img>
+                    {quantity > 0 && (
+                        <div className='badge'>{quantity}</div>
+                    )}
+                </NavLink>
             </nav>
             <nav className="header__nav header__nav--mobile">
                 <NavLink to="/" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}><img className="header__logo" src="../../../src/assets/logo.svg"></img></NavLink>
@@ -31,11 +43,9 @@ function Header() {
                     <NavLink to="/login" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>Login</NavLink>
                     <NavLink to="/cart" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>
                         <img className="header__basket" src="../../src/assets/basket.svg"></img>
-                        {/* {totalQuantity() > 0 && (
-                            <div className='badge'>
-                                {totalQuantity()}
-                            </div>
-                        )} */}
+                        {quantity > 0 && (
+                            <div className='badge'>{quantity}</div>
+                        )}
                     </NavLink>
                 </section>
             </nav>
@@ -47,8 +57,12 @@ export default Header;
 
 /**
  * Författare Ida
- * En funktion som sköter navigeringen på sidan. 
+ * En funktion som sköter navigeringen på sidan.
  * Har använt NavLink för att kunna hålla reda på vilken sida som är aktiv och inte.
  * Om sidan är aktiv får den klassen nav__link OCH nav__link--active annars bara nav__link
  * Skapade även en annan Nav för mobil view
  */
+
+// Författare Lisa
+// Lägger in funktion samt en badge som visar quantity för varukorgen.
+//  Uppdateras när cart ändras. 

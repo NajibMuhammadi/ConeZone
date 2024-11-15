@@ -23,7 +23,7 @@
     padding: 2rem 0;
     cursor: pointer;
     position: relative;
-    font-family: 'Inter';
+    font-family: 'Inter', sans-serif;
 }
 
 .header__basket {
@@ -66,18 +66,19 @@
 .badge {
     z-index: 99;
     position: absolute;
-    top: 1.3rem;
-    right: 1.3rem;
+    top: 1.7rem;
+    right: -0.3rem;
     width: 1.8rem;
     height: 1.8rem;
-    background-color: red;
-    color: white;
+    background-color: var(--white);
+    color: var(--black);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.8rem;
-    font-family: Verdana, Geneva, Tahoma, sans-serif
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
 }
 
 @media (max-width: 600px) {

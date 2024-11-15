@@ -18,6 +18,10 @@ export interface CartItem {
     price: number
 }
 
+export interface CounterProps {
+    item: CartItem;
+}
+
 interface OrderItem extends CartItem { }
 
 export interface Order {
@@ -25,13 +29,10 @@ export interface Order {
     isApproved: boolean,
 }
 export interface MenuStore {
-    // menu: {
-    //     iceCream: ItemType[];
-    // };
-    // setMenu: (newMenu: { iceCream: ItemType[] }) => void;
     cart: CartItem[];
     setCart: (newCart: CartItem[]) => void;
     addToCart: (item: ItemType) => void;
+    removeFromCart: (sk: string) => void;
     totalQuantity: () => number;
     totalPrice: () => number;
     order: Order | null;
@@ -46,4 +47,4 @@ export interface MenuStore {
  */
 
 // Författare Lisa
-// Skapar interfaces för cartItem, Order och MenuStore
+// Skapar interfaces för cartItem, CounterProps, Order och MenuStore

@@ -3,21 +3,18 @@ import { MenuStore } from '../types/interfaces'
 import { ItemType } from "../types/interfaces";
 
 const useMenuStore = create<MenuStore>((set, get) => ({
-    // menu: {
-    //     iceCream: []
-    // },
-    // setMenu: (newMenu) => {
-    //     set({ menu: newMenu })
-    // },
     cart: [],
-    setCart: (newCart) => set({ cart: newCart }),
+    setCart: (newCart) => {
+        const validCart = newCart.filter((item) => item.qty > 0);
+        set({ cart: validCart });
+    },
     addToCart: (item: ItemType) => {
         const currentCart = get().cart;
         const existingItemIndex = currentCart.findIndex(cartItem => cartItem.sk === item.sk);
         if (existingItemIndex > -1) {
             // Om varan redan finns i cart, öka dess kvantitet
             const updatedCart = [...currentCart];
-            updatedCart[existingItemIndex].qty += 1;
+            updatedCart[existingItemIndex].qty = Math.max(0, updatedCart[existingItemIndex].qty + 1); // Förhindra negativa värden
             set({ cart: updatedCart });
         } else {
             // Lägg till ny vara med kvantitet 1
@@ -25,6 +22,11 @@ const useMenuStore = create<MenuStore>((set, get) => ({
             set({ cart: updatedCart });
             console.log('Cart after adding item:', updatedCart);
         }
+    },
+    removeFromCart: (sk: string) => {
+        const currentCart = get().cart;
+        const updatedCart = currentCart.filter(item => item.sk !== sk);
+        set({ cart: updatedCart });
     },
     totalQuantity: () => get().cart.reduce((total, item) => total + item.qty, 0),
     totalPrice: () => get().cart.reduce((total, item) => total + item.price * item.qty, 0),
@@ -55,4 +57,5 @@ const useMenuStore = create<MenuStore>((set, get) => ({
 
 export default useMenuStore;
 
-// Författare Lisa: setup Store. Menu, Cart, Quantity, Order och ApproveOrder
+// Författare Lisa
+// setup Store. Cart, Quantity, Price, Order och ApproveOrder
