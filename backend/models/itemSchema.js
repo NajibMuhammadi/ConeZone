@@ -6,7 +6,7 @@ const itemSchema = Joi.object({
     desc : Joi.string().required(),
     price : Joi.number().strict().required(),
     category : Joi.string().required(),
-    popular: Joi.boolean().required(),
+    popular: Joi.boolean().strict().required(),
     components: Joi.array().items(Joi.string()).required(),
     image: Joi.string().required(),
 }); 
