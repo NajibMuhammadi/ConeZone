@@ -1,6 +1,7 @@
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Info from '../components/Info';
+import OrderStatus from '../components/OrderStatus';
 import Overview from '../components/Overview';
 import Payment from '../components/Payment';
 import './styles/orderPage.css';
@@ -12,6 +13,7 @@ function OrderPage() {
             <Info />
             <Payment/>
             <Overview />
+            <OrderStatus/>
             <Footer />
         </div>
     )
