@@ -41,7 +41,7 @@
 .employees {
     background-image: url(../../src/assets/strossel.png);
     background-size: contain;
-    width: 100vw;
+    width: 100%;
     padding: 50px;
 }
 
@@ -91,18 +91,18 @@
 
 .ice-cream {
     margin: 0;
+    width: 100%;
 }
 
 .ice-cream__img {
     height: 100%;
-    width: 100vw;
+    width: 100%;
     display: block;
 }
 
 .quote {
     text-align: center;
     background-color: var(--purple);
-    width: 100vw;
     height: 400px;
     display: flex;
     flex-direction: column;
