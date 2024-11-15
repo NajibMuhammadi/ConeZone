@@ -4,13 +4,14 @@ import './styles/cartPage.css';
 import deleteIcon from '../assets/Vector.png';
 import { Link } from "react-router-dom";
 import useMenuStore from "../stores/cartStore";
+import Counter from "../components/Counter";
 
 function CartPage() {
-    const cart = useMenuStore(state => state.cart);  // Hämta cart från store
+    const cart = useMenuStore(state => state.cart);
     const totalPrice = useMenuStore(state => state.totalPrice());
     const removeFromCart = useMenuStore(state => state.removeFromCart);
 
-    const handleRemoveItem = (itemSk: string) => {
+    const removeItem = (itemSk: string) => {
         removeFromCart(itemSk);
     };
 
@@ -27,14 +28,10 @@ function CartPage() {
                                 <section className="cart__item-details">
                                     <h2 className="cart__item-title">{item.name}</h2>
                                     <section className="cart__item">
-                                        <div className="cart__item-quantity">
-                                            <button className="cart__item-decrease">-</button>
-                                            <span className="cart__item-quantity-value">{item.qty}</span>
-                                            <button className="cart__item-increase">+</button>
-                                        </div>
+                                        <Counter item={item} />
                                         <button
                                             className="cart__item-delete"
-                                            onClick={() => handleRemoveItem(item.sk)}
+                                            onClick={() => removeItem(item.sk)}
                                         >
                                             <img className="cart__item-delete-icon" src={deleteIcon} alt="Delete" />
                                         </button>
@@ -75,4 +72,5 @@ export default CartPage
 /** 
   * Författare: Lisa
   * Kopplar ihop CartPage med Zustand och våran Cart. Renderar ut på sidan så man ser Cart
+  * Lagt in Counter-funktion och removeItem.
 */

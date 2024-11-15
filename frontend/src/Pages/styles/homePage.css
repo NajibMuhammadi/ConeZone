@@ -34,12 +34,11 @@
 
 .homePage__content {
     display: flex;
-    background-color: var(--green);
+    /* background-color: var(--blue40); */
     margin-top: 4rem;
 }
 
 .homePage__picture {
-    /* margin: 4rem 2rem 3rem 0; */
     max-width: 50vw;
 }
 
@@ -64,8 +63,8 @@
     padding: 0.5rem 1.5rem;
     border-radius: 3rem;
     border: none;
-    border: 2px solid grey;
-    background-color: #C4EBF0;
+    /* border: 2px solid var(--black); */
+    background-color: var(--blue);
 }
 
 .homePage__button-text {
