@@ -46,14 +46,18 @@ functions:
       - httpApi:
           path: /item/{id}
           method: get
-
   PostRegister:
     handler: functions/PostRegister/index.handler
     events:
       - httpApi:
           path: /user/register
           method: post
-  
+  newOrder:
+    handler: functions/newOrder/index.handler
+    events:
+      - httpApi:
+          path: /order
+          method: post
 
 resources:
   Resources:
