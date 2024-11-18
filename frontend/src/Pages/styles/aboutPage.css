@@ -181,6 +181,7 @@
     .quote {
         padding: 20px;
         height: 300px;
+        width: 100%;
     }
 
     .quote__text {

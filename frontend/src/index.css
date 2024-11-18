@@ -1,3 +1,6 @@
+@import "../node_modules/slick-carousel/slick/slick.css";
+@import "../node_modules/slick-carousel/slick/slick-theme.css";
+
 * {
   margin: 0;
   padding: 0;
@@ -19,3 +22,6 @@
   --green: #D5F0C4;
   --green40: rgba(213, 240, 196, 0.4);
 }
+
+/* Edited: Diliara
+La till import av slick-carousel */

@@ -1,6 +1,11 @@
 import './styles/overview.css';
 
-function Overview() {
+function Overview({ onNext }: { onNext: () => void }) {
+    const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+        onNext();
+    };
+
     return (
         <>
             <section className="overview__wrapper">
@@ -49,7 +54,7 @@ function Overview() {
                     <hr className="overview__line" />
                     <section className="overview__total">
                         <p className="overview__total-price">Total: <strong>100 sek</strong></p>
-                        <button className="overview__submit">Send Order</button>
+                        <button className="overview__submit" onClick={handleSubmit}>Send Order</button>
                     </section>
                 </article>
             </section>
@@ -63,4 +68,5 @@ export default Overview
 /* Författare: Diliara
 /* Overview component som visar kundinformation, 
 produktinformation, vald betalningsmetod och totalpris, läsas in på OrderPage
+La till en onSubmit för att gå vidare till nästa komponent
 */

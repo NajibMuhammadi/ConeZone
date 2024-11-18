@@ -1,0 +1,54 @@
+.slick-dots {
+    position: absolute;
+    bottom: -13px;
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    margin: 0;
+}
+
+.slick-dots li button:before {
+    color: var(--black);
+    font-size: 20px;
+}
+
+.wrapper {
+    height: 100%;
+    margin: 0 auto;
+}
+
+.slick-list {
+    height: 100%;
+}
+
+.slick-slider .slick-initialized {
+    height: 100%;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) and (max-width: 853px) {
+    .slick-list {
+        height: 100%;
+    }
+
+    .slick-track {
+        min-height: 670px;
+    }
+}
+
+@media (min-width: 854px) and (max-width: 1054px) {
+    .slick-list {
+        height: 670px;
+    }
+}
+
+@media (min-width: 1055px) and (max-width: 1299px) {
+    .slick-list {
+        height: 770px;
+    }
+}
+
+/*
+/* Författare: Diliara
+/* OrderPages styling.
+*/
