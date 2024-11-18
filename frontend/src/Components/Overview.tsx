@@ -1,30 +1,38 @@
 import './styles/overview.css';
 import useMenuStore from '../stores/cartStore';
-import Counter from '../components/Counter'
-
-// const checkOut = () => {
-//     const cart = useMenuStore((state) => state.cart);
-//     const setOrder = useMenuStore((state) => state.setOrder);
-// }
-
-// const handleSendOrder = () => {
-//     if (cart.length > 0) {
-
-//     }
-// }
+import { v4 as uuid } from 'uuid';
 
 function Overview() {
 
     const order = useMenuStore(state => state.order)
     const paymentMethod = useMenuStore(state => state.paymentMethod)
+    const addKitchenOrder = useMenuStore(state => state.addKitchenOrder)
     let totalPrice = 0;
 
     if (!order) {
-        return
-        <p>Ingen order finns.</p>
+        return (
+            <p>Ingen order</p>
+        )
     } else {
         totalPrice = order.items.reduce((total, item) => total + (item.price * item.qty), 0);
     }
+
+    const handleSendOrder = () => {
+        const orderId = uuid().replace(/-/g, '').slice(0, 10);
+
+        const kitchenOrder = {
+            sk: orderId,
+            customerDetails: order.customerDetails,
+            items: order.items,
+            totalPrice,
+            paymentMethod,
+            // status: 'incoming', // Status för orderhantering
+        };
+        addKitchenOrder(kitchenOrder);
+        console.log(kitchenOrder)
+        useMenuStore.getState().clearCart();
+        alert('Order skickad till köket!');
+    };
 
     return (
         <>
@@ -57,7 +65,8 @@ function Overview() {
                                 </section>
                                 <section className="overview__info-details">
                                     <h4 className="overview__name">{item.name}</h4>
-                                    <p>{item.qty}</p>                                   <p className="overview__price-details">{item.price} sek</p>
+                                    <p>{item.qty}</p>
+                                    <p className="overview__price-details">{item.price} sek</p>
                                 </section>
                             </section>
                         </section>
@@ -66,14 +75,14 @@ function Overview() {
                     <section className="overview__payment">
                         <p className="overview__method">Chosen Payment Method:</p>
                         {paymentMethod && <p className="overview__method-details">{paymentMethod}</p>}
-                        {paymentMethod && <img src={`../../src/assets/${paymentMethod.toLowerCase()}.png`} alt={paymentMethod} className="overview__method-img" />}
+                        {paymentMethod && <img src={`../../src/assets/${paymentMethod}.svg`} alt={paymentMethod} className="overview__method-img" />}
                     </section>
                     <hr className="overview__line" />
                     <section className="overview__total">
                         <p className="overview__total-price">Total: <strong> {totalPrice} sek</strong></p>
                         <button
                             className="overview__submit"
-                        // onClick={handleSendOrder}
+                            onClick={handleSendOrder}
                         >Send Order</button>
                     </section>
                 </article>
@@ -86,6 +95,9 @@ export default Overview
 
 /*
 /* Författare: Diliara
-/* Overview component som visar kundinformation, 
+/* Overview component som visar kundinformation,
 produktinformation, vald betalningsmetod och totalpris, läsas in på OrderPage
 */
+
+// Författare: Lisa
+// Implementerat funktionalitet på sidan från vår Store. 

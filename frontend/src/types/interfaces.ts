@@ -36,10 +36,21 @@ export interface Order {
     customerDetails: CustomerDetails;
     isApproved: boolean,
 }
+
+interface KitchenOrder {
+    sk: string;
+    customerDetails: CustomerDetails;
+    items: OrderItem[];
+    totalPrice: number;
+    paymentMethod: string;
+    // status: 'incoming' | 'ongoing' | 'done'; // Status for the order
+}
+
 export interface MenuStore {
     cart: CartItem[];
     setCart: (newCart: CartItem[]) => void;
     addToCart: (item: ItemType) => void;
+    clearCart: () => void;
     removeFromCart: (sk: string) => void;
     totalQuantity: () => number;
     totalPrice: () => number;
@@ -53,10 +64,12 @@ export interface MenuStore {
         };
         isApproved: boolean;
     } | null;
-    paymentMethod: string;
-    setPaymentMethod: (method: string) => void;
     setOrder: (name: string, phone: string, email: string, paymentMethod: string) => void;
     approveOrder: () => void;
+    paymentMethod: string;
+    setPaymentMethod: (method: string) => void;
+    kitchenOrders: KitchenOrder[];
+    addKitchenOrder: (order: KitchenOrder) => void;
 }
 
 /**

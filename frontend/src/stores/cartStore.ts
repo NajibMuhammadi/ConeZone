@@ -28,11 +28,10 @@ const useMenuStore = create<MenuStore>((set, get) => ({
         const updatedCart = currentCart.filter(item => item.sk !== sk);
         set({ cart: updatedCart });
     },
+    clearCart: () => set({ cart: [] }),
     totalQuantity: () => get().cart.reduce((total, item) => total + item.qty, 0),
     totalPrice: () => get().cart.reduce((total, item) => total + item.price * item.qty, 0),
     order: null,
-    paymentMethod: "",
-    setPaymentMethod: (method: string) => set({ paymentMethod: method }),
     setOrder: (name: string, phone: string, email: string, paymentMethod: string) => {
         const cart = get().cart;
         if (cart.length > 0) {
@@ -55,7 +54,12 @@ const useMenuStore = create<MenuStore>((set, get) => ({
                 }
             });
         }
-    }
+    },
+    paymentMethod: "",
+    setPaymentMethod: (method: string) => set({ paymentMethod: method }),
+    kitchenOrders: [],
+    addKitchenOrder: (order) =>
+        set((state) => ({ kitchenOrders: [...state.kitchenOrders, order] })),
 }));
 
 export default useMenuStore;

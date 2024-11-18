@@ -1,8 +1,8 @@
-.payment__wrapper{
+.payment__wrapper {
     background-color: var(--pink);
 }
 
-.payment{
+.payment {
     background-color: var(--white);
     width: 80%;
     max-width: 560px;
@@ -11,14 +11,15 @@
     border-radius: 1rem;
 }
 
-.payment__title{
+.payment__title {
     font-family: inter, sans-serif;
     font-size: 50px;
     font-weight: 700;
     color: var(--black);
     text-align: center;
 }
-.payment__divider{
+
+.payment__divider {
     height: 3px;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.3);
@@ -28,36 +29,42 @@
     border-radius: 1rem;
 }
 
-.payment__methods-container{
+.payment__methods-container {
     display: grid;
     gap: 2rem;
     grid-template-columns: repeat(2, 1fr);
 }
 
-.payment__method{
+.payment__method {
     display: grid;
-    place-content: flex-end;
+    justify-content: center;
+    /* place-content: flex-end; */
 }
-.payment__method--flexStart{
+
+.payment__method--flexStart {
     place-content: flex-start;
 }
 
-.payment__method-image{
+.payment__method-image {
     padding: 1rem;
     background: black;
-    text-align: center;
     height: 80px;
     width: 80px;
     border-radius: 1rem;
 }
 
+.payment__radio-container {
+    font-family: "Inter", sans-serif;
+    text-align: center;
+}
 
-@media (max-width: 600px){
-    .payment{
+@media (max-width: 600px) {
+    .payment {
         width: 90%;
         padding: 2rem;
     }
-    .payment__title{
+
+    .payment__title {
         font-size: 40px;
     }
 }

@@ -3,7 +3,7 @@ import useMenuStore from '../stores/cartStore';
 import swish from '../assets/swish.svg';
 import klarna from '../assets/klarna.svg';
 import cash from '../assets/cash.svg';
-import wpfBankCard from '../assets/wpfbankcard.svg';
+import wpfbankcard from '../assets/wpfbankcard.svg';
 
 function Payment() {
 
@@ -14,7 +14,7 @@ function Payment() {
         { id: "swish", label: "Swish", image: swish },
         { id: "klarna", label: "Klarna", image: klarna },
         { id: "cash", label: "Cash", image: cash },
-        { id: "card", label: "WPF Bank Card", image: wpfBankCard },
+        { id: "card", label: "WPF Bank Card", image: wpfbankcard },
     ];
 
     const handleSelection = (method: string) => {
