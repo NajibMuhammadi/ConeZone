@@ -1,10 +1,10 @@
 const Joi = require('joi');
 
 const orderSchema = Joi.object({
-    pk : Joi.string().required(),
+    username : Joi.string().required(),
     name : Joi.string().required(),
     mail : Joi.string().email().required(),
-    number: Joi.string().pattern(/^[0-9]+$/).required(),
+    number: Joi.string().pattern(/^\+?[0-9]+$/).required(),
     order: Joi.array().items(
         Joi.object({
             name: Joi.string().required(),
