@@ -50,3 +50,51 @@
 .footer__social-image:hover {
     scale: 1.1;
 }
+
+@media (min-width: 601px) and (max-width:800px) {
+    .footer {
+        padding: 2rem;
+    }
+
+    .footer__logo-image {
+        height: 8rem;
+    }
+
+    .footer__description-title,
+    .footer__social-title {
+        font-size: 1.1rem;
+    }
+
+    .footer__description-text {
+        font-size: 0.7rem;
+    }
+
+    .footer__social-image {
+        height: 30px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .footer {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .footer__des-container,
+    .footer__social-container {
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer__logo-image {
+        height: 8rem;
+    }
+
+    .footer__social {
+        gap: 1rem;
+    }
+
+    .footer__social-image {
+        height: 30px;
+    }
+}
