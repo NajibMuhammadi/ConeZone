@@ -1,28 +1,14 @@
 const {db} = require('../../services/index.js')
 const {sendResponse, sendError } = require('../../responses/index')
 const {v4: uuid} = require('uuid'); 
-const {userSchema} = require('../../models/RegisterSchema')
+const middy = require('@middy/core');
+const { errorHandler } = require('../../middlewares/errorHandler.js');
+const { validateRegister } = require('../../middlewares/validateRegister.js');
 
-exports.handler = async (event) => {
+const registerUser = async (event) => {
 
-    if(!event.body){
-        return sendError(400, 'Invalid request, no body');
-    }
-
-    let body;
-    try{
-        body = JSON.parse(event.body);
-    } catch(err){
-        return sendError(400, 'Invalid JSON format');
-    }
-    
-    const {error} = userSchema.validate(body);
-
-    if(error){
-        return sendError(400, error.details[0].message);
-    }
-
-    let {username, email, password, confirmPassword} = body;
+   const body = JSON.parse(event.body);
+   let {username, email, password, confirmPassword} = body;
 
     username = username.toLowerCase();
     email = email.toLowerCase();
@@ -73,12 +59,13 @@ exports.handler = async (event) => {
     } catch(err){
         return sendError(500, err);
     }
-
-
-    
 }
+
+exports.handler = middy(registerUser)
+    .use(validateRegister())
+    .use(errorHandler());
 
 /* 
     * Författare: Najib
-    * Funktion som används för att registrera en användare
+    * Funktion som används för att registrera en användare i databasen
  */
