@@ -1,25 +1,31 @@
 const {db} = require('../../services/index.js')
 const {sendResponse, sendError } = require('../../responses/index')
-const {v4 : uuid} = require('uuid')
 const middy = require('@middy/core');
 const {errorHandler} = require('../../middlewares/errorHandler.js')
 const {validateNewOrder} = require('../../middlewares/validateNewOrder.js')
+const {v4 : uuid} = require('uuid')
+
 
 const handler = async (event) => {
-    const {username, name, mail, number, order, totalPrice} = JSON.parse(event.body)
-    const id = uuid();
+    const {username, customerDetails, items, paymentMethod, totalPrice} = JSON.parse(event.body)
+    const sk = uuid().substring(0, 8)
+
+    let isApproved = false;
+    let isDone = false;
+
 
     try {
         await db.put({
             TableName: 'conezoneorder-db',
             Item: {
                 pk: username || 'guest',
-                sk: id,
-                name: name,
-                mail: mail,
-                number: number,
-                order: order,
-                totalPrice: totalPrice 
+                sk: sk,
+                customerDetails: customerDetails,
+                items: items,
+                paymentMethod: paymentMethod,
+                totalPrice: totalPrice,
+                isApproved: isApproved,
+                isDone: isDone 
         }
     })
         return sendResponse(200, {success: true, message: 'New order added'})

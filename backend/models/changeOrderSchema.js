@@ -2,7 +2,7 @@ const Joi = require('joi');
 const {orderSchema} = require('./orderSchema')
 
 const changeOrderSchema = orderSchema.fork(
-    ['username', 'name', 'mail', 'number', 'order', 'totalPrice'],
+    ['username', 'customerDetails', 'paymentMethod', 'items', 'isDone', 'isApproved', 'totalPrice'],
     field => field.optional()
 )
 

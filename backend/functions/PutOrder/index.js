@@ -12,7 +12,7 @@ const handler = async (event) => {
         return sendError(404, {message: 'Please add an pk or an id'})
     } else {
         try {
-            const  {name, mail, number, order, totalPrice} = JSON.parse(event.body)
+            const  {customerDetails, items, isApproved, isDone, paymentMethod, totalPrice} = JSON.parse(event.body)
             const response = await db.get({
                 TableName: 'conezoneorder-db',
                 Key: {
@@ -29,11 +29,13 @@ const handler = async (event) => {
 
             const item = {
                 ...oldOrder,
-                ...(name !== undefined && {name}), 
-                ...(mail !== undefined && {mail}),
-                ...(number !== undefined && { number }),
-                ...(order !== undefined && { order }),
-                ...(totalPrice !== undefined && { totalPrice }),     
+                ...(customerDetails !== undefined && {customerDetails}), 
+                ...(items !== undefined && { items }),
+                ...(customerDetails !== undefined && {customerDetails}),
+                ...(totalPrice !== undefined && { totalPrice }),
+                ...(isApproved !== undefined && {isApproved}),
+                ...(paymentMethod !== undefined && {paymentMethod}),
+                ...(isDone !== undefined && {isDone})    
             }
 
             await db.put({
@@ -62,4 +64,5 @@ exports.handler = middyHandler.use(validateChangeOrder()).use(errorHandler());
   * Författare: Ida
   * Funktion som gör att man kan ändra i en order
   * Genom att att använda spread operatorn ser funktionen till att om ett värde inte ändras så skrivs det inte över utan använder det som fanns i ordern från början
+  * MÅSTE KONTROLLERA ATT NÅGONTING FAKTISKT ÄNDRAS ANNARS FEL!!!
 */
