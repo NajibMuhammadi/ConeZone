@@ -2,10 +2,7 @@ import './styles/overview.css';
 import useMenuStore from '../stores/cartStore';
 import { v4 as uuid } from 'uuid';
 
-function Overview() {
-    const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
-        event.preventDefault();
-        onNext();
+function Overview({ onNext }: { onNext: () => void }) {
 
     const order = useMenuStore(state => state.order)
     const paymentMethod = useMenuStore(state => state.paymentMethod)
@@ -35,6 +32,7 @@ function Overview() {
         console.log(kitchenOrder)
         useMenuStore.getState().clearCart();
         alert('Order skickad till köket!');
+        onNext();
     };
 
     return (
@@ -85,7 +83,7 @@ function Overview() {
                         <p className="overview__total-price">Total: <strong> {totalPrice} sek</strong></p>
                         <button
                             className="overview__submit"
-                            onClick={handleSendOrder, handleSubmit}
+                            onClick={handleSendOrder}
                         >Send Order</button>
                     </section>
                 </article>

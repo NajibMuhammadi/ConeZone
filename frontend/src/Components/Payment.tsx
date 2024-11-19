@@ -5,10 +5,7 @@ import klarna from '../assets/klarna.svg';
 import cash from '../assets/cash.svg';
 import wpfbankcard from '../assets/wpfbankcard.svg';
 
-function Payment() {
-        const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
-        event.preventDefault();
-        onNext();
+function Payment({ onNext }: { onNext: () => void }) {
 
     const paymentMethod = useMenuStore(state => state.paymentMethod);
     const setPaymentMethod = useMenuStore(state => state.setPaymentMethod);
@@ -24,6 +21,7 @@ function Payment() {
         if (method !== paymentMethod) {
             setPaymentMethod(method);
         }
+        onNext();
     };
 
     return (
@@ -42,7 +40,7 @@ function Payment() {
                                     name="paymentMethod"
                                     value={option.label}
                                     checked={paymentMethod === option.label}
-                                    onChange={(e) => handleSelection(e.target.value), handleSubmit}
+                                    onChange={(e) => handleSelection(e.target.value)}
                                     className="payment__radio"
                                 />
                                 <label htmlFor={option.id} className="payment__radio-label">
@@ -51,6 +49,7 @@ function Payment() {
                             </div>
                         </article>
                     ))}
+                </section>
             </main>
         </div>
     )
