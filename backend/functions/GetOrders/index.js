@@ -6,7 +6,7 @@ exports.handler = async (event) => {
         const data = await db.scan({
             TableName: 'conezoneorder-db',
         })
-        return sendResponse(200, {success: true, message: data.Item})
+        return sendResponse(200, {success: true, message: data.Items})
     } catch(error) {
         return sendError(500, {message: error.message})
     }
