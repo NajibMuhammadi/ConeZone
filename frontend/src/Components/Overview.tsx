@@ -1,9 +1,40 @@
 import './styles/overview.css';
+import useMenuStore from '../stores/cartStore';
+import { v4 as uuid } from 'uuid';
 
-function Overview({ onNext }: { onNext: () => void }) {
+function Overview() {
     const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
         onNext();
+
+    const order = useMenuStore(state => state.order)
+    const paymentMethod = useMenuStore(state => state.paymentMethod)
+    const addKitchenOrder = useMenuStore(state => state.addKitchenOrder)
+    let totalPrice = 0;
+
+    if (!order) {
+        return (
+            <p>Ingen order</p>
+        )
+    } else {
+        totalPrice = order.items.reduce((total, item) => total + (item.price * item.qty), 0);
+    }
+
+    const handleSendOrder = () => {
+        const orderId = uuid().replace(/-/g, '').slice(0, 10);
+
+        const kitchenOrder = {
+            sk: orderId,
+            customerDetails: order.customerDetails,
+            items: order.items,
+            totalPrice,
+            paymentMethod,
+            // status: 'incoming', // Status för orderhantering?
+        };
+        addKitchenOrder(kitchenOrder);
+        console.log(kitchenOrder)
+        useMenuStore.getState().clearCart();
+        alert('Order skickad till köket!');
     };
 
     return (
@@ -20,41 +51,42 @@ function Overview({ onNext }: { onNext: () => void }) {
                             <img src="../../src/assets/edit.png" alt="" className="overview__edit" />
                         </section>
                         <section className="overview__customer-container-bottom">
-                            <p className="overview__name"><strong>Name:</strong> Ice cream lover</p>
-                            <p className="overview__phone"><strong>Phone number:</strong> 123456789</p>
-                            <p className="overview__email"><strong>Email:</strong> icecreamlover@gmail.com</p>
+                            <p className="overview__name"><strong>Name:</strong>{order.customerDetails.name}</p>
+                            <p className="overview__phone"><strong>Phone number:</strong>{order.customerDetails.phone}</p>
+                            <p className="overview__email"><strong>Email:</strong>{order.customerDetails.email}</p>
                         </section>
                     </section>
                     <hr className="overview__line" />
-                    <section className="overview__product">
-                        <img src="../../src/assets/ice cream.jpg" alt="" className="overview__img" />
-                        <section className="overview__info-wrapper">
-                            <section className="overview__info">
-                                <h3 className="overview__name">Product:</h3>
-                                <p className="overview__quantity">Quantity:</p>
-                                <p className="overview__price">Price:</p>
-                            </section>
-                            <section className="overview__info-details">
-                                <h4 className="overview__name">Strawberrylicious</h4>
-                                <div className="overview__item-quantity">
-                                    <button className="overview__item-decrease">-</button>
-                                    <span className="overview__item-quantity-value">2</span>
-                                    <button className="overview__item-increase">+</button>
-                                </div>
-                                <p className="overview__price-details">50 sek</p>
+                    {order.items.map((item) => (
+                        <section className="overview__product" key={item.sk}>
+                            <img src={item.image} alt={item.name} className="overview__img" />
+                            <section className="overview__info-wrapper">
+                                <section className="overview__info">
+                                    <h3 className="overview__name">Product:</h3>
+                                    <p className="overview__quantity">Quantity:</p>
+                                    <p className="overview__price">Price:</p>
+                                </section>
+                                <section className="overview__info-details">
+                                    <h4 className="overview__name">{item.name}</h4>
+                                    <p>{item.qty}</p>
+                                    <p className="overview__price-details">{item.price} sek</p>
+                                </section>
                             </section>
                         </section>
-                    </section>
+                    ))}
                     <hr className="overview__line" />
                     <section className="overview__payment">
                         <p className="overview__method">Chosen Payment Method:</p>
-                        {/* <p className="overview__method-details">Swish</p> */}
-                        <img src="../../src/assets/swish.png" alt="" className="overview__method-img" />
+                        {paymentMethod && <p className="overview__method-details">{paymentMethod}</p>}
+                        {paymentMethod && <img src={`../../src/assets/${paymentMethod}.svg`} alt={paymentMethod} className="overview__method-img" />}
                     </section>
                     <hr className="overview__line" />
                     <section className="overview__total">
-                        <p className="overview__total-price">Total: <strong>100 sek</strong></p>
-                        <button className="overview__submit" onClick={handleSubmit}>Send Order</button>
+                        <p className="overview__total-price">Total: <strong> {totalPrice} sek</strong></p>
+                        <button
+                            className="overview__submit"
+                            onClick={handleSendOrder, handleSubmit}
+                        >Send Order</button>
                     </section>
                 </article>
             </section>
@@ -66,7 +98,12 @@ export default Overview
 
 /*
 /* Författare: Diliara
-/* Overview component som visar kundinformation, 
+/* Overview component som visar kundinformation,
 produktinformation, vald betalningsmetod och totalpris, läsas in på OrderPage
-La till en onSubmit för att gå vidare till nästa komponent
 */
+
+// Författare: Lisa
+// Implementerat funktionalitet på sidan från vår Store. 
+/* La till en onSubmit för att gå vidare till nästa komponent
+*/
+

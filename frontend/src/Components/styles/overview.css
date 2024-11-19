@@ -167,6 +167,7 @@
     border: none;
     font-family: "Inter", sans-serif;
     font-weight: 700;
+    cursor: pointer;
 }
 
 @media (max-width: 768px) {

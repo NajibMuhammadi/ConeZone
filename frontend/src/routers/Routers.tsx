@@ -7,6 +7,7 @@ import CartPage from "../pages/CartPage";
 import ProductPage from "../pages/ProductPage";
 import Register from "../pages/RegisterPage";
 import OrderPage from "../pages/OrderPage";
+import KitchenViewPage from "../pages/kitchenViewPage";
 
 function Routers() {
     return (
@@ -20,6 +21,7 @@ function Routers() {
                 <Route path="/menu/:id" element={<ProductPage />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/order" element={<OrderPage />} />
+                <Route path="/kitchenView" element={<KitchenViewPage />} />
             </Routes>
         </BrowserRouter>
     )

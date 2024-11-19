@@ -22,22 +22,54 @@ export interface CounterProps {
     item: CartItem;
 }
 
+export interface CustomerDetails {
+    name: string;
+    phone: string;
+    email: string;
+    paymentMethod: string;
+}
+
 interface OrderItem extends CartItem { }
 
 export interface Order {
     items: OrderItem[],
+    customerDetails: CustomerDetails;
     isApproved: boolean,
 }
+
+interface KitchenOrder {
+    sk: string;
+    customerDetails: CustomerDetails;
+    items: OrderItem[];
+    totalPrice: number;
+    paymentMethod: string;
+    // status: 'incoming' | 'ongoing' | 'done'; // Status for the order
+}
+
 export interface MenuStore {
     cart: CartItem[];
     setCart: (newCart: CartItem[]) => void;
     addToCart: (item: ItemType) => void;
+    clearCart: () => void;
     removeFromCart: (sk: string) => void;
     totalQuantity: () => number;
     totalPrice: () => number;
-    order: Order | null;
-    setOrder: () => void;
+    order: {
+        items: OrderItem[];
+        customerDetails: {
+            name: string;
+            phone: string;
+            email: string;
+            paymentMethod: string;
+        };
+        isApproved: boolean;
+    } | null;
+    setOrder: (name: string, phone: string, email: string, paymentMethod: string) => void;
     approveOrder: () => void;
+    paymentMethod: string;
+    setPaymentMethod: (method: string) => void;
+    kitchenOrders: KitchenOrder[];
+    addKitchenOrder: (order: KitchenOrder) => void;
 }
 
 /**
@@ -47,4 +79,4 @@ export interface MenuStore {
  */
 
 // Författare Lisa
-// Skapar interfaces för cartItem, CounterProps, Order och MenuStore
+// Skapar interfaces för cartItem, CounterProps, Order, CustomerDetails och MenuStore
