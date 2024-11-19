@@ -3,6 +3,7 @@ const {sendResponse, sendError } = require('../../responses/index');
 const middy = require('@middy/core');
 const { errorHandler } = require('../../middlewares/errorHandler.js');
 const { validateLoggaIn } = require('../../middlewares/validateLoggaIn.js');
+const { comparePassword } = require('../../utils/index.js');
 
 const loggaIn = async (event) => {
 
@@ -27,8 +28,10 @@ const loggaIn = async (event) => {
 
         const user = Items[0];
 
-        if(user.password !== password){
-            return sendError(400, 'Invalid password');
+        const isValid = await comparePassword(password, user.password);
+
+        if(!isValid){
+            return sendError(400, 'username or password is incorrect');
         }
 
         return sendResponse(200, {
@@ -38,7 +41,7 @@ const loggaIn = async (event) => {
                 data: {
                     username: user.username,
                     email: user.email,
-                    UserID: user.UserID
+                    UserID: user.UserID,
                 }
             }
         });

@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@middy/core": "^2.5.7",
+    "bcryptjs": "^2.4.3",
     "joi": "^17.13.3",
     "uuid": "^11.0.3"
   },
