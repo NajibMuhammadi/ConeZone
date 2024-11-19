@@ -21,3 +21,8 @@ const userSchema = Joi.object({
 });
 
 module.exports = { userSchema };
+
+/* 
+    *författare: Najib
+    *kommentar: Denna kod är ett schema för att validera användarens uppgifter vid registrering.
+ */

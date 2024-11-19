@@ -52,6 +52,12 @@ functions:
       - httpApi:
           path: /user/register
           method: post
+  PostLoggaIn:
+    handler: functions/PostLoggaIn/index.handler
+    events:
+      - httpApi:
+          path: /user/loggain
+          method: post
   PostOrder:
     handler: functions/PostOrder/index.handler
     events:
