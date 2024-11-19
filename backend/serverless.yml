@@ -28,7 +28,7 @@ functions:
       - httpApi:
           path: /item/{id}
           method: delete
-  GetItem:
+  GetItems:
     handler: functions/GetItems/index.handler
     events:
       - httpApi:
@@ -40,7 +40,7 @@ functions:
       - httpApi:
           path: /item/{id}
           method: put
-  GetItemById:
+  GetItem:
     handler: functions/GetItem/index.handler
     events:
       - httpApi:
@@ -52,12 +52,24 @@ functions:
       - httpApi:
           path: /user/register
           method: post
-  newOrder:
-    handler: functions/newOrder/index.handler
+  PostOrder:
+    handler: functions/PostOrder/index.handler
     events:
       - httpApi:
           path: /order
           method: post
+  GetOrder: 
+    handler: functions/GetOrder/index.handler
+    events:
+      - httpApi:
+          path: /order/{pk}/{id}
+          method: get
+  GetOrders: 
+    handler: functions/GetOrders/index.handler
+    events:
+      - httpApi:
+          path: /order
+          method: get
 
 resources:
   Resources:
