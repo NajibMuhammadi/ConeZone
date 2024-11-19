@@ -2,16 +2,20 @@ const Joi = require('joi');
 
 const orderSchema = Joi.object({
     username : Joi.string().required(),
-    name : Joi.string().required(),
-    mail : Joi.string().email().required(),
-    number: Joi.string().pattern(/^\+?[0-9]+$/).required(),
-    order: Joi.array().items(
+    customerDetails: Joi.object({
+        name : Joi.string().required(),
+        email : Joi.string().email().required(),
+        phone: Joi.string().pattern(/^\+?[0-9]+$/).required(),
+    }).required(),
+    items: Joi.array().items(
         Joi.object({
             name: Joi.string().required(),
-            itemPrice: Joi.number().strict().required(),
-            quantity: Joi.number().strict().required(),
-            itemTotal: Joi.number().strict().required()
+            price: Joi.number().strict().required(),
+            qty: Joi.number().strict().required(),
         })).required(),
+    isApproved: Joi.boolean().strict().required(),
+    isDone: Joi.boolean().strict().required(),
+    paymentMethod: Joi.string().required(),
     totalPrice : Joi.number().strict().required()
 }); 
 
