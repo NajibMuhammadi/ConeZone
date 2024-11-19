@@ -1,19 +1,18 @@
-// import { Link } from 'react-router-dom';
-
 import './styles/info.css';
 import { useState } from 'react';
 import useMenuStore from '../stores/cartStore';
 
 function Info({ onNext }: { onNext: () => void }) {
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        setOrder(name, phone, email, '');
-        onNext();
-      
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
     const setOrder = useMenuStore((state) => state.setOrder);
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        setOrder(name, phone, email, '');
+        onNext();
+    }
 
     return (
         <>
@@ -49,8 +48,9 @@ function Info({ onNext }: { onNext: () => void }) {
                         onChange={(e) => setEmail(e.target.value)}
                         required
                     />
-
-                    <button type="submit" className="info__submit">Continue</button>
+                    <button
+                        type="submit"
+                        className="info__submit">Continue</button>
                 </form>
             </section>
         </>
