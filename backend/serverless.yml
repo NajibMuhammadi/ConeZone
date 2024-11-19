@@ -70,6 +70,12 @@ functions:
       - httpApi:
           path: /order
           method: get
+  PutOrder: 
+    handler: functions/PutOrder/index.handler
+    events:
+      - httpApi:
+          path: /order/{pk}/{id}
+          method: put
 
 resources:
   Resources:

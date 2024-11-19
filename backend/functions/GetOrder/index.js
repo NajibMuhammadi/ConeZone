@@ -18,6 +18,9 @@ exports.handler = async (event) => {
                     sk: id
                 }
             })
+            if (!data.Item) {
+                return sendError(404, { message: `Order with pk ${pk} and id ${id} not found` });
+            }
         return sendResponse(200, {success: true, message: data.Item
         })
         } catch(error) {
