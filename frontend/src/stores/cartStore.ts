@@ -65,4 +65,4 @@ const useMenuStore = create<MenuStore>((set, get) => ({
 export default useMenuStore;
 
 // Författare Lisa
-// setup Store. Cart, Quantity, Price, Order och ApproveOrder
+// setup Store. Cart, Quantity, Price, Order, kitchenOrders och ApproveOrder

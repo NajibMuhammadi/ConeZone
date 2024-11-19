@@ -26,7 +26,7 @@ function Overview() {
             items: order.items,
             totalPrice,
             paymentMethod,
-            // status: 'incoming', // Status för orderhantering
+            // status: 'incoming', // Status för orderhantering?
         };
         addKitchenOrder(kitchenOrder);
         console.log(kitchenOrder)

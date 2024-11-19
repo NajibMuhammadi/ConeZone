@@ -55,3 +55,8 @@ function Payment() {
 }
 
 export default Payment
+
+// Författare Diliara
+
+// Författare Lisa
+// Implementerat funktionalitet med store och handle selection

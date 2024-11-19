@@ -52,3 +52,5 @@ function kitchenViewPage() {
 }
 
 export default kitchenViewPage
+
+//Författare Lisa - skapat sidan
