@@ -28,7 +28,7 @@ functions:
       - httpApi:
           path: /item/{id}
           method: delete
-  GetItem:
+  GetItems:
     handler: functions/GetItems/index.handler
     events:
       - httpApi:
@@ -40,20 +40,36 @@ functions:
       - httpApi:
           path: /item/{id}
           method: put
-  GetItemById:
+  GetItem:
     handler: functions/GetItem/index.handler
     events:
       - httpApi:
           path: /item/{id}
           method: get
-
   PostRegister:
     handler: functions/PostRegister/index.handler
     events:
       - httpApi:
           path: /user/register
           method: post
-  
+  PostOrder:
+    handler: functions/PostOrder/index.handler
+    events:
+      - httpApi:
+          path: /order
+          method: post
+  GetOrder: 
+    handler: functions/GetOrder/index.handler
+    events:
+      - httpApi:
+          path: /order/{pk}/{id}
+          method: get
+  GetOrders: 
+    handler: functions/GetOrders/index.handler
+    events:
+      - httpApi:
+          path: /order
+          method: get
 
 resources:
   Resources:
@@ -83,4 +99,20 @@ resources:
         KeySchema:
           - AttributeName: 'UserID'
             KeyType: 'HASH'
+        BillingMode: PAY_PER_REQUEST
+    
+    OrderTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: 'conezoneorder-db'
+        AttributeDefinitions:
+          - AttributeName: 'pk'
+            AttributeType: 'S'
+          - AttributeName: 'sk'
+            AttributeType: 'S'
+        KeySchema:
+          - AttributeName: 'pk'
+            KeyType: 'HASH'
+          - AttributeName: 'sk'
+            KeyType: 'RANGE'
         BillingMode: PAY_PER_REQUEST

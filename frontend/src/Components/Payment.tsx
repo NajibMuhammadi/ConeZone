@@ -6,6 +6,9 @@ import cash from '../assets/cash.svg';
 import wpfbankcard from '../assets/wpfbankcard.svg';
 
 function Payment() {
+        const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+        onNext();
 
     const paymentMethod = useMenuStore(state => state.paymentMethod);
     const setPaymentMethod = useMenuStore(state => state.setPaymentMethod);
@@ -39,7 +42,7 @@ function Payment() {
                                     name="paymentMethod"
                                     value={option.label}
                                     checked={paymentMethod === option.label}
-                                    onChange={(e) => handleSelection(e.target.value)}
+                                    onChange={(e) => handleSelection(e.target.value), handleSubmit}
                                     className="payment__radio"
                                 />
                                 <label htmlFor={option.id} className="payment__radio-label">
@@ -48,7 +51,6 @@ function Payment() {
                             </div>
                         </article>
                     ))}
-                </section>
             </main>
         </div>
     )
@@ -60,3 +62,7 @@ export default Payment
 
 // Författare Lisa
 // Implementerat funktionalitet med store och handle selection
+
+// /** Författare: Najib
+// Edited: Diliara
+// La till en onSubmit för att gå vidare till nästa komponent

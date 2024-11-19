@@ -3,6 +3,9 @@ import useMenuStore from '../stores/cartStore';
 import { v4 as uuid } from 'uuid';
 
 function Overview() {
+    const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+        onNext();
 
     const order = useMenuStore(state => state.order)
     const paymentMethod = useMenuStore(state => state.paymentMethod)
@@ -82,7 +85,7 @@ function Overview() {
                         <p className="overview__total-price">Total: <strong> {totalPrice} sek</strong></p>
                         <button
                             className="overview__submit"
-                            onClick={handleSendOrder}
+                            onClick={handleSendOrder, handleSubmit}
                         >Send Order</button>
                     </section>
                 </article>
@@ -101,3 +104,6 @@ produktinformation, vald betalningsmetod och totalpris, läsas in på OrderPage
 
 // Författare: Lisa
 // Implementerat funktionalitet på sidan från vår Store. 
+/* La till en onSubmit för att gå vidare till nästa komponent
+*/
+
