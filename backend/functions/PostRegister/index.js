@@ -4,6 +4,7 @@ const {v4: uuid} = require('uuid');
 const middy = require('@middy/core');
 const { errorHandler } = require('../../middlewares/errorHandler.js');
 const { validateRegister } = require('../../middlewares/validateRegister.js');
+const { hashPassword } = require('../../utils/index.js');
 
 const registerUser = async (event) => {
 
@@ -16,6 +17,8 @@ const registerUser = async (event) => {
     if(password !== confirmPassword){
         return sendError(400, 'Passwords do not match');
     }
+
+    const hashedPassword = await hashPassword(password);
 
     const id = uuid().substring(0, 8);
     const createdAt = new Date().toLocaleString('sv-SE', {timeZone: 'Europe/Stockholm'});
@@ -40,7 +43,7 @@ const registerUser = async (event) => {
                 UserID: id,
                 username: username,
                 email: email,
-                password: password,
+                password: hashedPassword,
                 createdAt: createdAt
             }
         });
@@ -50,9 +53,10 @@ const registerUser = async (event) => {
               success: true,
               message: 'User registered successfully',
               data: {
-                username,
-                email,
-                createdAt
+                UserID: id,
+                username: username,
+                email: email,
+                createdAt: createdAt,
               }
             },
           });
