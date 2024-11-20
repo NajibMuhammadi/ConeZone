@@ -23,6 +23,6 @@ export {fetchItems}
 /**
  * Författare Ida
  * Läser in en url från en lokal fil
- * Hämtar ut rätt url från ett objekt med urls och just den url som heter localUrl
+ * Hämtar ut rätt url från ett objekt med urls och just den url som heter itemsUrl
  * Om en url hittas hämtas datan från databasen och returneras till funktionen som behöver datan.
 */
