@@ -72,6 +72,13 @@ export interface MenuStore {
     addKitchenOrder: (order: KitchenOrder) => void;
 }
 
+export interface RegisterType {
+    username: string;
+    password: string;
+    confirmPassword: string;
+    email: string;
+}
+
 /**
  * Författare Ida
  * Skapat en ItemType interface för våra items i databasen.
