@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import './styles/productPage.css';
@@ -62,9 +62,14 @@ function ProductPage() {
                             </ul>
                             <p className="product__allergens">Allergens:</p>
                         </article>
-                        <button className="product__button"
-                            onClick={() => addToCart(item)}
-                        >Give me one!</button>
+                        <section className="product__buttons">
+                            <Link to="/menu">
+                                <button className="product__back-btn">Go back</button>
+                            </Link>
+                            <button className="product__button"
+                                onClick={() => addToCart(item)}
+                            >Give me one!</button>
+                        </section>
                     </article>
                 </section>
             </div>
@@ -78,8 +83,8 @@ export default ProductPage;
 /**
  * Författare: Diliara
  * Product sida som innehåller information om produkten.
- * 
- * 
+ *
+ *
  * Bugfix: Ida uppdaterade urlen
  */
 

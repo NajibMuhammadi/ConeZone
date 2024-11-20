@@ -25,6 +25,11 @@ function OrderPage() {
         autoplay: false,
         fade: false,
         pauseOnHover: true,
+        appendDots: (dots: React.ReactNode) => (
+            <div>
+                <ul className="custom-dots">{dots}</ul>
+            </div>
+        ),
         // responsive: [
         //     {
         //         breakpoint: 1024,

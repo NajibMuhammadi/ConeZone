@@ -12,6 +12,10 @@
     font-size: 20px;
 }
 
+.custom-dots li button {
+    pointer-events: none;
+}
+
 .wrapper {
     height: 100%;
     margin: 0 auto;
