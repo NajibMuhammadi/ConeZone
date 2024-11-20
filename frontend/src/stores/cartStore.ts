@@ -31,6 +31,8 @@ const useMenuStore = create<MenuStore>((set, get) => ({
     clearCart: () => set({ cart: [] }),
     totalQuantity: () => get().cart.reduce((total, item) => total + item.qty, 0),
     totalPrice: () => get().cart.reduce((total, item) => total + item.price * item.qty, 0),
+    paymentMethod: "",
+    setPaymentMethod: (method: string) => set({ paymentMethod: method }),
     order: null,
     setOrder: (name: string, phone: string, email: string) => {
         const cart = get().cart;
@@ -39,28 +41,10 @@ const useMenuStore = create<MenuStore>((set, get) => ({
                 order: {
                     items: cart.map(item => ({ ...item })),
                     customerDetails: { name, phone, email },
-                    isApproved: false,
-                    isDone: false,
                 }
             });
         }
     },
-    approveOrder: () => {
-        const currentOrder = get().order;
-        if (currentOrder) {
-            set({
-                order: {
-                    ...currentOrder,
-                    isApproved: true
-                }
-            });
-        }
-    },
-    paymentMethod: "",
-    setPaymentMethod: (method: string) => set({ paymentMethod: method }),
-    kitchenOrders: [],
-    addKitchenOrder: (order) =>
-        set((state) => ({ kitchenOrders: [...state.kitchenOrders, order] })),
 }));
 
 export default useMenuStore;

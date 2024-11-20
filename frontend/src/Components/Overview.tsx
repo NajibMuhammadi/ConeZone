@@ -6,18 +6,16 @@ function Overview({ onNext }: { onNext: () => void }) {
 
     const order = useMenuStore(state => state.order)
     const paymentMethod = useMenuStore(state => state.paymentMethod)
-    let totalPrice = 0;
+    const totalPrice = useMenuStore(state => state.totalPrice());
 
     if (!order) {
         return (
             <p>Ingen order</p>
         )
-    } else {
-        totalPrice = order.items.reduce((total, item) => total + (item.price * item.qty), 0);
     }
 
-    const handleSendOrder = () => {
-        uploadOrder();
+    const handleSendOrder = async () => {
+        await uploadOrder();
         useMenuStore.getState().clearCart();
         alert('Order skickad till köket!');
         onNext();
@@ -25,8 +23,16 @@ function Overview({ onNext }: { onNext: () => void }) {
 
     const uploadOrder = async () => {
         const url = 'ordersUrl';
+        const order = useMenuStore.getState().order;
+        const paymentMethod = useMenuStore.getState().paymentMethod;
+        const totalPrice = useMenuStore.getState().totalPrice();
+
+        if (!order) {
+            console.error("Ingen order finns");
+            return;
+        }
         try {
-            await postOrder(url);
+            await postOrder(url, order, paymentMethod, totalPrice);
         } catch (error) {
             console.error("Error uploading order:", error);
         }
@@ -98,7 +104,7 @@ produktinformation, vald betalningsmetod och totalpris, läsas in på OrderPage
 */
 
 // Författare: Lisa
-// Implementerat funktionalitet på sidan från vår Store. 
-/* La till en onSubmit för att gå vidare till nästa komponent
+// Implementerat funktionalitet på sidan från vår Store samt till databasen (med Ida). 
+/* 
 */
 
