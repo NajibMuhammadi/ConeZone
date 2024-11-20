@@ -7,12 +7,8 @@ const {v4 : uuid} = require('uuid')
 
 
 const handler = async (event) => {
-    const {username, customerDetails, items, paymentMethod, totalPrice} = JSON.parse(event.body)
+    const {username, customerDetails, items, paymentMethod, isApproved, isDone, totalPrice} = JSON.parse(event.body)
     const sk = uuid().substring(0, 8)
-
-    let isApproved = false;
-    let isDone = false;
-
 
     try {
         await db.put({
