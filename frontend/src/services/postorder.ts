@@ -22,6 +22,8 @@ const postOrder = async (
         customerDetails: order.customerDetails,
         paymentMethod,
         totalPrice,
+        isApproved: false,
+        isDone: false
     };
 
     try {
@@ -35,3 +37,8 @@ const postOrder = async (
 }
 
 export { postOrder }
+
+/**
+ * Författare Lisa och Ida
+ * En funktion som postar en ny order till databasen
+ */
