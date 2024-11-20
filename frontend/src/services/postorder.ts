@@ -1,32 +1,28 @@
 import axios, { AxiosError } from "axios";
 import { Order } from "../types/interfaces";
 import { urls } from "../../url";
-import useMenuStore from "../stores/cartStore";
-import { v4 as uuid } from 'uuid';
 
-const postOrder = async (ordersUrl: string): Promise<Order[]> => {
+const postOrder = async (
+    ordersUrl: string,
+    order: any,
+    paymentMethod: string,
+    totalPrice: number
+): Promise<Order[]> => {
     const url = urls[ordersUrl];
-    const order = useMenuStore(state => state.order)
-    const paymentMethod = useMenuStore(state => state.paymentMethod)
-    const totalPrice = useMenuStore(state => state.totalPrice)
 
     if (!url) {
-        throw new Error('Url hittades inte')
+        throw new Error('Url hittades inte');
     } else if (!order) {
-        throw new Error('ingen order')
+        throw new Error('Ingen order');
     }
 
-    const orderId = uuid().replace(/-/g, '').slice(0, 10);
     const orderData = {
         username: 'guest',
-        sk: orderId,
         items: order.items,
         customerDetails: order.customerDetails,
-        paymentMethod: paymentMethod,
-        totalPrice: totalPrice,
-        isApproved: false,
-        isDone: false,
-    }
+        paymentMethod,
+        totalPrice,
+    };
 
     try {
         const response = await axios.post(url, orderData)
