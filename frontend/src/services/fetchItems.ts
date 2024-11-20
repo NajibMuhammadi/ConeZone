@@ -1,4 +1,4 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { ItemType } from "../types/interfaces";
 import { urls } from "../../url";
 
