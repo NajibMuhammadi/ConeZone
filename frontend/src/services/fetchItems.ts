@@ -16,7 +16,6 @@ const fetchItems = async (itemsUrl: string) : Promise<ItemType[]> => {
         throw new Error('Ett fel inträffade vid hämtning av data');
     }
 }
-
 export {fetchItems}
 
 /**
