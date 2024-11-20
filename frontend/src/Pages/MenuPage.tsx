@@ -9,7 +9,7 @@ import { ItemType } from "../types/interfaces";
 
 function MenuPage() {
 
-    const url = 'localUrl';
+    const url = 'itemsUrl';
     const [items, setItems] = useState<ItemType[]>([]);
 
     useEffect(() => {
