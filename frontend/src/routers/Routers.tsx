@@ -7,7 +7,7 @@ import CartPage from "../pages/CartPage";
 import ProductPage from "../pages/ProductPage";
 import Register from "../pages/RegisterPage";
 import OrderPage from "../pages/OrderPage";
-import KitchenViewPage from "../pages/kitchenViewPage";
+import KitchenViewPage from "../pages/KitchenViewPage";
 
 function Routers() {
     return (
