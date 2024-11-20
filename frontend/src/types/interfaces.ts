@@ -26,15 +26,18 @@ export interface CustomerDetails {
     name: string;
     phone: string;
     email: string;
-    paymentMethod: string;
 }
 
 interface OrderItem extends CartItem { }
 
 export interface Order {
+    sk?: string,
     items: OrderItem[],
-    customerDetails: CustomerDetails;
-    isApproved: boolean,
+    customerDetails: CustomerDetails,
+    paymentMethod?: string,
+    totalPrice?: number,
+    isApproved?: boolean,
+    isDone?: boolean,
 }
 
 interface KitchenOrder {
@@ -43,7 +46,6 @@ interface KitchenOrder {
     items: OrderItem[];
     totalPrice: number;
     paymentMethod: string;
-    // status: 'incoming' | 'ongoing' | 'done'; // Status for the order
 }
 
 export interface MenuStore {
@@ -60,12 +62,13 @@ export interface MenuStore {
             name: string;
             phone: string;
             email: string;
-            paymentMethod: string;
         };
         isApproved: boolean;
+        isDone: boolean;
     } | null;
     setOrder: (name: string, phone: string, email: string, paymentMethod: string) => void;
     approveOrder: () => void;
+    // doneOrder: () => void;
     paymentMethod: string;
     setPaymentMethod: (method: string) => void;
     kitchenOrders: KitchenOrder[];
