@@ -79,6 +79,11 @@ export interface RegisterType {
     email: string;
 }
 
+export interface LoginType {
+    usernameOrEmail: string;
+    password: string;
+}
+
 /**
  * Författare Ida
  * Skapat en ItemType interface för våra items i databasen.

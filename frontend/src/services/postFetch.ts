@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { urls } from "../../url";
-import { RegisterType } from "../types/interfaces";
+import { LoginType, RegisterType } from "../types/interfaces";
 
-const postFetch = async (urlKey: string, data: RegisterType): Promise<void> => {
+const postFetch = async (urlKey: string, data: RegisterType | LoginType): Promise<void> => {
     const url = urls[urlKey]; 
 
     if (!url) {
