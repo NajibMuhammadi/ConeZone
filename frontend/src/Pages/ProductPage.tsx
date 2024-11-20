@@ -9,7 +9,7 @@ import useMenuStore from '../stores/cartStore';
 
 function ProductPage() {
     const { id } = useParams<{ id: string }>();
-    const url = 'localUrl';
+    const url = 'itemsUrl';
     const [item, setItem] = useState<ItemType | null>(null);
     const [error, setError] = useState<string | null>(null);
     const addToCart = useMenuStore(state => state.addToCart);
@@ -78,6 +78,9 @@ export default ProductPage;
 /**
  * Författare: Diliara
  * Product sida som innehåller information om produkten.
+ * 
+ * 
+ * Bugfix: Ida uppdaterade urlen
  */
 
 // Författare: Lisa. Lägger in funktion addToCart med vår store

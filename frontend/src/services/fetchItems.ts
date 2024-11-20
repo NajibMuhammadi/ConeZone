@@ -8,14 +8,13 @@ const fetchItems = async (itemsUrl: string) : Promise<ItemType[]> => {
     if(!url) {
         throw new Error ('Url hittades inte')
     }
-
-    const menuItems = await axios.get(url)
-    .then( response  => {
-        console.log(response.data)
+    try {
+        const response = await axios.get<ItemType[]>(url); 
+        console.log(response.data);
         return response.data;
-    })
-    .catch((error : AxiosError) => console.log(error))
-    return menuItems;
+    } catch (error) {
+        throw new Error('Ett fel inträffade vid hämtning av data');
+    }
 }
 
 export {fetchItems}
