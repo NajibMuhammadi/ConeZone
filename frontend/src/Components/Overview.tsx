@@ -1,12 +1,11 @@
 import './styles/overview.css';
 import useMenuStore from '../stores/cartStore';
-import axios from 'axios';
+import { postOrder } from '../services/postorder';
 
 function Overview({ onNext }: { onNext: () => void }) {
 
     const order = useMenuStore(state => state.order)
     const paymentMethod = useMenuStore(state => state.paymentMethod)
-    // const addKitchenOrder = useMenuStore(state => state.addKitchenOrder)
     let totalPrice = 0;
 
     if (!order) {
@@ -18,25 +17,20 @@ function Overview({ onNext }: { onNext: () => void }) {
     }
 
     const handleSendOrder = () => {
-
-
-        axios.post
-
-
-        // const kitchenOrder = {
-        //     sk: orderId,
-        //     customerDetails: order.customerDetails,
-        //     items: order.items,
-        //     totalPrice,
-        //     paymentMethod,
-        //     // status: 'incoming', // Status för orderhantering?
-        // };
-        // addKitchenOrder(kitchenOrder);
-        // console.log(kitchenOrder)
+        uploadOrder();
         useMenuStore.getState().clearCart();
         alert('Order skickad till köket!');
         onNext();
     };
+
+    const uploadOrder = async () => {
+        const url = 'ordersUrl';
+        try {
+            await postOrder(url);
+        } catch (error) {
+            console.error("Error uploading order:", error);
+        }
+    }
 
     return (
         <>
