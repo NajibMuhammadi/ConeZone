@@ -2,8 +2,8 @@ import axios, { AxiosError } from "axios";
 import { ItemType } from "../types/interfaces";
 import { urls } from "../../url";
 
-const fetchItems = async (localUrl: string) : Promise<ItemType[]> => {
-    const url = urls[localUrl];
+const fetchItems = async (itemsUrl: string) : Promise<ItemType[]> => {
+    const url = urls[itemsUrl];
 
     if(!url) {
         throw new Error ('Url hittades inte')
