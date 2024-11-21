@@ -17,7 +17,7 @@ function Info({ onNext }: { onNext: () => void }) {
                 throw { msg: 'Name is required.' };
             }
             if (!/^\+?[0-9]+$/.test(phone)) {
-                throw { msg: 'Please enter a valid phone number with only numbers and an optional ' + ' at the beginning.' };
+                throw { msg: 'Please enter a valid phone number with only numbers and an optional + at the beginning.' };
             }
             if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
                 throw { msg: 'Please enter a valid email address.' };
@@ -34,6 +34,7 @@ function Info({ onNext }: { onNext: () => void }) {
         <section className="info__wrapper">
             <form className="info__form" onSubmit={handleSubmit}>
                 <h2 className="info__header">Info</h2>
+                {errorMsg && <p className="error-msg">{errorMsg}</p>}
                 <label htmlFor="info__name">Name:</label>
                 <input
                     type="text"
@@ -63,7 +64,6 @@ function Info({ onNext }: { onNext: () => void }) {
                     onChange={(e) => setEmail(e.target.value)}
                     required
                 />
-                {errorMsg && <p className="error-msg">{errorMsg}</p>}
 
                 <button
                     type="submit"
