@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import './styles/registerPage.css';
-import { postFetch } from '../services/PostFetch';
+import { postFetch } from '../services/postFetch';
 import { RegisterType } from '../types/interfaces';
 
 function Register() {

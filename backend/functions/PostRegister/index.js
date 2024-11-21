@@ -6,6 +6,8 @@ const { errorHandler } = require('../../middlewares/errorHandler.js');
 const { validateRegister } = require('../../middlewares/validateRegister.js');
 const { hashPassword } = require('../../utils/index.js');
 
+const isAdmin = false;
+
 const registerUser = async (event) => {
 
    const body = JSON.parse(event.body);
@@ -44,7 +46,8 @@ const registerUser = async (event) => {
                 username: username,
                 email: email,
                 password: hashedPassword,
-                createdAt: createdAt
+                createdAt: createdAt,
+                isAdmin: isAdmin
             }
         });
 
