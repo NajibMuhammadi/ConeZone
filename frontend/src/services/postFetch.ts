@@ -3,8 +3,7 @@ import { urls } from "../../url";
 import { LoginType, RegisterType } from "../types/interfaces";
 
 interface loginResponseProps {
-    status : number;
-    data: {
+        data: {
         success: boolean;
         message: string;
         data: {
