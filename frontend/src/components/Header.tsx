@@ -24,29 +24,29 @@ function Header() {
         <header className="header">
             <button className="header__button" onClick={toggleNav}><img className="button__hamburger" src="../../src/assets/hamburger.svg" /></button>
             <nav className="header__nav">
-                <NavLink to="/" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}><img className="header__logo" src="../../../src/assets/logo.svg"></img></NavLink>
+                <NavLink to="/" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}><img className="header__logo" src="../../../src/assets/logo.svg"/></NavLink>
                 <NavLink to="/menu" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>Menu</NavLink>
                 <NavLink to="/about" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>About Us</NavLink>
-                <NavLink to="/login" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>Login</NavLink>
                 <NavLink to="/cart" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>
-                    <img className="header__basket" src="../../src/assets/basket.svg"></img>
+                    <img className="header__basket" src="../../src/assets/basket.svg"/>
                     {quantity > 0 && (
                         <div className='badge'>{quantity}</div>
                     )}
                 </NavLink>
+                <NavLink to="/login" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}> <img className="header__user" src="../../src/assets/user.svg"/><p>Login</p></NavLink>
             </nav>
             <nav className="header__nav header__nav--mobile">
-                <NavLink to="/" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}><img className="header__logo" src="../../../src/assets/logo.svg"></img></NavLink>
+                <NavLink to="/" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}><img className="header__logo" src="../../../src/assets/logo.svg"/></NavLink>
                 <section className={`header__section ${isOpen ? 'open' : ''}`}>
                     <NavLink to="/menu" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>Menu</NavLink>
                     <NavLink to="/about" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>About Us</NavLink>
-                    <NavLink to="/login" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>Login</NavLink>
                     <NavLink to="/cart" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>
-                        <img className="header__basket" src="../../src/assets/basket.svg"></img>
+                        <img className="header__basket" src="../../src/assets/basket.svg"/>
                         {quantity > 0 && (
                             <div className='badge'>{quantity}</div>
                         )}
                     </NavLink>
+                    <NavLink to="/login" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}> <img className="header__user" src="../../src/assets/user.svg"/><p>Login</p></NavLink>
                 </section>
             </nav>
         </header>
