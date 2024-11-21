@@ -2,7 +2,7 @@ import Footer from "../components/Footer"
 import Header from "../components/Header"
 import './styles/loginPage.css'
 import { NavLink } from "react-router-dom"
-import { postFetch } from "../services/PostFetch"
+import { postFetch } from "../services/postFetch"
 import { LoginType } from "../types/interfaces"
 import { useState } from "react"
 
