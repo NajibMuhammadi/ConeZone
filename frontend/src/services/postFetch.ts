@@ -2,7 +2,22 @@ import axios from 'axios';
 import { urls } from "../../url";
 import { LoginType, RegisterType } from "../types/interfaces";
 
-const postFetch = async (urlKey: string, data: RegisterType | LoginType): Promise<void> => {
+interface loginResponseProps {
+    status : number;
+    data: {
+        success: boolean;
+        message: string;
+        data: {
+          UserID: string;
+          username: string;
+          email: string;
+          isAdmin: boolean;
+        };
+      };
+      token: string;
+}
+
+const postFetch = async (urlKey: string, data: RegisterType | LoginType): Promise<loginResponseProps> => {
     const url = urls[urlKey]; 
 
     if (!url) {
@@ -11,7 +26,7 @@ const postFetch = async (urlKey: string, data: RegisterType | LoginType): Promis
 
     try {
         const response = await axios.post(url, data); 
-        console.log('Response:', response.data);
+        return response.data;
     } catch (error) {
         console.error('Error:', error);
         throw new Error('Fel vid registrering');
