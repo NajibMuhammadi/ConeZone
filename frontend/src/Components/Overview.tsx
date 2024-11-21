@@ -11,7 +11,7 @@ function Overview({ onNext }: { onNext: () => void }) {
     if (!order) {
         return (
             <section className="overview__msg">
-            <p className="overview__no-order">Ingen order</p>
+                <p className="overview__no-order">Ingen order</p>
             </section>
         )
     }
@@ -19,7 +19,6 @@ function Overview({ onNext }: { onNext: () => void }) {
     const handleSendOrder = async () => {
         await uploadOrder();
         useMenuStore.getState().clearCart();
-        alert('Order skickad till köket!');
         onNext();
     };
 

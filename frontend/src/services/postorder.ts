@@ -4,7 +4,7 @@ import { urls } from "../../url";
 
 const postOrder = async (
     ordersUrl: string,
-    order: any,
+    order: Order,
     paymentMethod: string,
     totalPrice: number
 ): Promise<Order[]> => {
@@ -23,7 +23,7 @@ const postOrder = async (
         paymentMethod,
         totalPrice,
         isApproved: false,
-        isDone: false
+        isDone: false,
     };
 
     try {
@@ -37,8 +37,3 @@ const postOrder = async (
 }
 
 export { postOrder }
-
-/**
- * Författare Lisa och Ida
- * En funktion som postar en ny order till databasen
- */
