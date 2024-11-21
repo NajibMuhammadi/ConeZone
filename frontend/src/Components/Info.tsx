@@ -19,7 +19,7 @@ function Info({ onNext }: { onNext: () => void }) {
             if (!/^\+?[0-9]+$/.test(phone)) {
                 throw { msg: 'Please enter a valid phone number with only numbers and an optional + at the beginning.' };
             }
-            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
                 throw { msg: 'Please enter a valid email address.' };
             }
             setErrorMsg(null);
