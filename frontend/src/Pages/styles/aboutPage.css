@@ -5,6 +5,10 @@
     justify-content: center;
 }
 
+.history {
+    margin-top: 2rem;
+}
+
 .history__container {
     display: flex;
     flex-direction: row;
@@ -16,12 +20,8 @@
 .history__heading,
 .employees__heading {
     text-align: center;
-    margin: 30px;
     font-family: "Inter", sans-serif;
-}
-
-.history__heading {
-    font-size: 30px;
+    font-size: 40px;
 }
 
 .history__img {

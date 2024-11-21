@@ -70,6 +70,8 @@
 .homePage__button-text {
     font-family: "Inter", sans-serif;
     font-size: 1.2rem;
+    text-decoration: none;
+    color: var(--black);
 }
 
 .homePage__arrow {

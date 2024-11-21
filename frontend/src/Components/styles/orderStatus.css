@@ -2,9 +2,18 @@
     background-color: var(--white);
     width: 80%;
     max-width: 560px;
-    margin: 2rem auto;
+    margin: 4rem auto;
     padding: 3rem;
     border-radius: 1rem;
+}
+
+.order__wrapper {
+    min-height: 60vh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .order__title {
@@ -82,6 +91,7 @@
     .order {
         width: 90%;
         padding: 2rem;
+        margin: 2rem auto;
     }
 
     .order__title {

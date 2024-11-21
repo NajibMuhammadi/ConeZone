@@ -5,32 +5,31 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-family: "Inter", sans-serif;
 }
 
 .register__form {
     width: 80%;
     max-width: 560px;
     background-color: var(--white);
-    margin: 4rem auto;
+    margin: 2rem auto;
     padding: 2rem;
     border-radius: 9px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    font-family: Inter;
 }
 
 .register__header {
     color: var(--black);
     font-size: 40px;
     text-align: center;
-    font-family: Inter;
     font-weight: 700;
     margin-bottom: 2rem;
 }
 
 .register__form label {
-    font-size: 32px;
+    font-size: 30px;
     font-weight: 700;
     color: var(--black70);
     margin: 1rem 0;
@@ -54,11 +53,32 @@
 .register__form .register__submit {
     background-color: var(--blue);
     font-size: 40px;
-    margin: 6rem auto 0;
+    margin: 2rem auto 0;
     border-radius: 10px;
     height: 110px;
     max-width: 430px;
     width: 80%;
-    font-family: Intel;
     font-weight: 700;
+}
+
+@media screen and (max-width: 600px) {
+    .register__header {
+        font-size: 30px;
+        margin-bottom: 1rem;
+    }
+
+    .register__form label {
+        font-size: 20px;
+    }
+
+    .register__form input {
+        font-size: 20px;
+        height: 70px;
+    }
+
+    .register__form .register__submit {
+        font-size: 30px;
+        height: 90px;
+        margin: 1rem auto;
+    }
 }

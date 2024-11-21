@@ -7,6 +7,7 @@ import FancyLady from '../assets/FancyLady.png'
 import IceCreamLover from '../assets/IceCreamLover.png'
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { Link } from 'react-router-dom';
 
 function HomePage() {
 
@@ -23,7 +24,9 @@ function HomePage() {
           <article className='homePage__aside' >
             <p className="homePage__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
             <button className="homePage__button">
-              <p className='homePage__button-text'>Menu</p>
+              <Link to="/menu">
+                <p className='homePage__button-text'>Menu</p>
+              </Link>
               <img className='homePage__arrow' src={arrow} alt="arrow" />
             </button>
           </article>

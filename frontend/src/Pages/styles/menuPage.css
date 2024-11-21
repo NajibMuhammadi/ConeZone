@@ -9,10 +9,11 @@
     padding: 3rem;
     border-radius: 1rem;
     margin: 2rem auto;
+    font-family: "Inter", sans-serif;
 }
+
 .main__title{
-    font-family: inter, sans-serif;
-    font-size: 50px;
+    font-size: 40px;
     font-weight: 700;
     line-height: 59px;
     color: var(--black);
@@ -32,7 +33,8 @@
 .main__menu-container{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2rem; 
+    gap: 4rem; 
+    place-content: center;
 }
 
 .main__menu-image{
@@ -52,7 +54,7 @@
     background-color: var(--blue);
     color: var(--black);
     font-family: inter, sans-serif;
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 700;
     border-radius: 1rem;
     cursor: pointer;
@@ -65,8 +67,17 @@
 
 
 @media (min-width: 800px) and (max-width: 1000px) {
-   .main__menu-title{
+    .main{
+        padding: 2rem;
+        width:  90%;
+    }
+
+    .main__menu-title{
         font-size: 20px;
+    }
+    
+    .main__menu-btn{
+        font-size: 1.1rem;
     }
 }
 
@@ -76,22 +87,30 @@
         width:  90%;
     }
     .main__menu-title{
-        font-size: 18px;
+        font-size: 20px;
     }
     .main__menu-btn{
         padding: .7rem 1.5rem;
-        font-size: .8rem;
+        font-size: 1.1rem;
     }
 }
 
 @media (max-width: 600px) {
     .main{
-        padding: 2rem;
+        padding: 1rem;
         width:  90%;
     }
     .main__menu-container{
         grid-template-columns: 1fr;
         gap: 3rem;
+    }
+
+    .main__menu-btn{ 
+        font-size: 1rem;
+    }
+
+    .main__menu-title {
+        font-size: 20px;
     }
 }
 

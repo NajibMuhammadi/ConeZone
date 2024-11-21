@@ -10,7 +10,9 @@ function Overview({ onNext }: { onNext: () => void }) {
 
     if (!order) {
         return (
-            <p>Ingen order</p>
+            <section className="overview__msg">
+            <p className="overview__no-order">Ingen order</p>
+            </section>
         )
     }
 
@@ -63,14 +65,9 @@ function Overview({ onNext }: { onNext: () => void }) {
                             <img src={item.image} alt={item.name} className="overview__img" />
                             <section className="overview__info-wrapper">
                                 <section className="overview__info">
-                                    <h3 className="overview__name">Product:</h3>
-                                    <p className="overview__quantity">Quantity:</p>
-                                    <p className="overview__price">Price:</p>
-                                </section>
-                                <section className="overview__info-details">
-                                    <h4 className="overview__name">{item.name}</h4>
-                                    <p>{item.qty}</p>
-                                    <p className="overview__price-details">{item.price} sek</p>
+                                    <h3 className="overview__product-name">Product: {item.name}</h3>
+                                    <p className="overview__quantity">Quantity: {item.qty}</p>
+                                    <p className="overview__price">Price: {item.price} sek</p>
                                 </section>
                             </section>
                         </section>
@@ -79,7 +76,7 @@ function Overview({ onNext }: { onNext: () => void }) {
                     <section className="overview__payment">
                         <p className="overview__method">Chosen Payment Method:</p>
                         {paymentMethod && <p className="overview__method-details">{paymentMethod}</p>}
-                        {paymentMethod && <img src={`../../src/assets/${paymentMethod}.svg`} alt={paymentMethod} className="overview__method-img" />}
+                        {paymentMethod && <img src={`../../src/assets/${(paymentMethod)}.svg`} alt={paymentMethod} className="overview__method-img" />}
                     </section>
                     <hr className="overview__line" />
                     <section className="overview__total">

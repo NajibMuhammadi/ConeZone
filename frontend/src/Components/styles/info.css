@@ -17,7 +17,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    font-family: Inter;
+    font-family: "Inter", sans-serif;
 }
 
 .info__header {
@@ -30,7 +30,7 @@
 }
 
 .info__form label {
-    font-size: 32px;
+    font-size: 30px;
     font-weight: 700;
     color: var(--black70);
     margin: 1rem 0;
@@ -54,7 +54,7 @@
 .info__form .info__submit {
     background-color: var(--black);
     font-size: 40px;
-    margin: 6rem auto 0;
+    margin: 2rem auto 0;
     border-radius: 10px;
     height: 110px;
     max-width: 430px;
@@ -68,8 +68,33 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    border: none;
 }
 
+@media screen and (max-width: 600px) {
+    .info__form {
+        width: 90%;
+    }
+
+    .info__form label {
+        font-size: 20px;
+    }
+
+    .info__form input {
+        font-size: 18px;
+        height: 70px;
+    }
+
+    .info__form .info__submit {
+        font-size: 30px;
+        height: 90px;
+        margin: 1rem auto;
+    }
+
+    .info__header {
+        margin-bottom: 1rem;
+    }
+}
 /*
 Författare: Diliara
 Info komponents styling

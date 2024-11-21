@@ -47,7 +47,7 @@ function CartPage() {
                         ))
                     ) : (
                         <>
-                            <p>Your cart is empty!</p>
+                            <p className="cart__empty">Your cart is empty!</p>
                             <span className="cart__divider"></span>
                         </>
                     )}
