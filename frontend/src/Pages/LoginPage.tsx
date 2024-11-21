@@ -23,7 +23,7 @@ function LoginPage() {
 
             console.log('Response:', response);
 
-            if (response.status === 200) {
+            if (response.data.success) {
                 saveTokenToSessionStorage(response.token);
             }
     
