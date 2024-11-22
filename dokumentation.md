@@ -42,6 +42,39 @@ Vi går igenom vår backlogg och planerar upp arbetet – lägger in issues i sp
 
 Medverkande: Najib, Diliara, Ida, Lisa
 
+# Sprint 2 (vecka 47)
+
+Sprint planering genomfördes på Fredag sprint 1 (efter sprint review och retrospective).
+
+![alt text](monday-week47)
+![alt text](monday-week47-2)
+
+# Sprint review
+Kunden var nöjd med framstegen och uppskattade möjligheten att logga in med både användarnamn och email. 
+Han föreslog att justera mellanrummet mellan checkbox och texten i payment method layout för bättre design.
+
+Medverkande: Najib, Diliara, Ida, Lisa
+
+# Sprint Retrospektiv
+Lisa: Produktiv vecka med bra samarbete med Ida. Fick saker gjort under dagtid istället för kvällar.
+Diliara: Backend-arbetet var en utmaning efter två veckor med frontend. Behöver ta raster och undvika att fastna.
+Ida: Samarbetet med Lisa var givande, gillade parprogrammering. Vissa delar av frontend kändes osäkra.
+Najib: Arbetet gick bra, men behöver bli bättre på att pausa och hitta balans.
+
+## Vad kan förbättras?
+Ta fler raster och hålla balans mellan arbete och vila.
+Arbeta effektivt under dagtid för att undvika sena kvällar.
+
+Medverkande: Najib, Diliara, Ida, Lisa
+
+# Sprint planering för nästa vecka
+Fortsätta jobba med issues i sprint backlogen
+
+Medverkande: Najib, Diliara, Ida, Lisa
+
+
+
+
 
 
 
