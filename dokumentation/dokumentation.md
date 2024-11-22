@@ -46,8 +46,8 @@ Medverkande: Najib, Diliara, Ida, Lisa
 
 Sprint planering genomfördes på Fredag sprint 1 (efter sprint review och retrospective).
 
-![alt text](monday-week47)
-![alt text](monday-week47-2)
+![alt text](./screenshots/monday-week47.png)
+![alt text](./screenshots/monday-week47-2.png)
 
 # Sprint review
 Kunden var nöjd med framstegen och uppskattade möjligheten att logga in med både användarnamn och email. 
