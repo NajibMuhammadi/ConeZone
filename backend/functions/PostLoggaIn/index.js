@@ -1,20 +1,20 @@
-const {db} = require('../../services/index.js');
-const {sendResponse, sendError, sendResponseWithHeaders } = require('../../responses/index');
+const { db } = require('../../services/index.js');
+const { sendResponse, sendError, sendResponseWithHeaders } = require('../../responses/index');
 const middy = require('@middy/core');
 const { errorHandler } = require('../../middlewares/errorHandler.js');
 const { validateLoggaIn } = require('../../middlewares/validateLoggaIn.js');
 const { comparePassword } = require('../../utils/index.js');
-const {generateToken} = require('../../utils/index.js');
+const { generateToken } = require('../../utils/index.js');
 
 const loggaIn = async (event) => {
 
-    const body = JSON.parse(event.body);
-    let {usernameOrEmail, password} = body;
+    let body = JSON.parse(event.body);
+    let { usernameOrEmail, password } = body;
 
     usernameOrEmail = usernameOrEmail.toLowerCase();
 
-    try{  
-        const {Items} = await db.scan({
+    try {
+        const { Items } = await db.scan({
             TableName: 'conezoneuser-db',
             FilterExpression: ' username = :username OR email = :email',
             ExpressionAttributeValues: {
@@ -23,7 +23,7 @@ const loggaIn = async (event) => {
             }
         });
 
-        if(Items.length === 0){
+        if (Items.length === 0) {
             return sendError(400, 'User not found');
         }
 
@@ -31,7 +31,7 @@ const loggaIn = async (event) => {
 
         const isValid = await comparePassword(password, user.password);
 
-        if(!isValid){
+        if (!isValid) {
             return sendError(400, 'username or password is incorrect');
         }
 
@@ -53,7 +53,7 @@ const loggaIn = async (event) => {
         );
 
     }
-    catch(err){
+    catch (err) {
         return sendError(500, err);
     }
 }
