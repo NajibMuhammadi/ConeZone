@@ -66,6 +66,11 @@
     height: 100%;
 }
 
+.payment__radio {
+    margin-top: 0.5rem;
+    margin-right: 0.3rem;
+}
+
 @media (max-width: 600px) {
     .payment {
         width: 90%;
