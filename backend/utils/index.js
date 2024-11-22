@@ -1,5 +1,7 @@
-const {senndResponse} = require('../responses/index');  
+const {sendResponse} = require('../responses/index');  
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 const hashPassword = async (password) => {
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -11,4 +13,17 @@ const comparePassword = async (password, hashedPassword) => {
     return isValid;
 }
 
-module.exports = { hashPassword, comparePassword };
+const generateToken = async (user) => {
+    const payLoad ={
+        UserId : user.UserID,
+        isAdmin: user.isAdmin
+        
+    }
+
+    const token = jwt.sign(payLoad, process.env.SEKRET_ACCESS_KEY, {expiresIn: '1h'});
+
+    return token;
+}
+
+
+module.exports = { hashPassword, comparePassword, generateToken };

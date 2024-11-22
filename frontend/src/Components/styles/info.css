@@ -71,6 +71,11 @@
     border: none;
 }
 
+.error-msg {
+    color: red;
+    margin: 1rem;
+}
+
 @media screen and (max-width: 600px) {
     .info__form {
         width: 90%;
@@ -95,6 +100,7 @@
         margin-bottom: 1rem;
     }
 }
+
 /*
 Författare: Diliara
 Info komponents styling

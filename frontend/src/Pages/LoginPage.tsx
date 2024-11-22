@@ -19,10 +19,21 @@ function LoginPage() {
                 usernameOrEmail : usernameOrEmail,
                 password
             };
-            await postFetch('loginsUrl', loginData);
+            const response = await postFetch('loginsUrl', loginData);
+
+            console.log('Response:', response);
+
+            if (response.data.success) {
+                saveTokenToSessionStorage(response.token);
+            }
+    
         } catch (err) {
             console.error('Error:', err);
         }
+    }
+
+    const saveTokenToSessionStorage = (token : string) => {
+        sessionStorage.setItem('token', token);
     }
 
     return (

@@ -18,4 +18,20 @@ function sendError(status, data) {
     };
 }
 
-module.exports = {sendResponse, sendError};
+const sendResponseWithHeaders = (status, body, token) => {
+    console.log ('sätter headers', token);
+
+    return {
+        statusCode: status,
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token,
+        },
+        body: JSON.stringify({
+            data: body,
+            token: token,
+        })
+    }
+}
+
+module.exports = {sendResponse, sendError, sendResponseWithHeaders};

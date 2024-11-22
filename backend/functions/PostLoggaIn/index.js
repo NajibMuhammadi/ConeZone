@@ -1,9 +1,10 @@
 const {db} = require('../../services/index.js');
-const {sendResponse, sendError } = require('../../responses/index');
+const {sendResponse, sendError, sendResponseWithHeaders } = require('../../responses/index');
 const middy = require('@middy/core');
 const { errorHandler } = require('../../middlewares/errorHandler.js');
 const { validateLoggaIn } = require('../../middlewares/validateLoggaIn.js');
 const { comparePassword } = require('../../utils/index.js');
+const {generateToken} = require('../../utils/index.js');
 
 const loggaIn = async (event) => {
 
@@ -34,17 +35,22 @@ const loggaIn = async (event) => {
             return sendError(400, 'username or password is incorrect');
         }
 
-        return sendResponse(200, {
-            body: {
+        const token = await generateToken(user);
+
+        return sendResponseWithHeaders(
+            200,
+            {
                 success: true,
                 message: 'User logged in successfully',
                 data: {
+                    UserID: user.UserID,
                     username: user.username,
                     email: user.email,
-                    UserID: user.UserID,
-                }
-            }
-        });
+                    isAdmin: user.isAdmin,
+                },
+            },
+            token
+        );
 
     }
     catch(err){

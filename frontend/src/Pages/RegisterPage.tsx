@@ -26,7 +26,10 @@ function Register() {
                 confirmPassword,
                 email
             };
-            await postFetch('registersUrl', data);
+            const response = await postFetch('registersUrl', data);
+
+            console.log('Response:', response);
+            
         } catch (err) {
             console.error('Error:', err);
             setError('An error occurred during registration');

@@ -10,12 +10,8 @@ export interface ItemType {
     price: number
 }
 
-export interface CartItem {
-    sk: string,
-    qty: number,
-    name: string,
-    image: string,
-    price: number
+export interface CartItem extends Pick<ItemType, 'sk' | 'name' | 'image' | 'price'> {
+    qty: number;
 }
 
 export interface CounterProps {
@@ -28,36 +24,33 @@ export interface CustomerDetails {
     email: string;
 }
 
-interface OrderItem extends CartItem { }
+// interface OrderItem extends CartItem { }
 
 export interface Order {
-    // sk?: string,
-    items: OrderItem[],
-    customerDetails: CustomerDetails,
-    paymentMethod: string,
-    totalPrice: number,
-    // isApproved?: boolean,
-    // isDone?: boolean,
+    items: CartItem[];
+    customerDetails: CustomerDetails;
+    paymentMethod: string;
+    totalPrice: number;
+    isApproved?: boolean;
+    isDone?: boolean;
 }
+
+// export interface OrderInput {
+//     items: { name: string; qty: number; price: number }[];
+//     customerDetails: CustomerDetails;
+// }
 
 export interface MenuStore {
     cart: CartItem[];
     setCart: (newCart: CartItem[]) => void;
     addToCart: (item: ItemType) => void;
-    clearCart: () => void;
     removeFromCart: (sk: string) => void;
+    clearCart: () => void;
     totalQuantity: () => number;
     totalPrice: () => number;
     paymentMethod: string;
     setPaymentMethod: (method: string) => void;
-    order: {
-        items: OrderItem[];
-        customerDetails: {
-            name: string;
-            phone: string;
-            email: string;
-        };
-    } | null;
+    order: Order | null;
     setOrder: (name: string, phone: string, email: string) => void;
 }
 
