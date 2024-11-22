@@ -17,6 +17,7 @@ const generateToken = async (user) => {
     const payLoad ={
         UserId : user.UserID,
         isAdmin: user.isAdmin
+        
     }
 
     const token = jwt.sign(payLoad, process.env.SEKRET_ACCESS_KEY, {expiresIn: '1h'});
