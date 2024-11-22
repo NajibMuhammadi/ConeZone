@@ -21,7 +21,7 @@ function Routers() {
                 <Route path="/menu/:id" element={<ProductPage />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/order" element={<OrderPage />} />
-                <Route path="/kitchenView" element={<KitchenViewPage />} />
+                <Route path="/kitchenview" element={<KitchenViewPage />} />
             </Routes>
         </BrowserRouter>
     )

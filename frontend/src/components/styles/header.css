@@ -82,6 +82,16 @@
     font-family: 'Inter', sans-serif;
 }
 
+.header__user {
+    height: 40px;
+}
+
+.nav__link--login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 @media (max-width: 600px) {
     .header__nav {
         display: none;
