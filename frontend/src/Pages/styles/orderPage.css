@@ -30,6 +30,10 @@
     margin: 0 auto;
 }
 
+.slider-container {
+    margin-bottom: 3rem;
+}
+
 @media (min-width: 768px) and (max-width: 853px) {
     .slick-list {
         height: 100%;

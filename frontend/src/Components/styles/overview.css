@@ -49,12 +49,22 @@
 }
 
 .overview__edit {
-    width: 3vw;
-    margin-top: 5px;
+    height: 2rem;
+    background-color: transparent;
+    border: none;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
 }
 
 .overview__edit--img {
-    height: 3rem;
+    height: 2rem;
+    cursor: pointer;
+}
+
+.overview__edit--img:hover,
+.overview__edit--img:active {
+    scale: 1.1;
 }
 
 .overview__customer-container-bottom {
@@ -199,7 +209,6 @@
 }
 
 
-
 @media (max-width: 768px) {
     .overview {
         width: 90%;
@@ -234,6 +243,7 @@
 
     .overview__edit {
         width: 5vw;
+        align-self: flex-end;
     }
 
     .overview__product {
