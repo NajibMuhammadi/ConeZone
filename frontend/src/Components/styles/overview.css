@@ -53,6 +53,10 @@
     margin-top: 5px;
 }
 
+.overview__edit--img {
+    height: 3rem;
+}
+
 .overview__customer-container-bottom {
     display: flex;
     flex-direction: column;
@@ -174,7 +178,7 @@
 
 .overview__msg {
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: white;
@@ -247,7 +251,7 @@
         justify-content: center;
         align-items: center;
     }
-    
+
     .overview__info-wrapper {
         display: flex;
         flex-direction: row;

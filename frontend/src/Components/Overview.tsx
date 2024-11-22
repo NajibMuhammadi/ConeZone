@@ -1,12 +1,17 @@
 import './styles/overview.css';
 import useMenuStore from '../stores/cartStore';
 import { postOrder } from '../services/postorder';
+import { useState } from 'react';
+import Counter from './Counter';
 
 function Overview({ onNext }: { onNext: () => void }) {
 
+    const cart = useMenuStore(state => state.cart)
     const order = useMenuStore(state => state.order)
     const paymentMethod = useMenuStore(state => state.paymentMethod)
     const totalPrice = useMenuStore(state => state.totalPrice());
+    const [editing, setEditing] = useState(false);
+
 
     if (!order) {
         return (
@@ -39,6 +44,14 @@ function Overview({ onNext }: { onNext: () => void }) {
         }
     }
 
+    if (cart.length === 0) {
+        return (
+            <section className="overview__msg">
+                <p className="overview__no-order">Ingen order finns</p>
+            </section>
+        );
+    }
+
     return (
         <>
             <section className="overview__wrapper">
@@ -59,13 +72,24 @@ function Overview({ onNext }: { onNext: () => void }) {
                         </section>
                     </section>
                     <hr className="overview__line" />
-                    {order.items.map((item) => (
+                    <button className="overview__edit" onClick={() => setEditing(!editing)}>
+                        <img className='overview__edit--img' src="../../src/assets/edit.png" alt="Redigera" />
+                    </button>                   {editing && (
+                        <button className="save-btn" onClick={() => setEditing(false)}>
+                            Spara
+                        </button>
+                    )}
+                    {cart.map((item) => (
                         <section className="overview__product" key={item.sk}>
                             <img src={item.image} alt={item.name} className="overview__img" />
                             <section className="overview__info-wrapper">
                                 <section className="overview__info">
                                     <h3 className="overview__product-name">Product: {item.name}</h3>
-                                    <p className="overview__quantity">Quantity: {item.qty}</p>
+                                    {!editing ? (
+                                        <p className="overview__item-qty">Quantity: {item.qty}</p>
+                                    ) : (
+                                        <Counter item={item} />
+                                    )}
                                     <p className="overview__price">Price: {item.price} sek</p>
                                 </section>
                             </section>
