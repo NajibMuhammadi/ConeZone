@@ -86,7 +86,6 @@
 }
 
 .overview__customer-savebtn {
-    /* margin-left: 8rem; */
     margin-top: 0.5rem;
     padding: 0.3rem 1rem;
     background-color: var(--black);
@@ -186,6 +185,20 @@
     gap: 10px;
     margin: 30px;
     font-size: 22px;
+}
+
+.overview__payment-dropdown {
+    text-align: center;
+}
+
+.overview__payment-dropdownmenu {
+    padding: 0.5rem 1rem;
+    margin: 1rem;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--gray);
+    font-family: "Inter", sans-serif;
+    cursor: pointer;
 }
 
 .overview__payment-changepayment {

@@ -13,47 +13,33 @@ function Overview({ onNext }: { onNext: () => void }) {
     const totalPrice = useMenuStore(state => state.totalPrice());
     const setOrder = useMenuStore(state => state.setOrder);
     const setPaymentMethod = useMenuStore(state => state.setPaymentMethod);
-
+    const clearCart = useMenuStore(state => state.clearCart);
 
     const [editingQty, setEditingQty] = useState(false);
     const [editingCustomer, setEditingCustomer] = useState(false);
     const [editingPayment, setEditingPayment] = useState(false);
 
     const [customerDetails, setCustomerDetails] = useState<CustomerDetails>(
-        order?.customerDetails || { name: '', phone: '', email: '' }
-    ); const [newPaymentMethod, setNewPaymentMethod] = useState(paymentMethod);
+        order?.customerDetails || { name: '', phone: '', email: '' });
+    const [newPaymentMethod, setNewPaymentMethod] = useState(paymentMethod);
 
-
-    if (!order) {
+    if (!order || cart.length === 0) {
         return (
             <section className="overview__msg">
-                <p className="overview__no-order">Ingen order</p>
+                <p className="overview__no-order">Ingen order finns</p>
             </section>
         )
     }
 
     const handleSendOrder = async () => {
-        await uploadOrder();
-        useMenuStore.getState().clearCart();
-        onNext();
-    };
-
-    const uploadOrder = async () => {
-        const url = 'ordersUrl';
-        const order = useMenuStore.getState().order;
-        const paymentMethod = useMenuStore.getState().paymentMethod;
-        const totalPrice = useMenuStore.getState().totalPrice();
-
-        if (!order) {
-            console.error("Ingen order finns");
-            return;
-        }
         try {
-            await postOrder(url, order, paymentMethod, totalPrice);
+            await postOrder('ordersUrl', order, paymentMethod, totalPrice);
+            clearCart();
+            onNext();
         } catch (error) {
-            console.error("Error uploading order:", error);
+            console.error('Error uploading order:', error);
         }
-    }
+    };
 
     const handleSaveCustomer = () => {
         setOrder(customerDetails.name, customerDetails.phone, customerDetails.email);
@@ -65,20 +51,14 @@ function Overview({ onNext }: { onNext: () => void }) {
         setEditingPayment(false);
     };
 
-    if (cart.length === 0) {
-        return (
-            <section className="overview__msg">
-                <p className="overview__no-order">Ingen order finns</p>
-            </section>
-        );
-    }
-
     return (
         <>
             <section className="overview__wrapper">
                 <article className="overview">
                     <h2 className="overview__heading">Overview</h2>
                     <hr className="overview__line" />
+
+                    {/* Customer Details */}
                     <section>
                         <section className="overview__customer-container-top">
                             <h3 className="overview__customer">Customer</h3>
@@ -117,10 +97,9 @@ function Overview({ onNext }: { onNext: () => void }) {
                         </section>
                     </section>
                     <hr className="overview__line" />
+
+                    {/* Cart */}
                     <section className="overview__product-wrapper">
-                        {/* <button className="overview__edit" onClick={() => setEditingQty(!editingQty)}>
-                            <img className='overview__edit-img' src="../../src/assets/edit.png" alt="Redigera" />
-                        </button> */}
                         <h3 className="overview__customer">Cart</h3>
                         {cart.map((item) => (
                             <section className="overview__product" key={item.sk}>
@@ -134,8 +113,8 @@ function Overview({ onNext }: { onNext: () => void }) {
                                                 {cart.indexOf(item) === 0 && (
                                                     <button
                                                         className="overview__customer-savebtn"
-                                                        onClick={() => setEditingQty(false)}
-                                                    >Save</button>
+                                                        onClick={() => setEditingQty(false)}>
+                                                        Save</button>
                                                 )}
                                             </>
                                         ) : (
@@ -144,26 +123,14 @@ function Overview({ onNext }: { onNext: () => void }) {
                                                 {cart.indexOf(item) === 0 && (
                                                     <button
                                                         className="overview__edit"
-                                                        onClick={() => setEditingQty(true)}
-                                                    >
+                                                        onClick={() => setEditingQty(true)}>
                                                         <img
                                                             className="overview__edit-img"
                                                             src="../../src/assets/edit.png"
-                                                            alt="Edit"
-                                                        />
+                                                            alt="Edit" />
                                                     </button>
                                                 )}
                                             </>
-                                            /* {!editingQty ? (
-                                                <p className="overview__item-qty">Quantity: {item.qty}</p>
-                                            ) : (
-                                                <Counter item={item} />
-                                            )}
-                                            <p className="overview__price">Price: {item.price} sek</p>
-                                        </section>
-                                    </section>
-                                </section> */
-                                            // )
                                         )}
                                         <p className="overview__price">Price: {item.price} sek</p>
                                     </section>
@@ -172,6 +139,8 @@ function Overview({ onNext }: { onNext: () => void }) {
                         ))}
                     </section>
                     <hr className="overview__line" />
+
+                    {/* Payment Method */}
                     <section className="overview__payment-wrapper">
                         <h3 className="overview__customer">Choosen payment method</h3>
                         {!editingPayment ? (
@@ -183,8 +152,8 @@ function Overview({ onNext }: { onNext: () => void }) {
                                 </button>
                             </section>
                         ) : (
-                            <section>
-                                <select value={newPaymentMethod} onChange={(e) => setNewPaymentMethod(e.target.value)}>
+                            <section className='overview__payment-dropdown'>
+                                <select className='overview__payment-dropdownmenu' value={newPaymentMethod} onChange={(e) => setNewPaymentMethod(e.target.value)}>
                                     <option value="Card">Card</option>
                                     <option value="Cash">Cash</option>
                                     <option value="Swish">Swish</option>
@@ -218,6 +187,8 @@ produktinformation, vald betalningsmetod och totalpris, läsas in på OrderPage
 
 // Författare: Lisa
 // Implementerat funktionalitet på sidan från vår Store samt till databasen (med Ida).
-// Fixa kontroller på namn, mejl etc!
+// Fixat möjlighet till editing på sida.
+
+//Fixa kontroller på namn, mejl etc!
 /*
 */
