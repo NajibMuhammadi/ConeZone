@@ -24,6 +24,24 @@ function Overview({ onNext }: { onNext: () => void }) {
     const [newPaymentMethod, setNewPaymentMethod] = useState(paymentMethod);
     const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
+    if (!order || cart.length === 0) {
+        return (
+            <section className="overview__msg">
+                <p className="overview__no-order">Ingen order finns</p>
+            </section>
+        )
+    }
+
+    const handleSendOrder = async () => {
+        try {
+            await postOrder('ordersUrl', order, paymentMethod, totalPrice);
+            clearCart();
+            onNext();
+        } catch (error) {
+            console.error('Error uploading order:', error);
+        }
+    };
+
     const handleSaveCustomer = () => {
         try {
             if (!customerDetails.name.trim()) {
@@ -50,29 +68,6 @@ function Overview({ onNext }: { onNext: () => void }) {
             setErrorMsg(error.msg || 'An unexpected error occurred.');
         }
     };
-
-    if (!order || cart.length === 0) {
-        return (
-            <section className="overview__msg">
-                <p className="overview__no-order">Ingen order finns</p>
-            </section>
-        )
-    }
-
-    const handleSendOrder = async () => {
-        try {
-            await postOrder('ordersUrl', order, paymentMethod, totalPrice);
-            clearCart();
-            onNext();
-        } catch (error) {
-            console.error('Error uploading order:', error);
-        }
-    };
-
-    // const handleSaveCustomer = () => {
-    //     setOrder(customerDetails.name, customerDetails.phone, customerDetails.email);
-    //     setEditingCustomer(false);
-    // };
 
     const handleSavePayment = () => {
         setPaymentMethod(newPaymentMethod);
