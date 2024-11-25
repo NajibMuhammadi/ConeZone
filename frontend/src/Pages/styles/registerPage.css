@@ -61,6 +61,20 @@
     font-weight: 700;
 }
 
+.register__success-message {
+    color: green;
+    font-size: 26px;
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.register__error-message {
+    color: red;
+    font-size: 26px;
+    text-align: center;
+    margin: 1rem 0;
+}
+
 @media screen and (max-width: 600px) {
     .register__header {
         font-size: 30px;
@@ -82,3 +96,5 @@
         margin: 1rem auto;
     }
 }
+
+/* Edited Diliara, la till error och success meddelande styling */
