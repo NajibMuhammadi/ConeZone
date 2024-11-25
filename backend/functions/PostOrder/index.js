@@ -3,12 +3,10 @@ const {sendResponse, sendError } = require('../../responses/index')
 const middy = require('@middy/core');
 const {errorHandler} = require('../../middlewares/errorHandler.js')
 const {validateNewOrder} = require('../../middlewares/validateNewOrder.js')
-const {v4 : uuid} = require('uuid')
 
 
 const handler = async (event) => {
-    const {username, customerDetails, items, paymentMethod, isApproved, isDone, totalPrice} = JSON.parse(event.body)
-    const sk = uuid().substring(0, 8)
+    const {username, sk, customerDetails, items, paymentMethod, isApproved, isDone, totalPrice} = JSON.parse(event.body)
 
     try {
         await db.put({
@@ -24,7 +22,7 @@ const handler = async (event) => {
                 isDone: isDone 
         }
     })
-        return sendResponse(200, {success: true, message: 'New order added'})
+        return sendResponse(200, {success: true, message: 'New order added with the ordernumber', sk})
     } catch (error) {
         return sendError (500, {success: false, message: error.message})
     }

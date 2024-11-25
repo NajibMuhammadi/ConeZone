@@ -1,6 +1,7 @@
 const Joi = require('joi');
 
 const orderSchema = Joi.object({
+    sk: Joi.string().required(),
     username : Joi.string().required(),
     customerDetails: Joi.object({
         name : Joi.string().required(),

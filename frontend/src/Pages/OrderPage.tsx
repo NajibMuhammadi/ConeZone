@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -13,6 +13,7 @@ import "./styles/orderPage.css";
 
 function OrderPage() {
     const sliderRef = useRef(null);
+    const [orderSk, setOrderSk] = useState<string | null>(null)
 
     const settings = {
         dots: true,
@@ -58,9 +59,13 @@ function OrderPage() {
         // ]
     };
 
-    const handleNext = () => {
+    const handleNext = (sk?: string) => {
         if (sliderRef.current) {
             (sliderRef.current as Slider).slickNext();
+        }
+
+        if(sk) {
+            setOrderSk(sk)
         }
     };
 
@@ -72,7 +77,7 @@ function OrderPage() {
                     <Info onNext={handleNext} />
                     <Payment onNext={handleNext} />
                     <Overview onNext={handleNext} />
-                    <OrderStatus />
+                    <OrderStatus sk={orderSk ?? ''}/>
                 </Slider>
             </div>
             <Footer />
@@ -86,4 +91,7 @@ export default OrderPage;
  * Författare: Diliara
  * OrderPage med olika komponenter
  * La till en slider för att kunna byta mellan olika komponenter
+ * 
+ * Buggfix: Ida
+ * La till orderSK och om den har ett värde skickas den med annars skickas en tom sträng
  */

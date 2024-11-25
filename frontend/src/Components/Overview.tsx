@@ -4,8 +4,9 @@ import { postOrder } from '../services/postorder';
 import { useState } from 'react';
 import Counter from './Counter';
 import { CustomerDetails } from '../types/interfaces';
+import {Order} from '../types/interfaces';
 
-function Overview({ onNext }: { onNext: () => void }) {
+function Overview({ onNext }: { onNext: (sk : string) => void }) {
 
     const cart = useMenuStore(state => state.cart)
     const order = useMenuStore(state => state.order)
@@ -34,9 +35,12 @@ function Overview({ onNext }: { onNext: () => void }) {
 
     const handleSendOrder = async () => {
         try {
-            await postOrder('ordersUrl', order, paymentMethod, totalPrice);
-            clearCart();
-            onNext();
+            const response = await postOrder('ordersUrl', order, paymentMethod, totalPrice);
+
+            if(response && response.sk) {
+                clearCart();
+                onNext(response.sk);
+            }
         } catch (error) {
             console.error('Error uploading order:', error);
         }
@@ -212,13 +216,14 @@ function Overview({ onNext }: { onNext: () => void }) {
 
 export default Overview
 
-/*
-/* Författare: Diliara
-/* Overview component som visar kundinformation,
-produktinformation, vald betalningsmetod och totalpris, läsas in på OrderPage
+/** 
+* Författare: Diliara
+* Overview component som visar kundinformation, produktinformation, vald betalningsmetod och totalpris, läsas in på OrderPage
+* 
+* Författare: Lisa
+* Implementerat funktionalitet på sidan från vår Store samt till databasen (med Ida). 
+* Fixat möjlighet till editing på sida.
+* 
+* Bugfix: Ida
+* Ser till att vi kan skicka med ett sk till order status sidan
 */
-
-// Författare: Lisa
-// Implementerat funktionalitet på sidan från vår Store samt till databasen (med Ida).
-// Fixat möjlighet till editing på sida.
-
