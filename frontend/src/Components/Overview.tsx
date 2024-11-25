@@ -18,12 +18,9 @@ function Overview({ onNext }: { onNext: (sk:string) => void }) {
     }
 
     const handleSendOrder = async () => {
-        console.log('Starting order upload...');
         const response = await uploadOrder();
-        console.log('Upload response:', response);
 
         if(response && response.sk) {
-            console.log('Setting order ID:', response.sk);
             useMenuStore.getState().clearCart();
             onNext(response.sk);
         }
@@ -101,14 +98,14 @@ function Overview({ onNext }: { onNext: (sk:string) => void }) {
 
 export default Overview
 
-/*
-/* Författare: Diliara
-/* Overview component som visar kundinformation,
-produktinformation, vald betalningsmetod och totalpris, läsas in på OrderPage
-*/
-
-// Författare: Lisa
-// Implementerat funktionalitet på sidan från vår Store samt till databasen (med Ida). 
-/* 
+/** 
+* Författare: Diliara
+* Overview component som visar kundinformation, produktinformation, vald betalningsmetod och totalpris, läsas in på OrderPage
+* 
+* Författare: Lisa
+* Implementerat funktionalitet på sidan från vår Store samt till databasen (med Ida). 
+* 
+* Bugfix: Ida
+* Ser till att vi kan skicka med ett sk till order status sidan
 */
 

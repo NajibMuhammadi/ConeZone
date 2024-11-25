@@ -40,3 +40,7 @@ const postOrder = async (
 }
 
 export { postOrder }
+
+/** Författare Lisa och Ida
+ *  Postar en ny order till databasen och skapar en unik sk för varje order. 
+ */
