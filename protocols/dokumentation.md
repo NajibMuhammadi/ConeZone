@@ -67,8 +67,9 @@ Arbeta effektivt under dagtid för att undvika sena kvällar.
 
 Medverkande: Najib, Diliara, Ida, Lisa
 
-# Sprint planering för nästa vecka
-Fortsätta jobba med issues i sprint backlogen
+# Sprintplanering V.3
+
+
 
 Medverkande: Najib, Diliara, Ida, Lisa
 
