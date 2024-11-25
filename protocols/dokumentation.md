@@ -67,8 +67,9 @@ Arbeta effektivt under dagtid för att undvika sena kvällar.
 
 Medverkande: Najib, Diliara, Ida, Lisa
 
-# Sprintplanering V.3
-Vi ska lägga in saker i vår sprintplanering. Vi går igenom vår backlogg och planerar upp arbetet – lägger in issues i sprint backlog.
+# # Sprint 3 (vecka 48)
+Vår sprintplanering är att vi ska kunna ändra beställningen i varukorgen, ändra beställning när ordern är lagd, kunnna Radera i backend, ändra order som en kund och toggla flaggor, bygga vy för inloggade med fake data, paymentPage ska ha mellanrum mellan text och bild.
+![alt text](./screenshots/monday-week48.png)
 
 
 
