@@ -69,6 +69,7 @@ Medverkande: Najib, Diliara, Ida, Lisa
 
 # # Sprint 3 (vecka 48)
 Vår sprintplanering är att vi ska kunna ändra beställningen i varukorgen, ändra beställning när ordern är lagd, kunnna Radera i backend, ändra order som en kund och toggla flaggor, bygga vy för inloggade med fake data, paymentPage ska ha mellanrum mellan text och bild.
+
 ![alt text](./screenshots/monday-week48.png)
 
 
