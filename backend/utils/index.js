@@ -20,7 +20,7 @@ const generateToken = async (user) => {
         
     }
 
-    const token = jwt.sign(payLoad, process.env.SEKRET_ACCESS_KEY, {expiresIn: '1h'});
+    const token = jwt.sign(payLoad, process.env.SECRET_ACCESS_KEY, {expiresIn: '1h'});
 
     return token;
 }
