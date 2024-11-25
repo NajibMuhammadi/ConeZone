@@ -68,6 +68,7 @@ Arbeta effektivt under dagtid för att undvika sena kvällar.
 Medverkande: Najib, Diliara, Ida, Lisa
 
 # Sprintplanering V.3
+Vi ska lägga in saker i vår sprintplanering. Vi går igenom vår backlogg och planerar upp arbetet – lägger in issues i sprint backlog.
 
 
 
