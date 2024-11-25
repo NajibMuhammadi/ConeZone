@@ -82,6 +82,12 @@ functions:
       - httpApi:
           path: /order/{pk}/{id}
           method: put
+  DeleteOrder: 
+    handler: functions/DeleteOrder/index.handler
+    events:
+      - httpApi:
+          path: /order/{pk}/{id}
+          method: delete
 
 resources:
   Resources:

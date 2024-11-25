@@ -4,7 +4,6 @@ import { postOrder } from '../services/postorder';
 import { useState } from 'react';
 import Counter from './Counter';
 import { CustomerDetails } from '../types/interfaces';
-import {Order} from '../types/interfaces';
 
 function Overview({ onNext }: { onNext: (sk : string) => void }) {
 
