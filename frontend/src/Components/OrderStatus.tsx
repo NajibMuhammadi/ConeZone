@@ -1,6 +1,16 @@
 import './styles/orderStatus.css'
 
 function OrderStatus() {
+
+    const cancelOrder = async () => {
+        console.log('clicked the cancel order button')
+    };
+
+    const editOrder = async () => {
+        console.log('clicked the edit order button')
+    };
+
+
     return (
         <div className='order__wrapper'>
             <main className='order'>
@@ -12,8 +22,8 @@ function OrderStatus() {
                     <p className='order__info-subtitle'>You can still change or delete your order until it is approved.</p>
                 </section>
                 <section className='order__button-container'>
-                    <button className='order__btn order__btn--change'>Change order</button>
-                    <button className='order__btn'>Cancel order</button>
+                    <button className='order__btn order__btn--change' onClick={editOrder}>Change order</button>
+                    <button className='order__btn' onClick={cancelOrder}>Cancel order</button>
                 </section>
             </main>
         </div>

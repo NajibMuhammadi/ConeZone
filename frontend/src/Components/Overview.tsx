@@ -53,9 +53,9 @@ function Overview({ onNext }: { onNext: () => void }) {
                             <img src="../../src/assets/edit.png" alt="" className="overview__edit" />
                         </section>
                         <section className="overview__customer-container-bottom">
-                            <p className="overview__name"><strong>Name:</strong>{order.customerDetails.name}</p>
-                            <p className="overview__phone"><strong>Phone number:</strong>{order.customerDetails.phone}</p>
-                            <p className="overview__email"><strong>Email:</strong>{order.customerDetails.email}</p>
+                            <p className="overview__name"><strong>Name: </strong>{order.customerDetails.name}</p>
+                            <p className="overview__phone"><strong>Phone number: </strong>{order.customerDetails.phone}</p>
+                            <p className="overview__email"><strong>Email: </strong>{order.customerDetails.email}</p>
                         </section>
                     </section>
                     <hr className="overview__line" />
