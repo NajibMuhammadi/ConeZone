@@ -24,7 +24,7 @@ const handler = async (event) => {
                 isDone: isDone 
         }
     })
-        return sendResponse(200, {success: true, message: 'New order added'})
+        return sendResponse(200, {success: true, message: 'New order added with the ordernumber', sk})
     } catch (error) {
         return sendError (500, {success: false, message: error.message})
     }
