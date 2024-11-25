@@ -88,49 +88,82 @@ function Overview({ onNext }: { onNext: () => void }) {
                                     <p className="overview__customer-info"><strong>Phone number:</strong> {order.customerDetails.phone}</p>
                                     <p className="overview__customer-info"><strong>Email:</strong> {order.customerDetails.email}</p>
                                     <button className="overview__edit" onClick={() => setEditingCustomer(true)}>
-                                        <img className='overview__edit--img' src="../../src/assets/edit.png" alt="Redigera" />
+                                        <img className='overview__edit-img' src="../../src/assets/edit.png" alt="Redigera" />
                                     </button>
                                 </section>
                             ) : (
                                 <section>
                                     <input
+                                        className="overview__customer-input"
                                         type="text"
                                         value={customerDetails.name || ''}
                                         onChange={(e) => setCustomerDetails({ ...customerDetails, name: e.target.value })}
-                                        placeholder="Name"
                                     />
                                     <input
+                                        className="overview__customer-input"
                                         type="text"
                                         value={customerDetails.phone || ''}
                                         onChange={(e) => setCustomerDetails({ ...customerDetails, phone: e.target.value })}
-                                        placeholder="Phone"
                                     />
                                     <input
+                                        className="overview__customer-input"
                                         type="email"
                                         value={customerDetails.email || ''}
                                         onChange={(e) => setCustomerDetails({ ...customerDetails, email: e.target.value })}
-                                        placeholder="Email"
                                     />
-                                    <button onClick={handleSaveCustomer}>Save</button>
+                                    <button className='overview__customer-savebtn' onClick={handleSaveCustomer}>Save</button>
                                 </section>
                             )}
                         </section>
                     </section>
                     <hr className="overview__line" />
-                    <section className="overview__product--wrapper">
-                        <button className="overview__edit" onClick={() => setEditingQty(!editingQty)}>
-                            <img className='overview__edit--img' src="../../src/assets/edit.png" alt="Redigera" />
-                        </button>
+                    <section className="overview__product-wrapper">
+                        {/* <button className="overview__edit" onClick={() => setEditingQty(!editingQty)}>
+                            <img className='overview__edit-img' src="../../src/assets/edit.png" alt="Redigera" />
+                        </button> */}
+                        <h3 className="overview__customer">Cart</h3>
                         {cart.map((item) => (
                             <section className="overview__product" key={item.sk}>
                                 <img src={item.image} alt={item.name} className="overview__img" />
                                 <section className="overview__info-wrapper">
                                     <section className="overview__info">
-                                        <h3 className="overview__product-name">Product: {item.name}</h3>
-                                        {!editingQty ? (
-                                            <p className="overview__item-qty">Quantity: {item.qty}</p>
+                                        <h4 className="overview__product-name">Product: {item.name}</h4>
+                                        {editingQty ? (
+                                            <>
+                                                <Counter item={item} />
+                                                {cart.indexOf(item) === 0 && (
+                                                    <button
+                                                        className="overview__customer-savebtn"
+                                                        onClick={() => setEditingQty(false)}
+                                                    >Save</button>
+                                                )}
+                                            </>
                                         ) : (
-                                            <Counter item={item} />
+                                            <>
+                                                <p className="overview__item-qty">Quantity: {item.qty}</p>
+                                                {cart.indexOf(item) === 0 && (
+                                                    <button
+                                                        className="overview__edit"
+                                                        onClick={() => setEditingQty(true)}
+                                                    >
+                                                        <img
+                                                            className="overview__edit-img"
+                                                            src="../../src/assets/edit.png"
+                                                            alt="Edit"
+                                                        />
+                                                    </button>
+                                                )}
+                                            </>
+                                            /* {!editingQty ? (
+                                                <p className="overview__item-qty">Quantity: {item.qty}</p>
+                                            ) : (
+                                                <Counter item={item} />
+                                            )}
+                                            <p className="overview__price">Price: {item.price} sek</p>
+                                        </section>
+                                    </section>
+                                </section> */
+                                            // )
                                         )}
                                         <p className="overview__price">Price: {item.price} sek</p>
                                     </section>
@@ -139,14 +172,14 @@ function Overview({ onNext }: { onNext: () => void }) {
                         ))}
                     </section>
                     <hr className="overview__line" />
-                    <section className="overview__payment--wrapper">
+                    <section className="overview__payment-wrapper">
                         <h3 className="overview__customer">Choosen payment method</h3>
                         {!editingPayment ? (
                             <section className="overview__payment">
                                 {paymentMethod && <p className="overview__method-details">{paymentMethod}</p>}
                                 {paymentMethod && <img src={`../../src/assets/${(paymentMethod)}.svg`} alt={paymentMethod} className="overview__method-img" />}
                                 <button className="overview__edit" onClick={() => setEditingPayment(true)}>
-                                    <img className='overview__edit--img' src="../../src/assets/edit.png" alt="Redigera" />
+                                    <img className='overview__edit-img' src="../../src/assets/edit.png" alt="Redigera" />
                                 </button>
                             </section>
                         ) : (
@@ -157,7 +190,7 @@ function Overview({ onNext }: { onNext: () => void }) {
                                     <option value="Swish">Swish</option>
                                     <option value="Klarna">Klarna</option>
                                 </select>
-                                <button onClick={handleSavePayment}>Save</button>
+                                <button className='overview__customer-savebtn' onClick={handleSavePayment}>Save</button>
                             </section>
                         )}
                     </section>
@@ -185,6 +218,6 @@ produktinformation, vald betalningsmetod och totalpris, läsas in på OrderPage
 
 // Författare: Lisa
 // Implementerat funktionalitet på sidan från vår Store samt till databasen (med Ida).
+// Fixa kontroller på namn, mejl etc!
 /*
 */
-
