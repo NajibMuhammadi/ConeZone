@@ -92,6 +92,62 @@
     justify-content: center;
 }
 
+.header__user-container {
+    position: relative;
+}
+
+.user-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--black);
+    border: none;
+    border-radius: 5px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    display: flex;
+    align-self: end;
+    text-align: center;
+    height: auto; /* Adjust height as needed */
+    font-family: 'Inter', sans-serif;
+}
+
+.user-menu__link {
+    position: relative;
+    padding: 2rem;
+    text-decoration: none;
+    color: white;
+    border-bottom: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.user-menu__link::after {
+    content: '';
+    position: absolute;
+    bottom: 1.8rem;
+    left: 15%;
+    width: 0;
+    height: 5px;
+    background-color: var(--pink);
+    transition: width 1s ease-in-out;
+}
+
+.user-menu__link:last-child {
+    border-bottom: none;
+    margin-top: 20rem;
+}
+
+.user-menu__link:focus::after {
+    width: 70%;
+}
+
+.user-menu__link--active::after {
+    width: 70%;
+}
+
 @media (max-width: 600px) {
     .header__nav {
         display: none;
@@ -126,5 +182,73 @@
     .open {
         transform: translate(0);
         width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .user-menu {
+        top: 120%;
+        left: -177%;
+    }
+
+    .user-menu__link:last-child {
+        border-bottom: none;
+        margin-top: 10rem;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 820px) {
+    .user-menu {
+        top: 130%;
+        left: -172%;
+    }
+
+    .user-menu__link:last-child {
+        border-bottom: none;
+        margin-top: 15rem;
+    }
+}
+
+@media (min-width: 821px) and (max-width: 853px) {
+    .user-menu {
+        top: 130%;
+        left: -166%;
+    }
+
+    .user-menu__link:last-child {
+        border-bottom: none;
+        margin-top: 15rem;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+    .user-menu {
+        top: 90%;
+        left: -137%;
+    }
+
+    .user-menu__link:last-child {
+        border-bottom: none;
+        margin-top: 5rem;
+    }
+
+    .user-menu__link {
+        margin-top: 10px;
+    }
+}
+
+@media (min-width: 1280px) and (max-width: 1400px) {
+    .user-menu {
+        top: 90%;
+        left: -92%;
+    }
+
+    .user-menu__link:last-child {
+        border-bottom: none;
+        margin-top: 7rem;
+    }
+
+    .user-menu__link {
+        margin-top: 25px;
     }
 }

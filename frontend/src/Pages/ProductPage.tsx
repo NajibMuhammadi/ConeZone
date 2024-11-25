@@ -60,7 +60,12 @@ function ProductPage() {
                                     <li className="product__component-item" key={index}>{component}</li>
                                 ))}
                             </ul>
-                            <p className="product__allergens">Allergens:</p>
+                            <ul className="product__allergens">
+                                <strong>Allergens:</strong>
+                                {item.components.map((allergen, index) => (
+                                    <li className="product__component-item" key={index}>{allergen}</li>
+                                ))}
+                            </ul>
                         </article>
                         <section className="product__buttons">
                             <Link to="/menu">

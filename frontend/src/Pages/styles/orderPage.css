@@ -1,6 +1,6 @@
 .slick-dots {
     position: absolute;
-    bottom: -13px;
+    bottom: -50px;
     width: 100%;
     text-align: center;
     padding: 20px 0;
@@ -28,6 +28,10 @@
 .slick-slider .slick-initialized {
     height: 100%;
     margin: 0 auto;
+}
+
+.slider-container {
+    margin-bottom: 3rem;
 }
 
 @media (min-width: 768px) and (max-width: 853px) {
