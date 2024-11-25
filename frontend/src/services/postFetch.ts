@@ -10,7 +10,7 @@ interface loginResponseProps {
             UserID: string;
             username: string;
             email: string;
-            createdAt: string;
+            isAdmin: boolean;
         };
     };
     token: string;
