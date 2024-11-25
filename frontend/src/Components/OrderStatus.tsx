@@ -1,3 +1,4 @@
+import { deleteOrder } from '../services/deleteOrder';
 import './styles/orderStatus.css'
 
 interface Props {
@@ -5,9 +6,12 @@ interface Props {
 }
 
 function OrderStatus({sk} : Props) {
+    const pk = 'guest'
 
     const cancelOrder = async () => {
-        console.log(`clicked on the cancel order button and the order id is`, sk )
+        console.log(`Your order with the id `, sk, ` has been deleted` )
+        await deleteOrder('ordersUrl', pk, sk);
+
     };
 
     const editOrder = async () => {

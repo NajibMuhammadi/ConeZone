@@ -35,7 +35,6 @@ function Overview({ onNext }: { onNext: (sk : string) => void }) {
     const handleSendOrder = async () => {
         try {
             const response = await postOrder('ordersUrl', order, paymentMethod, totalPrice);
-
             if(response && response.sk) {
                 clearCart();
                 onNext(response.sk);

@@ -43,3 +43,8 @@ exports.handler = async (event) => {
         }
     }
 }
+
+/**
+ * Författare: Ida
+ * En funktion som raderar en order ur databasen under förutsättning att isApproved fortfarande är false
+ */
