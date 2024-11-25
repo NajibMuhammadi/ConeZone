@@ -79,15 +79,17 @@ function Overview({ onNext }: { onNext: () => void }) {
                 <article className="overview">
                     <h2 className="overview__heading">Overview</h2>
                     <hr className="overview__line" />
-                    <section className="overview__customer-info">
+                    <section>
                         <section className="overview__customer-container-top">
-                            <h2 className="overview__customer">Customer</h2>
+                            <h3 className="overview__customer">Customer</h3>
                             {!editingCustomer ? (
                                 <section>
-                                    <p className="overview__name"><strong>Name:</strong> {order.customerDetails.name}</p>
-                                    <p className="overview__phone"><strong>Phone number:</strong> {order.customerDetails.phone}</p>
-                                    <p className="overview__email"><strong>Email:</strong> {order.customerDetails.email}</p>
-                                    <button className="overview__edit" onClick={() => setEditingCustomer(true)}>Edit</button>
+                                    <p className="overview__customer-info"><strong>Name:</strong> {order.customerDetails.name}</p>
+                                    <p className="overview__customer-info"><strong>Phone number:</strong> {order.customerDetails.phone}</p>
+                                    <p className="overview__customer-info"><strong>Email:</strong> {order.customerDetails.email}</p>
+                                    <button className="overview__edit" onClick={() => setEditingCustomer(true)}>
+                                        <img className='overview__edit--img' src="../../src/assets/edit.png" alt="Redigera" />
+                                    </button>
                                 </section>
                             ) : (
                                 <section>
@@ -115,38 +117,37 @@ function Overview({ onNext }: { onNext: () => void }) {
                         </section>
                     </section>
                     <hr className="overview__line" />
-                    <button className="overview__edit" onClick={() => setEditingQty(!editingQty)}>
-                        <img className='overview__edit--img' src="../../src/assets/edit.png" alt="Redigera" />
-                    </button>
-                    {/* {editingQty && (
-                        <button className="save-btn" onClick={() => setEditingQty(false)}>
-                            Spara
+                    <section className="overview__product--wrapper">
+                        <button className="overview__edit" onClick={() => setEditingQty(!editingQty)}>
+                            <img className='overview__edit--img' src="../../src/assets/edit.png" alt="Redigera" />
                         </button>
-                    )} */}
-                    {cart.map((item) => (
-                        <section className="overview__product" key={item.sk}>
-                            <img src={item.image} alt={item.name} className="overview__img" />
-                            <section className="overview__info-wrapper">
-                                <section className="overview__info">
-                                    <h3 className="overview__product-name">Product: {item.name}</h3>
-                                    {!editingQty ? (
-                                        <p className="overview__item-qty">Quantity: {item.qty}</p>
-                                    ) : (
-                                        <Counter item={item} />
-                                    )}
-                                    <p className="overview__price">Price: {item.price} sek</p>
+                        {cart.map((item) => (
+                            <section className="overview__product" key={item.sk}>
+                                <img src={item.image} alt={item.name} className="overview__img" />
+                                <section className="overview__info-wrapper">
+                                    <section className="overview__info">
+                                        <h3 className="overview__product-name">Product: {item.name}</h3>
+                                        {!editingQty ? (
+                                            <p className="overview__item-qty">Quantity: {item.qty}</p>
+                                        ) : (
+                                            <Counter item={item} />
+                                        )}
+                                        <p className="overview__price">Price: {item.price} sek</p>
+                                    </section>
                                 </section>
                             </section>
-                        </section>
-                    ))}
+                        ))}
+                    </section>
                     <hr className="overview__line" />
-                    <section className="overview__payment">
-                        <p className="overview__method">Chosen Payment Method:</p>
+                    <section className="overview__payment--wrapper">
+                        <h3 className="overview__customer">Choosen payment method</h3>
                         {!editingPayment ? (
                             <section className="overview__payment">
                                 {paymentMethod && <p className="overview__method-details">{paymentMethod}</p>}
                                 {paymentMethod && <img src={`../../src/assets/${(paymentMethod)}.svg`} alt={paymentMethod} className="overview__method-img" />}
-                                <button onClick={() => setEditingPayment(true)}>Edit</button>
+                                <button className="overview__edit" onClick={() => setEditingPayment(true)}>
+                                    <img className='overview__edit--img' src="../../src/assets/edit.png" alt="Redigera" />
+                                </button>
                             </section>
                         ) : (
                             <section>

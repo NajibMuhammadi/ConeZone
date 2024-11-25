@@ -35,7 +35,7 @@
 }
 
 .overview__customer {
-    font-size: 40px;
+    font-size: 1.2rem;
     text-align: center;
     font-weight: 700;
     margin: 2rem;
@@ -43,18 +43,27 @@
 
 .overview__customer-container-top {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+}
+
+.overview__customer-info {
+    margin-bottom: 0.95rem;
 }
 
 .overview__edit {
     height: 2rem;
     background-color: transparent;
     border: none;
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 1rem;
+    position: absolute;
+    opacity: 0.6;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1rem;
 }
 
 .overview__edit--img {
@@ -67,14 +76,8 @@
     scale: 1.1;
 }
 
-.overview__customer-container-bottom {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: left;
-    margin: 0 10px 30px 10px;
-    font-size: 22px;
+.overview__product--wrapper {
+    position: relative;
 }
 
 .overview__info-wrapper {
@@ -83,7 +86,7 @@
     justify-content: space-between;
     gap: 15px;
     margin: 5px;
-    font-size: 22px;
+    font-size: 1rem;
 }
 
 .overview__info {
@@ -147,6 +150,10 @@
 
 .overview__method-img {
     width: 50px;
+}
+
+.overview__payment--wrapper {
+    position: relative;
 }
 
 .overview__payment {
