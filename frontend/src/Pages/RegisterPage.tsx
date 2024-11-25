@@ -11,6 +11,7 @@ function Register() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [email, setEmail] = useState('');
     const [error, setError] = useState<string | null>(null);
+    const [success, setSuccess] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(false);
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -18,6 +19,7 @@ function Register() {
 
         setIsLoading(true);
         setError(null);
+        setSuccess(null);
 
         try {
             const data: RegisterType = {
@@ -29,10 +31,15 @@ function Register() {
             const response = await postFetch('registersUrl', data);
 
             console.log('Response:', response);
+            setSuccess(response.body.message);
             
         } catch (err) {
             console.error('Error:', err);
-            setError('An error occurred during registration');
+            if (err instanceof Error) {
+                setError(err.message);
+            } else {
+                setError('An unknown error occurred');
+            }
         } finally {
             setIsLoading(false);
         }
@@ -45,7 +52,8 @@ function Register() {
                 <form className="register__form" onSubmit={handleSubmit}>
                     <h2 className="register__header">Create user</h2>
 
-                    {error && <div className="error-message">{error}</div>}
+                    {error && <div className="register__error-message">{error}</div>}
+                    {success && <div className="register__success-message">{success}!</div>}
 
                     <label htmlFor="register__username">Username:</label>
                     <input
@@ -107,3 +115,8 @@ export default Register;
     författare: Najib
     funktionen tar in användarens input och skickar det till en databas för att skapa ett konto
  */
+
+/* författare: Diliara
+    skriver ut felmeddelanden om användaren inte lyckas registrera eller 
+    skriver ut ett meddelande om användaren lyckas registrera sig
+*/
