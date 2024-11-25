@@ -1,0 +1,159 @@
+.user__wrapper {
+    background-color: var(--blue);
+    height: 100%;
+    padding: 2rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.user__order-item {
+    background-color: var(--green40);
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    place-content: center;
+    border-radius: 30px;
+    padding: 2rem;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.user__orders {
+    background-color: white;
+    border-radius: 9px;
+    margin: 1rem 2rem;
+}
+
+.user__orders-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding: 1rem 2rem 8rem 2rem;
+    margin: 0 2rem;
+}
+
+.user__header {
+    text-align: center;
+    font-size: 40px;
+    padding: 2rem;
+}
+
+.user__order-img {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.user__img {
+    flex: 1 1 calc(50% - 24px);
+    max-width: calc(50% - 24px);
+    margin: 6px;
+    border-radius: 15px;
+}
+
+.user__order-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 10px;
+    font-size: 20px;
+    width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    .user__wrapper {
+        padding: 0.3rem;
+    }
+
+    .user__header {
+        font-size: 30px;
+    }
+
+    .user__orders {
+        margin: 2rem auto;
+        width: 90%;
+    }
+
+    .user__orders-container {
+        grid-template-columns: 1fr;
+    }
+
+    .user__order-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .user__order-img {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on small screens */
+        gap: 10px;
+        justify-items: center; /* Center items horizontally */
+        align-items: center; /* Center items vertically */
+    }
+
+    .user__img {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+    .user__order-img {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 3 columns on medium screens */
+        gap: 10px;
+    }
+
+    .user__img {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .user__order-item {
+        gap: 20px;
+    }
+
+    .user__orders {
+        margin: 1rem auto;
+        width: 95%;
+    }
+
+    .user__orders-container {
+        grid-template-columns: 1fr 1fr;
+        margin: 0 auto;
+        padding: 0 2rem 7rem 2rem;
+    }
+}
+
+@media screen and (min-width: 1201px) {
+    .user__order-img {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 3 columns on medium screens */
+        gap: 10px;
+    }
+
+    .user__img {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .user__order-item {
+        gap: 20px;
+    }
+
+    .user__orders {
+        margin: 1rem auto;
+        width: 95%;
+    }
+
+    .user__orders-container {
+        grid-template-columns: 1fr 1fr;
+        margin: 0 auto;
+        padding: 0 2rem 5rem 2rem;
+    }
+}
+
+/* Författare Diliara
+UserPages styling */
