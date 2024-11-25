@@ -55,6 +55,17 @@
     margin-bottom: 0.95rem;
 }
 
+.overview__customer-infowrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.overview__customer-infoedit {
+    display: flex;
+    flex-direction: column;
+}
+
 .overview__edit {
     height: 2rem;
     background-color: transparent;
@@ -76,6 +87,10 @@
     scale: 1.1;
 }
 
+.error-msg {
+    font-size: 0.8rem;
+}
+
 .overview__customer-input {
     display: block;
     padding: 0.5rem;
@@ -86,7 +101,8 @@
 }
 
 .overview__customer-savebtn {
-    margin-top: 0.5rem;
+    align-self: flex-end;
+    margin: 0.5rem;
     padding: 0.3rem 1rem;
     background-color: var(--black);
     font-family: "Inter", sans-serif;
@@ -96,8 +112,22 @@
     border: none;
 }
 
+.overview__savebtn {
+    margin: 0.5rem;
+    padding: 0.3rem 1rem;
+    background-color: var(--black);
+    font-family: "Inter", sans-serif;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+}
 
 .overview__product-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     position: relative;
 }
 

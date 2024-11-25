@@ -22,6 +22,34 @@ function Overview({ onNext }: { onNext: () => void }) {
     const [customerDetails, setCustomerDetails] = useState<CustomerDetails>(
         order?.customerDetails || { name: '', phone: '', email: '' });
     const [newPaymentMethod, setNewPaymentMethod] = useState(paymentMethod);
+    const [errorMsg, setErrorMsg] = useState<string | null>(null);
+
+    const handleSaveCustomer = () => {
+        try {
+            if (!customerDetails.name.trim()) {
+                throw { msg: 'Name is required.' };
+            }
+            if (!/^\+?[0-9]+$/.test(customerDetails.phone)) {
+                throw { msg: 'Please enter a valid phone number with only numbers and an optional + at the beginning.' };
+            }
+            if (
+                !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(
+                    customerDetails.email
+                )
+            ) {
+                throw { msg: 'Please enter a valid email address.' };
+            }
+            setErrorMsg(null);
+            setOrder(
+                customerDetails.name,
+                customerDetails.phone,
+                customerDetails.email
+            );
+            setEditingCustomer(false);
+        } catch (error: any) {
+            setErrorMsg(error.msg || 'An unexpected error occurred.');
+        }
+    };
 
     if (!order || cart.length === 0) {
         return (
@@ -41,10 +69,10 @@ function Overview({ onNext }: { onNext: () => void }) {
         }
     };
 
-    const handleSaveCustomer = () => {
-        setOrder(customerDetails.name, customerDetails.phone, customerDetails.email);
-        setEditingCustomer(false);
-    };
+    // const handleSaveCustomer = () => {
+    //     setOrder(customerDetails.name, customerDetails.phone, customerDetails.email);
+    //     setEditingCustomer(false);
+    // };
 
     const handleSavePayment = () => {
         setPaymentMethod(newPaymentMethod);
@@ -62,6 +90,9 @@ function Overview({ onNext }: { onNext: () => void }) {
                     <section>
                         <section className="overview__customer-container-top">
                             <h3 className="overview__customer">Customer</h3>
+                            {errorMsg && (
+                                <p className="error-msg">{errorMsg}</p>
+                            )}
                             {!editingCustomer ? (
                                 <section>
                                     <p className="overview__customer-info"><strong>Name:</strong> {order.customerDetails.name}</p>
@@ -72,25 +103,34 @@ function Overview({ onNext }: { onNext: () => void }) {
                                     </button>
                                 </section>
                             ) : (
-                                <section>
-                                    <input
-                                        className="overview__customer-input"
-                                        type="text"
-                                        value={customerDetails.name || ''}
-                                        onChange={(e) => setCustomerDetails({ ...customerDetails, name: e.target.value })}
-                                    />
-                                    <input
-                                        className="overview__customer-input"
-                                        type="text"
-                                        value={customerDetails.phone || ''}
-                                        onChange={(e) => setCustomerDetails({ ...customerDetails, phone: e.target.value })}
-                                    />
-                                    <input
-                                        className="overview__customer-input"
-                                        type="email"
-                                        value={customerDetails.email || ''}
-                                        onChange={(e) => setCustomerDetails({ ...customerDetails, email: e.target.value })}
-                                    />
+                                <section className="overview__customer-infoedit">
+                                    <article className="overview__customer-infowrapper">
+                                        <p>Name:</p>
+                                        <input
+                                            className="overview__customer-input"
+                                            type="text"
+                                            value={customerDetails.name || ''}
+                                            onChange={(e) => setCustomerDetails({ ...customerDetails, name: e.target.value })}
+                                        />
+                                    </article>
+                                    <article className="overview__customer-infowrapper">
+                                        <p>Phone number:</p>
+                                        <input
+                                            className="overview__customer-input"
+                                            type="text"
+                                            value={customerDetails.phone || ''}
+                                            onChange={(e) => setCustomerDetails({ ...customerDetails, phone: e.target.value })}
+                                        />
+                                    </article>
+                                    <article className="overview__customer-infowrapper">
+                                        <p>Email:</p>
+                                        <input
+                                            className="overview__customer-input"
+                                            type="email"
+                                            value={customerDetails.email || ''}
+                                            onChange={(e) => setCustomerDetails({ ...customerDetails, email: e.target.value })}
+                                        />
+                                    </article>
                                     <button className='overview__customer-savebtn' onClick={handleSaveCustomer}>Save</button>
                                 </section>
                             )}
@@ -108,15 +148,7 @@ function Overview({ onNext }: { onNext: () => void }) {
                                     <section className="overview__info">
                                         <h4 className="overview__product-name">Product: {item.name}</h4>
                                         {editingQty ? (
-                                            <>
-                                                <Counter item={item} />
-                                                {cart.indexOf(item) === 0 && (
-                                                    <button
-                                                        className="overview__customer-savebtn"
-                                                        onClick={() => setEditingQty(false)}>
-                                                        Save</button>
-                                                )}
-                                            </>
+                                            <Counter item={item} />
                                         ) : (
                                             <>
                                                 <p className="overview__item-qty">Quantity: {item.qty}</p>
@@ -137,6 +169,12 @@ function Overview({ onNext }: { onNext: () => void }) {
                                 </section>
                             </section>
                         ))}
+                        {editingQty && (
+                            <button
+                                className="overview__savebtn"
+                                onClick={() => setEditingQty(false)}>
+                                Save</button>
+                        )}
                     </section>
                     <hr className="overview__line" />
 
@@ -159,7 +197,7 @@ function Overview({ onNext }: { onNext: () => void }) {
                                     <option value="Swish">Swish</option>
                                     <option value="Klarna">Klarna</option>
                                 </select>
-                                <button className='overview__customer-savebtn' onClick={handleSavePayment}>Save</button>
+                                <button className='overview__savebtn' onClick={handleSavePayment}>Save</button>
                             </section>
                         )}
                     </section>
@@ -189,6 +227,3 @@ produktinformation, vald betalningsmetod och totalpris, läsas in på OrderPage
 // Implementerat funktionalitet på sidan från vår Store samt till databasen (med Ida).
 // Fixat möjlighet till editing på sida.
 
-//Fixa kontroller på namn, mejl etc!
-/*
-*/
