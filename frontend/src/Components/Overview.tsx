@@ -1,12 +1,13 @@
 import './styles/overview.css';
 import useMenuStore from '../stores/cartStore';
 import { postOrder } from '../services/postorder';
+import { Order } from '../types/interfaces';
 
-function Overview({ onNext }: { onNext: () => void }) {
-
+function Overview({ onNext }: { onNext: (sk:string) => void }) {
     const order = useMenuStore(state => state.order)
     const paymentMethod = useMenuStore(state => state.paymentMethod)
     const totalPrice = useMenuStore(state => state.totalPrice());
+
 
     if (!order) {
         return (
@@ -17,12 +18,18 @@ function Overview({ onNext }: { onNext: () => void }) {
     }
 
     const handleSendOrder = async () => {
-        await uploadOrder();
-        useMenuStore.getState().clearCart();
-        onNext();
+        console.log('Starting order upload...');
+        const response = await uploadOrder();
+        console.log('Upload response:', response);
+
+        if(response && response.sk) {
+            console.log('Setting order ID:', response.sk);
+            useMenuStore.getState().clearCart();
+            onNext(response.sk);
+        }
     };
 
-    const uploadOrder = async () => {
+    const uploadOrder = async () : Promise<Order | undefined>=> {
         const url = 'ordersUrl';
         const order = useMenuStore.getState().order;
         const paymentMethod = useMenuStore.getState().paymentMethod;

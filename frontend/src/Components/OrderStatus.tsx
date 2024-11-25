@@ -1,6 +1,10 @@
 import './styles/orderStatus.css'
 
-function OrderStatus() {
+interface OrderStatusProps {
+    sk: string;
+}
+
+function OrderStatus({sk} : OrderStatusProps) {
 
     const cancelOrder = async () => {
         console.log('clicked the cancel order button')
@@ -17,7 +21,7 @@ function OrderStatus() {
                 <h1 className='order__title'>Order Status</h1>
                 <span className='order__divider'></span>
                 <section className='order__info-container'>
-                    <p className='order__info-title'>Your order is created!</p>
+                    <p className='order__info-title'>Your order with ordernumber {sk} is created!</p>
                     <p className='order__info-subtitle'>Wait until staff sees and confirms your order.</p>
                     <p className='order__info-subtitle'>You can still change or delete your order until it is approved.</p>
                 </section>

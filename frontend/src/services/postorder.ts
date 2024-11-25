@@ -8,7 +8,7 @@ const postOrder = async (
     order: Order,
     paymentMethod: string,
     totalPrice: number
-): Promise<Order[]> => {
+): Promise<Order> => {
     const url = urls[ordersUrl];
     const sk = uuid().substring(0, 8)
 
