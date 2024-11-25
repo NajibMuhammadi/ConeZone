@@ -27,6 +27,7 @@ export interface CustomerDetails {
 // interface OrderItem extends CartItem { }
 
 export interface Order {
+    sk: string,
     items: CartItem[];
     customerDetails: CustomerDetails;
     paymentMethod: string;

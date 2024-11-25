@@ -33,7 +33,8 @@ function Overview({ onNext }: { onNext: () => void }) {
             return;
         }
         try {
-            await postOrder(url, order, paymentMethod, totalPrice);
+            const response = await postOrder(url, order, paymentMethod, totalPrice);
+            return response;
         } catch (error) {
             console.error("Error uploading order:", error);
         }
