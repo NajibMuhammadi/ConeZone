@@ -9,10 +9,16 @@ function Header() {
     const [quantity, setQuantity] = useState(0);
     const [isOpen, setIsOpen] = useState(false);
     const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
         setQuantity(totalQuantity());
     }, [cart, totalQuantity]);
+
+    useEffect(() => {
+        const token = sessionStorage.getItem('token');
+        setIsLoggedIn(!!token);
+    }, []);
 
     const toggleNav = (): void => {
         setIsOpen(!isOpen);
@@ -40,17 +46,26 @@ function Header() {
                     )}
                 </NavLink>
                 <div className="header__user-container">
-                    <NavLink to="#" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active nav__link--login' : 'nav__link nav__link--login'} onClick={toggleUserMenu}>
-                        <img className="header__user" src="../../src/assets/user.svg" alt="User" />
-                        <p>Login</p>
-                    </NavLink>
-                    {isUserMenuOpen && (
-                        <div className="user-menu">
-                            <NavLink to="/user" className="user-menu__link">My Orders</NavLink>
-                            <NavLink to="" className="user-menu__link">My Favourites</NavLink>
-                            <NavLink to="" className="user-menu__link">Settings</NavLink>
-                            <NavLink to="" className="user-menu__link">Logout</NavLink>
-                        </div>
+                    {isLoggedIn ? (
+                        <>
+                            <NavLink to="#" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active nav__link--login' : 'nav__link nav__link--login'} onClick={toggleUserMenu}>
+                                <img className="header__user" src="../../src/assets/user.svg" alt="User" />
+                                <p>User</p>
+                            </NavLink>
+                            {isUserMenuOpen && (
+                                <div className="user-menu">
+                                    <NavLink to="/user" className="user-menu__link">My Orders</NavLink>
+                                    <NavLink to="/my-favourites" className="user-menu__link">My Favourites</NavLink>
+                                    <NavLink to="/settings" className="user-menu__link">Settings</NavLink>
+                                    <NavLink to="/logout" className="user-menu__link">Logout</NavLink>
+                                </div>
+                            )}
+                        </>
+                    ) : (
+                        <NavLink to="/login" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active nav__link--login' : 'nav__link nav__link--login'}>
+                            <img className="header__user" src="../../src/assets/user.svg" alt="User" />
+                            <p>Login</p>
+                        </NavLink>
                     )}
                 </div>
             </nav>
@@ -67,11 +82,26 @@ function Header() {
                             <div className='badge'>{quantity}</div>
                         )}
                     </NavLink>
-                    <NavLink to="/login" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active nav__link--login' : 'nav__link nav__link--login'}>
-                        <img className="header__user" src="../../src/assets/user.svg" alt="User" />
-                        <p>Login</p>
-                    </NavLink>
+                    {isLoggedIn ? (
+                        <NavLink to="#" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active nav__link--login' : 'nav__link nav__link--login'} onClick={toggleUserMenu}>
+                            <img className="header__user" src="../../src/assets/user.svg" alt="User" />
+                            <p>User</p>
+                        </NavLink>
+                    ) : (
+                        <NavLink to="/login" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active nav__link--login' : 'nav__link nav__link--login'}>
+                            <img className="header__user" src="../../src/assets/user.svg" alt="User" />
+                            <p>Login</p>
+                        </NavLink>
+                    )}
                 </section>
+                {isUserMenuOpen && isLoggedIn && (
+                    <div className="user-menu">
+                        <NavLink to="/user" className="user-menu__link">My Orders</NavLink>
+                        <NavLink to="/my-favourites" className="user-menu__link">My Favourites</NavLink>
+                        <NavLink to="/settings" className="user-menu__link">Settings</NavLink>
+                        <NavLink to="/logout" className="user-menu__link">Logout</NavLink>
+                    </div>
+                )}
             </nav>
         </header>
     );
@@ -93,4 +123,5 @@ export default Header;
 
 // Författare Diliara
 // Gjorde så att man kan klicka på user och 
-// få upp en meny
+// få upp en meny, beroende på setIsLoggedin visas olika grejer (user menu för inloggad 
+// och login för utloggad)
