@@ -4,7 +4,6 @@ import { postOrder } from '../services/postorder';
 import { useState } from 'react';
 import Counter from './Counter';
 import { CustomerDetails } from '../types/interfaces';
-import {Order} from '../types/interfaces';
 
 function Overview({ onNext }: { onNext: (sk : string) => void }) {
 
@@ -36,7 +35,6 @@ function Overview({ onNext }: { onNext: (sk : string) => void }) {
     const handleSendOrder = async () => {
         try {
             const response = await postOrder('ordersUrl', order, paymentMethod, totalPrice);
-
             if(response && response.sk) {
                 clearCart();
                 onNext(response.sk);
