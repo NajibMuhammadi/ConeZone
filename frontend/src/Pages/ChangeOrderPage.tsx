@@ -45,7 +45,6 @@ if(!order) {
                     <article className="overview">
                         <h2 className="overview__heading">Overview</h2>
                         <hr className="overview__line" />
-
                         {/* Customer Details */}
                         <section>
                             <section className="overview__customer-container-top">
@@ -58,7 +57,6 @@ if(!order) {
                             </section>
                         </section>
                         <hr className="overview__line" />
-
                         {/* Cart */}
                         {/* Lägg in och rendera ut ordrar. Dessa ska gå att edita */}
                         <section className="overview__product-wrapper">
@@ -99,17 +97,15 @@ if(!order) {
                             )} */}
                         </section>
                         <hr className="overview__line" />
-
                         {/* Payment Method */}
                         <section className="overview__payment-wrapper">
                             <h3 className="overview__customer">Choosen payment method</h3>
                             {/* Lägg in vald paymentMethod med bild  */}
-                                 <section className="overview__payment"> 
-
-                                     <p className="overview__method-details">{order.paymentMethod}</p> 
+                                <section className="overview__payment"> 
+                                    <p className="overview__method-details">{order.paymentMethod}</p> 
                                    {/* <img src={`../../src/assets/${(paymentMethod)}.svg`} alt={paymentMethod} className="overview__method-img" /> */}
                                 </section>
-                       {/* </section>
+                        {/* </section>
                         <hr className="overview__line" />
                         <section className="overview__total">
                             <p className="overview__total-price">Total: <strong> {totalPrice} sek</strong></p> */}
