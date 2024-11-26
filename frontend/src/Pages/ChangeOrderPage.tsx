@@ -1,6 +1,4 @@
 import './styles/changeOrderPage.css';
-import Footer from "../components/Footer"
-import Header from "../components/Header"
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { fetchOrder } from '../services/fetchOrder';
@@ -38,9 +36,38 @@ if (loading) {
 if(!order) {
     return <p>No order found</p>
 }
+
+const items = order.items
+
+
+// function changeQty({ item }: CounterProps) {
+    
+// const [qty, setQty] = useState(item.qty)
+// const [updateItems, setUpdateItems] = useState(items)
+
+    const decreaseQuantity = (id : string, qty : number) => {
+        // if (qty > 1) {
+        //     setQty (qty - 1)
+        // }
+        console.log('hej', id, qty)
+    };
+
+    const increaseQuantity = (id : string, qty : number) => {
+        // items.map((item) => {
+        //     if(item.sk === id) {
+        //         const newQty = qty + 1;
+        //         setOrder( {...item, qty: newQty})
+        //     }
+        // })
+        // setQty (qty + 1)
+        console.log('hejdå', id, qty)
+    };
+// }
+
+
+
     return (
         <section>
-            <Header/>
             <section className="overview__wrapper">
                     <article className="overview">
                         <h2 className="overview__heading">Overview</h2>
@@ -57,18 +84,23 @@ if(!order) {
                             </section>
                         </section>
                         <hr className="overview__line" />
+
                         {/* Cart */}
                         {/* Lägg in och rendera ut ordrar. Dessa ska gå att edita */}
                         <section className="overview__product-wrapper">
                             <h3 className="overview__customer">Cart</h3>
-                            {/* {cart.map((item) => (
+                            {items.map((item) => (
                                 <section className="overview__product" key={item.sk}>
                                     <img src={item.image} alt={item.name} className="overview__img" />
                                     <section className="overview__info-wrapper">
                                         <section className="overview__info">
                                             <h4 className="overview__product-name">Product: {item.name}</h4>
-                                            {editingQty ? (
-                                                <Counter item={item} />
+                                            
+                                            <button onClick={() => decreaseQuantity(item.sk, item.qty)}>-</button>
+                                            <p>{item.qty}</p>
+                                            <button onClick={() => increaseQuantity(item.sk, item.qty)}>+</button>
+                                            {/* {editingQty ? (
+
                                             ) : (
                                                 <>
                                                     <p className="overview__item-qty">Quantity: {item.qty}</p>
@@ -82,33 +114,33 @@ if(!order) {
                                                                 alt="Edit" />
                                                         </button>
                                                     )}
-                                                </>
-                                            )}
-                                            <p className="overview__price">Price: {item.price} sek</p>
+                                                </> */}
+                                            {/* )} */}
+                                            {/* <p className="overview__price">Price: {item.price} sek</p> */}
                                         </section>
                                     </section>
                                 </section>
                             ))}
-                            {editingQty && (
+                            {/* {editingQty && (
                                 <button
                                     className="overview__savebtn"
                                     onClick={() => setEditingQty(false)}>
                                     Save</button>
                             )} */}
                         </section>
-                        <hr className="overview__line" />
-                        {/* Payment Method */}
+                        <hr className="overview__line" /> 
+
+                        {/* Payment Method  */}
                         <section className="overview__payment-wrapper">
                             <h3 className="overview__customer">Choosen payment method</h3>
-                            {/* Lägg in vald paymentMethod med bild  */}
                                 <section className="overview__payment"> 
                                     <p className="overview__method-details">{order.paymentMethod}</p> 
-                                   {/* <img src={`../../src/assets/${(paymentMethod)}.svg`} alt={paymentMethod} className="overview__method-img" /> */}
+                                    <img src={`../../src/assets/${(order.paymentMethod)}.svg`} alt={order.paymentMethod} className="overview__method-img" /> 
                                 </section>
-                        {/* </section>
+                        </section>
                         <hr className="overview__line" />
                         <section className="overview__total">
-                            <p className="overview__total-price">Total: <strong> {totalPrice} sek</strong></p> */}
+                            <p className="overview__total-price">Total: <strong> {order.totalPrice} sek</strong></p> 
                             <button
                                 className="overview__submit"
                                 // onClick={}
@@ -116,7 +148,6 @@ if(!order) {
                         </section>
                     </article>
                 </section>
-        <Footer/>
         </section>
     )
 }
