@@ -50,9 +50,9 @@
     padding-left: 10px;
 }
 
-.product__allergens {
+/* .product__allergens {
     font-weight: 600;
-}
+} */
 
 .product__buttons {
     display: flex;
