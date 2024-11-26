@@ -21,8 +21,7 @@ exports.handler = async (event) => {
             if (!data.Item) {
                 return sendError(404, { message: `Order with pk ${pk} and id ${id} not found` });
             }
-        return sendResponse(200, {success: true, message: data.Item
-        })
+        return sendResponse(200, data.Item)
         } catch(error) {
             return sendError(500, {message: error.message})
         }

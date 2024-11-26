@@ -18,3 +18,8 @@ const deleteOrder = async (ordersUrl: string, pk: string, sk:string) : Promise<v
 }
 
 export { deleteOrder }
+
+/**
+ * Författare Ida
+ * En funktion som raderar en order från databasen
+ */

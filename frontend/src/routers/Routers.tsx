@@ -9,6 +9,7 @@ import Register from "../pages/RegisterPage";
 import OrderPage from "../pages/OrderPage";
 import KitchenViewPage from "../pages/KitchenViewPage";
 import UserPage from "../pages/UserPage";
+import ChangeOrderPage from "../pages/ChangeOrderPage"
 
 function Routers() {
     return (
@@ -24,6 +25,7 @@ function Routers() {
                 <Route path="/order" element={<OrderPage />} />
                 <Route path="/kitchenview" element={<KitchenViewPage />} />
                 <Route path="/user" element={<UserPage />} />
+                <Route path="/order/:pk/:sk" element={<ChangeOrderPage />} />
             </Routes>
         </BrowserRouter>
     )
