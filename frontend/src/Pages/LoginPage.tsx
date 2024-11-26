@@ -10,9 +10,14 @@ function LoginPage() {
 
     const [usernameOrEmail, setUsernameOrEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState<string | null>(null);
+    const [success, setSuccess] = useState<string | null>(null);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        setError(null);
+        setSuccess(null);
 
         try{
             const loginData: LoginType = {
@@ -22,6 +27,7 @@ function LoginPage() {
             const response = await postFetch('loginsUrl', loginData);
 
             console.log('Response:', response);
+            setSuccess(response.data.message);
 
             if (response.data.success) {
                 saveTokenToSessionStorage(response.token);
@@ -29,6 +35,11 @@ function LoginPage() {
     
         } catch (err) {
             console.error('Error:', err);
+            if (err instanceof Error) {
+                setError(err.message);
+            } else {
+                setError('An unknown error occurred');
+            }
         }
     }
 
@@ -42,6 +53,8 @@ function LoginPage() {
             <section className="login__wrapper">
                 <form className="login__form" onSubmit={handleSubmit}>
                     <h2 className="login__header">Login</h2>
+                    {error && <div className="register__error-message">{error}</div>}
+                    {success && <div className="register__success-message">{success}!</div>}
                     <label htmlFor="login__username">Username:</label>
                     <input type="text" id="login__username" name="username"
                         value={usernameOrEmail}
