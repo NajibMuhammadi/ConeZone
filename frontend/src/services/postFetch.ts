@@ -3,6 +3,10 @@ import { urls } from "../../url";
 import { LoginType, RegisterType } from "../types/interfaces";
 
 interface loginResponseProps {
+    data: {
+        message: string;
+        success: boolean;
+    }
     body: {
         success: boolean;
         message: string;
