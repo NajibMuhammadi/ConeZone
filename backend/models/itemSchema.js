@@ -8,7 +8,6 @@ const itemSchema = Joi.object({
     category : Joi.string().required(),
     popular: Joi.boolean().strict().required(),
     components: Joi.array().items(Joi.string()).required(),
-    allergens: Joi.array().items(Joi.string()).required(),
     image: Joi.string().required(),
 }); 
 
