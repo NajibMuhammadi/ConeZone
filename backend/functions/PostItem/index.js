@@ -6,7 +6,7 @@ const {errorHandler} = require('../../middlewares/errorHandler.js')
 const {validateNewItem} = require('../../middlewares/validateNewItem.js')
 
 const handler = async (event) => {
-      const {pk, name, desc, price, category, popular, components, allergens, image} = JSON.parse(event.body)
+      const {pk, name, desc, price, category, popular, components, image} = JSON.parse(event.body)
       const id = uuid().substring(0, 8)
     
       try {
@@ -21,7 +21,6 @@ const handler = async (event) => {
             category: category,
             popular: popular,          
             components: components,
-            allergens: allergens,
             image: image
           }
         })

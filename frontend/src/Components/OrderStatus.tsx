@@ -46,4 +46,5 @@ export default OrderStatus
  * en komponent som visar orderstatusen för användaren och möjligheten att avbryta eller bekräfta ordern
  * 
  *  Författare: Ida
+ * Skapat en funktion som gör att man kan radera ordern från databasen när man klickar på cancel order knappen
  */
