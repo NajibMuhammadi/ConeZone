@@ -10,7 +10,7 @@ function ChangeOrderPage() {
     const orderId = useParams();
     const pk = orderId.pk;
     const sk = orderId.sk;
-    const [order, setOrder]= useState<Order[] | undefined>();
+    const [order, setOrder]= useState<Order | null>(null);
     const [loading, setLoading] = useState(true);
 
     useEffect (() => {
@@ -36,7 +36,7 @@ if (loading) {
 }
 
 if(!order) {
-    console.log('No order found')
+    return <p>No order found</p>
 }
     return (
         <section>
