@@ -3,3 +3,7 @@
     flex-direction: column;
     align-items: center;
 }
+
+.nav__user-nav.nav__user-nav--mobile.showMenu {
+    margin-top: 14rem;
+}

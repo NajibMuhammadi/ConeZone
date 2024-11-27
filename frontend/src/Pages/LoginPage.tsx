@@ -31,6 +31,7 @@ function LoginPage() {
 
             if (response.data.success) {
                 saveTokenToSessionStorage(response.token);
+                sessionStorage.setItem('isAdmin', response.data.data.isAdmin.toString());
                 if (response.data.data.isAdmin) {
                     console.log('Admin');
                     navigate('/kitchenview');
@@ -100,4 +101,4 @@ export default LoginPage;
 
 // Edited: Diliara
 // La till en if sats, om user har isAdmin true, 
-// navigera till kitchenview annars navigera till user
+// navigera till kitchenview annars navigera till user, sparar isAdmin i sessionStorage

@@ -3,7 +3,7 @@ import Footer from '../components/Footer';
 import './styles/editMenuPage.css';
 import { fetchItems } from '../services/fetchItems';
 import { ItemType } from '../types/interfaces';
-import AdminHeader from '../components/AdminHeader';
+import Header from '../components/Header';
 
 function EditMenuPage() {
     const url = 'itemsUrl';
@@ -23,7 +23,7 @@ function EditMenuPage() {
 
     return (
         <>
-            <AdminHeader />
+            <Header />
             <section className='edit-menu__wrapper'>
                 <section className='edit-menu__container'>
                     <h2 className='edit-menu__header'>Edit menu</h2>
