@@ -13,6 +13,8 @@ function ChangeOrderPage() {
     const [order, setOrder]= useState<Order | null>(null);
     const [loading, setLoading] = useState(true);
     const [totalPrice, setTotalPrice] = useState(0);
+    const [errorMsg, setErrorMsg] = useState<string | null>(null);
+
 
     useEffect (() => {
         const loadOrder = async () : Promise<void> => {
@@ -73,18 +75,24 @@ const updateItemQuantity = (itemId : string, newQty : number) => {
     console.log(order)
 }
 
-const sendChangedOrder = () => {
+const sendChangedOrder = async () => {
     let newOrder = {
         sk: sk,
         items: items,
         totalPrice: totalPrice
     }
     console.log('sendChangedOrder is clicked', pk, sk, newOrder)
-
     if (items.length === 0 ) {
-        deleteOrder('ordersUrl', pk as string, sk as string);
+        const response = await deleteOrder('ordersUrl', pk as string, sk as string);
+        if(!response) {
+            console.log('error error hej') 
+            setErrorMsg('You can not delete an order that has been approved');
+        }
     } else {
-        updateOrder('ordersUrl', pk as string, sk as string, newOrder)
+        const response = await updateOrder('ordersUrl', pk as string, sk as string, newOrder)
+        if(!response) {
+            setErrorMsg('You can not change an order that has been approved');
+        }
     }
 }
 
@@ -139,6 +147,7 @@ const sendChangedOrder = () => {
                         <hr className="overview__line" />
                         <section className="overview__total">
                             <p className="overview__total-price">Total: <strong> {totalPrice} sek</strong></p> 
+                            {errorMsg && <p className="error-msg">{errorMsg}</p>}
                             <button
                                 className="overview__submit"
                                 onClick={sendChangedOrder}

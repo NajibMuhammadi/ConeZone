@@ -1,7 +1,7 @@
 import axios, { AxiosError } from "axios";
 import { urls } from "../../url";
 
-const deleteOrder = async (ordersUrl: string, pk: string, sk:string) : Promise<void> => {
+const deleteOrder = async (ordersUrl: string, pk: string, sk:string) : Promise<boolean> => {
     const url = urls[ordersUrl];
 
 
@@ -10,10 +10,18 @@ const deleteOrder = async (ordersUrl: string, pk: string, sk:string) : Promise<v
     } 
 
     try {
-        await axios.delete(`${url}/${pk}/${sk}`)
-        return;
+       const response = await axios.delete(`${url}/${pk}/${sk}`)
+       if (response.status === 200) {
+        return true;
+        } else {
+            return false;
+        }
     } catch (error: AxiosError | any) {
-        throw new Error('Kunde inte radera ordern');
+        console.error('Fel när ordern raderas:', error.response?.data || error.message);
+        if(error instanceof AxiosError && error.response?.data?.success === false) {
+            return false
+        }
+        throw new Error(`Kunde inte radera ordern: ${error?.response?.data?.message || error.message}`);
     }
 }
 
