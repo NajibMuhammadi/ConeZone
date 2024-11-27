@@ -9,6 +9,7 @@ import Register from "../pages/RegisterPage";
 import OrderPage from "../pages/OrderPage";
 import KitchenViewPage from "../pages/KitchenViewPage";
 import UserPage from "../pages/UserPage";
+import ChangeOrderPage from "../pages/ChangeOrderPage"
 import EditMenuPage from "../pages/EditMenuPage";
 import AllOrdersPage from "../pages/AllOrdersPage";
 
@@ -26,6 +27,7 @@ function Routers() {
                 <Route path="/order" element={<OrderPage />} />
                 <Route path="/kitchenview" element={<KitchenViewPage />} />
                 <Route path="/user" element={<UserPage />} />
+                <Route path="/order/:pk/:sk" element={<ChangeOrderPage />} />
                 <Route path="/editmenu" element={<EditMenuPage />} />
                 <Route path="/showorders" element={<AllOrdersPage />} />
             </Routes>

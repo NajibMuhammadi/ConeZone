@@ -67,6 +67,11 @@ export interface LoginType {
     password: string;
 }
 
+export interface updatedOrder {
+    items: CartItem[],
+    totalPrice: number
+}
+
 /**
  * Författare Ida
  * Skapat en ItemType interface för våra items i databasen.
