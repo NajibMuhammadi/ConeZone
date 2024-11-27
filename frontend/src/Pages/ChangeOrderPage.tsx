@@ -5,8 +5,10 @@ import { fetchOrder } from '../services/fetchOrder';
 import { Order } from '../types/interfaces';
 import { updateOrder } from '../services/updateOrder';
 import { deleteOrder } from '../services/deleteOrder';
+import { useNavigate } from 'react-router-dom';
 
 function ChangeOrderPage() {
+    const navigate = useNavigate();
     const orderId = useParams();
     const pk = orderId.pk;
     const sk = orderId.sk;
@@ -96,6 +98,10 @@ const sendChangedOrder = async () => {
     }
 }
 
+const backToOrderStatus = () => {
+    navigate('/order', {state: {slideIndex : 3, sk: sk}})
+}
+
     return (
         <section className="overview__wrapper">
             <section>
@@ -147,11 +153,15 @@ const sendChangedOrder = async () => {
                         <hr className="overview__line" />
                         <section className="overview__total">
                             <p className="overview__total-price">Total: <strong> {totalPrice} sek</strong></p> 
-                            {errorMsg && <p className="error-msg">{errorMsg}</p>}
+                            {errorMsg && <p className="error-msg">{errorMsg}</p>} 
                             <button
                                 className="overview__submit"
                                 onClick={sendChangedOrder}
-                            >Change Order</button>
+                            >Change Order</button> 
+                            <button
+                                className="overview__submit-white"
+                                onClick={backToOrderStatus}
+                            >Back To Order Status</button>
                         </section>
                     </article>
                 </section>

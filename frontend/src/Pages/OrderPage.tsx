@@ -1,8 +1,7 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Info from "../components/Info";
@@ -10,10 +9,15 @@ import Payment from "../components/Payment";
 import Overview from "../components/Overview";
 import OrderStatus from "../components/OrderStatus";
 import "./styles/orderPage.css";
-
+import { useLocation } from "react-router-dom";
 function OrderPage() {
-    const sliderRef = useRef(null);
+    //const sliderRef = useRef(null);
+    const sliderRef = useRef<Slider | null>(null)
     const [orderSk, setOrderSk] = useState<string | null>(null)
+
+    const location = useLocation();
+    const slideIndex = location.state?.slideIndex || 0;
+    const sk = location.state.sk ?? '';
 
     const settings = {
         dots: true,
@@ -68,6 +72,13 @@ function OrderPage() {
             setOrderSk(sk)
         }
     };
+
+    useEffect(() => {
+        if (sliderRef.current) {
+            (sliderRef.current as Slider).slickGoTo(slideIndex),
+            setOrderSk(sk)
+        }
+    }, [slideIndex])
 
     return (
         <div className="wrapper">
