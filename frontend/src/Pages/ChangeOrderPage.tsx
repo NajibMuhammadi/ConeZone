@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { fetchOrder } from '../services/fetchOrder';
 import { Order } from '../types/interfaces';
+import { updateOrder } from '../services/updateOrder';
 
 function ChangeOrderPage() {
     const orderId = useParams();
@@ -62,7 +63,6 @@ const items = order.items
 const updateItemQuantity = (itemId : string, newQty : number) => {
     const updateOrder = order.items.map(item =>  {
         if (item.sk === itemId) {
-            console.log('Nu uppdateras antalet', newQty)
             return {... item, qty: newQty};
         }
     return item;
@@ -72,9 +72,20 @@ const updateItemQuantity = (itemId : string, newQty : number) => {
     console.log(order)
 }
 
+const sendChangedOrder = () => {
+    let newOrder = {
+        sk: sk,
+        items: items,
+        totalPrice: totalPrice
+    }
+    console.log('sendChangedOrder is clicked', pk, sk, newOrder)
+
+    updateOrder('ordersUrl', pk as string, sk as string, newOrder)
+}
+
     return (
-        <section>
-            <section className="overview__wrapper">
+        <section className="overview__wrapper">
+            <section>
                     <article className="overview">
                         <h2 className="overview__heading">Overview</h2>
                         <hr className="overview__line" />
@@ -90,7 +101,6 @@ const updateItemQuantity = (itemId : string, newQty : number) => {
                             </section>
                         </section>
                         <hr className="overview__line" />
-
                         {/* Cart */}
                         {/* Lägg in och rendera ut ordrar. Dessa ska gå att edita */}
                         <section className="overview__product-wrapper">
@@ -101,38 +111,15 @@ const updateItemQuantity = (itemId : string, newQty : number) => {
                                     <section className="overview__info-wrapper">
                                         <section className="overview__info">
                                             <h4 className="overview__product-name">Product: {item.name}</h4>
-                                            
-                                            <button onClick={() => decreaseQuantity(item.sk, item.qty)}>-</button>
-                                            <p>{item.qty}</p>
-                                            <button onClick={() => increaseQuantity(item.sk, item.qty)}>+</button>
-                                            {/* {editingQty ? (
-
-                                            ) : (
-                                                <>
-                                                    <p className="overview__item-qty">Quantity: {item.qty}</p>
-                                                    {cart.indexOf(item) === 0 && (
-                                                        <button
-                                                            className="overview__edit"
-                                                            onClick={() => setEditingQty(true)}>
-                                                            <img
-                                                                className="overview__edit-img"
-                                                                src="../../src/assets/edit.png"
-                                                                alt="Edit" />
-                                                        </button>
-                                                    )}
-                                                </> */}
-                                            {/* )} */}
-                                            {/* <p className="overview__price">Price: {item.price} sek</p> */}
+                                            <article className="counter-container">
+                                            <button className="decreaseCounter-btn" onClick={() => decreaseQuantity(item.sk, item.qty)}>-</button>
+                                            <p className="counter-qty">{item.qty}</p>
+                                            <button className="increaseCounter-btn" onClick={() => increaseQuantity(item.sk, item.qty)}>+</button>
+                                        </article>
                                         </section>
                                     </section>
                                 </section>
                             ))}
-                            {/* {editingQty && (
-                                <button
-                                    className="overview__savebtn"
-                                    onClick={() => setEditingQty(false)}>
-                                    Save</button>
-                            )} */}
                         </section>
                         <hr className="overview__line" /> 
 
@@ -149,12 +136,12 @@ const updateItemQuantity = (itemId : string, newQty : number) => {
                             <p className="overview__total-price">Total: <strong> {totalPrice} sek</strong></p> 
                             <button
                                 className="overview__submit"
-                                // onClick={}
+                                onClick={sendChangedOrder}
                             >Change Order</button>
                         </section>
                     </article>
                 </section>
-        </section>
+            </section> 
     )
 }
 
