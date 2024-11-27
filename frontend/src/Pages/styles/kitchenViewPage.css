@@ -1,10 +1,11 @@
 .kitchenViewPage__wrapper {
     background-color: var(--pink70);
-    height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-family: "Inter", sans-serif;
 }
 
 .kitchenViewPage__container {
@@ -13,12 +14,155 @@
     flex-direction: column;
     /* justify-content: center; */
     align-items: center;
-    height: 90vh;
+    min-height: 60vh;
     width: 90vw;
     border-radius: 10px;
+    margin: 2rem 0;
+}
+
+.kitchenViewPage__header,
+.kitchenViewPage__header-incoming,
+.kitchenViewPage__header-ongoing,
+.kitchenViewPage__header-done {
+    text-align: center;
+    font-family: "Inter", sans-serif;
+    padding: 1rem;
 }
 
 .kitchenViewPage__header {
-    text-align: center;
+    font-size: 40px;
+}
+
+.kitchenViewPage__incoming,
+.kitchenViewPage__ongoing,
+.kitchenViewPage__done {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 0 2rem 2rem 2rem;
+}
+
+.order__incoming {
+    background-color: rgba(240, 196, 219, 0.4);
+    padding: 1rem;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 4px 0 rgba(138, 138, 138, 0.25);
+    text-align: left;
+    gap: 10px;
+    font-size: 20px;
+}
+
+.incoming__btn {
+    background-color: rgba(240, 196, 219, 1);
+}
+
+.ongoing__btn {
+    background-color: rgba(196, 235, 240, 1);
+}
+
+.done__btn {
+    background-color: rgba(213, 240, 196, 1);
+}
+
+.incoming__btn,
+.ongoing__btn,
+.done__btn {
+    border-radius: 10px;
+    padding: 0.5rem;
+    align-self: center;
+    margin: 2rem 0 0 0;
+    width: 200px;
+    height: 50px;
+    cursor: pointer;
+    border: 1px solid var(--black);
+    font-size: 20px;
+}
+
+.order__incoming li,
+.order__ongoing li,
+.order__done li {
+    list-style: none;
+}
+
+.order__ongoing {
+    background-color: var(--blue40);
+    padding: 1rem;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+}
+
+.order__done {
+    background-color: var(--green40);
+    padding: 1rem;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+}
+
+.kitchenViewPage__filter {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: var(--black);
+}
+
+.kitchenViewPage__filter button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 10px;
+    transition: background-color 0.3s;
     font-family: "Inter", sans-serif;
+    font-weight: 600;
+    color: var(--black);
+}
+
+.kitchenViewPage__filter button.active,
+.kitchenViewPage__filter button:hover {
+    background-color: var(--green);
+    color: var(--black);
+}
+
+.incoming__comment-input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 2rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+    resize: vertical;
+    min-height: 50px;
+    font-family: "Inter", sans-serif;
+}
+
+.incoming__comment-input:focus {
+    border-color: var(--pink70);
+    outline: none;
+    box-shadow: 2px 2px 2px pink;
+}
+
+@media (max-width: 768px) {
+    .kitchenViewPage__incoming,
+    .kitchenViewPage__ongoing,
+    .kitchenViewPage__done {
+        grid-template-columns: 1fr;
+    }
+
+    .kitchenViewPage__header {
+        font-size: 30px;
+    }
+
+    .kitchenViewPage__filter {
+        flex-direction: column;
+        gap: 10px;
+    }
 }
