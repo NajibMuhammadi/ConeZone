@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { fetchOrder } from '../services/fetchOrder';
 import { Order } from '../types/interfaces';
 import { updateOrder } from '../services/updateOrder';
+import { deleteOrder } from '../services/deleteOrder';
 
 function ChangeOrderPage() {
     const orderId = useParams();
@@ -80,7 +81,11 @@ const sendChangedOrder = () => {
     }
     console.log('sendChangedOrder is clicked', pk, sk, newOrder)
 
-    updateOrder('ordersUrl', pk as string, sk as string, newOrder)
+    if (items.length === 0 ) {
+        deleteOrder('ordersUrl', pk as string, sk as string);
+    } else {
+        updateOrder('ordersUrl', pk as string, sk as string, newOrder)
+    }
 }
 
     return (
