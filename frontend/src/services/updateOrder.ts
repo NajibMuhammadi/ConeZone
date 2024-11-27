@@ -29,6 +29,6 @@ const updateOrder = async (ordersUrl: string, pk: string, sk:string, order: upda
 export { updateOrder }
 
 /**
- * Författare Ida
- * En funktion som updatera en order från databasen med ny information
+ * Författare Ida och Lisa
+ * En funktion som updatera en order från databasen med ny information och skickar tillbaka information som antingen är sann eller falsk
  */

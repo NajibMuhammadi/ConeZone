@@ -11,13 +11,12 @@ import OrderStatus from "../components/OrderStatus";
 import "./styles/orderPage.css";
 import { useLocation } from "react-router-dom";
 function OrderPage() {
-    //const sliderRef = useRef(null);
     const sliderRef = useRef<Slider | null>(null)
     const [orderSk, setOrderSk] = useState<string | null>(null)
 
     const location = useLocation();
     const slideIndex = location.state?.slideIndex || 0;
-    const sk = location.state.sk ?? '';
+    const sk = location.state?.sk ?? '';
 
     const settings = {
         dots: true,
@@ -75,10 +74,12 @@ function OrderPage() {
 
     useEffect(() => {
         if (sliderRef.current) {
-            (sliderRef.current as Slider).slickGoTo(slideIndex),
-            setOrderSk(sk)
+            (sliderRef.current as Slider).slickGoTo(slideIndex)
+            if (sk) {
+                setOrderSk(sk);  // Sätt orderSk om det finns
+            }
         }
-    }, [slideIndex])
+    }, [slideIndex, sk])
 
     return (
         <div className="wrapper">
@@ -103,6 +104,9 @@ export default OrderPage;
  * OrderPage med olika komponenter
  * La till en slider för att kunna byta mellan olika komponenter
  * 
- * Buggfix: Ida
+ * Författare: Ida
  * La till orderSK och om den har ett värde skickas den med annars skickas en tom sträng
+ * 
+ * Författare: Ida och Lisa
+ * Om vi navigerar till orderpage genom att skicka med extra information från changeorder så navigerar vi direkt till Orderstatus sidan 
  */

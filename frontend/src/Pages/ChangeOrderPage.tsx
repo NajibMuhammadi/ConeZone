@@ -170,3 +170,13 @@ const backToOrderStatus = () => {
 }
 
 export default ChangeOrderPage
+
+
+/**
+ * Författare Lisa och Ida
+ * Vi hämtar alla ordrar, skriver ut dem på sidan. 
+ * Skapar funktioner för att justera kvantiteten och tar bort objektet om den går under ett
+ * Skapar en funktion för att göra nya uträkningar på priset
+ * Skapar en funktion som skickar iväg den uppdaterade ordern med ny information. Om den blivit approved skrivs ett felmeddelande ut.
+ * Skapar en funktion som navigerar oss till sista slidern på orderpages sidan.
+ */
