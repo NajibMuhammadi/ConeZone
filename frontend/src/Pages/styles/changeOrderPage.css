@@ -206,6 +206,21 @@
     margin: 1rem;
 }
 
+.overview__submit-white {
+    background-color: var(--white);
+    font-size: 40px;
+    border-radius: 10px;
+    height: 110px;
+    max-width: 430px;
+    width: 80%;
+    color: var(--black);
+    border: 2px solid var(--black);
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    margin: 1rem;
+}
+
 .overview__msg {
     display: flex;
     flex-direction: column;
