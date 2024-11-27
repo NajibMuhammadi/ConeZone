@@ -110,7 +110,7 @@
     display: flex;
     align-self: end;
     text-align: center;
-    height: auto; /* Adjust height as needed */
+    height: auto;
     font-family: 'Inter', sans-serif;
 }
 

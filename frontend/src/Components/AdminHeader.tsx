@@ -1,4 +1,4 @@
-import { NavLink, NavLinkRenderProps } from 'react-router-dom';
+import { NavLink, NavLinkRenderProps, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import './styles/header.css'
 import './styles/userHeader.css'
@@ -10,6 +10,7 @@ function AdminHeader() {
     const cart = useMenuStore(state => state.cart);
     const totalQuantity = useMenuStore(state => state.totalQuantity);
     const [quantity, setQuantity] = useState(0);
+    const navigate = useNavigate();
 
     //Uppdaterar när cart ändras
     useEffect(() => {
@@ -28,9 +29,20 @@ function AdminHeader() {
         setIsUserMenuOpen(!isUserMenuOpen)
     }
 
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+        const token = sessionStorage.getItem('token');
+        setIsLoggedIn(!!token);
+    }, []);
+
     const logout = (): void => {
-        console.log('Du har klickat på logga ut knappen')
-    }
+        console.log('You have clicked the logout button');
+        sessionStorage.removeItem('token');
+        setIsLoggedIn(false);
+        setIsUserMenuOpen(false);
+        navigate('/');
+    };
 
     return (
         <header className="header">
@@ -93,3 +105,7 @@ export default AdminHeader;
 // Författare Lisa
 // Lägger in funktion samt en badge som visar quantity för varukorgen.
 //  Uppdateras när cart ändras. 
+
+// Författare: Diliara
+// Loggar ut användaren och tar bort token från sessionStorage,
+// navigerar användaren till startsidan och stänger användarmenyn
