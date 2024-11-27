@@ -4,6 +4,7 @@ const validateChangeOrder = () => ({
     before : (handler) => {
         const { error } = changeOrderSchema.validate(JSON.parse(handler.event.body));
         if(error) {
+            console.error('Validation error', error.details)
             throw new Error(error.details[0].message);
         }
         return;

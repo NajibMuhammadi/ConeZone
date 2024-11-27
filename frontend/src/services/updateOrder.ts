@@ -13,7 +13,7 @@ const updateOrder = async (ordersUrl: string, pk: string, sk:string, order: upda
         const response = await axios.put<updatedOrder>(`${url}/${pk}/${sk}`, order)
         console.log(response.data)
     } catch (error: AxiosError | any) {
-        console.error('Fel vid uppdatering av order:', error);
+        console.error('Fel vid uppdatering av order:', error.response?.data || error.message);
         throw new Error(`Kunde inte uppdatera ordern: ${error?.response?.data?.message || error.message}`);
     }
 }

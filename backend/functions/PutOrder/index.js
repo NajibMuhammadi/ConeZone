@@ -25,32 +25,38 @@ const handler = async (event) => {
                 return sendError(404, {message: 'Order not found'})
             }
 
-            const oldOrder = response.Item;
+            console.log("Checking isApproved: ", response.Item.isApproved);
 
-            const item = {
-                ...oldOrder,
-                ...(customerDetails !== undefined && {customerDetails}), 
-                ...(items !== undefined && { items }),
-                ...(customerDetails !== undefined && {customerDetails}),
-                ...(totalPrice !== undefined && { totalPrice }),
-                ...(isApproved !== undefined && {isApproved}),
-                ...(paymentMethod !== undefined && {paymentMethod}),
-                ...(isDone !== undefined && {isDone})    
-            }
 
-            await db.put({
-                TableName: 'conezoneorder-db',
-                Item: item,
-            })
-
-            const updatedOrder = await db.query({
-                TableName: 'conezoneorder-db',
-                KeyConditionExpression: 'pk = :pk',
-                ExpressionAttributeValues: {
-                    ':pk': pk,
+            if(response.Item.isApproved === true) {
+                return sendError(400, {message: 'You can not change an approved item'})
+            } else if (response.Item.isApproved === false) {
+                const oldOrder = response.Item;
+            
+                const item = {
+                    ...oldOrder,
+                    ...(customerDetails !== undefined && {customerDetails}), 
+                    ...(items !== undefined && { items }),
+                    ...(totalPrice !== undefined && { totalPrice }),
+                    ...(isApproved !== undefined && {isApproved}),
+                    ...(paymentMethod !== undefined && {paymentMethod}),
+                    ...(isDone !== undefined && {isDone})    
                 }
-            })
-            return sendResponse(200, {message: 'Order changed:', updatedOrder})
+                
+                await db.put({
+                    TableName: 'conezoneorder-db',
+                    Item: item,
+                })
+
+                const updatedOrder = await db.query({
+                    TableName: 'conezoneorder-db',
+                    KeyConditionExpression: 'pk = :pk',
+                    ExpressionAttributeValues: {
+                        ':pk': pk,
+                    }
+                })
+                return sendResponse(200, {message: 'Order changed:', updatedOrder: updatedOrder.Items})
+            }
         } catch(error) {
             return sendError(500, {message: error.message})
         }
