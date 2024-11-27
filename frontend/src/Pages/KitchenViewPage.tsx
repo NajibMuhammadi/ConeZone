@@ -3,7 +3,7 @@ import Footer from '../components/Footer';
 import { useEffect, useState } from 'react';
 import fetchOrders from '../services/fetchOrders';
 import { Order } from '../types/interfaces';
-import AdminHeader from '../components/AdminHeader';
+import Header from '../components/Header';
 
 function KitchenViewPage() {
     const [orders, setOrders] = useState<Order[]>([]);
@@ -37,7 +37,7 @@ function KitchenViewPage() {
 
     return (
         <>
-            <AdminHeader />
+            <Header />
             <section className='kitchenViewPage__wrapper'>
                 <section className='kitchenViewPage__container'>
                     <h2 className='kitchenViewPage__header'>Kitchen View</h2>

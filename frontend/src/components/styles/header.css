@@ -21,7 +21,7 @@
     font-size: 1.5rem;
     color: var(--white);
     text-decoration: none;
-    padding: 2rem 0;
+    padding: 1rem 0;
     cursor: pointer;
     position: relative;
     font-family: 'Inter', sans-serif;
@@ -34,7 +34,7 @@
 .nav__link::after {
     content: '';
     position: absolute;
-    bottom: 2rem;
+    bottom: 1rem;
     left: 0;
     width: 0;
     height: 5px;
@@ -146,6 +146,10 @@
 
 .user-menu__link--active::after {
     width: 70%;
+}
+
+.nav__user-nav.nav__user-nav--mobile.showMenu {
+    margin-top: 12rem;
 }
 
 @media (max-width: 600px) {

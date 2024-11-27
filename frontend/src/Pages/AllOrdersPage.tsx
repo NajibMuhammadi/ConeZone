@@ -3,7 +3,7 @@ import Footer from '../components/Footer';
 import { useEffect, useState } from 'react';
 import fetchOrders from '../services/fetchOrders';
 import { Order } from '../types/interfaces';
-import AdminHeader from '../components/AdminHeader';
+import Header from '../components/Header';
 
 function AllOrdersPage() {
     const [orders, setOrders] = useState<Order[]>([]);
@@ -28,7 +28,7 @@ function AllOrdersPage() {
 
     return (
         <>
-            <AdminHeader />
+            <Header />
             <section className='all-orders__wrapper'>
                 <section className='all-orders__container'>
                     <h2 className='all-orders__header'>All Orders</h2>
