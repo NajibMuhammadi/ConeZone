@@ -10,12 +10,14 @@ function ChangeOrderPage() {
     const sk = orderId.sk;
     const [order, setOrder]= useState<Order | null>(null);
     const [loading, setLoading] = useState(true);
+    const [totalPrice, setTotalPrice] = useState(0);
 
     useEffect (() => {
         const loadOrder = async () : Promise<void> => {
             try {
                 const fetchedOrder = await fetchOrder('ordersUrl', pk as string, sk as string)
                 setOrder(fetchedOrder);
+                setTotalPrice(fetchedOrder.totalPrice)
                 console.log(order)
             } catch (error) {
                 console.error('Error fetching order', error)
@@ -28,43 +30,47 @@ function ChangeOrderPage() {
         }
     }, [loading])
 
-if (loading) {
-    return 
-    <p>Waiting....</p> 
-}
+    useEffect(() => {
+        if (order) {
+        const newPrice = order.items.reduce((total, item) => total + item.price * item.qty, 0);
+        setTotalPrice(newPrice)
+        console.log('Nu räknas det nya priset ut:', newPrice)
+        }
+    }, [order])
+    
 
-if(!order) {
-    return <p>No order found</p>
-}
+    if (loading) {
+        return 
+        <p>Waiting....</p> 
+    }
+
+    if(!order) {
+        return <p>No order found</p>
+    }
 
 const items = order.items
 
-
-// function changeQty({ item }: CounterProps) {
-    
-// const [qty, setQty] = useState(item.qty)
-// const [updateItems, setUpdateItems] = useState(items)
-
     const decreaseQuantity = (id : string, qty : number) => {
-        // if (qty > 1) {
-        //     setQty (qty - 1)
-        // }
-        console.log('hej', id, qty)
+            updateItemQuantity(id, qty - 1)
+        console.log('Subtraktion', id, qty)
     };
 
-    const increaseQuantity = (id : string, qty : number) => {
-        // items.map((item) => {
-        //     if(item.sk === id) {
-        //         const newQty = qty + 1;
-        //         setOrder( {...item, qty: newQty})
-        //     }
-        // })
-        // setQty (qty + 1)
-        console.log('hejdå', id, qty)
-    };
-// }
+    const increaseQuantity = (id : string, qty : number) => {   
+            updateItemQuantity(id, qty + 1)
+    };    
 
-
+const updateItemQuantity = (itemId : string, newQty : number) => {
+    const updateOrder = order.items.map(item =>  {
+        if (item.sk === itemId) {
+            console.log('Nu uppdateras antalet', newQty)
+            return {... item, qty: newQty};
+        }
+    return item;
+    })    
+    .filter(item => item.qty >= 1);
+    setOrder({...order, items: updateOrder});
+    console.log(order)
+}
 
     return (
         <section>
@@ -140,7 +146,7 @@ const items = order.items
                         </section>
                         <hr className="overview__line" />
                         <section className="overview__total">
-                            <p className="overview__total-price">Total: <strong> {order.totalPrice} sek</strong></p> 
+                            <p className="overview__total-price">Total: <strong> {totalPrice} sek</strong></p> 
                             <button
                                 className="overview__submit"
                                 // onClick={}
