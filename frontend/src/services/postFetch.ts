@@ -28,7 +28,7 @@ const postFetch = async (urlKey: string, data: RegisterType | LoginType): Promis
     }
 
     try {
-        const response = await axios.post<loginResponseProps>(url, data);
+        const response = await axios.post(url, data);
         return response.data;
     } catch (error) {
         if (axios.isAxiosError(error) && error.response) {
