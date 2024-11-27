@@ -1,0 +1,112 @@
+.edit-menu__wrapper {
+    background-color: var(--pink70);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Inter", sans-serif;
+}
+
+.edit-menu__container {
+    background-color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 90vw;
+    border-radius: 10px;
+    margin: 2rem 0;
+}
+
+.edit-menu__menu {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-content: center;
+    gap: 2rem;
+    background-color: var(--pink70);
+    margin: 2rem 5rem 5rem 5rem;
+    border-radius: 30px;
+    padding: 1rem;
+}
+
+.edit-menu__menu-image {
+    width: 70%;
+    box-shadow: 0 4px 4px 0 rgba(138, 138, 138, 0.25);
+}
+
+.edit-menu__menu-edit {
+    width: 40px;
+}
+
+.edit-menu__menu-delete {
+    width: 40px;
+}
+
+.edit-menu__menu-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem;
+    gap: 1rem;
+    text-align: center;
+}
+
+.edit-menu__header {
+    text-align: center;
+    font-family: "Inter", sans-serif;
+    padding: 1rem;
+    font-size: 40px;
+    margin-bottom: 1rem;
+}
+
+.edit-menu__add-btn {
+    background-color: var(--green);
+    border-radius: 10px;
+    padding: 0.5rem;
+    align-self: center;
+    margin: 1rem 1rem 0 1rem;
+    width: 200px;
+    height: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 4px 0 rgba(138, 138, 138, 0.25);
+    border: none;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.edit-menu__menu-changes {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    margin: 1rem;
+}
+
+.edit-menu__menu-desc,
+.edit-menu__menu-price {
+    font-size: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .edit-menu__menu {
+        grid-template-columns: 1fr;
+    }
+
+    .edit-menu__header {
+        font-size: 30px;
+    }
+
+    .edit-menu__menu-edit {
+        width: 30px;
+    }
+    
+    .edit-menu__menu-delete {
+        width: 30px;
+    }
+
+    .edit-menu__menu {
+        gap: 1rem;
+    }
+}

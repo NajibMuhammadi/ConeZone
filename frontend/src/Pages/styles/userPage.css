@@ -86,10 +86,10 @@
 
     .user__order-img {
         display: grid;
-        grid-template-columns: repeat(2, 1fr); /* 2 columns on small screens */
+        grid-template-columns: repeat(2, 1fr); 
         gap: 10px;
-        justify-items: center; /* Center items horizontally */
-        align-items: center; /* Center items vertically */
+        justify-items: center;
+        align-items: center; 
     }
 
     .user__img {
@@ -102,7 +102,7 @@
 @media screen and (min-width: 769px) and (max-width: 1200px) {
     .user__order-img {
         display: grid;
-        grid-template-columns: repeat(2, 1fr); /* 3 columns on medium screens */
+        grid-template-columns: repeat(2, 1fr);
         gap: 10px;
     }
 
@@ -130,7 +130,7 @@
 @media screen and (min-width: 1201px) {
     .user__order-img {
         display: grid;
-        grid-template-columns: repeat(2, 1fr); /* 3 columns on medium screens */
+        grid-template-columns: repeat(2, 1fr);
         gap: 10px;
     }
 

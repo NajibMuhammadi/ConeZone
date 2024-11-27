@@ -3,6 +3,10 @@ import { urls } from "../../url";
 import { LoginType, RegisterType } from "../types/interfaces";
 
 interface loginResponseProps {
+    data: {
+        message: string;
+        success: boolean;
+    }
     body: {
         success: boolean;
         message: string;
@@ -24,7 +28,7 @@ const postFetch = async (urlKey: string, data: RegisterType | LoginType): Promis
     }
 
     try {
-        const response = await axios.post<loginResponseProps>(url, data);
+        const response = await axios.post(url, data);
         return response.data;
     } catch (error) {
         if (axios.isAxiosError(error) && error.response) {
