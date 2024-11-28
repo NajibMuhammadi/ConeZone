@@ -25,6 +25,7 @@
     align-items: center;
     margin: 20px;
     gap: 30px;
+    margin-right: 10vw;
 }
 
 .overview__heading {
@@ -39,6 +40,7 @@
     text-align: center;
     font-weight: 700;
     margin: 2rem;
+    align-self: center;
 }
 
 .overview__customer-container-top {
@@ -121,13 +123,14 @@
     border-radius: 10px;
     cursor: pointer;
     border: none;
+    align-self: center;
 }
 
 .overview__product-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     position: relative;
 }
 

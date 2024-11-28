@@ -79,7 +79,7 @@ function Header() {
                                 ) : (
                                     <>
                                         <NavLink to="/user" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>My Orders</NavLink>
-                                        <NavLink to="/my-favourites" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>My Favourites</NavLink>
+                                        {/* <NavLink to="/my-favourites" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>My Favourites</NavLink> */}
                                         <NavLink to="/settings" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>Settings</NavLink>
                                     </>
                                 )}
@@ -124,7 +124,7 @@ function Header() {
                                     ) : (
                                         <>
                                             <NavLink to="/user" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>My Orders</NavLink>
-                                            <NavLink to="/my-favourites" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>My Favourites</NavLink>
+                                            {/* <NavLink to="/my-favourites" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>My Favourites</NavLink> */}
                                             <NavLink to="/settings" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>Settings</NavLink>
                                         </>
                                     )}

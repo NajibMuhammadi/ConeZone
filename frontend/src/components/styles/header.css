@@ -148,9 +148,9 @@
     width: 70%;
 }
 
-.nav__user-nav.nav__user-nav--mobile.showMenu {
-    margin-top: 12rem;
-}
+/* .nav__user-nav.showMenu {
+    background-color: #353535f2;
+} */
 
 @media (max-width: 600px) {
     .header__nav {
