@@ -6,6 +6,7 @@ import { Order } from '../types/interfaces';
 import { updateOrder } from '../services/updateOrder';
 import { deleteOrder } from '../services/deleteOrder';
 import { useNavigate } from 'react-router-dom';
+import { jwtDecode } from 'jwt-decode';
 
 function ChangeOrderPage() {
     const navigate = useNavigate();
@@ -46,8 +47,19 @@ function ChangeOrderPage() {
     }, [order])
 
     useEffect(() => {
-        const admin = sessionStorage.getItem('isAdmin') === 'true';
-        setIsAdmin(admin);
+        const token = sessionStorage.getItem('token');
+        if (token) {
+            try {
+                const decoded: { isAdmin: boolean } = jwtDecode(token);
+                const isAdmin = decoded.isAdmin;
+                console.log('isAdmin:', isAdmin);
+                setIsAdmin(isAdmin);
+            } catch (err) {
+                console.error('Error parsing token:', err);
+            }
+        } else {
+            setIsAdmin(false);
+        }
     }, []);
 
     const adminButton = () => {
