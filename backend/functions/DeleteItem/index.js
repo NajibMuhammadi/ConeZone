@@ -1,12 +1,19 @@
 const {db} = require('../../services/index.js')
 const {sendResponse, sendError } = require('../../responses/index')
+const middy = require('@middy/core');
+const { validateToken } = require('../../middlewares/validateToken.js');
+const { errorHandler } = require('../../middlewares/errorHandler.js');
 
-exports.handler = async (event) => {
+const deleteItem = async (event, context) => {
     const {id} = event.pathParameters;
     const pk = 'icecream';
 
     if(!id){
         return sendError(400, {message: 'Missing id'});
+    }
+
+    if(!context.isAdmin){
+        return sendError(401, {message: 'Unauthorized'});
     }
 
     try{
@@ -37,8 +44,12 @@ exports.handler = async (event) => {
     }
 }
 
+const middyHandler = middy(deleteItem); 
+exports.handler = middyHandler.use(validateToken()).use(errorHandler());
+
 /* 
     * Författare: Najib
     * Funktion som tar bort en item från vår meny databas
+    * Funktionen kräver att användaren är inloggad som admin
  */
 

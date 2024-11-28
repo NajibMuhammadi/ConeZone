@@ -32,3 +32,8 @@ const validateToken = () => ({
 });
 
 module.exports = { validateToken };
+
+/* 
+    författare: Najib
+    Middleware för att validera token som skickas med i headers.
+ */
