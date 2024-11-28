@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import fetchOrders from '../services/fetchOrders';
 import { Order } from '../types/interfaces';
 import AdminHeader from '../components/AdminHeader';
-import { adminUpdateOrder } from '../services/adminUpdateOrder';
+import { adminUpdate } from '../services/adminUpdate';
 
 function KitchenViewPage() {
     const [orders, setOrders] = useState<Order[]>([]);
@@ -36,20 +36,29 @@ function KitchenViewPage() {
         filter === 'ongoing' ? ongoingOrders :
         filter === 'done' ? doneOrders : orders;
 
-        const [newMessage, setNewMessage] = useState()
-
+        const [newMessage, setNewMessage] = useState('')
+        const pk = 'guest'
         
     const approveOrder = async (sk : string) => {
-            const pk = 'guest'
             let newOrder = {
                 sk: sk,
                 isApproved: true,
                 kitchenMessage: newMessage,
             }
             console.log(`Your order with the id `, sk, ` has been approved with the following `, newMessage )
-            await adminUpdateOrder('ordersUrl', pk, sk, newOrder)
+            await adminUpdate('adminOrdersUrl', pk, sk, newOrder)
             //location.reload()
     }
+
+const orderDone = async (sk : string) => {
+        let newOrder = {
+            sk: sk,
+            isApproved: true,
+            isDone: true
+        }
+
+        await adminUpdate('adminOrdersUrl', pk, sk, newOrder)
+}
 
     return (
         <>
@@ -124,7 +133,7 @@ function KitchenViewPage() {
                                                         </li>
                                                     ))}
                                                 </ul>
-                                                <button className="ongoing__btn">Done</button>
+                                                <button className="ongoing__btn" onClick={() => orderDone(order.sk)}>Done</button>
                                             </div>
                                         ))
                                     )}

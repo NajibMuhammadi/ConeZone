@@ -2,8 +2,8 @@ import axios, { AxiosError } from "axios";
 import { urls } from "../../url";
 import {adminApprove } from "../types/interfaces";
 
-const adminUpdateOrder = async (adminOrderUrl: string, pk: string, sk:string, order: adminApprove) : Promise<void> => {
-    const url = urls[adminOrderUrl];
+const adminUpdate = async (adminOrdersUrl: string, pk: string, sk:string, order: adminApprove) : Promise<void> => {
+    const url = urls[adminOrdersUrl];
 
     if (!url) {
         throw new Error('Url hittades inte');
@@ -19,7 +19,7 @@ const adminUpdateOrder = async (adminOrderUrl: string, pk: string, sk:string, or
     }
 }
 
-export { adminUpdateOrder }
+export { adminUpdate }
 
 /**
  * Författare Ida 
