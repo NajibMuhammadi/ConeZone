@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import fetchOrders from '../services/fetchOrders';
 import { Order } from '../types/interfaces';
 import Header from '../components/Header';
+import { Link } from 'react-router-dom';
 
 function KitchenViewPage() {
     const [orders, setOrders] = useState<Order[]>([]);
@@ -15,6 +16,7 @@ function KitchenViewPage() {
         const loadOrders = async () => {
             try {
                 const fetchedOrders = await fetchOrders();
+                console.log('Fetched Orders:', fetchedOrders);
                 setOrders(Array.isArray(fetchedOrders) ? fetchedOrders : []);
             } catch (err) {
                 console.error('Error loading orders:', err);
@@ -33,7 +35,7 @@ function KitchenViewPage() {
 
     const filteredOrders = filter === 'incoming' ? incomingOrders :
         filter === 'ongoing' ? ongoingOrders :
-        filter === 'done' ? doneOrders : orders;
+            filter === 'done' ? doneOrders : orders;
 
     return (
         <>
@@ -61,6 +63,10 @@ function KitchenViewPage() {
                                     ) : (
                                         incomingOrders.map((order) => (
                                             <div key={order.sk} className="order__incoming">
+                                                <Link to={`/order/${order.pk}/${order.sk}`}>
+                                                    <button className="kitchenViewPage__edit">
+                                                        <img className='kitchenViewPage__edit-img' src="../../src/assets/edit.png" alt="Redigera" />
+                                                    </button></Link>
                                                 <p>Order ID: {order.sk}</p>
                                                 <p>Customer: {order.customerDetails.name}</p>
                                                 <p>Total: {order.totalPrice} SEK</p>

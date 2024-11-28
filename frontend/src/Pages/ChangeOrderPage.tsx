@@ -6,6 +6,7 @@ import { Order } from '../types/interfaces';
 import { updateOrder } from '../services/updateOrder';
 import { deleteOrder } from '../services/deleteOrder';
 import { useNavigate } from 'react-router-dom';
+import { jwtDecode } from 'jwt-decode';
 
 function ChangeOrderPage() {
     const navigate = useNavigate();
@@ -17,7 +18,7 @@ function ChangeOrderPage() {
     const [totalPrice, setTotalPrice] = useState(0);
     const [errorMsg, setErrorMsg] = useState<string | null>(null);
     const [successMsg, setSuccessMsg] = useState<string | null>(null);
-
+    const [isAdmin, setIsAdmin] = useState(false);
 
     useEffect(() => {
         const loadOrder = async (): Promise<void> => {
@@ -45,6 +46,25 @@ function ChangeOrderPage() {
         }
     }, [order])
 
+    useEffect(() => {
+        const token = sessionStorage.getItem('token');
+        if (token) {
+            try {
+                const decoded: { isAdmin: boolean } = jwtDecode(token);
+                const isAdmin = decoded.isAdmin;
+                console.log('isAdmin:', isAdmin);
+                setIsAdmin(isAdmin);
+            } catch (err) {
+                console.error('Error parsing token:', err);
+            }
+        } else {
+            setIsAdmin(false);
+        }
+    }, []);
+
+    const adminButton = () => {
+        navigate('/kitchenview')
+    }
 
     if (loading) {
         return
@@ -127,7 +147,6 @@ function ChangeOrderPage() {
                     </section>
                     <hr className="overview__line" />
                     {/* Cart */}
-                    {/* Lägg in och rendera ut ordrar. Dessa ska gå att edita */}
                     <section className="overview__product-wrapper">
                         <h3 className="overview__customer">Cart</h3>
                         {items.map((item) => (
@@ -165,6 +184,13 @@ function ChangeOrderPage() {
                             className="overview__submit"
                             onClick={sendChangedOrder}
                         >Change Order</button>
+                        {isAdmin && (
+                            <button
+                                className="overview__submit overview__submit-green"
+                                onClick={adminButton}>
+                                Go back to kitchenView
+                            </button>
+                        )}
                         <button
                             className="overview__submit-white"
                             onClick={backToOrderStatus}
