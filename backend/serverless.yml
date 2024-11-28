@@ -88,6 +88,12 @@ functions:
       - httpApi:
           path: /order/{pk}/{id}
           method: delete
+  PutAdmin: 
+    handler: functions/PutAdmin/index.handler
+    events:
+      - httpApi:
+          path: /order/admin/{pk}/{id}
+          method: put
 
 resources:
   Resources:
