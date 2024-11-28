@@ -65,4 +65,5 @@ exports.handler = middyHandler.use(validateChangeOrder()).use(errorHandler());
   * Författare: Ida
   * Funktion som gör att man kan ändra i en order
   * Genom att att använda spread operatorn ser funktionen till att om ett värde inte ändras så skrivs det inte över utan använder det som fanns i ordern från början
+  * Lägger till information till köket och ändras isApproved / isDone
 */
