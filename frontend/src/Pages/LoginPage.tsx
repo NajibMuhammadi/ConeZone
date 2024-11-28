@@ -4,7 +4,8 @@ import './styles/loginPage.css';
 import { NavLink, useNavigate } from "react-router-dom";
 import { postFetch } from "../services/postFetch";
 import { LoginType } from "../types/interfaces";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import {jwtDecode} from 'jwt-decode';
 
 function LoginPage() {
     const [usernameOrEmail, setUsernameOrEmail] = useState('');
@@ -12,6 +13,22 @@ function LoginPage() {
     const [error, setError] = useState<string | null>(null);
     const [success, setSuccess] = useState<string | null>(null);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const token = sessionStorage.getItem('token');
+        if (token) {
+            navigate('/menu');
+            try{
+                const decoded: {isAdmin: boolean} = jwtDecode(token);
+
+                const isAdmin = decoded.isAdmin;
+
+                console.log('isAdmin:', isAdmin);   
+            } catch (err) {
+                console.error('Error parsing token:', err);
+            }
+        } 
+    }, [navigate]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -31,9 +48,10 @@ function LoginPage() {
 
             if (response.data.success) {
                 saveTokenToSessionStorage(response.token);
-                sessionStorage.setItem('isAdmin', response.data.data.isAdmin.toString());
-                if (response.data.data.isAdmin) {
-                    console.log('Admin');
+
+                const decoded: {isAdmin: boolean, UserId: string} = jwtDecode(response.token);
+                console.log('isAdmin:', decoded.isAdmin);
+                if(decoded.isAdmin) {
                     navigate('/kitchenview');
                 } else {
                     navigate('/user');

@@ -5,6 +5,8 @@ import fetchOrders from '../services/fetchOrders';
 import { Order } from '../types/interfaces';
 import AdminHeader from '../components/AdminHeader';
 import { adminUpdate } from '../services/adminUpdate';
+import Header from '../components/Header';
+import { Link } from 'react-router-dom';
 
 function KitchenViewPage() {
     const [orders, setOrders] = useState<Order[]>([]);
@@ -16,6 +18,7 @@ function KitchenViewPage() {
         const loadOrders = async () => {
             try {
                 const fetchedOrders = await fetchOrders();
+                console.log('Fetched Orders:', fetchedOrders);
                 setOrders(Array.isArray(fetchedOrders) ? fetchedOrders : []);
             } catch (err) {
                 console.error('Error loading orders:', err);
@@ -34,7 +37,7 @@ function KitchenViewPage() {
 
     const filteredOrders = filter === 'incoming' ? incomingOrders :
         filter === 'ongoing' ? ongoingOrders :
-        filter === 'done' ? doneOrders : orders;
+            filter === 'done' ? doneOrders : orders;
 
         const [newMessage, setNewMessage] = useState('')
         const pk = 'guest'
@@ -86,6 +89,10 @@ const orderDone = async (sk : string) => {
                                     ) : (
                                         incomingOrders.map((order) => (
                                             <div key={order.sk} className="order__incoming">
+                                                <Link to={`/order/${order.pk}/${order.sk}`}>
+                                                    <button className="kitchenViewPage__edit">
+                                                        <img className='kitchenViewPage__edit-img' src="../../src/assets/edit.png" alt="Redigera" />
+                                                    </button></Link>
                                                 <p>Order ID: {order.sk}</p>
                                                 <p>Customer: {order.customerDetails.name}</p>
                                                 <p>Total: {order.totalPrice} SEK</p>
@@ -186,3 +193,10 @@ export default KitchenViewPage;
 
 //Författare Diliara
 // Gjorde om sidan, läser in orders från db
+
+/**
+ * Författare Ida
+ * Har lagt till funktionalitet för att kunna markera en order som approved och kunna skicka med information till köket
+ * Har lagt till en funktion för att kunna markera en order som done
+ * La även till så att när en kommentar skickas med till köket skrivs det ut
+ */

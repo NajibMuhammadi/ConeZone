@@ -4,6 +4,7 @@ import './styles/header.css';
 import './styles/userHeader.css'
 import './styles/adminHeader.css'
 import useMenuStore from '../stores/cartStore';
+import { jwtDecode } from 'jwt-decode';
 
 function Header() {
     const cart = useMenuStore(state => state.cart);
@@ -22,9 +23,19 @@ function Header() {
 
     useEffect(() => {
         const token = sessionStorage.getItem('token');
-        const admin = sessionStorage.getItem('isAdmin') === 'true';
+        if (token) {
+            try{
+                const decoded: {isAdmin: boolean} = jwtDecode(token);
+
+                const isAdmin = decoded.isAdmin;
+
+                console.log('isAdmin:', isAdmin);   
+            } catch (err) {
+                console.error('Error parsing token:', err);
+            }
+        } 
         setIsLoggedIn(!!token);
-        setIsAdmin(admin);
+        setIsAdmin(!!token && (jwtDecode<{ isAdmin: boolean }>(token)).isAdmin);
     }, []);
 
     const toggleNav = (): void => {
@@ -79,7 +90,7 @@ function Header() {
                                 ) : (
                                     <>
                                         <NavLink to="/user" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>My Orders</NavLink>
-                                        <NavLink to="/my-favourites" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>My Favourites</NavLink>
+                                        {/* <NavLink to="/my-favourites" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>My Favourites</NavLink> */}
                                         <NavLink to="/settings" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>Settings</NavLink>
                                     </>
                                 )}
@@ -124,7 +135,7 @@ function Header() {
                                     ) : (
                                         <>
                                             <NavLink to="/user" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>My Orders</NavLink>
-                                            <NavLink to="/my-favourites" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>My Favourites</NavLink>
+                                            {/* <NavLink to="/my-favourites" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>My Favourites</NavLink> */}
                                             <NavLink to="/settings" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>Settings</NavLink>
                                         </>
                                     )}

@@ -27,6 +27,7 @@ export interface CustomerDetails {
 // interface OrderItem extends CartItem { }
 
 export interface Order {
+    pk?: string,
     sk: string,
     items: CartItem[];
     customerDetails: CustomerDetails;
@@ -84,6 +85,7 @@ export interface adminApprove {
  * Författare Ida
  * Skapat en ItemType interface för våra items i databasen.
  * Denna berättar om det är strängar, booleans, numbers eller arrays som våra items är byggda av
+ * Skapade interface för adminApprove och updatedOrder
  */
 
 // Författare Lisa
