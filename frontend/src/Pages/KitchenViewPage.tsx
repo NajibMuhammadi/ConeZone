@@ -3,7 +3,7 @@ import Footer from '../components/Footer';
 import { useEffect, useState } from 'react';
 import fetchOrders from '../services/fetchOrders';
 import { Order } from '../types/interfaces';
-import Header from '../components/Header';
+import AdminHeader from '../components/AdminHeader';
 import { adminUpdateOrder } from '../services/adminUpdateOrder';
 
 function KitchenViewPage() {
@@ -36,29 +36,23 @@ function KitchenViewPage() {
         filter === 'ongoing' ? ongoingOrders :
         filter === 'done' ? doneOrders : orders;
 
-    const [newMessage, setNewMessage] = useState('')
+        const [newMessage, setNewMessage] = useState('')
 
     const approveOrder = async (sk : string) => {
             const pk = 'guest'
-            console.log('newMessage', newMessage)
             let newOrder = {
                 sk: sk,
-                kitchenMessage: newMessage,
                 isApproved: true,
+                message: newMessage,
             }
-
-            if(!newMessage) {
-                console.log('No message to kitchen')
-            }
-
-            console.log(`Your order with the id `, sk, ` has been approved with the following `, newMessage, newOrder )
-            //await adminUpdateOrder('adminOrderUrl', pk, sk, newOrder)
-            //location.reload()
+            console.log(`Your order with the id `, sk, ` has been approved with the following `, newMessage )
+            await adminUpdateOrder('ordersUrl', pk, sk, newOrder)
+            location.reload()
     }
 
     return (
         <>
-            <Header />
+            <AdminHeader />
             <section className='kitchenViewPage__wrapper'>
                 <section className='kitchenViewPage__container'>
                     <h2 className='kitchenViewPage__header'>Kitchen View</h2>
@@ -96,6 +90,7 @@ function KitchenViewPage() {
                                                 <textarea
                                                     placeholder="Add a comment"
                                                     className="incoming__comment-input"
+                                                    onChange={(event) => setNewMessage(event.target.value)}
                                                 />
                                                 <button className="incoming__btn" onClick={() => approveOrder(order.sk)}>Approve</button>
                                             </div>
