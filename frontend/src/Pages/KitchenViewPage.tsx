@@ -2,7 +2,7 @@ import './styles/kitchenViewPage.css';
 import Footer from '../components/Footer';
 import { useEffect, useState } from 'react';
 import fetchOrders from '../services/fetchOrders';
-import { Order } from '../types/interfaces';
+import { adminApprove, Order } from '../types/interfaces';
 import AdminHeader from '../components/AdminHeader';
 import { adminUpdateOrder } from '../services/adminUpdateOrder';
 
@@ -36,18 +36,25 @@ function KitchenViewPage() {
         filter === 'ongoing' ? ongoingOrders :
         filter === 'done' ? doneOrders : orders;
 
-        const [newMessage, setNewMessage] = useState('')
+    let [newMessage, setNewMessage] = useState('')
+
 
     const approveOrder = async (sk : string) => {
             const pk = 'guest'
             let newOrder = {
                 sk: sk,
                 isApproved: true,
-                message: newMessage,
+                kitchenMessage: newMessage,
             }
             console.log(`Your order with the id `, sk, ` has been approved with the following `, newMessage )
-            await adminUpdateOrder('ordersUrl', pk, sk, newOrder)
-            location.reload()
+            updateOrder(pk, sk, newOrder)
+            //location.reload()
+    }
+
+    const updateOrder = async (pk : string, sk : string, newOrder : adminApprove) => {
+        await adminUpdateOrder('ordersUrl', pk, sk, newOrder)
+        //   console.log(`Your order with the id `, sk, ` has been approved with the following `, newMessage )
+        //location.reload()
     }
 
     return (
