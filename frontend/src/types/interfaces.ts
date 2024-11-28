@@ -34,6 +34,7 @@ export interface Order {
     totalPrice: number;
     isApproved?: boolean;
     isDone?: boolean;
+    kitchenMessage?: string
 }
 
 // export interface OrderInput {

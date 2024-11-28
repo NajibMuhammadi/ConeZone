@@ -133,6 +133,7 @@ const orderDone = async (sk : string) => {
                                                         </li>
                                                     ))}
                                                 </ul>
+                                                <p className="kitchenViewPage__message">Message: {order.kitchenMessage}</p>
                                                 <button className="ongoing__btn" onClick={() => orderDone(order.sk)}>Done</button>
                                             </div>
                                         ))

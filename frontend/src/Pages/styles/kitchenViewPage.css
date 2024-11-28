@@ -150,6 +150,12 @@
     box-shadow: 2px 2px 2px pink;
 }
 
+.kitchenViewPage__message {
+    padding-top: 2rem;
+    font-weight: bold;
+    font-style: italic;
+}
+
 @media (max-width: 768px) {
     .kitchenViewPage__incoming,
     .kitchenViewPage__ongoing,
