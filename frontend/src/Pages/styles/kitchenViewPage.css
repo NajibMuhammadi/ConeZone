@@ -48,6 +48,7 @@
     border-radius: 10px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     box-shadow: 0 4px 4px 0 rgba(138, 138, 138, 0.25);
     text-align: left;
     gap: 10px;
@@ -78,6 +79,8 @@
     cursor: pointer;
     border: 1px solid var(--black);
     font-size: 20px;
+    position: sticky;
+    
 }
 
 .order__incoming li,

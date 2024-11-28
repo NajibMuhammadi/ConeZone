@@ -17,7 +17,7 @@ function ChangeOrderPage() {
     const [totalPrice, setTotalPrice] = useState(0);
     const [errorMsg, setErrorMsg] = useState<string | null>(null);
     const [isAdmin, setIsAdmin] = useState(false);
-
+    const [successMsg, setSuccessMsg] = useState<string | null>(null);
 
     useEffect(() => {
         const loadOrder = async (): Promise<void> => {
@@ -96,13 +96,18 @@ function ChangeOrderPage() {
         if (items.length === 0) {
             const response = await deleteOrder('ordersUrl', pk as string, sk as string);
             if (!response) {
-                console.log('error error hej')
                 setErrorMsg('You can not delete an order that has been approved');
+            }
+            if (response) {
+                setSuccessMsg('Order deleted')
             }
         } else {
             const response = await updateOrder('ordersUrl', pk as string, sk as string, newOrder)
             if (!response) {
+                setSuccessMsg('');
                 setErrorMsg('You can not change an order that has been approved');
+            } else {
+                setSuccessMsg('Order updated successfully!')
             }
         }
     }
@@ -130,7 +135,6 @@ function ChangeOrderPage() {
                     </section>
                     <hr className="overview__line" />
                     {/* Cart */}
-                    {/* Lägg in och rendera ut ordrar. Dessa ska gå att edita */}
                     <section className="overview__product-wrapper">
                         <h3 className="overview__customer">Cart</h3>
                         {items.map((item) => (
@@ -162,7 +166,8 @@ function ChangeOrderPage() {
                     <hr className="overview__line" />
                     <section className="overview__total">
                         <p className="overview__total-price">Total: <strong> {totalPrice} sek</strong></p>
-                        {errorMsg && <p className="error-msg">{errorMsg}</p>}
+                        {errorMsg && <p className="overview__errormsg">{errorMsg}</p>}
+                        {successMsg && <p className="overview__successmsg">{successMsg}</p>}
                         <button
                             className="overview__submit"
                             onClick={sendChangedOrder}

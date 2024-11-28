@@ -1,4 +1,3 @@
-const {sendResponse} = require('../responses/index');  
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
@@ -27,3 +26,9 @@ const generateToken = async (user) => {
 
 
 module.exports = { hashPassword, comparePassword, generateToken };
+
+
+/* 
+    * Författare: Najib
+    * Funktioner för att hasha lösenord, jämföra lösenord och generera token
+ */

@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import './styles/registerPage.css';
 import { postFetch } from '../services/postFetch';
 import { RegisterType } from '../types/interfaces';
+import { useNavigate } from 'react-router-dom';
 
 function Register() {
     const [username, setUsername] = useState('');
@@ -13,6 +14,13 @@ function Register() {
     const [error, setError] = useState<string | null>(null);
     const [success, setSuccess] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate();
+    useEffect(()=>{
+        const token = sessionStorage.getItem('token');
+        if (token) {
+            navigate('/menu');
+        }
+    })
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
