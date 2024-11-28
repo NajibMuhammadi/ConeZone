@@ -46,3 +46,7 @@
     background-color: transparent;
     border: none;
 }
+
+.nav__user-nav.nav__user-nav--mobile.showMenu {
+    margin-top: 14rem;
+}

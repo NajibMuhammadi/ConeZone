@@ -25,8 +25,8 @@
 .overview__product {
     display: flex;
     align-items: center;
-    margin: 20px;
     gap: 30px;
+    margin-left: 10vw;
 }
 
 .overview__heading {
@@ -41,6 +41,7 @@
     text-align: center;
     font-weight: 700;
     margin: 2rem;
+    align-self: center;
 }
 
 .overview__customer-container-top {
@@ -67,7 +68,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     position: relative;
 }
 
@@ -101,7 +102,7 @@
 
 .counter-container {
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     margin-left: 0.4rem;
 }
