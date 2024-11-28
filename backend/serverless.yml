@@ -92,7 +92,7 @@ functions:
     handler: functions/PutAdmin/index.handler
     events:
       - httpApi:
-          path: /order/admin/{pk}/{id}
+          path: /admin/order/{pk}/{id}
           method: put
 
 resources:
