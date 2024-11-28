@@ -72,6 +72,13 @@ export interface updatedOrder {
     totalPrice: number
 }
 
+export interface adminApprove {
+    sk: string
+    isApproved?: boolean,
+    isDone?: boolean,
+    kitchenMessage?: string
+}
+
 /**
  * Författare Ida
  * Skapat en ItemType interface för våra items i databasen.

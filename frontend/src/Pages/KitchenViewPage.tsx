@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import fetchOrders from '../services/fetchOrders';
 import { Order } from '../types/interfaces';
 import Header from '../components/Header';
+import { adminUpdateOrder } from '../services/adminUpdateOrder';
 
 function KitchenViewPage() {
     const [orders, setOrders] = useState<Order[]>([]);
@@ -34,6 +35,26 @@ function KitchenViewPage() {
     const filteredOrders = filter === 'incoming' ? incomingOrders :
         filter === 'ongoing' ? ongoingOrders :
         filter === 'done' ? doneOrders : orders;
+
+    const [newMessage, setNewMessage] = useState('')
+
+    const approveOrder = async (sk : string) => {
+            const pk = 'guest'
+            console.log('newMessage', newMessage)
+            let newOrder = {
+                sk: sk,
+                kitchenMessage: newMessage,
+                isApproved: true,
+            }
+
+            if(!newMessage) {
+                console.log('No message to kitchen')
+            }
+
+            console.log(`Your order with the id `, sk, ` has been approved with the following `, newMessage, newOrder )
+            //await adminUpdateOrder('adminOrderUrl', pk, sk, newOrder)
+            //location.reload()
+    }
 
     return (
         <>
@@ -76,7 +97,7 @@ function KitchenViewPage() {
                                                     placeholder="Add a comment"
                                                     className="incoming__comment-input"
                                                 />
-                                                <button className="incoming__btn">Approve</button>
+                                                <button className="incoming__btn" onClick={() => approveOrder(order.sk)}>Approve</button>
                                             </div>
                                         ))
                                     )}
