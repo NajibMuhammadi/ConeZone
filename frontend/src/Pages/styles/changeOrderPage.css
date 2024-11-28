@@ -191,11 +191,21 @@
     margin: 20px;
 }
 
+.overview__successmsg {
+    font-size: 1rem;
+}
+
+.overview__errormsg {
+    color: red;
+    text-align: center;
+    font-size: 1rem;
+}
+
 .overview__submit {
     background-color: var(--black);
-    font-size: 40px;
+    font-size: 2rem;
     border-radius: 10px;
-    height: 110px;
+    height: 5rem;
     max-width: 430px;
     width: 80%;
     color: white;
@@ -203,14 +213,14 @@
     font-family: "Inter", sans-serif;
     font-weight: 700;
     cursor: pointer;
-    margin: 1rem;
+    margin: 0.5rem;
 }
 
 .overview__submit-white {
     background-color: var(--white);
-    font-size: 40px;
+    font-size: 2rem;
     border-radius: 10px;
-    height: 110px;
+    height: 5rem;
     max-width: 430px;
     width: 80%;
     color: var(--black);
@@ -218,7 +228,7 @@
     font-family: "Inter", sans-serif;
     font-weight: 700;
     cursor: pointer;
-    margin: 1rem;
+    margin: 0.5rem;
 }
 
 .overview__msg {
