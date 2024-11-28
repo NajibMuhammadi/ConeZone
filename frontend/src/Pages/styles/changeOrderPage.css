@@ -206,6 +206,11 @@
     margin: 1rem;
 }
 
+.overview__submit-green {
+    background-color: var(--green);
+    color: var(--black);
+}
+
 .overview__submit-white {
     background-color: var(--white);
     font-size: 40px;
