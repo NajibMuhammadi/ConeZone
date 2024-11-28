@@ -17,8 +17,8 @@ function ChangeOrderPage() {
     const [loading, setLoading] = useState(true);
     const [totalPrice, setTotalPrice] = useState(0);
     const [errorMsg, setErrorMsg] = useState<string | null>(null);
-    const [isAdmin, setIsAdmin] = useState(false);
     const [successMsg, setSuccessMsg] = useState<string | null>(null);
+    const [isAdmin, setIsAdmin] = useState(false);
 
     useEffect(() => {
         const loadOrder = async (): Promise<void> => {
