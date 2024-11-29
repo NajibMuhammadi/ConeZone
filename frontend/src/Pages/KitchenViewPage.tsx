@@ -61,6 +61,7 @@ const orderDone = async (sk : string) => {
         }
 
         await adminUpdate('adminOrdersUrl', pk, sk, newOrder)
+        location.reload()
 }
 
     return (
