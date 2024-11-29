@@ -3,6 +3,8 @@ import Footer from '../components/Footer';
 import { useEffect, useState } from 'react';
 import fetchOrders from '../services/fetchOrders';
 import { Order } from '../types/interfaces';
+import AdminHeader from '../components/AdminHeader';
+import { adminUpdate } from '../services/adminUpdate';
 import Header from '../components/Header';
 import { Link } from 'react-router-dom';
 
@@ -37,9 +39,33 @@ function KitchenViewPage() {
         filter === 'ongoing' ? ongoingOrders :
             filter === 'done' ? doneOrders : orders;
 
+        const [newMessage, setNewMessage] = useState('')
+        const pk = 'guest'
+        
+    const approveOrder = async (sk : string) => {
+            let newOrder = {
+                sk: sk,
+                isApproved: true,
+                kitchenMessage: newMessage,
+            }
+            console.log(`Your order with the id `, sk, ` has been approved with the following `, newMessage )
+            await adminUpdate('adminOrdersUrl', pk, sk, newOrder)
+            //location.reload()
+    }
+
+const orderDone = async (sk : string) => {
+        let newOrder = {
+            sk: sk,
+            isApproved: true,
+            isDone: true
+        }
+
+        await adminUpdate('adminOrdersUrl', pk, sk, newOrder)
+}
+
     return (
         <>
-            <Header />
+            <AdminHeader />
             <section className='kitchenViewPage__wrapper'>
                 <section className='kitchenViewPage__container'>
                     <h2 className='kitchenViewPage__header'>Kitchen View</h2>
@@ -81,8 +107,9 @@ function KitchenViewPage() {
                                                 <textarea
                                                     placeholder="Add a comment"
                                                     className="incoming__comment-input"
+                                                    onChange={(event) => setNewMessage(event.target.value)}
                                                 />
-                                                <button className="incoming__btn">Approve</button>
+                                                <button className="incoming__btn" onClick={() => approveOrder(order.sk)}>Approve</button>
                                             </div>
                                         ))
                                     )}
@@ -113,7 +140,8 @@ function KitchenViewPage() {
                                                         </li>
                                                     ))}
                                                 </ul>
-                                                <button className="ongoing__btn">Done</button>
+                                                <p className="kitchenViewPage__message">Message: {order.kitchenMessage}</p>
+                                                <button className="ongoing__btn" onClick={() => orderDone(order.sk)}>Done</button>
                                             </div>
                                         ))
                                     )}
@@ -165,3 +193,10 @@ export default KitchenViewPage;
 
 //Författare Diliara
 // Gjorde om sidan, läser in orders från db
+
+/**
+ * Författare Ida
+ * Har lagt till funktionalitet för att kunna markera en order som approved och kunna skicka med information till köket
+ * Har lagt till en funktion för att kunna markera en order som done
+ * La även till så att när en kommentar skickas med till köket skrivs det ut
+ */

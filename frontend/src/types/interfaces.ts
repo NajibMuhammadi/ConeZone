@@ -35,6 +35,7 @@ export interface Order {
     totalPrice: number;
     isApproved?: boolean;
     isDone?: boolean;
+    kitchenMessage?: string
 }
 
 // export interface OrderInput {
@@ -73,10 +74,18 @@ export interface updatedOrder {
     totalPrice: number
 }
 
+export interface adminApprove {
+    sk: string
+    isApproved?: boolean,
+    isDone?: boolean,
+    kitchenMessage?: string
+}
+
 /**
  * Författare Ida
  * Skapat en ItemType interface för våra items i databasen.
  * Denna berättar om det är strängar, booleans, numbers eller arrays som våra items är byggda av
+ * Skapade interface för adminApprove och updatedOrder
  */
 
 // Författare Lisa

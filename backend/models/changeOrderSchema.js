@@ -1,7 +1,7 @@
 const {orderSchema} = require('./orderSchema')
 
 const changeOrderSchema = orderSchema.fork(
-    ['username', 'customerDetails', 'paymentMethod', 'items', 'isDone', 'isApproved', 'totalPrice'],
+    ['username', 'customerDetails', 'paymentMethod', 'items', 'isDone', 'isApproved', 'totalPrice', 'kitchenMessage'],
     field => field.optional()
 )
 

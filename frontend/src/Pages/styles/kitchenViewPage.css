@@ -153,6 +153,12 @@
     box-shadow: 2px 2px 2px pink;
 }
 
+.kitchenViewPage__message {
+    padding-top: 2rem;
+    font-weight: bold;
+    font-style: italic;
+}
+
 .order__incoming {
     position: relative;
 }
