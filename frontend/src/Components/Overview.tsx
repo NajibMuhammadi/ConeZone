@@ -5,7 +5,7 @@ import { useState } from 'react';
 import Counter from './Counter';
 import { CustomerDetails } from '../types/interfaces';
 
-function Overview({ onNext }: { onNext: (sk : string) => void }) {
+function Overview({ onNext }: { onNext: (sk: string) => void }) {
 
     const cart = useMenuStore(state => state.cart)
     const order = useMenuStore(state => state.order)
@@ -33,9 +33,16 @@ function Overview({ onNext }: { onNext: (sk : string) => void }) {
     }
 
     const handleSendOrder = async () => {
+        setOrder(customerDetails.name, customerDetails.phone, customerDetails.email); // Synka den senaste cart till order innan du skickar
+
+        const updatedOrder = {
+            ...order,
+            items: [...cart],
+
+        };
         try {
-            const response = await postOrder('ordersUrl', order, paymentMethod, totalPrice);
-            if(response && response.sk) {
+            const response = await postOrder('ordersUrl', updatedOrder, paymentMethod, totalPrice);
+            if (response && response.sk) {
                 clearCart();
                 onNext(response.sk);
             }
@@ -220,7 +227,7 @@ export default Overview
 * 
 * Författare: Lisa
 * Implementerat funktionalitet på sidan från vår Store samt till databasen (med Ida). 
-* Fixat möjlighet till editing på sida.
+* Fixat möjlighet till editing på sida. + Buggfix. 
 * 
 * Bugfix: Ida
 * Ser till att vi kan skicka med ett sk till order status sidan
