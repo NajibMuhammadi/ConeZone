@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { deleteOrder } from '../services/deleteOrder';
 import './styles/orderStatus.css';
 import { Link } from 'react-router-dom';
+import { Order } from '../types/interfaces';
+import { fetchOrder } from '../services/fetchOrder';
 
 interface Props {
     sk: string;
@@ -10,6 +12,9 @@ interface Props {
 function OrderStatus({sk} : Props) {
     const pk = 'guest';
     const [isCanceled, setIsCaneled] = useState(false);
+    const [isApproved, setIsApproved] = useState(false);
+    const [isDone, setIsDone] = useState(false);
+    const [orderDetails, setOrderDetails] = useState<Order | null>(null)
 
 
     const cancelOrder = async () => {
@@ -18,14 +23,36 @@ function OrderStatus({sk} : Props) {
         setIsCaneled(true)
     };
 
-    const editOrder = async () => {
-        console.log('clicked the edit order button and the order id is', sk)
-    };
+    const getOrder = async () => {
+        try {
+            const response = await fetchOrder('ordersUrl', pk, sk)
+            setOrderDetails(response)
+        } catch (error) {
+            console.error(' Failed to get order', error)
+        }
+    }
+
+    useEffect(() => {
+        getOrder()
+        const interval = setInterval(getOrder, 10000);
+        return () => clearInterval(interval)
+    }, [sk])
+
+    useEffect(() => {
+        if(orderDetails?.isApproved) {
+            setIsApproved(true);
+        }
+    
+        if(orderDetails?.isDone) {
+            setIsApproved(false)
+            setIsDone(true);
+        }
+    }, [orderDetails])
 
 
     return (
         <div className='order__wrapper'>
-            { isCanceled ?
+            { isCanceled ? (
                 <main className='order'>
                     <h1 className='order__title'>Order Status</h1>
                     <span className='order__divider'></span>
@@ -34,7 +61,23 @@ function OrderStatus({sk} : Props) {
                         <p className='order__info-subtitle'>You need to go back to menu if you want to order something else</p>
                     </section>
                 </main>
-            :
+            ) : isApproved ? (
+                <main className='order'>
+                    <h1 className='order__title'>Order Status</h1>
+                    <span className='order__divider'></span>
+                    <section className='order__info-container'>
+                        <p className='order__info-title'>Your order with ordernumber {sk} has been Approved!</p>                    
+                    </section>
+                </main>
+            ) : isDone ? (
+                <main className='order'>
+                    <h1 className='order__title'>Order Status</h1>
+                    <span className='order__divider'></span>
+                    <section className='order__info-container'>
+                        <p className='order__info-title'>Your order with ordernumber {sk} is ready to be picked!</p>
+                    </section>
+                </main>
+            ) : (
                 <main className='order'>
                     <h1 className='order__title'>Order Status</h1>
                     <span className='order__divider'></span>
@@ -45,12 +88,12 @@ function OrderStatus({sk} : Props) {
                     </section>
                     <section className='order__button-container'>
                         <Link to={`/order/${pk}/${sk}`}>
-                            <button className='order__btn order__btn--change' onClick={editOrder}>Change order</button>
+                            <button className='order__btn order__btn--change'>Change order</button>
                         </Link>
                         <button className='order__btn' onClick={cancelOrder}>Cancel order</button>
                     </section>
                 </main>
-            }
+            )}
         </div>
     )
 }
