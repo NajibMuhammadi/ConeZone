@@ -4,7 +4,6 @@ const middy = require('@middy/core')
 const {errorHandler} = require('../../middlewares/errorHandler.js')
 const {validateChangeOrder} = require('../../middlewares/validateChangeOrder.js')
 
-
 const handler = async (event) => {
     const pk = event.pathParameters.pk;
     const id = event.pathParameters.id;

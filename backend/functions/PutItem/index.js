@@ -3,6 +3,7 @@ const {sendResponse, sendError } = require('../../responses/index.js')
 const middy = require('@middy/core');
 const { validateToken } = require('../../middlewares/validateToken.js');
 const { errorHandler } = require('../../middlewares/errorHandler.js');
+const {validateChangeOrder} = require('../../middlewares/validateChangeOrder')
 
 const putItem = async (event, context) => {
     const id = event.pathParameters.id;
@@ -60,7 +61,7 @@ const putItem = async (event, context) => {
 }
 
 const middyHandler = middy(putItem);
-exports.handler = middyHandler.use(validateToken()).use(errorHandler());
+exports.handler = middyHandler.use(validateToken()).use(validateChangeOrder()).use(errorHandler());
 
 /**
   * Författare: Ida
