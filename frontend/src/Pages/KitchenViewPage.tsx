@@ -50,7 +50,7 @@ function KitchenViewPage() {
             }
             console.log(`Your order with the id `, sk, ` has been approved with the following `, newMessage )
             await adminUpdate('adminOrdersUrl', pk, sk, newOrder)
-            //location.reload()
+            location.reload()
     }
 
 const orderDone = async (sk : string) => {
