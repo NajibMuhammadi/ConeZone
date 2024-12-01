@@ -72,7 +72,17 @@ Vår sprintplanering är att vi ska kunna ändra beställningen i varukorgen, ä
 
 ![alt text](./screenshots/monday-week48.png)
 
+# Sprint review
+kunden var generallt nöjd med framstegen. Han föreslog att vi skulle kunna lägga till en drickmeny i vår app men det kanske blir mycket jobb så han sa krångla inte till det.
 
+# Sprint Retrospektiv
+Lisa: har varit en bra vecka, frustationen med att inte kunna lösa problemet med quantity, störde henne. Sen släppte det.
+Diliara: Veckan var bra som vanligt och krångla till. Kan förbättra kommunikationen med teamet.
+Ida: Utmanande vecka, man har lärt sig på vägen och kommit bra väg med backend. Mycket frontend till nästa sprint.
+Najib: har inte alls varit en bra vecka för mig, eftersom jag blev sjuk redan på tisdag orkade inte riktigt sitta framför datorn även om jag gjorde min del av jobbet.
+
+## Vad kan förbättras?
+Kommunikationen med teamet.
 
 Medverkande: Najib, Diliara, Ida, Lisa
 
