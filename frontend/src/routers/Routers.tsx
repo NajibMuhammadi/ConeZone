@@ -12,6 +12,7 @@ import UserPage from "../pages/UserPage";
 import ChangeOrderPage from "../pages/ChangeOrderPage"
 import EditMenuPage from "../pages/EditMenuPage";
 import AllOrdersPage from "../pages/AllOrdersPage";
+import EditItemPage from "../pages/EditItemPage";
 
 function Routers() {
     return (
@@ -30,6 +31,7 @@ function Routers() {
                 <Route path="/order/:pk/:sk" element={<ChangeOrderPage />} />
                 <Route path="/editmenu" element={<EditMenuPage />} />
                 <Route path="/showorders" element={<AllOrdersPage />} />
+                <Route path="/item/:sk" element={<EditItemPage />} />
             </Routes>
         </BrowserRouter>
     )
