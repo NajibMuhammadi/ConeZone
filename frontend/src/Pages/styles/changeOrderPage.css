@@ -86,7 +86,7 @@
     display: flex;
     align-items: center;
     gap: 30px;
-    margin-left: 10vw;
+    margin-left: 5rem;
 }
 
 .changeOrderPage__img {
@@ -242,6 +242,7 @@
 
     .changeOrderPage__img {
         width: 30vw;
+        margin-bottom: 0;
     }
 
     .changeOrderPage__info {
@@ -313,7 +314,7 @@
 
 @media (min-width: 1300px) {
     .changeOrderPage__product {
-        margin-left: 20px;
+        margin-left: 30px;
     }
 }
 
