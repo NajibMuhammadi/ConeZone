@@ -46,18 +46,18 @@ function AdminHeader() {
 
     return (
         <header className="header">
-            <button className="header__button" onClick={toggleNav}><img className="button__hamburger" src="../../src/assets/hamburger.svg" /></button>
+            <button className="header__button" onClick={toggleNav}><img className="button__hamburger" src="../../src/assets/hamburger.svg" alt="hamburger menu"/></button>
             <nav className="header__nav">
-                <NavLink to="/" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}><img className="header__logo" src="../../../src/assets/logo.svg"/></NavLink>
+                <NavLink to="/" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}><img className="header__logo" src="../../../src/assets/logo.svg" alt="header logo" /></NavLink>
                 <NavLink to="/menu" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>Menu</NavLink>
                 <NavLink to="/about" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>About Us</NavLink>
                 <NavLink to="/cart" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>
-                    <img className="header__basket" src="../../src/assets/basket.svg"/>
+                    <img className="header__basket" src="../../src/assets/basket.svg" alt="cart"/>
                     {quantity > 0 && (
                         <div className='badge'>{quantity}</div>
                     )}
                 </NavLink>
-                <button className="nav__button" onClick={toggleUserMenu}>  <img className="header__user" src="../../src/assets/user.svg"/><p>Admin</p></button>
+                <button className="nav__button" onClick={toggleUserMenu}>  <img className="header__user" src="../../src/assets/user.svg" alt="navigation menu"/><p>Admin</p></button>
                 <nav className={`nav__user-nav ${isUserMenuOpen ? 'showMenu' : ''}`}>
                     <section className="user-nav__section">
                         <NavLink to="/kitchenview" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>Kitchen View</NavLink>
@@ -68,17 +68,17 @@ function AdminHeader() {
                 </nav>
             </nav>
             <nav className="header__nav header__nav--mobile">
-                <NavLink to="/" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}><img className="header__logo" src="../../../src/assets/logo.svg"/></NavLink>
+                <NavLink to="/" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}><img className="header__logo" src="../../../src/assets/logo.svg" alt="header logo"/></NavLink>
                 <section className={`header__section ${isOpen ? 'open' : ''}`}>
                     <NavLink to="/menu" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>Menu</NavLink>
                     <NavLink to="/about" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>About Us</NavLink>
                     <NavLink to="/cart" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>
-                        <img className="header__basket" src="../../src/assets/basket.svg"/>
+                        <img className="header__basket" src="../../src/assets/basket.svg" alt="cart"/>
                         {quantity > 0 && (
                             <div className='badge'>{quantity}</div>
                         )}
                     </NavLink>
-                    <button className="nav__button" onClick={toggleUserMenu}>  <img className="header__user" src="../../src/assets/user.svg"/><p>Admin</p></button>
+                    <button className="nav__button" onClick={toggleUserMenu}>  <img className="header__user" src="../../src/assets/user.svg" alt="navigation menu"/><p>Admin</p></button>
                     <nav className={`nav__user-nav nav__user-nav--mobile ${isUserMenuOpen ? 'showMenu' : ''}`}>
                         <NavLink to="/kitchenview" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>Kitchen View</NavLink>
                         <NavLink to="/editmenu" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>Edit Menu</NavLink>
