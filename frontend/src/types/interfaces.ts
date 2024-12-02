@@ -95,7 +95,7 @@ export interface adminApprove {
  * Författare Ida
  * Skapat en ItemType interface för våra items i databasen.
  * Denna berättar om det är strängar, booleans, numbers eller arrays som våra items är byggda av
- * Skapade interface för adminApprove och updatedOrder
+ * Skapade interface för adminApprove, updatedOrder,newItem
  */
 
 // Författare Lisa
