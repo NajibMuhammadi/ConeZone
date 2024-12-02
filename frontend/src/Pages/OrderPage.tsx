@@ -10,6 +10,7 @@ import Overview from "../components/Overview";
 import OrderStatus from "../components/OrderStatus";
 import "./styles/orderPage.css";
 import { useLocation } from "react-router-dom";
+
 function OrderPage() {
     const sliderRef = useRef<Slider | null>(null)
     const [orderSk, setOrderSk] = useState<string | null>(null)
@@ -67,7 +68,7 @@ function OrderPage() {
             (sliderRef.current as Slider).slickNext();
         }
 
-        if(sk) {
+        if (sk) {
             setOrderSk(sk)
         }
     };
@@ -89,7 +90,7 @@ function OrderPage() {
                     <Info onNext={handleNext} />
                     <Payment onNext={handleNext} />
                     <Overview onNext={handleNext} />
-                    <OrderStatus sk={orderSk ?? ''}/>
+                    <OrderStatus sk={orderSk ?? ''} />
                 </Slider>
             </div>
             <Footer />
