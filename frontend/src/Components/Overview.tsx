@@ -33,7 +33,7 @@ function Overview({ onNext }: { onNext: (sk: string) => void }) {
     }
 
     const handleSendOrder = async () => {
-        setOrder(customerDetails.name, customerDetails.phone, customerDetails.email); // Synka den senaste cart till order innan du skickar
+        setOrder(customerDetails.name, customerDetails.phone, customerDetails.email);
 
         const updatedOrder = {
             ...order,
