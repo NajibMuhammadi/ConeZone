@@ -31,6 +31,7 @@ function Routers() {
                 <Route path="/order/:pk/:sk" element={<ChangeOrderPage />} />
                 <Route path="/editmenu" element={<EditMenuPage />} />
                 <Route path="/showorders" element={<AllOrdersPage />} />
+                <Route path="/order/:sk" element={<ChangeOrderPage />} />
                 <Route path="/item/:sk" element={<EditItemPage />} />
             </Routes>
         </BrowserRouter>
@@ -44,7 +45,8 @@ export default Routers;
  * Här skapas de olika routes upp som vi kommer använda för att navigera på sidan
  * 
  * Edited: Diliara
- * La till en route för ProductPage, OrderPage, UserPage, EditMenuPage och AllOrdersPage
+ * La till en route för ProductPage, OrderPage, UserPage, EditMenuPage och AllOrdersPage,
+ * route för admin som ska kunna öppna alla ordrar
  * 
  * Edited: Lisa
  * La till en route för ChangeOrderPage

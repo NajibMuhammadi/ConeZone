@@ -45,6 +45,7 @@
 .nav__logout {
     background-color: transparent;
     border: none;
+    margin-bottom: 2rem;
 }
 
 .nav__user-nav.nav__user-nav--mobile.showMenu {

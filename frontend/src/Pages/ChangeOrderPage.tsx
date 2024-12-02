@@ -1,209 +1,333 @@
 import './styles/changeOrderPage.css';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { fetchOrder } from '../services/fetchOrder';
+import fetchOrders from '../services/fetchOrders';
 import { Order } from '../types/interfaces';
 import { updateOrder } from '../services/updateOrder';
 import { deleteOrder } from '../services/deleteOrder';
-import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 function ChangeOrderPage() {
     const navigate = useNavigate();
-    const orderId = useParams();
-    const pk = orderId.pk;
-    const sk = orderId.sk;
+    const { pk, sk } = useParams<{ pk?: string; sk: string }>();
     const [order, setOrder] = useState<Order | null>(null);
     const [loading, setLoading] = useState(true);
     const [totalPrice, setTotalPrice] = useState(0);
     const [errorMsg, setErrorMsg] = useState<string | null>(null);
     const [successMsg, setSuccessMsg] = useState<string | null>(null);
     const [isAdmin, setIsAdmin] = useState(false);
-
-    useEffect(() => {
-        const loadOrder = async (): Promise<void> => {
-            try {
-                const fetchedOrder = await fetchOrder('ordersUrl', pk as string, sk as string)
-                setOrder(fetchedOrder);
-                setTotalPrice(fetchedOrder.totalPrice)
-                console.log(order)
-            } catch (error) {
-                console.error('Error fetching order', error)
-            } finally {
-                setLoading(false)
-            }
-        }
-        if (pk && sk) {
-            loadOrder();
-        }
-    }, [loading])
-
-    useEffect(() => {
-        if (order) {
-            const newPrice = order.items.reduce((total, item) => total + item.price * item.qty, 0);
-            setTotalPrice(newPrice)
-            console.log('Nu räknas det nya priset ut:', newPrice)
-        }
-    }, [order])
+    const [username, setUsername] = useState<string>(pk || 'guest');
+    const [storedPk, setStoredPk] = useState<string | null>(null);
+    const [pkReady, setPkReady] = useState<boolean>(false);
+    const [paymentMethodImg, setPaymentMethodImg] = useState<string>('');
+    const [customerInfoErrorMsg, setCustomerInfoErrorMsg] = useState<string | null>(null);
 
     useEffect(() => {
         const token = sessionStorage.getItem('token');
         if (token) {
             try {
-                const decoded: { isAdmin: boolean } = jwtDecode(token);
-                const isAdmin = decoded.isAdmin;
-                console.log('isAdmin:', isAdmin);
-                setIsAdmin(isAdmin);
+                const decoded: { isAdmin: boolean, username: string } = jwtDecode(token);
+                if (decoded.isAdmin) {
+                    setUsername('admin');
+                } else if (pk === 'guest') {
+                    setUsername(decoded.username);
+                    navigate(`/order/${decoded.username}/${sk}`, { replace: true });
+                } else {
+                    setUsername(pk || 'guest');
+                }
+                setIsAdmin(decoded.isAdmin);
+                console.log('Decoded token:', decoded);
+                setPkReady(true);
             } catch (err) {
                 console.error('Error parsing token:', err);
             }
         } else {
-            setIsAdmin(false);
+            setPkReady(true);
         }
-    }, []);
+    }, [pk, sk, navigate]);
+
+    useEffect(() => {
+        const loadOrder = async (): Promise<void> => {
+            if (!pkReady) {
+                console.log('pk is still guest or not ready, waiting for it to be set...');
+                return;
+            }
+            try {
+                let fetchedOrder;
+                if (isAdmin) {
+                    const orders = await fetchOrders();
+                    fetchedOrder = orders.find(order => order.sk === sk);
+                    if (!fetchedOrder) {
+                        throw new Error('Order not found');
+                    }
+                    setStoredPk(fetchedOrder.pk || null);
+                } else {
+                    const fetchPk = username;
+                    console.log('Fetching order with pk:', fetchPk, 'and sk:', sk);
+                    fetchedOrder = await fetchOrder('ordersUrl', fetchPk, sk as string);
+                }
+                setOrder(fetchedOrder);
+                setTotalPrice(fetchedOrder.totalPrice);
+                setPaymentMethodImg(`../../src/assets/${fetchedOrder.paymentMethod}.svg`);
+                console.log('Fetched order:', fetchedOrder);
+            } catch (error) {
+                console.error('Error fetching order', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        if (pkReady && sk) {
+            loadOrder();
+        }
+    }, [pkReady, username, sk, isAdmin]);
+
+    useEffect(() => {
+        if (order) {
+            const newPrice = order.items.reduce((total, item) => total + item.price * item.qty, 0);
+            setTotalPrice(newPrice);
+            console.log('New total price:', newPrice);
+        }
+    }, [order]);
+
+    const handleCustomerDetailsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (order) {
+            const { name, value } = e.target;
+            setOrder({
+                ...order,
+                customerDetails: {
+                    ...order.customerDetails,
+                    [name]: value,
+                },
+            });
+        }
+    };
+
+    const handlePaymentMethodChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        if (order) {
+            const newMethod = e.target.value;
+            setOrder({
+                ...order,
+                paymentMethod: newMethod,
+            });
+            setPaymentMethodImg(`../../src/assets/${newMethod}.svg`);
+        }
+    };
 
     const adminButton = () => {
-        navigate('/kitchenview')
-    }
+        navigate('/kitchenview');
+    };
 
     if (loading) {
-        return
-        <p>Waiting....</p>
+        return <p>Waiting....</p>;
     }
 
     if (!order) {
-        return <p>No order found</p>
+        return <p>No order found</p>;
     }
 
-    const items = order.items
+    const items = order.items;
 
     const decreaseQuantity = (id: string, qty: number) => {
-        updateItemQuantity(id, qty - 1)
-        console.log('Subtraktion', id, qty)
+        updateItemQuantity(id, qty - 1);
+        console.log('Decreased quantity:', id, qty);
     };
 
     const increaseQuantity = (id: string, qty: number) => {
-        updateItemQuantity(id, qty + 1)
+        updateItemQuantity(id, qty + 1);
     };
 
     const updateItemQuantity = (itemId: string, newQty: number) => {
-        const updateOrder = order.items.map(item => {
-            if (item.sk === itemId) {
-                return { ...item, qty: newQty };
-            }
-            return item;
-        })
+        const updatedOrder = order.items
+            .map(item => {
+                if (item.sk === itemId) {
+                    return { ...item, qty: newQty };
+                }
+                return item;
+            })
             .filter(item => item.qty >= 1);
-        setOrder({ ...order, items: updateOrder });
-        console.log(order)
+        setOrder({ ...order, items: updatedOrder });
+        console.log('Updated order:', updatedOrder);
+    };
+
+    const validateCustomerDetails = (): string | null => {
+        if (!order || !order.customerDetails.name.trim()) {
+            return 'Name is required.';
+        }
+        if (!/^\+?[0-9]+$/.test(order.customerDetails.phone)) {
+            return 'Please enter a valid phone number with only numbers and an optional + at the beginning.';
+        }
+        if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(order.customerDetails.email)) {
+            return 'Please enter a valid email address.';
+        }
+        return null;
     }
 
     const sendChangedOrder = async () => {
-        let newOrder = {
-            sk: sk,
-            items: items,
-            totalPrice: totalPrice
+        const validationError = validateCustomerDetails();
+        if (validationError) {
+            setCustomerInfoErrorMsg(validationError);
+            return;
         }
-        console.log('sendChangedOrder is clicked', pk, sk, newOrder)
-        if (items.length === 0) {
-            const response = await deleteOrder('ordersUrl', pk as string, sk as string);
-            if (!response) {
-                setErrorMsg('You can not delete an order that has been approved');
-            }
-            if (response) {
-                setSuccessMsg('Order deleted')
-            }
-        } else {
-            const response = await updateOrder('ordersUrl', pk as string, sk as string, newOrder)
-            if (!response) {
-                setSuccessMsg('');
-                setErrorMsg('You can not change an order that has been approved');
+
+        try {
+            let newOrder = {
+                sk: sk,
+                items: items,
+                customerDetails: order.customerDetails,
+                paymentMethod: order.paymentMethod,
+                totalPrice: totalPrice
+            };
+            const pkToUse = isAdmin ? (storedPk || 'guest') : username;
+            console.log('sendChangedOrder is clicked', pkToUse, sk, newOrder);
+            if (items.length === 0) {
+                const response = await deleteOrder('ordersUrl', pkToUse, sk as string);
+                if (!response) {
+                    setErrorMsg('You can not delete an order that has been approved');
+                }
+                if (response) {
+                    setSuccessMsg('Order deleted');
+                }
             } else {
-                setSuccessMsg('Order updated successfully!')
+                const response = await updateOrder('ordersUrl', pkToUse, sk as string, newOrder);
+                if (!response) {
+                    setSuccessMsg('');
+                    setErrorMsg('You can not change an order that has been approved');
+                } else {
+                    setCustomerInfoErrorMsg('');
+                    setSuccessMsg('Order updated successfully!');
+                }
             }
+        } catch (error: any) {
+            setErrorMsg('An error occurred: ' + error.message);
         }
-    }
+    };
 
     const backToOrderStatus = () => {
-        navigate('/order', { state: { slideIndex: 3, sk: sk } })
-    }
+        navigate('/order', { state: { slideIndex: 3, sk: sk } });
+    };
 
     return (
-        <section className="overview__wrapper">
-            <section>
-                <article className="overview">
-                    <h2 className="overview__heading">Overview</h2>
-                    <hr className="overview__line" />
-                    {/* Customer Details */}
-                    <section>
-                        <section className="overview__customer-container-top">
-                            <h3 className="overview__customer">Customer</h3>
-                            <section>
-                                <p className="overview__customer-info"><strong>Name:</strong> {order.customerDetails.name}</p>
-                                <p className="overview__customer-info"><strong>Phone number:</strong> {order.customerDetails.phone}</p>
-                                <p className="overview__customer-info"><strong>Email:</strong> {order.customerDetails.email}</p>
+        <>
+            <Header />
+            <section className="changeOrderPage__wrapper">
+                <section>
+                    <article className="changeOrderPage">
+                        <h2 className="changeOrderPage__heading">Overview</h2>
+                        <hr className="changeOrderPage__line" />
+                        {/* Customer Details */}
+                        <section>
+                            <section className="changeOrderPage__customer-container-top">
+                                <h3 className="changeOrderPage__customer">Customer</h3>
+                                <section className="changeOrderPage__input">
+                                    <label>
+                                        <p><strong>Name:</strong></p>
+                                        <input
+                                            type="text"
+                                            name="name"
+                                            value={order.customerDetails.name}
+                                            onChange={handleCustomerDetailsChange}
+                                        />
+                                    </label>
+                                    <label>
+                                        <p><strong>Phone Number:</strong></p>
+                                        <input
+                                            type="text"
+                                            name="phone"
+                                            value={order.customerDetails.phone}
+                                            onChange={handleCustomerDetailsChange}
+                                        />
+                                    </label>
+                                    <label>
+                                        <p><strong>Email:</strong></p>
+                                        <input
+                                            type="email"
+                                            name="email"
+                                            value={order.customerDetails.email}
+                                            onChange={handleCustomerDetailsChange}
+                                        />
+                                    </label>
+                                </section>
+                                {customerInfoErrorMsg && <p className="changeOrderPage__errormsg">{customerInfoErrorMsg}</p>}
+
                             </section>
                         </section>
-                    </section>
-                    <hr className="overview__line" />
-                    {/* Cart */}
-                    <section className="overview__product-wrapper">
-                        <h3 className="overview__customer">Cart</h3>
-                        {items.map((item) => (
-                            <section className="overview__product" key={item.sk}>
-                                <img src={item.image} alt={item.name} className="overview__img" />
-                                <section className="overview__info-wrapper">
-                                    <section className="overview__info">
-                                        <h4 className="overview__product-name">Product: {item.name}</h4>
-                                        <article className="counter-container">
-                                            <button className="decreaseCounter-btn" onClick={() => decreaseQuantity(item.sk, item.qty)}>-</button>
-                                            <p className="counter-qty">{item.qty}</p>
-                                            <button className="increaseCounter-btn" onClick={() => increaseQuantity(item.sk, item.qty)}>+</button>
-                                        </article>
+                        <hr className="changeOrderPage__line" />
+                        {/* Cart */}
+                        <section className="changeOrderPage__product-wrapper">
+                            <h3 className="changeOrderPage__customer">Cart</h3>
+                            {items.map((item) => (
+                                <section className="changeOrderPage__product" key={item.sk}>
+                                    <img src={item.image} alt={item.name} className="changeOrderPage__img" />
+                                    <section className="changeOrderPage__info-wrapper">
+                                        <section className="changeOrderPage__info">
+                                            <h4 className="overview__product-name">Product: {item.name}</h4>
+                                            <article className="changeOrderPage__counter-container">
+                                                <button className="decreaseCounter-btn" onClick={() => decreaseQuantity(item.sk, item.qty)}>-</button>
+                                                <p className="counter-qty">{item.qty}</p>
+                                                <button className="increaseCounter-btn" onClick={() => increaseQuantity(item.sk, item.qty)}>+</button>
+                                            </article>
+                                        </section>
                                     </section>
                                 </section>
-                            </section>
-                        ))}
-                    </section>
-                    <hr className="overview__line" />
-
-                    {/* Payment Method  */}
-                    <section className="overview__payment-wrapper">
-                        <h3 className="overview__customer">Choosen payment method</h3>
-                        <section className="overview__payment">
-                            <p className="overview__method-details">{order.paymentMethod}</p>
-                            <img src={`../../src/assets/${(order.paymentMethod)}.svg`} alt={order.paymentMethod} className="overview__method-img" />
+                            ))}
                         </section>
-                    </section>
-                    <hr className="overview__line" />
-                    <section className="overview__total">
-                        <p className="overview__total-price">Total: <strong> {totalPrice} sek</strong></p>
-                        {errorMsg && <p className="overview__errormsg">{errorMsg}</p>}
-                        {successMsg && <p className="overview__successmsg">{successMsg}</p>}
-                        <button
-                            className="overview__submit"
-                            onClick={sendChangedOrder}
-                        >Change Order</button>
-                        {isAdmin && (
+                        <hr className="changeOrderPage__line" />
+
+                        {/* Payment Method  */}
+                        <section className="changeOrderPage__payment-wrapper">
+                            <h3 className="changeOrderPage__customer">Choosen payment method</h3>
+                            <section className="changeOrderPage__payment">
+                                <select
+                                    value={order.paymentMethod}
+                                    onChange={handlePaymentMethodChange}
+                                >
+                                    <option value="Card">Card</option>
+                                    <option value="Cash">Cash</option>
+                                    <option value="Swish">Swish</option>
+                                    <option value="Klarna">Klarna</option>
+                                </select>
+                                {paymentMethodImg && (
+                                    <img
+                                        src={paymentMethodImg}
+                                        alt={order.paymentMethod}
+                                        className="changeOrderPage__method-img"
+                                    />
+                                )}
+                            </section>
+                        </section>
+                        <hr className="changeOrderPage__line" />
+                        <section className="changeOrderPage__total">
+                            <p className="changeOrderPage__total-price">Total: <strong> {totalPrice} sek</strong></p>
+                            {errorMsg && <p className="changeOrderPage__errormsg">{errorMsg}</p>}
+                            {successMsg && <p className="changeOrderPage__successmsg">{successMsg}</p>}
                             <button
-                                className="overview__submit overview__submit-green"
-                                onClick={adminButton}>
-                                Go back to kitchenView
-                            </button>
-                        )}
-                        <button
-                            className="overview__submit-white"
-                            onClick={backToOrderStatus}
-                        >Back To Order Status</button>
-                    </section>
-                </article>
+                                className="changeOrderPage__submit"
+                                onClick={sendChangedOrder}
+                            >Change Order</button>
+                            {isAdmin && (
+                                <button
+                                    className="changeOrderPage__submit changeOrderPage__submit-green"
+                                    onClick={adminButton}>
+                                    Go back to kitchenView
+                                </button>
+                            )}
+                            <button
+                                className="changeOrderPage__submit-white"
+                                onClick={backToOrderStatus}
+                            >Back To Order Status</button>
+                        </section>
+                    </article>
+                </section>
             </section>
-        </section>
-    )
+            <Footer />
+        </>
+    );
 }
 
-export default ChangeOrderPage
-
+export default ChangeOrderPage;
 
 /**
  * Författare Lisa och Ida
@@ -213,3 +337,7 @@ export default ChangeOrderPage
  * Skapar en funktion som skickar iväg den uppdaterade ordern med ny information. Om den blivit approved skrivs ett felmeddelande ut.
  * Skapar en funktion som navigerar oss till sista slidern på orderpages sidan.
  */
+
+/* Edited: Diliara
+Kollar om user är admin, om man är då sparar vi pk i useState och använder det när order ska uppdateras
+admin kan redigera alla ordrar, annars bara sina egna ordrar */

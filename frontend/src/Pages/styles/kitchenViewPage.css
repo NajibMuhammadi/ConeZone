@@ -95,6 +95,7 @@
     border-radius: 10px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     font-size: 20px;
 }
 
@@ -104,6 +105,7 @@
     border-radius: 10px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     font-size: 20px;
 }
 

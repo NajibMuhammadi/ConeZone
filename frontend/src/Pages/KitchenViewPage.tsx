@@ -5,14 +5,29 @@ import fetchOrders from '../services/fetchOrders';
 import { Order } from '../types/interfaces';
 import AdminHeader from '../components/AdminHeader';
 import { adminUpdate } from '../services/adminUpdate';
-import Header from '../components/Header';
+// import Header from '../components/Header';
 import { Link } from 'react-router-dom';
+import { jwtDecode } from 'jwt-decode';
 
 function KitchenViewPage() {
     const [orders, setOrders] = useState<Order[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
     const [filter, setFilter] = useState<string>('all');
+    const [isAdmin, setIsAdmin] = useState<boolean>(false);
+
+    useEffect(() => {
+        const token = sessionStorage.getItem('token');
+        if (token) {
+            try {
+                const decoded: { isAdmin: boolean, username: string } = jwtDecode(token);
+                setIsAdmin(decoded.isAdmin);
+                console.log('Decoded token:', decoded);
+            } catch (err) {
+                console.error('Error parsing token:', err);
+            }
+        }
+    }, []);
 
     useEffect(() => {
         const loadOrders = async () => {
@@ -39,26 +54,28 @@ function KitchenViewPage() {
         filter === 'ongoing' ? ongoingOrders :
             filter === 'done' ? doneOrders : orders;
 
-        const [newMessage, setNewMessage] = useState('')
-        const pk = 'guest'
-        
-    const approveOrder = async (sk : string) => {
-            let newOrder = {
-                sk: sk,
-                isApproved: true,
-                kitchenMessage: newMessage,
-            }
-            console.log(`Your order with the id `, sk, ` has been approved with the following `, newMessage )
-            await adminUpdate('adminOrdersUrl', pk, sk, newOrder)
-            location.reload()
-    }
+    console.log('Filtered orders:', filteredOrders);
 
-const orderDone = async (sk : string) => {
+    const [newMessage, setNewMessage] = useState('');
+    const pk = 'guest';
+
+    const approveOrder = async (sk: string) => {
+        let newOrder = {
+            sk: sk,
+            isApproved: true,
+            kitchenMessage: newMessage,
+        };
+        console.log(`Your order with the id `, sk, ` has been approved with the following `, newMessage);
+        await adminUpdate('adminOrdersUrl', pk, sk, newOrder);
+        location.reload();
+    };
+
+    const orderDone = async (sk: string) => {
         let newOrder = {
             sk: sk,
             isApproved: true,
             isDone: true
-        }
+        };
 
         await adminUpdate('adminOrdersUrl', pk, sk, newOrder)
         location.reload()
@@ -90,10 +107,11 @@ const orderDone = async (sk : string) => {
                                     ) : (
                                         incomingOrders.map((order) => (
                                             <div key={order.sk} className="order__incoming">
-                                                <Link to={`/order/${order.pk}/${order.sk}`}>
+                                                <Link to={isAdmin ? `/order/${order.sk}` : `/order/${order.pk}/${order.sk}`}>
                                                     <button className="kitchenViewPage__edit">
                                                         <img className='kitchenViewPage__edit-img' src="../../src/assets/edit.png" alt="Redigera" />
-                                                    </button></Link>
+                                                    </button>
+                                                </Link>
                                                 <p>Order ID: {order.sk}</p>
                                                 <p>Customer: {order.customerDetails.name}</p>
                                                 <p>Total: {order.totalPrice} SEK</p>
@@ -193,7 +211,8 @@ export default KitchenViewPage;
 //Författare Lisa - skapat sidan
 
 //Författare Diliara
-// Gjorde om sidan, läser in orders från db
+// Gjorde om sidan, läser in orders från db,
+// kollar om user är admin, admin skickas till /order/sk, inte /order/pk/sk son vanlig användare
 
 /**
  * Författare Ida
