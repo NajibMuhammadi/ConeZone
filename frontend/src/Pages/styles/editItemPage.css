@@ -132,6 +132,30 @@
     justify-content: center;
 }
 
+.edit-item__component-item {
+    background-color: rgba(249, 40, 40, 0.779);
+    margin: 1rem 0;
+    padding: .5rem;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.edit-item__delete-btn {
+    background-color: transparent;
+    border: none;
+}
+
+.edit-item__component-btn {
+    margin: 2rem 0;
+    background-color: var(--green);
+    border-radius: 10px;
+    border: none;
+    padding: 2rem;
+    width: 200px;
+    align-self: center;
+}
+
 @media (max-width: 768px) {
     .edit-item {
         width: 90%;

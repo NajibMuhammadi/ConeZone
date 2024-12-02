@@ -59,5 +59,10 @@ function EditMenuPage() {
 
 export default EditMenuPage;
 
-// Författare: Diliara
-// En sida där admin kan redigera menyn
+/** 
+ * Författare: Diliara
+ * En sida där admin kan redigera menyn
+ * 
+ * Edited: Ida
+ * La till en länk för att navigera till sidan där man kan edit items
+*/

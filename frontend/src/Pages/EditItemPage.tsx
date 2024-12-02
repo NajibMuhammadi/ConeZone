@@ -82,11 +82,8 @@ function EditItemPage() {
     } 
 
     const deleteComponent = (componentItem : string ) => {
-        console.log('delete component', componentItem)
-        console.log('Old componentarray', componentArray)
         const updatedComponents = componentArray.filter(component => component !== componentItem);
         setComponentArray(updatedComponents)
-        console.log('New componentArray', updatedComponents)
     }
 
     const changeItem = async(event: React.FormEvent) => {
@@ -190,10 +187,13 @@ function EditItemPage() {
                                 <label className="edit-item__label">Components
                                 <ul>
                                     {componentArray.map((component, index) => (
-                                        <li key={index}>
+                                        <li key={index}
+                                            className="edit-item__component-item"
+                                        >
                                             {component}
                                             <button
                                                 type="button"
+                                                className="edit-item__delete-btn"
                                                 onClick={() => deleteComponent(component)}
                                             >Delete</button>
                                         </li>
@@ -211,6 +211,7 @@ function EditItemPage() {
                                     <button
                                         type="button"
                                         onClick={addComponent}
+                                        className="edit-item__component-btn"
                                     > Add new component</button>
                                 </label>    
                                 <section className="form__popular">
@@ -251,3 +252,7 @@ function EditItemPage() {
 
 export default EditItemPage;
 
+/**
+ * Författare Ida
+ * Har skapat en sida där admin kan editera items
+ */
