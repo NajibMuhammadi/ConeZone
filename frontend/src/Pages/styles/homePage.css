@@ -10,7 +10,7 @@
 
 .homePage__jumbotron {
     background-color: var(--pink70);
-    height: 40vh;
+    min-height: 40vh;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -21,21 +21,27 @@
 .homePage__jumbotron-header {
     font-family: "Calligraffitti", cursive;
     font-weight: 400;
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-style: italic;
-    margin: 1rem;
+    margin: 3rem;
+    border: 10px dotted var(--white);
+    padding: 2rem;
+    border-radius: 5px;
+    text-align: center;
 }
 
 .homePage__jumbotron-text {
     font-family: "Inter", sans-serif;
-    margin: 1rem 3rem;
+    font-size: 1.5rem;
+    margin: 2rem 4rem;
+    margin-bottom: 5rem;
     text-align: center;
 }
 
 .homePage__content {
     display: flex;
-    /* background-color: var(--blue40); */
     margin-top: 4rem;
+    background-color: var(--purple);
 }
 
 .homePage__picture {
@@ -54,22 +60,28 @@
     font-family: "Inter", sans-serif;
     margin-bottom: 3rem;
     text-align: center;
+    font-size: 1.1rem;
+    line-height: 1.5rem;
+}
+
+.homePage__link {
+    text-decoration: none;
 }
 
 .homePage__button {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0.5rem 1.5rem;
+    padding: 1rem 1.5rem;
     border-radius: 3rem;
     border: none;
-    /* border: 2px solid var(--black); */
     background-color: var(--blue);
+    /* border: 4px solid #75b0b7; */
 }
 
 .homePage__button-text {
     font-family: "Inter", sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     text-decoration: none;
     color: var(--black);
 }
@@ -81,16 +93,16 @@
 
 .homePage__slogan {
     background-color: var(--purple);
-    width: 60vw;
-    padding: 1rem 2rem;
-    margin: 5rem 0rem;
+    width: 70vw;
+    margin: 7rem;
     border-radius: 5px;
 }
 
 .homePage__slogan-text {
     font-family: "Calligraffitti", cursive;
     font-weight: 400;
-    font-size: 1.2rem;
+    padding: 3rem 2rem;
+    font-size: 3rem;
     font-style: italic;
     margin: 1rem;
     text-align: center;
@@ -111,7 +123,7 @@
 .homePage__ourRating {
     background-color: var(--black);
     width: 11rem;
-    padding: 1rem;
+    padding: 1.5rem;
     border-radius: 5px;
     margin-left: 1rem;
 }
@@ -121,7 +133,7 @@
     font-family: "Inter", sans-serif;
     text-align: center;
     margin-bottom: 0.8rem;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
 }
 
 .homePage__ourRating-starsContainer {
@@ -143,7 +155,7 @@
     grid-template-columns: 1fr 2fr;
     gap: 1rem;
     background-color: var(--pink);
-    margin: 1rem;
+    margin: 3rem;
     border-radius: 5px;
     padding: 1rem;
     align-items: center;
@@ -151,18 +163,20 @@
 }
 
 .homePage__review-img {
-    height: 4rem;
+    height: 8rem;
     border-radius: 5px;
 }
 
 .homePage__review-text {
     font-family: "Inter", sans-serif;
     color: rgba(53, 53, 53, 0.5);
+    font-size: 1.1rem;
 }
 
 .homePage__review-boldtext {
     color: rgba(53, 53, 53);
     font-weight: 700;
+    font-size: 1.1rem;
 }
 
 @media screen and (max-width:550px) {

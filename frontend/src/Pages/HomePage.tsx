@@ -17,15 +17,15 @@ function HomePage() {
       <section className='homePage__wrapper'>
         <section className="homePage__jumbotron">
           <h1 className="homePage__jumbotron-header">Where Sweet Meets Street!</h1>
-          <p className="homePage__jumbotron-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          <p className="homePage__jumbotron-text">Discover bold flavors, vibrant scoops, and irresistible toppings that redefine your dessert experience.</p>
         </section>
         <section className="homePage__content">
           <img className="homePage__picture" src={iceCreamPic} alt="IceCreamImg" />
           <article className='homePage__aside' >
-            <p className="homePage__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+            <p className="homePage__text"> Our handcrafted ice creams blend unique ingredients and daring combinations. From creamy classics to adventurous twists, every scoop is a celebration of flavor. Treat yourself today!</p>
             <button className="homePage__button">
-              <Link to="/menu">
-                <p className='homePage__button-text'>Menu</p>
+              <Link to="/menu" className="homePage__link">
+                <p className='homePage__button-text'>Explore the Menu</p>
               </Link>
               <img className='homePage__arrow' src={arrow} alt="arrow" />
             </button>
