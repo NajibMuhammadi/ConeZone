@@ -123,12 +123,11 @@
 }
 
 .overview__product {
-    /* display: flex;
+    display: flex;
     align-items: center;
-    justify-content: center; */
+    justify-content: center;
     margin: 1rem;
-    /* gap: 30px; */
-    /* margin-right: 10vw; */
+    gap: 30px;
 }
 
 .overview__img {

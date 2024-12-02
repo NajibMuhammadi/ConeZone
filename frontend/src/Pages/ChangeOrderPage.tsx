@@ -23,6 +23,7 @@ function ChangeOrderPage() {
     const [storedPk, setStoredPk] = useState<string | null>(null);
     const [pkReady, setPkReady] = useState<boolean>(false);
     const [paymentMethodImg, setPaymentMethodImg] = useState<string>('');
+    const [customerInfoErrorMsg, setCustomerInfoErrorMsg] = useState<string | null>(null);
 
     useEffect(() => {
         const token = sessionStorage.getItem('token');
@@ -151,32 +152,56 @@ function ChangeOrderPage() {
         console.log('Updated order:', updatedOrder);
     };
 
+    const validateCustomerDetails = (): string | null => {
+        if (!order || !order.customerDetails.name.trim()) {
+            return 'Name is required.';
+        }
+        if (!/^\+?[0-9]+$/.test(order.customerDetails.phone)) {
+            return 'Please enter a valid phone number with only numbers and an optional + at the beginning.';
+        }
+        if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(order.customerDetails.email)) {
+            return 'Please enter a valid email address.';
+        }
+        return null;
+    }
+
     const sendChangedOrder = async () => {
-        let newOrder = {
-            sk: sk,
-            items: items,
-            customerDetails: order.customerDetails,
-            paymentMethod: order.paymentMethod,
-            totalPrice: totalPrice
-        };
-        const pkToUse = isAdmin ? (storedPk || 'guest') : username;
-        console.log('sendChangedOrder is clicked', pkToUse, sk, newOrder);
-        if (items.length === 0) {
-            const response = await deleteOrder('ordersUrl', pkToUse, sk as string);
-            if (!response) {
-                setErrorMsg('You can not delete an order that has been approved');
-            }
-            if (response) {
-                setSuccessMsg('Order deleted');
-            }
-        } else {
-            const response = await updateOrder('ordersUrl', pkToUse, sk as string, newOrder);
-            if (!response) {
-                setSuccessMsg('');
-                setErrorMsg('You can not change an order that has been approved');
+        const validationError = validateCustomerDetails();
+        if (validationError) {
+            setCustomerInfoErrorMsg(validationError);
+            return;
+        }
+
+        try {
+            let newOrder = {
+                sk: sk,
+                items: items,
+                customerDetails: order.customerDetails,
+                paymentMethod: order.paymentMethod,
+                totalPrice: totalPrice
+            };
+            const pkToUse = isAdmin ? (storedPk || 'guest') : username;
+            console.log('sendChangedOrder is clicked', pkToUse, sk, newOrder);
+            if (items.length === 0) {
+                const response = await deleteOrder('ordersUrl', pkToUse, sk as string);
+                if (!response) {
+                    setErrorMsg('You can not delete an order that has been approved');
+                }
+                if (response) {
+                    setSuccessMsg('Order deleted');
+                }
             } else {
-                setSuccessMsg('Order updated successfully!');
+                const response = await updateOrder('ordersUrl', pkToUse, sk as string, newOrder);
+                if (!response) {
+                    setSuccessMsg('');
+                    setErrorMsg('You can not change an order that has been approved');
+                } else {
+                    setCustomerInfoErrorMsg('');
+                    setSuccessMsg('Order updated successfully!');
+                }
             }
+        } catch (error: any) {
+            setErrorMsg('An error occurred: ' + error.message);
         }
     };
 
@@ -198,7 +223,7 @@ function ChangeOrderPage() {
                                 <h3 className="changeOrderPage__customer">Customer</h3>
                                 <section className="changeOrderPage__input">
                                     <label>
-                                        <strong>Name:</strong>
+                                        <p><strong>Name:</strong></p>
                                         <input
                                             type="text"
                                             name="name"
@@ -207,7 +232,7 @@ function ChangeOrderPage() {
                                         />
                                     </label>
                                     <label>
-                                        <strong>Phone number:</strong>
+                                        <p><strong>Phone Number:</strong></p>
                                         <input
                                             type="text"
                                             name="phone"
@@ -216,7 +241,7 @@ function ChangeOrderPage() {
                                         />
                                     </label>
                                     <label>
-                                        <strong>Email:</strong>
+                                        <p><strong>Email:</strong></p>
                                         <input
                                             type="email"
                                             name="email"
@@ -225,6 +250,8 @@ function ChangeOrderPage() {
                                         />
                                     </label>
                                 </section>
+                                {customerInfoErrorMsg && <p className="changeOrderPage__errormsg">{customerInfoErrorMsg}</p>}
+
                             </section>
                         </section>
                         <hr className="changeOrderPage__line" />

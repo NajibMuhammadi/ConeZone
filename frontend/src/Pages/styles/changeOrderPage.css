@@ -53,15 +53,19 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-end;
-    margin-left: 1rem;
 }
 
 .changeOrderPage__input input {
     margin: 10px;
-    max-width: 100px;
+    max-width: 200px;
     border: 1px solid #ccc;
     border-radius: 4px;
     padding: 5px;
+}
+
+.changeOrderPage__input label {
+    display: flex;
+    align-items: center;
 }
 
 .changeOrderPage__input:focus {
@@ -87,6 +91,7 @@
 
 .changeOrderPage__img {
     width: 15vw;
+    min-width: 10rem;
     margin-bottom: 1rem;
 }
 
@@ -152,6 +157,7 @@
     color: red;
     text-align: center;
     font-size: 1rem;
+    margin-top: 0.5rem;
 }
 
 .changeOrderPage__successmsg {
@@ -208,18 +214,13 @@
         margin: 2rem auto;
     }
 
+    .changeOrderPage__input label {
+        flex-direction: column;
+    }
+
     .changeOrderPage__product-wrapper {
         align-items: center;
     }
-
-    /* .changeOrderPage__customer-container-bottom {
-        margin: 0 10px 30px 10px;
-        flex-direction: column;
-        justify-content: center;
-        gap: 20px;
-        font-size: 18px;
-        text-align: center;
-    } */
 
     .changeOrderPage__name,
     .changeOrderPage__phone,
@@ -294,7 +295,13 @@
     }
 
     .changeOrderPage__submit {
-        font-size: 30px;
+        font-size: 1.5rem;
+        height: 80px;
+        margin: 1rem;
+    }
+
+    .changeOrderPage__submit-white {
+        font-size: 1.5rem;
         height: 80px;
         margin: 1rem;
     }
