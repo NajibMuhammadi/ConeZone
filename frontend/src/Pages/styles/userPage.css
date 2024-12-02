@@ -43,8 +43,7 @@
 }
 
 .user__img {
-    flex: 1 1 calc(50% - 24px);
-    max-width: calc(50% - 24px);
+    
     margin: 6px;
     border-radius: 15px;
 }
@@ -56,6 +55,19 @@
     gap: 10px;
     font-size: 20px;
     width: 100%;
+}
+
+.user__order-empty {
+    text-align: center;
+    font-size: 30px;
+    height: 25vh;
+    place-content: center;
+}
+
+.user__orders-container > .user__order-empty:only-child {
+    grid-column: span 2;
+    justify-self: center;
+    align-self: center;
 }
 
 @media screen and (max-width: 768px) {
@@ -74,6 +86,8 @@
 
     .user__orders-container {
         grid-template-columns: 1fr;
+        justify-content: center;
+        align-self: center;
     }
 
     .user__order-item {
@@ -84,26 +98,52 @@
         gap: 10px;
     }
 
-    .user__order-img {
+        .user__order-img {
         display: grid;
-        grid-template-columns: repeat(2, 1fr); 
+        grid-template-columns: repeat(2, 1fr);
         gap: 10px;
         justify-items: center;
-        align-items: center; 
+        align-items: center;
+    }
+    
+    .user__order-img > .user__img:only-child {
+        grid-column: span 2;
+        justify-self: center;
     }
 
     .user__img {
         width: 100%;
         max-width: 100%;
     }
+
+    .user__order-info {
+        align-items: center;
+    }
+
+    .user__date {
+        align-self: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* .user__order-empty {
+        padding: 1rem;
+    } */
 }
 
 
 @media screen and (min-width: 769px) and (max-width: 1200px) {
-    .user__order-img {
+        .user__order-img {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 10px;
+        justify-items: center;
+        align-items: center;
+    }
+    
+    .user__order-img > .user__img:only-child {
+        grid-column: span 2;
+        justify-self: center;
     }
 
     .user__img {
@@ -123,20 +163,36 @@
     .user__orders-container {
         grid-template-columns: 1fr 1fr;
         margin: 0 auto;
-        padding: 0 2rem 7rem 2rem;
+        padding: 0 2rem 20rem 2rem;
+    }
+
+    .user__order-empty {
+        height: 36vh;
+    }
+
+    .user__date {
+        display: flex;
+        flex-direction: column;
     }
 }
 
 @media screen and (min-width: 1201px) {
-    .user__order-img {
+        .user__order-img {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 10px;
+        justify-items: center;
+        align-items: center;
+    }
+    
+    .user__order-img > .user__img:only-child {
+        grid-column: span 2;
+        justify-self: center;
     }
 
     .user__img {
         width: 100%;
-        max-width: 100%;
+        max-width: 70%;
     }
 
     .user__order-item {
