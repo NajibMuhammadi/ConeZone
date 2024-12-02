@@ -404,6 +404,12 @@
     }
 }
 
+@media (min-width: 1300px) {
+    .overview__product {
+        margin-left: 20px;
+    }
+}
+
 /*
 /* Författare: Diliara
 /* About us sidas styling.

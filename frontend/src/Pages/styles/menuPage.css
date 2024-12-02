@@ -125,6 +125,23 @@
     .main__menu-title {
         font-size: 20px;
     }
+
+    .main__menu {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        max-width: 400px;
+    }
+
+    .main__menu-image {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .main__menu-des {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
 }
 
 /* Författare: Najib
