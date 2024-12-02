@@ -259,6 +259,33 @@
     height: 100%;
 }
 
+.overview__input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    margin-left: 1rem;
+}
+
+.overview__input input {
+    margin: 10px;
+    max-width: 100px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+.overview__input:focus {
+    border-color: var(--pink70);
+    outline: none;
+    box-shadow: 2px 2px 2px pink;
+}
+
+.overview__payment select {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+}
 
 @media (max-width: 768px) {
     .overview {
@@ -269,6 +296,10 @@
 
     .overview__wrapper {
         margin: 0;
+    }
+
+    .overview__product-wrapper {
+        align-items: center;
     }
 
     /* .overview__customer {
@@ -365,6 +396,12 @@
         text-align: center;
     }
 }
+
+/* @media (max-width: 1024px) {
+    .overview__wrapper {
+        padding: 7rem 0rem;
+    }
+} */
 
 /*
 /* Författare: Diliara

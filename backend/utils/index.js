@@ -15,8 +15,8 @@ const comparePassword = async (password, hashedPassword) => {
 const generateToken = async (user) => {
     const payLoad ={
         UserId : user.UserID,
-        isAdmin: user.isAdmin
-        
+        isAdmin: user.isAdmin,
+        username: user.username,
     }
 
     const token = jwt.sign(payLoad, process.env.SECRET_ACCESS_KEY, {expiresIn: '1h'});
@@ -32,3 +32,6 @@ module.exports = { hashPassword, comparePassword, generateToken };
     * Författare: Najib
     * Funktioner för att hasha lösenord, jämföra lösenord och generera token
  */
+
+/* Edited: Diliara
+laggt till username */

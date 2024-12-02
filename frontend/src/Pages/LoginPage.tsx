@@ -49,7 +49,7 @@ function LoginPage() {
             if (response.data.success) {
                 saveTokenToSessionStorage(response.token);
 
-                const decoded: {isAdmin: boolean, UserId: string} = jwtDecode(response.token);
+                const decoded: {isAdmin: boolean, UserId: string, username: string} = jwtDecode(response.token);
                 console.log('isAdmin:', decoded.isAdmin);
                 if(decoded.isAdmin) {
                     navigate('/kitchenview');
@@ -119,4 +119,5 @@ export default LoginPage;
 
 // Edited: Diliara
 // La till en if sats, om user har isAdmin true, 
-// navigera till kitchenview annars navigera till user, sparar isAdmin i sessionStorage
+// navigera till kitchenview annars navigera till user, sparar isAdmin i sessionStorage,
+// la till att vi ocksp ecodar och sparar usernamn på login

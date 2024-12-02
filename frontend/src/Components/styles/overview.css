@@ -302,6 +302,10 @@
         margin: 0;
     }
 
+    .overview__product-wrapper {
+        align-items: center;
+    }
+
     /* .overview__customer {
         font-size: 30px;
     } */
