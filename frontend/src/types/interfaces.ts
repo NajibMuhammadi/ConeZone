@@ -10,6 +10,16 @@ export interface ItemType {
     price: number
 }
 
+export interface NewItem {
+    name: string,
+    desc: string,
+    price: number,
+    category: string,
+    image: string,
+    popular: boolean,
+    components: string[]
+}
+
 export interface CartItem extends Pick<ItemType, 'sk' | 'name' | 'image' | 'price'> {
     qty: number;
 }
