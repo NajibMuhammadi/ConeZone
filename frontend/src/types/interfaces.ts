@@ -28,7 +28,7 @@ export interface CustomerDetails {
 
 export interface Order {
     pk?: string,
-    sk: string,
+    sk?: string,
     items: CartItem[];
     customerDetails: CustomerDetails;
     paymentMethod: string;

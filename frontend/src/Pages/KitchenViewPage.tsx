@@ -77,8 +77,9 @@ function KitchenViewPage() {
             isDone: true
         };
 
-        await adminUpdate('adminOrdersUrl', pk, sk, newOrder);
-    };
+        await adminUpdate('adminOrdersUrl', pk, sk, newOrder)
+        location.reload()
+}
 
     return (
         <>

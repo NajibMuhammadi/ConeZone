@@ -4,7 +4,7 @@ import { Order } from "../types/interfaces";
 
 const fetchOrder = async (ordersUrl: string, pk: string, sk: string): Promise<Order> => {
     const url = urls[ordersUrl];
-
+    
     if (!url) {
         throw new Error('Url hittades inte');
     }
