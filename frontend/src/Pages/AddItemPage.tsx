@@ -5,13 +5,14 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import './styles/addItemPage.css'
 import { postItem } from '../services/postItem';
+import { useNavigate } from 'react-router-dom';
 
 
 function AddItemPage() {
     const token = sessionStorage.getItem('token');
     const [newComponent, setNewComponent] = useState('')
     const [componentArray, setComponentArray] = useState<string[]>([])
-    
+    const navigate = useNavigate();
     const [item, setItem] = useState<ItemType>({
         pk: 'icecream',
         category: 'icecream',
@@ -54,6 +55,7 @@ function AddItemPage() {
                             console.error('Error adding item', error)
                         }
                     }
+                    navigate('/editmenu')
                 } catch (error) {
                     console.error('Error parsing token', error)
                 }
