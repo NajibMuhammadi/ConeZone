@@ -89,3 +89,8 @@ La till en onSubmit för att gå vidare till nästa komponent
 /* Författare: Lisa
 Lägger till felmeddelande  för validering i frontend 
 */
+
+/* 
+    författare: Najib
+    fixade så att vi inte längre använder any i catch error och definierade error som ErrorProps
+ */

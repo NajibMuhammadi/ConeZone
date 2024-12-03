@@ -236,4 +236,7 @@ export default Overview
 * 
 * Bugfix: Ida
 * Ser till att vi kan skicka med ett sk till order status sidan
+* 
+* Författare: Najib
+* fixade så att vi inte längre använder any i catch error och definierade error som ErrorProps
 */
