@@ -151,4 +151,5 @@ export default AddItemPage;
 /**
  * Författare Ida
  * Har skapat en sida där admin kan lägga till nya produkter att sälja
+ * Kontrollerar om användaren är admin innan nya föremål kan läggas till i databasen
  */
