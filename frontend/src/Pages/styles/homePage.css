@@ -137,12 +137,11 @@
 }
 
 .homePage__review {
-    background-color: var(--pink);
+    background-color: var(--pink70);
     margin: 1rem;
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 1rem;
-    background-color: var(--pink);
     margin: 1rem;
     border-radius: 5px;
     padding: 1rem;

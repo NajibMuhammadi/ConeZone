@@ -124,11 +124,12 @@ function KitchenViewPage() {
                                                     ))}
                                                 </ul>
                                                 <textarea
+                                                    aria-label="Add a comment input"
                                                     placeholder="Add a comment"
                                                     className="incoming__comment-input"
                                                     onChange={(event) => setNewMessage(event.target.value)}
                                                 />
-                                                <button className="incoming__btn" onClick={() => approveOrder(order.sk)}>Approve</button>
+                                                <button className="incoming__btn" onClick={() => order.sk && approveOrder(order.sk)}>Approve</button>
                                             </div>
                                         ))
                                     )}
@@ -160,7 +161,7 @@ function KitchenViewPage() {
                                                     ))}
                                                 </ul>
                                                 <p className="kitchenViewPage__message">Message: {order.kitchenMessage}</p>
-                                                <button className="ongoing__btn" onClick={() => orderDone(order.sk)}>Done</button>
+                                                <button className="ongoing__btn" onClick={() => order.sk && orderDone(order.sk)}>Done</button>
                                             </div>
                                         ))
                                     )}
