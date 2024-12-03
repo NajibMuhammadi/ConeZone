@@ -28,7 +28,7 @@ function EditMenuPage() {
             <section className='edit-menu__wrapper'>
                 <section className='edit-menu__container'>
                     <h2 className='edit-menu__header'>Edit menu</h2>
-                    <button className="edit-menu__add-btn">Add item</button>
+                    <Link to={'/add'}><button className="edit-menu__add-btn">Add item</button></Link>
                     <section className="edit-menu__menu">
                         {items.map((item) => {
                             return (
