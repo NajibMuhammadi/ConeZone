@@ -5,6 +5,10 @@ import { useState } from 'react';
 import Counter from './Counter';
 import { CustomerDetails } from '../types/interfaces';
 
+interface ErrorProps {
+    msg: string;
+}
+
 function Overview({ onNext }: { onNext: (sk: string) => void }) {
 
     const cart = useMenuStore(state => state.cart)
@@ -73,8 +77,9 @@ function Overview({ onNext }: { onNext: (sk: string) => void }) {
                 customerDetails.email
             );
             setEditingCustomer(false);
-        } catch (error: any) {
-            setErrorMsg(error.msg || 'An unexpected error occurred.');
+        } catch (error){
+            const validationError = error as ErrorProps;
+            setErrorMsg(validationError.msg || 'Something went wrong.');
         }
     };
 
@@ -231,4 +236,7 @@ export default Overview
 * 
 * Bugfix: Ida
 * Ser till att vi kan skicka med ett sk till order status sidan
+* 
+* Författare: Najib
+* fixade så att vi inte längre använder any i catch error och definierade error som ErrorProps
 */

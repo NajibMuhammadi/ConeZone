@@ -122,6 +122,9 @@ export default Register;
 /* 
     författare: Najib
     funktionen tar in användarens input och skickar det till en databas för att skapa ett konto
+    hämtade token från session storage och naviger till menyn om användaren är redan inloggad, 
+    det vill säga man kan inte komma åt registrerings url om användaren redan är inloggad.
+
  */
 
 /* författare: Diliara
