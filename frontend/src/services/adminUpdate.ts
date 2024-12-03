@@ -11,7 +11,7 @@ const adminUpdate = async (adminOrdersUrl: string, pk: string, sk:string, order:
 
     try {
         console.log('Order data being sent to backend:', order);
-        await axios.put(`${url}/${pk}/${sk}`, order)
+        await axios.put(`${url}/${pk}/${sk}?key=key-6GRf3`, order)
         
     } catch (error: AxiosError | any) {
         console.error('Fel vid uppdatering av order:', error.response);

@@ -16,7 +16,7 @@ const updateItem = async (itemsUrl: string, sk:string, newItem: NewItem) : Promi
     } 
 
     try {
-        await axios.put(`${url}/${sk}`, newItem, {
+        await axios.put(`${url}/${sk}?key=key-6GRf3`, newItem, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',

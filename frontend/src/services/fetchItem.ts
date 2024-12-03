@@ -14,7 +14,7 @@ const fetchItem = async (itemsUrl: string, sk:string) : Promise<ItemType> => {
     } 
 
     try {
-        const response = await axios.get<ItemType>(url, {
+        const response = await axios.get<ItemType>(`${url}?key=key-6GRf3`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',

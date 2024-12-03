@@ -10,7 +10,7 @@ const fetchOrder = async (ordersUrl: string, pk: string, sk: string): Promise<Or
     }
 
     try {
-        const response = await axios.get<Order>(`${url}/${pk}/${sk}`);
+        const response = await axios.get<Order>(`${url}/${pk}/${sk}?key=key-6GRf3`);
         console.log('Fetched order data:', response.data);
         return response.data;
     } catch (error: AxiosError | any) {
