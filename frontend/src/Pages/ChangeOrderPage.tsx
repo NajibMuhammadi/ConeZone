@@ -22,6 +22,8 @@ function ChangeOrderPage() {
     const [username, setUsername] = useState<string>(pk || 'guest');
     const [storedPk, setStoredPk] = useState<string | null>(null);
     const [pkReady, setPkReady] = useState<boolean>(false);
+    const [paymentMethodImg, setPaymentMethodImg] = useState<string>('');
+    const [customerInfoErrorMsg, setCustomerInfoErrorMsg] = useState<string | null>(null);
 
     useEffect(() => {
         const token = sessionStorage.getItem('token');
@@ -69,6 +71,7 @@ function ChangeOrderPage() {
                 }
                 setOrder(fetchedOrder);
                 setTotalPrice(fetchedOrder.totalPrice);
+                setPaymentMethodImg(`../../src/assets/${fetchedOrder.paymentMethod}.svg`);
                 console.log('Fetched order:', fetchedOrder);
             } catch (error) {
                 console.error('Error fetching order', error);
@@ -104,10 +107,12 @@ function ChangeOrderPage() {
 
     const handlePaymentMethodChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         if (order) {
+            const newMethod = e.target.value;
             setOrder({
                 ...order,
-                paymentMethod: e.target.value,
+                paymentMethod: newMethod,
             });
+            setPaymentMethodImg(`../../src/assets/${newMethod}.svg`);
         }
     };
 
@@ -147,32 +152,56 @@ function ChangeOrderPage() {
         console.log('Updated order:', updatedOrder);
     };
 
+    const validateCustomerDetails = (): string | null => {
+        if (!order || !order.customerDetails.name.trim()) {
+            return 'Name is required.';
+        }
+        if (!/^\+?[0-9]+$/.test(order.customerDetails.phone)) {
+            return 'Please enter a valid phone number with only numbers and an optional + at the beginning.';
+        }
+        if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(order.customerDetails.email)) {
+            return 'Please enter a valid email address.';
+        }
+        return null;
+    }
+
     const sendChangedOrder = async () => {
-        let newOrder = {
-            sk: sk,
-            items: items,
-            customerDetails: order.customerDetails,
-            paymentMethod: order.paymentMethod,
-            totalPrice: totalPrice
-        };
-        const pkToUse = isAdmin ? (storedPk || 'guest') : username;
-        console.log('sendChangedOrder is clicked', pkToUse, sk, newOrder);
-        if (items.length === 0) {
-            const response = await deleteOrder('ordersUrl', pkToUse, sk as string);
-            if (!response) {
-                setErrorMsg('You can not delete an order that has been approved');
-            }
-            if (response) {
-                setSuccessMsg('Order deleted');
-            }
-        } else {
-            const response = await updateOrder('ordersUrl', pkToUse, sk as string, newOrder);
-            if (!response) {
-                setSuccessMsg('');
-                setErrorMsg('You can not change an order that has been approved');
+        const validationError = validateCustomerDetails();
+        if (validationError) {
+            setCustomerInfoErrorMsg(validationError);
+            return;
+        }
+
+        try {
+            let newOrder = {
+                sk: sk,
+                items: items,
+                customerDetails: order.customerDetails,
+                paymentMethod: order.paymentMethod,
+                totalPrice: totalPrice
+            };
+            const pkToUse = isAdmin ? (storedPk || 'guest') : username;
+            console.log('sendChangedOrder is clicked', pkToUse, sk, newOrder);
+            if (items.length === 0) {
+                const response = await deleteOrder('ordersUrl', pkToUse, sk as string);
+                if (!response) {
+                    setErrorMsg('You can not delete an order that has been approved');
+                }
+                if (response) {
+                    setSuccessMsg('Order deleted');
+                }
             } else {
-                setSuccessMsg('Order updated successfully!');
+                const response = await updateOrder('ordersUrl', pkToUse, sk as string, newOrder);
+                if (!response) {
+                    setSuccessMsg('');
+                    setErrorMsg('You can not change an order that has been approved');
+                } else {
+                    setCustomerInfoErrorMsg('');
+                    setSuccessMsg('Order updated successfully!');
+                }
             }
+        } catch (error: any) {
+            setErrorMsg('An error occurred: ' + error.message);
         }
     };
 
@@ -182,109 +211,118 @@ function ChangeOrderPage() {
 
     return (
         <>
-        <Header />
-        <section className="overview__wrapper">
-            <section>
-                <article className="overview">
-                    <h2 className="overview__heading">Overview</h2>
-                    <hr className="overview__line" />
-                    {/* Customer Details */}
-                    <section>
-                        <section className="overview__customer-container-top">
-                            <h3 className="overview__customer">Customer</h3>
-                            <section className="overview__input">
-                                <label>
-                                    <strong>Name:</strong>
-                                    <input
-                                        type="text"
-                                        name="name"
-                                        value={order.customerDetails.name}
-                                        onChange={handleCustomerDetailsChange}
-                                    />
-                                </label>
-                                <label>
-                                    <strong>Phone number:</strong>
-                                    <input
-                                        type="text"
-                                        name="phone"
-                                        value={order.customerDetails.phone}
-                                        onChange={handleCustomerDetailsChange}
-                                    />
-                                </label>
-                                <label>
-                                    <strong>Email:</strong>
-                                    <input
-                                        type="email"
-                                        name="email"
-                                        value={order.customerDetails.email}
-                                        onChange={handleCustomerDetailsChange}
-                                    />
-                                </label>
+            <Header />
+            <section className="changeOrderPage__wrapper">
+                <section>
+                    <article className="changeOrderPage">
+                        <h2 className="changeOrderPage__heading">Overview</h2>
+                        <hr className="changeOrderPage__line" />
+                        {/* Customer Details */}
+                        <section>
+                            <section className="changeOrderPage__customer-container-top">
+                                <h3 className="changeOrderPage__customer">Customer</h3>
+                                <section className="changeOrderPage__input">
+                                    <label>
+                                        <p><strong>Name:</strong></p>
+                                        <input
+                                            type="text"
+                                            name="name"
+                                            value={order.customerDetails.name}
+                                            onChange={handleCustomerDetailsChange}
+                                        />
+                                    </label>
+                                    <label>
+                                        <p><strong>Phone Number:</strong></p>
+                                        <input
+                                            type="text"
+                                            name="phone"
+                                            value={order.customerDetails.phone}
+                                            onChange={handleCustomerDetailsChange}
+                                        />
+                                    </label>
+                                    <label>
+                                        <p><strong>Email:</strong></p>
+                                        <input
+                                            type="email"
+                                            name="email"
+                                            value={order.customerDetails.email}
+                                            onChange={handleCustomerDetailsChange}
+                                        />
+                                    </label>
+                                </section>
+                                {customerInfoErrorMsg && <p className="changeOrderPage__errormsg">{customerInfoErrorMsg}</p>}
+
                             </section>
                         </section>
-                    </section>
-                    <hr className="overview__line" />
-                    {/* Cart */}
-                    <section className="overview__product-wrapper">
-                        <h3 className="overview__customer">Cart</h3>
-                        {items.map((item) => (
-                            <section className="overview__product" key={item.sk}>
-                                <img src={item.image} alt={item.name} className="overview__img" />
-                                <section className="overview__info-wrapper">
-                                    <section className="overview__info">
-                                        <h4 className="overview__product-name">Product: {item.name}</h4>
-                                        <article className="counter-container">
-                                            <button className="decreaseCounter-btn" onClick={() => decreaseQuantity(item.sk, item.qty)}>-</button>
-                                            <p className="counter-qty">{item.qty}</p>
-                                            <button className="increaseCounter-btn" onClick={() => increaseQuantity(item.sk, item.qty)}>+</button>
-                                        </article>
+                        <hr className="changeOrderPage__line" />
+                        {/* Cart */}
+                        <section className="changeOrderPage__product-wrapper">
+                            <h3 className="changeOrderPage__customer">Cart</h3>
+                            {items.map((item) => (
+                                <section className="changeOrderPage__product" key={item.sk}>
+                                    <img src={item.image} alt={item.name} className="changeOrderPage__img" />
+                                    <section className="changeOrderPage__info-wrapper">
+                                        <section className="changeOrderPage__info">
+                                            <h4 className="overview__product-name">Product: {item.name}</h4>
+                                            <article className="changeOrderPage__counter-container">
+                                                <button className="decreaseCounter-btn" onClick={() => decreaseQuantity(item.sk, item.qty)}>-</button>
+                                                <p className="counter-qty">{item.qty}</p>
+                                                <button className="increaseCounter-btn" onClick={() => increaseQuantity(item.sk, item.qty)}>+</button>
+                                            </article>
+                                        </section>
                                     </section>
                                 </section>
-                            </section>
-                        ))}
-                    </section>
-                    <hr className="overview__line" />
-
-                    {/* Payment Method  */}
-                    <section className="overview__payment-wrapper">
-                        <h3 className="overview__customer">Choosen payment method</h3>
-                        <section className="overview__payment">
-                            <select
-                                value={order.paymentMethod}
-                                onChange={handlePaymentMethodChange}
-                            >
-                                <option value="Card">Card</option>
-                                <option value="Cash">Cash</option>
-                                <option value="Swish">Swish</option>
-                                <option value="Klarna">Klarna</option>
-                            </select>
+                            ))}
                         </section>
-                    </section>
-                    <hr className="overview__line" />
-                    <section className="overview__total">
-                        <p className="overview__total-price">Total: <strong> {totalPrice} sek</strong></p>
-                        {errorMsg && <p className="overview__errormsg">{errorMsg}</p>}
-                        {successMsg && <p className="overview__successmsg">{successMsg}</p>}
-                        <button
-                            className="overview__submit"
-                            onClick={sendChangedOrder}
-                        >Change Order</button>
-                        {isAdmin && (
+                        <hr className="changeOrderPage__line" />
+
+                        {/* Payment Method  */}
+                        <section className="changeOrderPage__payment-wrapper">
+                            <h3 className="changeOrderPage__customer">Choosen payment method</h3>
+                            <section className="changeOrderPage__payment">
+                                <select
+                                    value={order.paymentMethod}
+                                    onChange={handlePaymentMethodChange}
+                                >
+                                    <option value="Card">Card</option>
+                                    <option value="Cash">Cash</option>
+                                    <option value="Swish">Swish</option>
+                                    <option value="Klarna">Klarna</option>
+                                </select>
+                                {paymentMethodImg && (
+                                    <img
+                                        src={paymentMethodImg}
+                                        alt={order.paymentMethod}
+                                        className="changeOrderPage__method-img"
+                                    />
+                                )}
+                            </section>
+                        </section>
+                        <hr className="changeOrderPage__line" />
+                        <section className="changeOrderPage__total">
+                            <p className="changeOrderPage__total-price">Total: <strong> {totalPrice} sek</strong></p>
+                            {errorMsg && <p className="changeOrderPage__errormsg">{errorMsg}</p>}
+                            {successMsg && <p className="changeOrderPage__successmsg">{successMsg}</p>}
                             <button
-                                className="overview__submit overview__submit-green"
-                                onClick={adminButton}>
-                                Go back to kitchenView
-                            </button>
-                        )}
-                        <button
-                            className="overview__submit-white"
-                            onClick={backToOrderStatus}
-                        >Back To Order Status</button>
-                    </section>
-                </article>
+                                className="changeOrderPage__submit"
+                                onClick={sendChangedOrder}
+                            >Change Order</button>
+                            {isAdmin && (
+                                <button
+                                    className="changeOrderPage__submit changeOrderPage__submit-green"
+                                    onClick={adminButton}>
+                                    Go back to kitchenView
+                                </button>
+                            )}
+                            <button
+                                className="changeOrderPage__submit-white"
+                                onClick={backToOrderStatus}
+                            >Back To Order Status</button>
+                        </section>
+                    </article>
+                </section>
             </section>
-        </section>
-        <Footer />
+            <Footer />
         </>
     );
 }

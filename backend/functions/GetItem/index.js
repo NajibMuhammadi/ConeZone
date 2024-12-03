@@ -23,8 +23,7 @@ const getItem = async (event, context) => {
                 sk: id
             }
         })
-    return sendResponse(200, {success: true, message: data.Item
-    })
+    return sendResponse(200, data.Item)
     } catch(error) {
         return sendError(500, {message: error.message})
     }

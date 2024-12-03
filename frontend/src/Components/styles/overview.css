@@ -16,20 +16,8 @@
     font-family: "Inter", sans-serif;
 }
 
-.overview__img {
-    width: 15vw;
-}
-
-.overview__product {
-    display: flex;
-    align-items: center;
-    margin: 20px;
-    gap: 30px;
-    margin-right: 10vw;
-}
-
 .overview__heading {
-    font-size: 40px;
+    font-size: 2rem;
     text-align: center;
     font-weight: 700;
     margin-bottom: 2rem;
@@ -130,8 +118,20 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: start;
+    align-items: center;
     position: relative;
+}
+
+.overview__product {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem;
+    gap: 30px;
+}
+
+.overview__img {
+    width: 15vw;
 }
 
 .overview__info-wrapper {
@@ -254,7 +254,7 @@
 
 .overview__submit {
     background-color: var(--black);
-    font-size: 40px;
+    font-size: 2rem;
     border-radius: 10px;
     height: 110px;
     max-width: 430px;
@@ -333,10 +333,13 @@
 
     .overview__product {
         flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 
     .overview__img {
         width: 30vw;
+        min-width: 150px;
     }
 
     .overview__info {
@@ -400,7 +403,15 @@
     }
 }
 
+@media (min-width: 1300px) {
+    .overview__product {
+        margin-left: 20px;
+    }
+}
+
 /*
 /* Författare: Diliara
 /* About us sidas styling.
 */
+/* Författare: Lisa
+Ändringar för att få enhetlig styling på sidan */

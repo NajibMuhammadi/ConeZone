@@ -4,6 +4,7 @@ import './styles/editMenuPage.css';
 import { fetchItems } from '../services/fetchItems';
 import { ItemType } from '../types/interfaces';
 import Header from '../components/Header';
+import { Link } from 'react-router-dom';
 
 function EditMenuPage() {
     const url = 'itemsUrl';
@@ -40,7 +41,7 @@ function EditMenuPage() {
                                             <p className="edit-menu__menu-price">{item.price} kr</p>
                                         </article>
                                         <article className="edit-menu__menu-changes">
-                                            <img className='edit-menu__menu-edit' src="../../src/assets/edit.png" alt="Redigera" />
+                                            <Link to={`/item/${item.sk}`}><img className='edit-menu__menu-edit' src="../../src/assets/edit.png" alt="Redigera" /></Link>
                                             <img className="edit-menu__menu-delete" src="../../src/assets/Vector.png" alt="Delete" />
                                         </article>
                                     </article>
@@ -58,5 +59,10 @@ function EditMenuPage() {
 
 export default EditMenuPage;
 
-// Författare: Diliara
-// En sida där admin kan redigera menyn
+/** 
+ * Författare: Diliara
+ * En sida där admin kan redigera menyn
+ * 
+ * Edited: Ida
+ * La till en länk för att navigera till sidan där man kan edit items
+*/

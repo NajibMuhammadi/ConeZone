@@ -21,10 +21,11 @@ function CartPage() {
             <main className="cart">
                 <h1 className="cart__title">Cart</h1>
                 <section className="cart__items">
+                    <span className="cart__divider"></span>
                     {cart.length > 0 ? (
                         cart.map(item => (
                             <section className="cart__item-wrapper">
-                                <section className="cart_item"  key={item.sk}>
+                                <section className="cart_item" key={item.sk}>
                                     <img className="cart__item-image" src={item.image} alt={item.name} />
                                     <section className="cart__item-details">
                                         <h2 className="cart__item-title">{item.name}</h2>

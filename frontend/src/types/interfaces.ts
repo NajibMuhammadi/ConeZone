@@ -10,6 +10,16 @@ export interface ItemType {
     price: number
 }
 
+export interface NewItem {
+    name: string,
+    desc: string,
+    price: number,
+    category: string,
+    image: string,
+    popular: boolean,
+    components: string[]
+}
+
 export interface CartItem extends Pick<ItemType, 'sk' | 'name' | 'image' | 'price'> {
     qty: number;
 }
@@ -85,7 +95,7 @@ export interface adminApprove {
  * Författare Ida
  * Skapat en ItemType interface för våra items i databasen.
  * Denna berättar om det är strängar, booleans, numbers eller arrays som våra items är byggda av
- * Skapade interface för adminApprove och updatedOrder
+ * Skapade interface för adminApprove, updatedOrder,newItem
  */
 
 // Författare Lisa
