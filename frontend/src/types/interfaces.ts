@@ -1,6 +1,6 @@
 export interface ItemType {
     pk: string,
-    sk: string,
+    sk?: string,
     category: string,
     components: string[],
     desc: string,
