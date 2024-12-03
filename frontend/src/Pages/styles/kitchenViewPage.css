@@ -30,7 +30,7 @@
 }
 
 .kitchenViewPage__header {
-    font-size: 40px;
+    font-size: 2.5rem;
 }
 
 .kitchenViewPage__incoming,
@@ -51,8 +51,8 @@
     justify-content: space-between;
     box-shadow: 0 4px 4px 0 rgba(138, 138, 138, 0.25);
     text-align: left;
-    gap: 10px;
-    font-size: 20px;
+    gap: 5px;
+    font-size: 1.2rem;
 }
 
 .incoming__btn {
@@ -75,12 +75,12 @@
     align-self: center;
     margin: 2rem 0 0 0;
     width: 200px;
-    height: 50px;
+    /* height: 50px; */
     cursor: pointer;
     border: 1px solid var(--black);
-    font-size: 20px;
+    font-size: 1.5rem;
     position: sticky;
-    
+
 }
 
 .order__incoming li,
@@ -93,20 +93,22 @@
     background-color: var(--blue40);
     padding: 1rem;
     border-radius: 10px;
+    gap: 5px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    font-size: 20px;
+    font-size: 1.2rem;
 }
 
 .order__done {
     background-color: var(--green40);
     padding: 1rem;
+    gap: 5px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    font-size: 20px;
+    font-size: 1.2rem;
 }
 
 .kitchenViewPage__filter {
@@ -122,7 +124,7 @@
     border: none;
     background-color: #f0f0f0;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 1.2rem;
     border-radius: 10px;
     transition: background-color 0.3s;
     font-family: "Inter", sans-serif;
@@ -142,7 +144,7 @@
     margin-top: 2rem;
     border: 1px solid #ccc;
     border-radius: 4px;
-    font-size: 14px;
+    font-size: 1rem;
     box-sizing: border-box;
     resize: vertical;
     min-height: 50px;

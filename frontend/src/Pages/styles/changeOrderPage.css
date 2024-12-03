@@ -61,12 +61,14 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     padding: 5px;
+    font-size: 1rem;
 }
 
 .changeOrderPage__input label {
     display: flex;
     align-items: center;
 }
+
 
 .changeOrderPage__input:focus {
     border-color: var(--pink70);
@@ -99,7 +101,7 @@
     display: flex;
     justify-content: space-between;
     gap: 15px;
-    margin: 5px;
+    /* margin: 5px; */
     font-size: 1.2rem;
 }
 
@@ -246,42 +248,25 @@
     }
 
     .changeOrderPage__info {
-        gap: 20px;
+        gap: 10px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
     }
 
+
     .changeOrderPage__info-wrapper {
         display: flex;
         flex-direction: row;
-        gap: 15px;
-        margin: 5px;
     }
 
     .changeOrderPage__method {
         text-align: center;
     }
 
-    .changeOrderPage__item-quantity {
-        display: flex;
-        gap: 0.5rem;
-        align-items: center;
-        justify-content: space-around;
-        padding: 5px 10px;
-        border-radius: 10px;
-        background-color: var(--pink);
-    }
-
-    .changeOrderPage__item-decrease,
-    .changeOrderPage__item-increase {
-        border: none;
-        background-color: transparent;
-        cursor: pointer;
-        color: var(--black);
-        padding: 5px 10px;
-
+    .changeOrderPage__counter-container {
+        margin-bottom: 1.5rem;
     }
 
     .changeOrderPage__payment {

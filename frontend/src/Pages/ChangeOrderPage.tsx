@@ -153,6 +153,8 @@ function ChangeOrderPage() {
     };
 
     const validateCustomerDetails = (): string | null => {
+        setSuccessMsg('');
+        setErrorMsg('');
         if (!order || !order.customerDetails.name.trim()) {
             return 'Name is required.';
         }
@@ -250,8 +252,6 @@ function ChangeOrderPage() {
                                         />
                                     </label>
                                 </section>
-                                {customerInfoErrorMsg && <p className="changeOrderPage__errormsg">{customerInfoErrorMsg}</p>}
-
                             </section>
                         </section>
                         <hr className="changeOrderPage__line" />
@@ -263,7 +263,7 @@ function ChangeOrderPage() {
                                     <img src={item.image} alt={item.name} className="changeOrderPage__img" />
                                     <section className="changeOrderPage__info-wrapper">
                                         <section className="changeOrderPage__info">
-                                            <h4 className="overview__product-name">Product: {item.name}</h4>
+                                            <h4 className="changeOrderPage__product-name">Product: {item.name}</h4>
                                             <article className="changeOrderPage__counter-container">
                                                 <button className="decreaseCounter-btn" onClick={() => decreaseQuantity(item.sk, item.qty)}>-</button>
                                                 <p className="counter-qty">{item.qty}</p>
@@ -301,6 +301,7 @@ function ChangeOrderPage() {
                         <hr className="changeOrderPage__line" />
                         <section className="changeOrderPage__total">
                             <p className="changeOrderPage__total-price">Total: <strong> {totalPrice} sek</strong></p>
+                            {customerInfoErrorMsg && <p className="changeOrderPage__errormsg">{customerInfoErrorMsg}</p>}
                             {errorMsg && <p className="changeOrderPage__errormsg">{errorMsg}</p>}
                             {successMsg && <p className="changeOrderPage__successmsg">{successMsg}</p>}
                             <button

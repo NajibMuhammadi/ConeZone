@@ -120,7 +120,6 @@
 
 .quote {
     text-align: center;
-    /* background-color: var(--purple); */
     border: 20px dotted var(--purple);
     margin: 1rem;
     padding: 6rem 0;
@@ -252,7 +251,7 @@
 @media (min-width: 1300px) and (max-width: 1800px) {
     .employees__container {
         display: flex;
-        flex-direction: row;
+        flex-wrap: wrap;
         align-items: center;
         justify-content: space-evenly;
         margin: 0;
