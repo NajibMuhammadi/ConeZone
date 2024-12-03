@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { fetchItem } from '../services/fetchItem';
 import { useEffect, useState } from 'react';
 import {jwtDecode} from 'jwt-decode';
@@ -9,6 +9,7 @@ import './styles/editItemPage.css';
 import { updateItem } from '../services/updateItem';
 
 function EditItemPage() {
+    const navigate = useNavigate();
     const itemId = useParams();
     const sk = itemId.sk;
     const [item, setItem] = useState<ItemType | undefined>(undefined);
@@ -100,6 +101,7 @@ function EditItemPage() {
         });
         console.log('New items saved', newItem)
         uploadItem(newItem)
+        navigate('/editmenu');
     }
 
     const uploadItem = async(newItem : NewItem) => {
