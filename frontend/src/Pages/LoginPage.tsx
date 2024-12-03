@@ -115,6 +115,8 @@ export default LoginPage;
 /* 
     * Författare: Najib
     * kopplar ihop LoginPage med PostFetch för att posta data till databasen
+    * hämtade token från sessionstorage och dekodade den för att se om användaren är admin eller inte
+    * om användaren är admin navigeras användaren till kitchenview annars navigeras användaren till user
  */
 
 // Edited: Diliara

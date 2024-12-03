@@ -172,3 +172,6 @@ export default Header;
 // Författare Diliara
 // Gjorde så att man kan klicka på user och 
 // få upp en meny, lagrar admin/ user geno alla sidor
+
+// Författare Najib
+// hämtade token från sessionstorage och dekodade den för att se om användaren är admin eller inte

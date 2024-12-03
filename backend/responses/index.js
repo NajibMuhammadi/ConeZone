@@ -40,3 +40,13 @@ const sendResponseWithHeaders = (status, body, token) => {
 }
 
 module.exports = {sendResponse, sendError, sendResponseWithHeaders};
+
+/* 
+    författare: Najib
+    en funktion som skickar tillbaka ett svar med statuskod och data
+ */
+
+/* 
+    författare: Ida
+    la till en cspHeader som innehåller en Content-Security-Policy
+ */

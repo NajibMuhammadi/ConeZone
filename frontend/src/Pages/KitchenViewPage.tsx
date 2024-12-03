@@ -220,3 +220,6 @@ export default KitchenViewPage;
  * Har lagt till en funktion för att kunna markera en order som done
  * La även till så att när en kommentar skickas med till köket skrivs det ut
  */
+
+// författare: Najib
+// hämtade token från sessionstorage och dekodade den för att se om användaren är admin eller inte
