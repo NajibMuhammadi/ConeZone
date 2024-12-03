@@ -34,7 +34,7 @@ function Info({ onNext }: { onNext: () => void }) {
         <section className="info__wrapper">
             <form className="info__form" onSubmit={handleSubmit}>
                 <h2 className="info__header">Info</h2>
-                {errorMsg && <p className="error-msg">{errorMsg}</p>}
+                {errorMsg && <p className="infoError-msg">{errorMsg}</p>}
                 <label htmlFor="info__name">Name:</label>
                 <input
                     type="text"

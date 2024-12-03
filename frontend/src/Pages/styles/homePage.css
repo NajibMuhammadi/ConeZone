@@ -4,13 +4,14 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    max-width: 1300px;
+    /* max-width: 1300px; */
     margin: 0 auto;
 }
 
 .homePage__jumbotron {
     background-color: var(--pink70);
     min-height: 40vh;
+    padding: 3rem 0rem;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -21,7 +22,7 @@
 .homePage__jumbotron-header {
     font-family: "Calligraffitti", cursive;
     font-weight: 400;
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-style: italic;
     margin: 3rem;
     border: 10px dotted var(--white);
@@ -33,6 +34,7 @@
 .homePage__jumbotron-text {
     font-family: "Inter", sans-serif;
     font-size: 1.5rem;
+    font-weight: 500;
     margin: 2rem 4rem;
     margin-bottom: 5rem;
     text-align: center;
@@ -40,8 +42,7 @@
 
 .homePage__content {
     display: flex;
-    margin-top: 4rem;
-    background-color: var(--purple);
+    background-color: white;
 }
 
 .homePage__picture {
@@ -60,8 +61,8 @@
     font-family: "Inter", sans-serif;
     margin-bottom: 3rem;
     text-align: center;
-    font-size: 1.1rem;
-    line-height: 1.5rem;
+    font-size: 1.2rem;
+    line-height: 1.7rem;
 }
 
 .homePage__link {
@@ -76,7 +77,6 @@
     border-radius: 3rem;
     border: none;
     background-color: var(--blue);
-    /* border: 4px solid #75b0b7; */
 }
 
 .homePage__button-text {
@@ -92,20 +92,21 @@
 }
 
 .homePage__slogan {
-    background-color: var(--purple);
-    width: 70vw;
-    margin: 7rem;
-    border-radius: 5px;
+    background-image: linear-gradient(var(--purple), white);
+    width: 100%;
+    padding: 10rem 3rem;
 }
 
 .homePage__slogan-text {
     font-family: "Calligraffitti", cursive;
     font-weight: 400;
     padding: 3rem 2rem;
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-style: italic;
     margin: 1rem;
     text-align: center;
+    border-radius: 5px;
+
 }
 
 .homePage__reviews {
@@ -133,7 +134,7 @@
     font-family: "Inter", sans-serif;
     text-align: center;
     margin-bottom: 0.8rem;
-    font-size: 1.5rem;
+    font-size: 2rem;
 }
 
 .homePage__ourRating-starsContainer {
@@ -170,16 +171,16 @@
 .homePage__review-text {
     font-family: "Inter", sans-serif;
     color: rgba(53, 53, 53, 0.5);
-    font-size: 1.1rem;
+    font-size: 1.2rem;
 }
 
 .homePage__review-boldtext {
     color: rgba(53, 53, 53);
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1.5rem;
 }
 
-@media screen and (max-width:550px) {
+@media screen and (max-width:600px) {
 
     .homePage__reviews {
         padding: 3rem;
@@ -192,8 +193,15 @@
         margin-top: 3rem;
     }
 
+    .homePage__button {
+        margin-bottom: 3rem;
+    }
+
+    .homePage__ourRating {
+        margin-top: 3rem;
+    }
+
     .homePage__picture {
-        margin: 2rem 0rem;
         max-width: 100%;
     }
 }

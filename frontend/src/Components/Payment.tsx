@@ -27,7 +27,7 @@ function Payment({ onNext }: { onNext: () => void }) {
     return (
         <div className='payment__wrapper'>
             <main className='payment'>
-                <h1 className='payment__title'>Payment with</h1>
+                <h2 className='payment__title'>Payment</h2>
                 <span className='payment__divider'></span>
                 <section className='payment__methods-container'>
                     {paymentOptions.map((option) => (

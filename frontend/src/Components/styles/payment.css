@@ -17,7 +17,7 @@
 
 .payment__title {
     font-family: "Inter", sans-serif;
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: 700;
     color: var(--black);
     text-align: center;
@@ -42,7 +42,6 @@
 .payment__method {
     display: grid;
     justify-content: center;
-    /* place-content: flex-end; */
 }
 
 .payment__method--flexStart {
@@ -60,6 +59,7 @@
 .payment__radio-container {
     font-family: "Inter", sans-serif;
     text-align: center;
+    font-size: 1.2rem;
 }
 
 .slick-list {
@@ -67,7 +67,7 @@
 }
 
 .payment__radio {
-    margin-top: 0.5rem;
+    margin-top: 0.7rem;
     margin-right: 0.3rem;
 }
 

@@ -17,7 +17,7 @@ function HomePage() {
       <section className='homePage__wrapper'>
         <section className="homePage__jumbotron">
           <h1 className="homePage__jumbotron-header">Where Sweet Meets Street!</h1>
-          <p className="homePage__jumbotron-text">Discover bold flavors, vibrant scoops, and irresistible toppings that redefine your dessert experience.</p>
+          <h4 className="homePage__jumbotron-text">Discover bold flavors, vibrant scoops, and irresistible toppings that redefine your dessert experience.</h4>
         </section>
         <section className="homePage__content">
           <img className="homePage__picture" src={iceCreamPic} alt="IceCreamImg" />
@@ -32,11 +32,11 @@ function HomePage() {
           </article>
         </section>
         <article className="homePage__slogan">
-          <p className="homePage__slogan-text">Never fear, your Ice Cream is here!</p>
+          <h2 className="homePage__slogan-text">Never fear, your Ice Cream is here!</h2>
         </article>
         <section className="homePage__reviews">
           <section className="homePage__ourRating">
-            <p className="homePage__ourRating-header">OUR RATING</p>
+            <h3 className="homePage__ourRating-header">OUR RATING</h3>
             <article className='homePage__ourRating-starsContainer'>
               <img className="homePage__ourRating-stars" src={star} alt="star" />
               <img className="homePage__ourRating-stars" src={star} alt="star" />

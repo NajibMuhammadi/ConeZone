@@ -28,7 +28,7 @@ function CartPage() {
                                 <section className="cart_item" key={item.sk}>
                                     <img className="cart__item-image" src={item.image} alt={item.name} />
                                     <section className="cart__item-details">
-                                        <h2 className="cart__item-title">{item.name}</h2>
+                                        <h3 className="cart__item-title">{item.name}</h3>
                                         <article className="cart__item-controls">
                                             <Counter item={item} />
                                             <button

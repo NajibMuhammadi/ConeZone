@@ -17,14 +17,14 @@
 }
 
 .overview__heading {
-    font-size: 2rem;
+    font-size: 2.5rem;
     text-align: center;
     font-weight: 700;
     margin-bottom: 2rem;
 }
 
 .overview__customer {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     text-align: center;
     font-weight: 700;
     margin: 2rem;
@@ -38,11 +38,11 @@
     align-items: center;
     position: relative;
     margin-bottom: 2rem;
-    font-size: 1rem;
+    font-size: 1.2rem;
 }
 
 .overview__customer-info {
-    margin-bottom: 0.95rem;
+    margin-bottom: 0.5rem;
 }
 
 .overview__customer-infowrapper {
@@ -64,7 +64,7 @@
     opacity: 0.6;
     top: 1rem;
     right: 1rem;
-    font-size: 1rem;
+    font-size: 1.2rem;
 }
 
 .overview__edit-img {
@@ -78,7 +78,7 @@
 }
 
 .error-msg {
-    font-size: 0.8rem;
+    font-size: 1rem;
 }
 
 .overview__customer-input {
@@ -140,7 +140,7 @@
     justify-content: space-between;
     gap: 15px;
     margin: 5px;
-    font-size: 1rem;
+    font-size: 1.2rem;
 }
 
 .overview__info {
@@ -217,7 +217,7 @@
     align-items: center;
     gap: 10px;
     margin: 30px;
-    font-size: 22px;
+    font-size: 1.2rem;
 }
 
 .overview__payment-dropdown {
@@ -245,7 +245,7 @@
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    font-size: 24px;
+    font-size: 1.5rem;
 }
 
 .overview__total-price {
@@ -254,9 +254,9 @@
 
 .overview__submit {
     background-color: var(--black);
-    font-size: 2rem;
+    font-size: 1.5rem;
     border-radius: 10px;
-    height: 110px;
+    padding: 1rem;
     max-width: 430px;
     width: 80%;
     color: white;
@@ -280,7 +280,8 @@
 }
 
 .overview__no-order {
-    font-size: 30px;
+    font-family: "Inter", sans-serif;
+    font-size: 1.5rem;
     text-align: center;
     margin: 20px;
 }

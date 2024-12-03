@@ -215,7 +215,7 @@ function ChangeOrderPage() {
             <section className="changeOrderPage__wrapper">
                 <section>
                     <article className="changeOrderPage">
-                        <h2 className="changeOrderPage__heading">Overview</h2>
+                        <h2 className="changeOrderPage__heading">Change Order</h2>
                         <hr className="changeOrderPage__line" />
                         {/* Customer Details */}
                         <section>

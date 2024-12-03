@@ -25,34 +25,34 @@ function AboutPage() {
                     </article>
                 </article>
                 <article className="employees">
-                    <h3 className="employees__heading">
+                    <h2 className="employees__heading">
                         Our Employees
-                    </h3>
+                    </h2>
                     <section className="employees__container">
                         <article className="employees__item">
-                            <img src="../../src/assets/employee1.jpeg" alt="picture of a woman" className="employees__img" />
                             <section className="employees__desc-container">
+                                <img src="../../src/assets/employee1.jpeg" alt="picture of a woman" className="employees__img" />
                                 <h3 className="employees__name">Lisa</h3>
                                 <p className="employees__position">Head of Ice</p>
                             </section>
                         </article>
                         <article className="employees__item">
-                            <img src="../../src/assets/employee2.jpeg" alt="" className="employees__img" />
                             <section className="employees__desc-container">
+                                <img src="../../src/assets/employee2.jpeg" alt="" className="employees__img" />
                                 <h3 className="employees__name">Diliara</h3>
                                 <p className="employees__position">Head of Cream</p>
                             </section>
                         </article>
                         <article className="employees__item">
-                            <img src="../../src/assets/employee3.jpeg" alt="" className="employees__img" />
                             <section className="employees__desc-container">
+                                <img src="../../src/assets/employee3.jpeg" alt="" className="employees__img" />
                                 <h3 className="employees__name">Najib</h3>
                                 <p className="employees__position">Head of Cone</p>
                             </section>
                         </article>
                         <article className="employees__item">
-                            <img src="../../src/assets/employee4.jpeg" alt="" className="employees__img" />
                             <section className="employees__desc-container">
+                                <img src="../../src/assets/employee4.jpeg" alt="" className="employees__img" />
                                 <h3 className="employees__name">Ida</h3>
                                 <p className="employees__position">Head of Zone</p>
                             </section>
@@ -63,7 +63,7 @@ function AboutPage() {
                     <img src="../../src/assets/ice cream.jpg" alt="" className="ice-cream__img" />
                 </article>
                 <article className="quote">
-                    <p className="quote__text">“We strive to make the best Ice Cream in the world and having fun while we do it!”</p>
+                    <h3 className="quote__text">“We strive to make the best Ice Cream in the world and having fun while we do it!”</h3>
                 </article>
             </div>
             <Footer />
