@@ -12,6 +12,8 @@ import UserPage from "../pages/UserPage";
 import ChangeOrderPage from "../pages/ChangeOrderPage"
 import EditMenuPage from "../pages/EditMenuPage";
 import AllOrdersPage from "../pages/AllOrdersPage";
+import EditItemPage from "../pages/EditItemPage";
+import AddItemPage from "../pages/AddItemPage";
 
 function Routers() {
     return (
@@ -31,6 +33,8 @@ function Routers() {
                 <Route path="/editmenu" element={<EditMenuPage />} />
                 <Route path="/showorders" element={<AllOrdersPage />} />
                 <Route path="/order/:sk" element={<ChangeOrderPage />} />
+                <Route path="/item/:sk" element={<EditItemPage />} />
+                <Route path="/add" element={<AddItemPage />} />
             </Routes>
         </BrowserRouter>
     )

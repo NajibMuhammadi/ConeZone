@@ -4,9 +4,13 @@ import './styles/editMenuPage.css';
 import { fetchItems } from '../services/fetchItems';
 import { ItemType } from '../types/interfaces';
 import Header from '../components/Header';
+import { Link } from 'react-router-dom';
+import { deleteItem } from '../services/deleteItem';
+import {jwtDecode} from 'jwt-decode';
 
 function EditMenuPage() {
     const url = 'itemsUrl';
+    const token = sessionStorage.getItem('token');
     const [items, setItems] = useState<ItemType[]>([]);
 
     useEffect(() => {
@@ -21,13 +25,36 @@ function EditMenuPage() {
         loadItems();
     }, [url]);
 
+    const removeItem = async (sk : string) => {
+        console.log('removeItem clicked', sk)
+
+        if(token) {
+            try {
+                const decoded: {isAdmin: boolean} = jwtDecode(token);
+                const isAdmin = decoded.isAdmin;
+                console.log('isAdmin:', isAdmin);  
+
+                if(isAdmin) {
+                    try {     
+                    await deleteItem('itemsUrl', sk);
+                    } catch(error) {
+                        console.error('Error adding item', error)
+                    }
+                }
+                location.reload()
+            } catch (error) {
+                console.error('Error parsing token', error)
+            }
+        }
+    }
+
     return (
         <>
             <Header />
             <section className='edit-menu__wrapper'>
                 <section className='edit-menu__container'>
                     <h2 className='edit-menu__header'>Edit menu</h2>
-                    <button className="edit-menu__add-btn">Add item</button>
+                    <Link to={'/add'}><button className="edit-menu__add-btn">Add item</button></Link>
                     <section className="edit-menu__menu">
                         {items.map((item) => {
                             return (
@@ -40,8 +67,8 @@ function EditMenuPage() {
                                             <p className="edit-menu__menu-price">{item.price} kr</p>
                                         </article>
                                         <article className="edit-menu__menu-changes">
-                                            <img className='edit-menu__menu-edit' src="../../src/assets/edit.png" alt="Redigera" />
-                                            <img className="edit-menu__menu-delete" src="../../src/assets/Vector.png" alt="Delete" />
+                                            <Link to={`/item/${item.sk}`}><img className='edit-menu__menu-edit' src="../../src/assets/edit.png" alt="Redigera" /></Link>
+                                            <img className="edit-menu__menu-delete" src="../../src/assets/Vector.png" alt="Delete" onClick={() => item.sk && removeItem(item.sk)} />
                                         </article>
                                     </article>
                                 </>
@@ -58,5 +85,11 @@ function EditMenuPage() {
 
 export default EditMenuPage;
 
-// Författare: Diliara
-// En sida där admin kan redigera menyn
+/** 
+ * Författare: Diliara
+ * En sida där admin kan redigera menyn
+ * 
+ * Edited: Ida
+ * La till en länk för att navigera till sidan där man kan edit items.
+ * La till en funktion som raderar items utifrån dess sk och sedan uppdaterar sidan
+*/

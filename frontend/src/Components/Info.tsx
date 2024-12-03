@@ -2,6 +2,10 @@ import './styles/info.css';
 import { useState } from 'react';
 import useMenuStore from '../stores/cartStore';
 
+interface ErrorProps {
+    msg: string;
+}
+
 function Info({ onNext }: { onNext: () => void }) {
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
@@ -25,8 +29,9 @@ function Info({ onNext }: { onNext: () => void }) {
             setErrorMsg(null);
             setOrder(name, phone, email);
             onNext();
-        } catch (error: any) {
-            setErrorMsg(error.msg || 'An unexpected error occurred.');
+        } catch (error){
+            const validateError = error as ErrorProps;
+            setErrorMsg(validateError.msg || 'An error occurred.');
         }
     }
 
@@ -84,3 +89,8 @@ La till en onSubmit för att gå vidare till nästa komponent
 /* Författare: Lisa
 Lägger till felmeddelande  för validering i frontend 
 */
+
+/* 
+    författare: Najib
+    fixade så att vi inte längre använder any i catch error och definierade error som ErrorProps
+ */

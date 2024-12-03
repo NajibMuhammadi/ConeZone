@@ -101,8 +101,8 @@
 }
 
 .employees__position {
-    color: gray;
     font-size: 1.2rem;
+    color: black;
     padding: 10px;
     font-family: "Inter", sans-serif;
 }

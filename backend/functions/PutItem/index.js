@@ -3,7 +3,7 @@ const {sendResponse, sendError } = require('../../responses/index.js')
 const middy = require('@middy/core');
 const { validateToken } = require('../../middlewares/validateToken.js');
 const { errorHandler } = require('../../middlewares/errorHandler.js');
-const {validateChangeOrder} = require('../../middlewares/validateChangeOrder')
+const {validateChangeItem} = require('../../middlewares/validateChangeItem')
 
 const putItem = async (event, context) => {
     const id = event.pathParameters.id;
@@ -16,7 +16,7 @@ const putItem = async (event, context) => {
         return sendError(401, {message: 'Unauthorized'})
     }
     
-    try {
+    try {1
         const {name, desc, price, category, popular, components, image} = JSON.parse(event.body)
         const response = await db.get({
             TableName: 'conezonemenu-db',
@@ -61,7 +61,7 @@ const putItem = async (event, context) => {
 }
 
 const middyHandler = middy(putItem);
-exports.handler = middyHandler.use(validateToken()).use(validateChangeOrder()).use(errorHandler());
+exports.handler = middyHandler.use(validateToken()).use(validateChangeItem()).use(errorHandler());
 
 /**
   * Författare: Ida
