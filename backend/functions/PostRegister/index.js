@@ -5,6 +5,7 @@ const middy = require('@middy/core');
 const { errorHandler } = require('../../middlewares/errorHandler.js');
 const { validateRegister } = require('../../middlewares/validateRegister.js');
 const { hashPassword } = require('../../utils/index.js');
+const { validateKey } = require('../../middlewares/validateKey.js');
 
 const isAdmin = false;
 
@@ -69,6 +70,7 @@ const registerUser = async (event) => {
 }
 
 exports.handler = middy(registerUser)
+    .use(validateKey())
     .use(validateRegister())
     .use(errorHandler());
 

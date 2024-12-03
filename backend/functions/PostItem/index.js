@@ -5,6 +5,7 @@ const middy = require('@middy/core');
 const {errorHandler} = require('../../middlewares/errorHandler.js')
 const {validateNewItem} = require('../../middlewares/validateNewItem.js');
 const { validateToken } = require('../../middlewares/validateToken.js');
+const { validateKey } = require('../../middlewares/validateKey.js');
 
 const handler = async (event,context) => {
       const {pk, name, desc, price, category, popular, components, image} = JSON.parse(event.body)
@@ -35,7 +36,7 @@ const handler = async (event,context) => {
 }
 
 const middyHandler = middy(handler);
-exports.handler = middyHandler.use(validateToken()).use(validateNewItem()).use(errorHandler());
+exports.handler = middyHandler.use(validateToken()).use(validateKey()).use(validateNewItem()).use(errorHandler());
 
 /**
   * Författare: Ida
@@ -46,4 +47,5 @@ exports.handler = middyHandler.use(validateToken()).use(validateNewItem()).use(e
 /* 
   * Författare: Najib
   * tar emot context från validateToken middleware och kollar om användaren är admin eller inte.
+  * ändrade till middy och la till validateKey och errorHandler
  */

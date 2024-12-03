@@ -5,6 +5,7 @@ const { errorHandler } = require('../../middlewares/errorHandler.js');
 const { validateLoggaIn } = require('../../middlewares/validateLoggaIn.js');
 const { comparePassword } = require('../../utils/index.js');
 const { generateToken } = require('../../utils/index.js');
+const { validateKey } = require('../../middlewares/validateKey.js');
 
 const loggaIn = async (event) => {
 
@@ -59,6 +60,7 @@ const loggaIn = async (event) => {
 }
 
 exports.handler = middy(loggaIn)
+    .use(validateKey())
     .use(validateLoggaIn())
     .use(errorHandler());
 

@@ -3,7 +3,8 @@ const {sendResponse, sendError } = require('../../responses/index.js')
 const middy = require('@middy/core');
 const { validateToken } = require('../../middlewares/validateToken.js');
 const { errorHandler } = require('../../middlewares/errorHandler.js');
-const {validateChangeItem} = require('../../middlewares/validateChangeItem')
+const {validateChangeItem} = require('../../middlewares/validateChangeItem');
+const { validateKey } = require('../../middlewares/validateKey.js');
 
 const putItem = async (event, context) => {
     const id = event.pathParameters.id;
@@ -61,7 +62,7 @@ const putItem = async (event, context) => {
 }
 
 const middyHandler = middy(putItem);
-exports.handler = middyHandler.use(validateToken()).use(validateChangeItem()).use(errorHandler());
+exports.handler = middyHandler.use(validateToken()).use(validateKey()).use(validateChangeItem()).use(errorHandler());
 
 /**
   * Författare: Ida
@@ -71,4 +72,5 @@ exports.handler = middyHandler.use(validateToken()).use(validateChangeItem()).us
 /* 
     * Författare: Najib
     * tar emot context från validateToken middleware och kollar om användaren är admin eller inte.
+    * la till validateKey
  */

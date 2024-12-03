@@ -1,7 +1,10 @@
 const {db} = require('../../services/index.js')
 const {sendResponse, sendError } = require('../../responses/index.js')
+const middy = require('@middy/core');
+const { validateKey } = require('../../middlewares/validateKey.js');
+const { errorHandler } = require('../../middlewares/errorHandler.js');
 
-exports.handler = async (event) => {
+const getOrder = async (event) => {
 
     const pk = event.pathParameters.pk;
     const id = event.pathParameters.id;
@@ -28,8 +31,16 @@ exports.handler = async (event) => {
     } 
 }
 
+const middyHandler = middy(getOrder);
+exports.handler = middyHandler.use(validateKey()).use(errorHandler());
+
 /**
   * Författare: Ida
   * Funktion som hämtar order utifrån både pk och id, som båda skickas med i url:en. 
   * order/{pk}/{id}
 */
+
+/* 
+    * Författare: Najib
+    * ändrade till middy och la till validateKey och errorHandler
+ */

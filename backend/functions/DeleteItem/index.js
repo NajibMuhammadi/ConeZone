@@ -3,6 +3,7 @@ const {sendResponse, sendError } = require('../../responses/index')
 const middy = require('@middy/core');
 const { validateToken } = require('../../middlewares/validateToken.js');
 const { errorHandler } = require('../../middlewares/errorHandler.js');
+const { validateKey } = require('../../middlewares/validateKey.js');
 
 const deleteItem = async (event, context) => {
     const {id} = event.pathParameters;
@@ -45,7 +46,7 @@ const deleteItem = async (event, context) => {
 }
 
 const middyHandler = middy(deleteItem); 
-exports.handler = middyHandler.use(validateToken()).use(errorHandler());
+exports.handler = middyHandler.use(validateToken()).use(validateKey()).use(errorHandler());
 
 /* 
     * Författare: Najib
