@@ -12,7 +12,7 @@ const deleteItem = async (itemsUrl: string, sk:string) : Promise<void> => {
     } 
 
     try {
-        await axios.delete(`${url}/${sk}`, {
+        await axios.delete(`${url}/${sk}?key=key-6GRf3`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',

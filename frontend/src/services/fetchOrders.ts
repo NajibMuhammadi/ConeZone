@@ -15,7 +15,7 @@ const fetchOrders = async (): Promise<Order[]> => {
     }
 
     try {
-        const response = await axios.get<FetchOrdersResponse>(url);
+        const response = await axios.get<FetchOrdersResponse>(`${url}?key=key-6GRf3`);
         console.log('Fetched Orders:', response.data.message);
         return response.data.message || [];
     } catch (error) {
