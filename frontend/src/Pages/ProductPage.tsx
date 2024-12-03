@@ -51,8 +51,8 @@ function ProductPage() {
                         <img src={item.image} alt={item.name} className="product__img" />
                     </article>
                     <article className="product__info">
-                        <p className="product__name">{item.name}</p>
-                        <p className="product__desc">{item.desc}</p>
+                        <h3 className="product__name">{item.name}</h3>
+                        <h4 className="product__desc">{item.desc}</h4>
                         <article className="product__lists">
                             <ul className="product__components">
                                 <strong>Ingridients:</strong>
@@ -62,12 +62,12 @@ function ProductPage() {
                             </ul>
                         </article>
                         <section className="product__buttons">
-                            <Link to="/menu">
-                                <button className="product__back-btn">Go back</button>
-                            </Link>
                             <button className="product__button"
                                 onClick={() => addToCart(item)}
                             >Give me one!</button>
+                            <Link to="/menu">
+                                <button className="product__back-btn">Go back</button>
+                            </Link>
                         </section>
                     </article>
                 </section>

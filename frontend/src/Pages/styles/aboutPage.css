@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin: 0 auto;
 }
 
 .history {
@@ -17,25 +18,31 @@
     margin: 0 50px 50px 50px;
 }
 
-.history__heading,
+.history__heading {
+    text-align: center;
+    font-family: "Inter", sans-serif;
+    font-size: 2.5rem;
+}
+
 .employees__heading {
     text-align: center;
     font-family: "Inter", sans-serif;
-    font-size: 40px;
+    font-size: 1.5rem;
 }
 
 .history__img {
     border-radius: 11px;
     width: 400px;
-    height: 400px;
+    height: 500px;
     margin: 30px;
 }
 
 .history__text {
     margin: 30px;
     font-family: "Inter", sans-serif;
-    font-size: 18px;
+    font-size: 1.2rem;
     text-align: justify;
+    line-height: 1.7rem;
 }
 
 .employees {
@@ -43,6 +50,10 @@
     background-size: contain;
     width: 100%;
     padding: 50px;
+}
+
+.employees__heading {
+    font-size: 2.5rem;
 }
 
 .employees__container {
@@ -53,37 +64,44 @@
     margin: 50px;
 }
 
-.employees__item {
+/* .employees__item {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     margin: 50px;
-}
+} */
 
 .employees__desc-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 50px;
     background-color: white;
     text-align: center;
-    padding: 15px 25px 15px 25px;
-    border-radius: 10px;
+    padding: 15px;
+    border-radius: 5px;
     border: 2px solid gray;
-    font-size: 22px;
-    width: 200px;
+    font-size: 1.2rem;
+    min-width: 200px;
 }
 
 .employees__img {
-    border-radius: 50%;
-    width: 150px;
-    margin: 30px;
+    border-radius: 5px;
+    width: 15rem;
+    /* margin: 30px; */
 }
 
 .employees__name {
     color: var(--black);
+    font-size: 2rem;
     padding: 10px;
     font-family: "Inter", sans-serif;
 }
 
 .employees__position {
+    font-size: 1.2rem;
     color: black;
     padding: 10px;
     font-family: "Inter", sans-serif;
@@ -102,8 +120,9 @@
 
 .quote {
     text-align: center;
-    background-color: var(--purple);
-    height: 400px;
+    border: 20px dotted var(--purple);
+    margin: 1rem;
+    padding: 6rem 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -111,14 +130,16 @@
     font-family: "Calligraffitti", cursive;
     font-weight: 400;
     font-style: normal;
+    width: 100%;
 }
 
 .quote__text {
-    font-size: 46px;
+    font-size: 2rem;
     padding: 70px;
 }
 
 @media (max-width: 768px) {
+
     .history__heading {
         margin: 30px 0 10px 0;
     }
@@ -146,6 +167,10 @@
         background-size: contain;
     }
 
+    .employees__heading {
+        margin-top: 2rem;
+    }
+
     .employees__container {
         display: flex;
         flex-direction: column;
@@ -159,14 +184,13 @@
     }
 
     .employees__img {
-        width: 100px;
+        width: 40vw;
         margin: 20px 0;
     }
 
     .employees__desc-container {
         padding: 0 10px;
         font-size: 16px;
-        width: 170px;
     }
 
     .ice-cream {
@@ -185,7 +209,6 @@
     }
 
     .quote__text {
-        font-size: 20px;
         padding: 20px;
     }
 }
@@ -197,10 +220,10 @@
         grid-template-rows: 1fr 1fr;
         align-items: center;
         margin: 0;
+
     }
 
     .quote__text {
-        font-size: 34px;
         padding: 30px;
     }
 
@@ -221,7 +244,6 @@
     }
 
     .quote__text {
-        font-size: 40px;
         padding: 40px;
     }
 }
@@ -229,7 +251,7 @@
 @media (min-width: 1300px) and (max-width: 1800px) {
     .employees__container {
         display: flex;
-        flex-direction: row;
+        flex-wrap: wrap;
         align-items: center;
         justify-content: space-evenly;
         margin: 0;

@@ -38,7 +38,7 @@ function MenuPage() {
                                     <article className="main__menu">
                                         <img className="main__menu-image" src={item.image} alt="IceCream" />
                                         <article className="main__menu-des">
-                                            <h2 className="main__menu-title">{item.name}</h2>
+                                            <p className="main__menu-title">{item.name}</p>
                                             <button className="main__menu-btn">
                                                 {item.price} kr</button>
                                         </article>

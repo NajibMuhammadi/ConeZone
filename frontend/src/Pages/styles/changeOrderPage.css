@@ -19,7 +19,7 @@
 }
 
 .changeOrderPage__heading {
-    font-size: 40px;
+    font-size: 2.5rem;
     text-align: center;
     font-weight: 700;
     margin-bottom: 2rem;
@@ -37,11 +37,11 @@
     align-items: center;
     position: relative;
     margin-bottom: 2rem;
-    font-size: 1rem;
+    font-size: 1.2rem;
 }
 
 .changeOrderPage__customer {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     text-align: center;
     font-weight: 700;
     margin: 2rem;
@@ -61,12 +61,14 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     padding: 5px;
+    font-size: 1rem;
 }
 
 .changeOrderPage__input label {
     display: flex;
     align-items: center;
 }
+
 
 .changeOrderPage__input:focus {
     border-color: var(--pink70);
@@ -99,8 +101,8 @@
     display: flex;
     justify-content: space-between;
     gap: 15px;
-    margin: 5px;
-    font-size: 1rem;
+    /* margin: 5px; */
+    font-size: 1.2rem;
 }
 
 .changeOrderPage__info {
@@ -128,13 +130,14 @@
     align-items: center;
     gap: 10px;
     margin: 30px;
-    font-size: 22px;
 }
 
 .changeOrderPage__payment select {
     border: 1px solid #ccc;
     border-radius: 4px;
     padding: 5px;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .changeOrderPage__method-img {
@@ -146,7 +149,7 @@
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    font-size: 24px;
+    font-size: 1.5rem;
 }
 
 .changeOrderPage__total-price {
@@ -166,9 +169,9 @@
 
 .changeOrderPage__submit {
     background-color: var(--black);
-    font-size: 2rem;
+    font-size: 1.5rem;
     border-radius: 10px;
-    height: 5rem;
+    padding: 1rem;
     max-width: 430px;
     width: 80%;
     color: white;
@@ -186,9 +189,9 @@
 
 .changeOrderPage__submit-white {
     background-color: var(--white);
-    font-size: 2rem;
+    font-size: 1.5rem;
     border-radius: 10px;
-    height: 5rem;
+    padding: 1rem;
     max-width: 430px;
     width: 80%;
     color: var(--black);
@@ -210,7 +213,6 @@
 
     .changeOrderPage {
         width: 90%;
-        font-size: 18px;
         margin: 2rem auto;
     }
 
@@ -246,45 +248,25 @@
     }
 
     .changeOrderPage__info {
-        gap: 20px;
+        gap: 10px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
     }
 
+
     .changeOrderPage__info-wrapper {
         display: flex;
         flex-direction: row;
-        gap: 15px;
-        margin: 5px;
-        font-size: 16px;
     }
 
     .changeOrderPage__method {
         text-align: center;
-        font-size: 20px;
     }
 
-    .changeOrderPage__item-quantity {
-        display: flex;
-        gap: 0.5rem;
-        align-items: center;
-        justify-content: space-around;
-        padding: 5px 10px;
-        border-radius: 10px;
-        background-color: var(--pink);
-    }
-
-    .changeOrderPage__item-decrease,
-    .changeOrderPage__item-increase {
-        border: none;
-        background-color: transparent;
-        cursor: pointer;
-        color: var(--black);
-        font-size: 30px;
-        padding: 5px 10px;
-
+    .changeOrderPage__counter-container {
+        margin-bottom: 1.5rem;
     }
 
     .changeOrderPage__payment {
@@ -292,18 +274,14 @@
     }
 
     .changeOrderPage__heading {
-        font-size: 30px;
+        font-size: 2rem;
     }
 
     .changeOrderPage__submit {
-        font-size: 1.5rem;
-        height: 80px;
         margin: 1rem;
     }
 
     .changeOrderPage__submit-white {
-        font-size: 1.5rem;
-        height: 80px;
         margin: 1rem;
     }
 
@@ -317,12 +295,6 @@
         margin-left: 30px;
     }
 }
-
-/* @media (max-width: 1024px) {
-    .overview__wrapper {
-        padding: 7rem 0rem;
-    }
-} */
 
 /*
 /* Författare: Diliara
