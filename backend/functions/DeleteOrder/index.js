@@ -1,7 +1,10 @@
 const { db } = require('../../services/index.js');
 const { sendResponse, sendError } = require('../../responses/index.js');
+const middy = require('@middy/core');
+const { validateKey } = require('../../middlewares/validateKey.js');
+const { errorHandler } = require('../../middlewares/errorHandler.js');
 
-exports.handler = async (event) => {
+const deleteOrder = async (event) => {
     const id = event.pathParameters.id;
     const pk = event.pathParameters.pk;
 
@@ -43,8 +46,15 @@ exports.handler = async (event) => {
         }
     }
 }
+const middyHandler = middy(deleteOrder);
+exports.handler = middyHandler.use(validateKey()).use(errorHandler());
 
 /**
  * Författare: Ida
  * En funktion som raderar en order ur databasen under förutsättning att isApproved fortfarande är false
+ */
+
+/* 
+    Författare: Najib
+    ändrade till middy och la till validateKey och errorHandler
  */

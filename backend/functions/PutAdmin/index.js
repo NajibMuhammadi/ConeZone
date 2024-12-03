@@ -2,7 +2,8 @@ const {db} = require('../../services/index.js')
 const {sendResponse, sendError } = require('../../responses/index.js');
 const middy = require('@middy/core')
 const {errorHandler} = require('../../middlewares/errorHandler.js')
-const {validateChangeOrder} = require('../../middlewares/validateChangeOrder.js')
+const {validateChangeOrder} = require('../../middlewares/validateChangeOrder.js');
+const { validateKey } = require('../../middlewares/validateKey.js');
 
 const handler = async (event) => {
     const pk = event.pathParameters.pk;
@@ -58,7 +59,7 @@ const handler = async (event) => {
 }
 
 const middyHandler = middy(handler);
-exports.handler = middyHandler.use(validateChangeOrder()).use(errorHandler());
+exports.handler = middyHandler.use(validateKey()).use(validateChangeOrder()).use(errorHandler());
 
 /**
   * Författare: Ida

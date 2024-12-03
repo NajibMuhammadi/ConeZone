@@ -2,7 +2,8 @@ const {db} = require('../../services/index.js')
 const {sendResponse, sendError } = require('../../responses/index')
 const middy = require('@middy/core');
 const {errorHandler} = require('../../middlewares/errorHandler.js')
-const {validateNewOrder} = require('../../middlewares/validateNewOrder.js')
+const {validateNewOrder} = require('../../middlewares/validateNewOrder.js');
+const { validateKey } = require('../../middlewares/validateKey.js');
 
 
 const handler = async (event) => {
@@ -29,7 +30,7 @@ const handler = async (event) => {
 }
 
 const middyHandler = middy(handler);
-exports.handler = middyHandler.use(validateNewOrder()).use(errorHandler());
+exports.handler = middyHandler.use(validateNewOrder()).use(validateKey()).use(errorHandler());
 
 /**
 * Författare: Ida
@@ -37,3 +38,8 @@ exports.handler = middyHandler.use(validateNewOrder()).use(errorHandler());
 * Om användaren är inloggad lagrats det under användarnamnet, annars under guest. 
 * Funtionen använder sig av middy för att dels validera den inkommande datan mot en valideringsmiddleware och eventuella fel hanteras av errorHandlern
 */
+
+/* 
+    * Författare: Najib
+    * la till validateKey
+ */
