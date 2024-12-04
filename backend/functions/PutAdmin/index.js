@@ -4,14 +4,19 @@ const middy = require('@middy/core')
 const {errorHandler} = require('../../middlewares/errorHandler.js')
 const {validateChangeOrder} = require('../../middlewares/validateChangeOrder.js');
 const { validateKey } = require('../../middlewares/validateKey.js');
+const {validateToken} = require('../../middlewares/validateToken.js')
 
-const handler = async (event) => {
+const handler = async (event, context) => {
     const pk = event.pathParameters.pk;
     const id = event.pathParameters.id;
 
     if(!id || !pk) {
         return sendError(404, {message: 'Please add an pk or an id'})
     } else {
+        if(!context.isAdmin){
+            return sendError(401, {message: 'Unauthorized'});
+        }
+
         try {
             const  {isApproved, isDone, kitchenMessage} = JSON.parse(event.body)
             console.log('Data received from frontend:', { isApproved, isDone, kitchenMessage });
@@ -33,7 +38,7 @@ const handler = async (event) => {
                     ...oldOrder,
                     ...(isApproved !== undefined && {isApproved}),
                     ...(isDone !== undefined && {isDone}),
-                    ...(kitchenMessage !== undefined ? {kitchenMessage} : {})
+                    ...(kitchenMessage !== undefined && {kitchenMessage})
                 }
 
                 console.log(item)
@@ -59,7 +64,7 @@ const handler = async (event) => {
 }
 
 const middyHandler = middy(handler);
-exports.handler = middyHandler.use(validateKey()).use(validateChangeOrder()).use(errorHandler());
+exports.handler = middyHandler.use(validateToken()).use(validateKey()).use(validateChangeOrder()).use(errorHandler());
 
 /**
   * Författare: Ida
