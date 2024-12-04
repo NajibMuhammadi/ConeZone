@@ -38,7 +38,7 @@ const handler = async (event, context) => {
                     ...oldOrder,
                     ...(isApproved !== undefined && {isApproved}),
                     ...(isDone !== undefined && {isDone}),
-                    ...(kitchenMessage !== undefined ? {kitchenMessage} : {})
+                    ...(kitchenMessage !== undefined && {kitchenMessage})
                 }
 
                 console.log(item)
