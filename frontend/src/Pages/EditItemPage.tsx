@@ -50,7 +50,7 @@ function EditItemPage() {
                 console.error('Error parsing token:', err);
             }
         }
-    }, [sk, token])
+    }, [sk, token, navigate])
 
     useEffect(() => {
         if (item) {
@@ -80,6 +80,10 @@ function EditItemPage() {
             setNewItem((item) => ({
                 ...item, components: updatedComponents
             }))
+            setItem((item) => {
+                if (item) {
+                    return { ...item, components: updatedComponents };
+            }})
             setNewComponent('')
         }
     }
@@ -92,16 +96,14 @@ function EditItemPage() {
             ...item,
             components: updatedComponents
         }))
+        setItem((item) => {
+            if (item) {
+                return { ...item, components: updatedComponents };
+        }})
     }
 
     const changeItem = async (event: React.FormEvent) => {
         event.preventDefault();
-        console.log('New items saved', newItem)
-        await uploadItem(newItem)
-        navigate('/editmenu');
-    }
-
-    const uploadItem = async (newItem: NewItem) => {
         if (token) {
             try {
                 const decoded: { isAdmin: boolean } = jwtDecode(token);
@@ -114,11 +116,14 @@ function EditItemPage() {
                         console.error('Error updating item', error)
                     }
                 }
+                navigate('/editmenu');
             } catch (err) {
                 console.error('Error parsing token:', err);
             }
         }
     }
+
+
 
     return (
         <>
