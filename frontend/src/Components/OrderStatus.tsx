@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { deleteOrder } from '../services/deleteOrder';
 import './styles/orderStatus.css';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { Order } from '../types/interfaces';
 import { fetchOrder } from '../services/fetchOrder';
 
@@ -11,7 +11,6 @@ interface Props {
 
 function OrderStatus({ sk }: Props) {
     const [newSk, setNewSk] = useState<string>('');
-    // const [newSk, setNewSk] = useState<string>(sk || '');
     const pk = 'guest';
     const [isCanceled, setIsCanceled] = useState(false);
     const [isApproved, setIsApproved] = useState(false);
@@ -19,6 +18,7 @@ function OrderStatus({ sk }: Props) {
     const [isPickedUp, setIsPickedUp] = useState(false);
     const [orderDetails, setOrderDetails] = useState<Order | null>(null);
     const [isEditing, setIsEditing] = useState(false);
+    const navigate = useNavigate();
 
     const cancelOrder = async () => {
         try {
@@ -84,8 +84,9 @@ function OrderStatus({ sk }: Props) {
             setIsDone(false);
             setIsPickedUp(true);
             sessionStorage.removeItem('orderNumber')
+            navigate('/cart');
         }
-    }, [orderDetails]);
+    }, [orderDetails, navigate]);
 
     return (
         <div className='order__wrapper'>
