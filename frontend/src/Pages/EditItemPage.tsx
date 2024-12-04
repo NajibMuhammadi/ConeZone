@@ -203,7 +203,7 @@ function EditItemPage() {
                                                         console.log('clicked component:', component, 'index:', index)
                                                         deleteComponent(component)
                                                     }}
-                                                >Delete</button>
+                                                >X</button>
                                             </li>
                                         </label>
                                         )
