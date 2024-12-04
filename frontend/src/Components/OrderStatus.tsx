@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { deleteOrder } from '../services/deleteOrder';
 import './styles/orderStatus.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Order } from '../types/interfaces';
 import { fetchOrder } from '../services/fetchOrder';
 
@@ -14,24 +14,38 @@ function OrderStatus({ sk }: Props) {
     const [isCanceled, setIsCanceled] = useState(false);
     const [isApproved, setIsApproved] = useState(false);
     const [isDone, setIsDone] = useState(false);
+    const [isPickedUp, setIsPickedUp] = useState(false);
     const [orderDetails, setOrderDetails] = useState<Order | null>(null);
     const [isEditing, setIsEditing] = useState(false);
 
     const cancelOrder = async () => {
-        console.log(`Your order with the id `, sk, ` has been deleted`);
-        await deleteOrder('ordersUrl', pk, sk);
-        setIsCanceled(true);
+        try {
+            console.log(`Your order with the id `, sk, ` has been deleted`);
+            await deleteOrder('ordersUrl', pk, sk);
+            setIsCanceled(true);
+            handleOrderPickedUp();
+        } catch (error) {
+            console.error('Failed to cancel the order', error);
+        }
     };
 
     const getOrder = async () => {
         try {
             console.log('Fetching order with pk:', pk, 'and sk:', sk);
             const response = await fetchOrder('ordersUrl', pk, sk);
-            setOrderDetails(response);
+            if (response) {
+                setOrderDetails(response);
+            }
         } catch (error) {
-            console.error('Failed to get order', error);
+            console.error('Failed to fetch order', error);
         }
-    };
+    }
+
+    useEffect(() => {
+        if (sk) {
+            sessionStorage.setItem('orderNumber', sk)
+        }
+    }, [sk])
 
     useEffect(() => {
         if (isEditing) {
@@ -48,7 +62,18 @@ function OrderStatus({ sk }: Props) {
             setIsApproved(false);
             setIsDone(true);
         }
+        if (orderDetails?.isPickedUp) {
+            setIsApproved(false);
+            setIsDone(false);
+            setIsPickedUp(true);
+            handleOrderPickedUp()
+        }
     }, [orderDetails]);
+
+
+    const handleOrderPickedUp = () => {
+        sessionStorage.removeItem('orderNumber')
+    }
 
     return (
         <div className='order__wrapper'>
@@ -101,14 +126,17 @@ function OrderStatus({ sk }: Props) {
 export default OrderStatus;
 
 
-/** 
+/**
  *  Författare: Najib
  * en komponent som visar orderstatusen för användaren och möjligheten att avbryta eller bekräfta ordern
- * 
+ *
  *  Författare: Ida
  * Skapat en funktion som gör att man kan radera ordern från databasen när man klickar på cancel order knappen
  */
 
 /* Edited: Diliara
- ** kollar om user ändrar order och då fetchar order, annars fetchOrder körs inte 
+ ** kollar om user ändrar order och då fetchar order, annars fetchOrder körs inte
 */
+
+// Författare: Lisa
+// Skapar funktion för att kunna lämna sidan och komma tillbaka med hjälp av sessionStorage 

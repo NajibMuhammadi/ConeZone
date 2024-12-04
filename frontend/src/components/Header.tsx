@@ -1,4 +1,4 @@
-import { NavLink, NavLinkRenderProps, useNavigate } from 'react-router-dom';
+import { NavLink, NavLinkRenderProps, useNavigate, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import './styles/header.css';
 import './styles/userHeader.css'
@@ -7,13 +7,16 @@ import useMenuStore from '../stores/cartStore';
 import { jwtDecode } from 'jwt-decode';
 
 function Header() {
+    const { sk } = useParams<{ sk: string }>();
     const cart = useMenuStore(state => state.cart);
     const totalQuantity = useMenuStore(state => state.totalQuantity);
     const [quantity, setQuantity] = useState(0);
     const navigate = useNavigate();
+    const [orderNumber, setOrderNumber] = useState<string | null>(null);
 
     useEffect(() => {
         setQuantity(totalQuantity());
+        setOrderNumber(sessionStorage.getItem('orderNumber'));
     }, [cart, totalQuantity]);
 
     const [isOpen, setIsOpen] = useState(false);
@@ -24,16 +27,14 @@ function Header() {
     useEffect(() => {
         const token = sessionStorage.getItem('token');
         if (token) {
-            try{
-                const decoded: {isAdmin: boolean} = jwtDecode(token);
-
+            try {
+                const decoded: { isAdmin: boolean } = jwtDecode(token);
                 const isAdmin = decoded.isAdmin;
-
-                console.log('isAdmin:', isAdmin);   
+                console.log('isAdmin:', isAdmin);
             } catch (err) {
                 console.error('Error parsing token:', err);
             }
-        } 
+        }
         setIsLoggedIn(!!token);
         setIsAdmin(!!token && (jwtDecode<{ isAdmin: boolean }>(token)).isAdmin);
     }, []);
@@ -50,6 +51,7 @@ function Header() {
         console.log('You have clicked the logout button');
         sessionStorage.removeItem('token');
         sessionStorage.removeItem('isAdmin');
+        sessionStorage.removeItem('orderNumber');
         setIsLoggedIn(false);
         setIsAdmin(false);
         setIsUserMenuOpen(false);
@@ -73,6 +75,11 @@ function Header() {
                         <div className='badge'>{quantity}</div>
                     )}
                 </NavLink>
+                {orderNumber && (
+                    <button className="nav__link nav__button" onClick={() => navigate('/order', { state: { slideIndex: 3, sk: sk } })}>
+                        Your Order
+                    </button>
+                )}
                 {isLoggedIn ? (
                     <>
                         <button className="nav__button" onClick={toggleUserMenu}>
@@ -167,10 +174,11 @@ export default Header;
 
 // Författare Lisa
 // Lägger in funktion samt en badge som visar quantity för varukorgen.
-//  Uppdateras när cart ändras. 
+//  Uppdateras när cart ändras.
+// Lägger in YourOrder funktion.
 
 // Författare Diliara
-// Gjorde så att man kan klicka på user och 
+// Gjorde så att man kan klicka på user och
 // få upp en meny, lagrar admin/ user geno alla sidor
 
 // Författare Najib

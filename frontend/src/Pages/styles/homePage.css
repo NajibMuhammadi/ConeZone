@@ -110,7 +110,8 @@
 }
 
 .homePage__reviews {
-    background-image: url('../../assets/sprinkles.png');
+    /* background-image: url('../../assets/sprinkles.png'); */
+    background-image: linear-gradient(to top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%), url('../../assets/sprinkles.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -119,6 +120,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    padding: 5rem 0rem;
 }
 
 .homePage__ourRating {
