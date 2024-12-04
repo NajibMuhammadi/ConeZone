@@ -48,11 +48,13 @@ function KitchenViewPage() {
 
     const incomingOrders = orders.filter(order => !order.isApproved);
     const ongoingOrders = orders.filter(order => order.isApproved && !order.isDone);
-    const doneOrders = orders.filter(order => order.isDone);
+    const doneOrders = orders.filter(order => order.isDone && !order.isPickedUp);
+    const pickedUpOrders = orders.filter(order => order.isPickedUp);
 
     const filteredOrders = filter === 'incoming' ? incomingOrders :
         filter === 'ongoing' ? ongoingOrders :
             filter === 'done' ? doneOrders : orders;
+            filter === 'isPickedUp' ? pickedUpOrders : orders;
 
     console.log('Filtered orders:', filteredOrders);
 
@@ -104,6 +106,7 @@ function KitchenViewPage() {
 
                 console.log('Order skickas:', newOrder)
                 await adminUpdate('adminOrdersUrl', pk, sk, newOrder)
+                setFilter('isPickedUp')
                 location.reload()
             } catch(error) {
                 console.error('Error editing order', error)
