@@ -48,11 +48,13 @@ function KitchenViewPage() {
 
     const incomingOrders = orders.filter(order => !order.isApproved);
     const ongoingOrders = orders.filter(order => order.isApproved && !order.isDone);
-    const doneOrders = orders.filter(order => order.isDone);
+    const doneOrders = orders.filter(order => order.isDone && !order.isPickedUp);
+    const pickedUpOrders = orders.filter(order => order.isPickedUp);
 
     const filteredOrders = filter === 'incoming' ? incomingOrders :
         filter === 'ongoing' ? ongoingOrders :
             filter === 'done' ? doneOrders : orders;
+            filter === 'isPickedUp' ? pickedUpOrders : orders;
 
     console.log('Filtered orders:', filteredOrders);
 
@@ -71,7 +73,7 @@ function KitchenViewPage() {
                 await adminUpdate('adminOrdersUrl', pk, sk, newOrder);
                 location.reload();
             } catch (error) {
-                console.error('Error adding item', error)
+                console.error('Error editing order', error)
             }
         }
     };
@@ -87,10 +89,30 @@ function KitchenViewPage() {
                 await adminUpdate('adminOrdersUrl', pk, sk, newOrder)
                 location.reload()
             } catch (error) {
-                console.error('Error adding item', error)
+                console.error('Error edition order', error)
             }
         }
 }
+
+    const orderIsPickedUp = async (sk: string) => {
+        if(isAdmin) {
+            try {
+                let newOrder = {
+                    sk: sk,
+                    isApproved: true,
+                    isDone: true,
+                    isPickedUp: true,
+                }
+
+                console.log('Order skickas:', newOrder)
+                await adminUpdate('adminOrdersUrl', pk, sk, newOrder)
+                setFilter('isPickedUp')
+                location.reload()
+            } catch(error) {
+                console.error('Error editing order', error)
+            }
+        }
+    }
 
     return (
         <>
@@ -203,7 +225,7 @@ function KitchenViewPage() {
                                                         </li>
                                                     ))}
                                                 </ul>
-                                                <button className="done__btn">Remove</button>
+                                                <button className="done__btn" onClick={() => order.sk && orderIsPickedUp(order.sk)}>Remove</button>
                                             </div>
                                         ))
                                     )}

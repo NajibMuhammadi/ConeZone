@@ -45,6 +45,7 @@ export interface Order {
     totalPrice: number;
     isApproved?: boolean;
     isDone?: boolean;
+    isPickedUp?: boolean;
     kitchenMessage?: string
 }
 
@@ -88,6 +89,7 @@ export interface adminApprove {
     sk: string
     isApproved?: boolean,
     isDone?: boolean,
+    isPickedUp?: boolean,
     kitchenMessage?: string
 }
 
