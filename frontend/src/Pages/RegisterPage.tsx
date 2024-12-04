@@ -15,7 +15,7 @@ function Register() {
     const [success, setSuccess] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
-    useEffect(()=>{
+    useEffect(() => {
         const token = sessionStorage.getItem('token');
         if (token) {
             navigate('/menu');
@@ -40,7 +40,7 @@ function Register() {
 
             console.log('Response:', response);
             setSuccess(response.body.message);
-            
+
         } catch (err) {
             console.error('Error:', err);
             if (err instanceof Error) {
