@@ -23,6 +23,7 @@ const orderSchema = Joi.object({
         })).required(),
     isApproved: Joi.boolean().strict().required(),
     isDone: Joi.boolean().strict().required(),
+    isPickedUp: Joi.boolean().strict().required(),
     paymentMethod: Joi.string().required(),
     kitchenMessage: Joi.string().allow('').optional(),
     totalPrice : Joi.number().strict().required()

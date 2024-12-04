@@ -40,6 +40,7 @@ const postOrder = async (
         totalPrice,
         isApproved: false,
         isDone: false,
+        isPickedUp: false,
     };
 
     console.log('Order data:', orderData);

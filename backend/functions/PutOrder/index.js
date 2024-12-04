@@ -13,7 +13,7 @@ const handler = async (event) => {
         return sendError(404, {message: 'Please add an pk or an id'})
     } else {
         try {
-            const  {customerDetails, items, isApproved, isDone, paymentMethod, totalPrice} = JSON.parse(event.body)
+            const  {customerDetails, items, isApproved, isDone, isPickedUp, paymentMethod, totalPrice} = JSON.parse(event.body)
             const response = await db.get({
                 TableName: 'conezoneorder-db',
                 Key: {
@@ -40,6 +40,7 @@ const handler = async (event) => {
                     ...(items !== undefined && { items }),
                     ...(totalPrice !== undefined && { totalPrice }),
                     ...(isApproved !== undefined && {isApproved}),
+                    ...(isPickedUp !== undefined && {isPickedUp}),
                     ...(paymentMethod !== undefined && {paymentMethod}),
                     ...(isDone !== undefined && {isDone})    
                 }
@@ -71,7 +72,6 @@ exports.handler = middyHandler.use(validateKey()).use(validateChangeOrder()).use
   * Författare: Ida
   * Funktion som gör att man kan ändra i en order
   * Genom att att använda spread operatorn ser funktionen till att om ett värde inte ändras så skrivs det inte över utan använder det som fanns i ordern från början
-  * MÅSTE KONTROLLERA ATT NÅGONTING FAKTISKT ÄNDRAS ANNARS FEL!!!
 */
 
 /* 

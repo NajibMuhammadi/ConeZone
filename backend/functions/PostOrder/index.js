@@ -7,7 +7,7 @@ const { validateKey } = require('../../middlewares/validateKey.js');
 
 
 const handler = async (event) => {
-    const {username, sk, customerDetails, items, paymentMethod, isApproved, isDone, totalPrice} = JSON.parse(event.body)
+    const {username, sk, customerDetails, items, paymentMethod, isApproved, isDone, isPickedUp, totalPrice} = JSON.parse(event.body)
 
     try {
         await db.put({
@@ -20,7 +20,8 @@ const handler = async (event) => {
                 paymentMethod: paymentMethod,
                 totalPrice: totalPrice,
                 isApproved: isApproved,
-                isDone: isDone 
+                isDone: isDone,
+                isPickedUp: isPickedUp 
         }
     })
         return sendResponse(200, {success: true, message: 'New order added with the ordernumber', sk})
