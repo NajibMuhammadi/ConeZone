@@ -33,7 +33,7 @@ function CartPage() {
                                             <Counter item={item} />
                                             <button
                                                 className="cart__item-delete"
-                                                onClick={() => removeItem(item.sk)}
+                                                onClick={() => item.sk && removeItem(item.sk)}
                                             >
                                                 <img className="cart__item-delete-icon" src={deleteIcon} alt="Delete" />
                                             </button>

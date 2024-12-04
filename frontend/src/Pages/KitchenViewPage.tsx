@@ -5,7 +5,6 @@ import fetchOrders from '../services/fetchOrders';
 import { Order } from '../types/interfaces';
 import AdminHeader from '../components/AdminHeader';
 import { adminUpdate } from '../services/adminUpdate';
-// import Header from '../components/Header';
 import { Link } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 
@@ -15,6 +14,7 @@ function KitchenViewPage() {
     const [error, setError] = useState<string | null>(null);
     const [filter, setFilter] = useState<string>('all');
     const [isAdmin, setIsAdmin] = useState<boolean>(false);
+    const [username, setUsername] = useState<string | null>(null);
 
     useEffect(() => {
         const token = sessionStorage.getItem('token');
@@ -22,6 +22,7 @@ function KitchenViewPage() {
             try {
                 const decoded: { isAdmin: boolean, username: string } = jwtDecode(token);
                 setIsAdmin(decoded.isAdmin);
+                setUsername(decoded.username);
                 console.log('Decoded token:', decoded);
             } catch (err) {
                 console.error('Error parsing token:', err);
@@ -57,40 +58,36 @@ function KitchenViewPage() {
     console.log('Filtered orders:', filteredOrders);
 
     const [newMessage, setNewMessage] = useState('');
-    const pk = 'guest';
 
-    const approveOrder = async (sk: string) => {
-        if (isAdmin) {
-            try {
-                let newOrder = {
-                    sk: sk,
-                    isApproved: true,
-                    kitchenMessage: newMessage,
-                };
-                console.log(`Your order with the id `, sk, ` has been approved with the following `, newMessage);
-                await adminUpdate('adminOrdersUrl', pk, sk, newOrder);
-                location.reload();
-            } catch (error) {
-                console.error('Error adding item', error)
-            }
+    const approveOrder = async (pk: string, sk: string) => {
+        let newOrder = {
+            sk: sk,
+            isApproved: true,
+            kitchenMessage: newMessage,
+        };
+        console.log('Approving order with pk:', pk, 'and sk:', sk);
+        try {
+            await adminUpdate('adminOrdersUrl', pk, sk, newOrder);
+            location.reload();
+        } catch (error) {
+            console.error('Error approving order:', error);
         }
     };
 
-    const orderDone = async (sk: string) => {
-        if (isAdmin) {
-            try {
-                let newOrder = {
-                    sk: sk,
-                    isApproved: true,
-                    isDone: true
-                };
-                await adminUpdate('adminOrdersUrl', pk, sk, newOrder)
-                location.reload()
-            } catch (error) {
-                console.error('Error adding item', error)
-            }
+    const orderDone = async (pk: string, sk: string) => {
+        let newOrder = {
+            sk: sk,
+            isApproved: true,
+            isDone: true
+        };
+
+        try {
+            await adminUpdate('adminOrdersUrl', pk, sk, newOrder);
+            location.reload();
+        } catch (error) {
+            console.error('Error marking order as done:', error);
         }
-}
+    };
 
     return (
         <>
@@ -140,7 +137,7 @@ function KitchenViewPage() {
                                                     className="incoming__comment-input"
                                                     onChange={(event) => setNewMessage(event.target.value)}
                                                 />
-                                                <button className="incoming__btn" onClick={() => order.sk && approveOrder(order.sk)}>Approve</button>
+                                                <button className="incoming__btn" onClick={() => order.pk && order.sk && approveOrder(order.pk, order.sk)}>Approve</button>
                                             </div>
                                         ))
                                     )}
@@ -172,7 +169,7 @@ function KitchenViewPage() {
                                                     ))}
                                                 </ul>
                                                 <p className="kitchenViewPage__message">Message: {order.kitchenMessage}</p>
-                                                <button className="ongoing__btn" onClick={() => order.sk && orderDone(order.sk)}>Done</button>
+                                                <button className="ongoing__btn" onClick={() => order.pk && order.sk && orderDone(order.pk, order.sk)}>Done</button>
                                             </div>
                                         ))
                                     )}
