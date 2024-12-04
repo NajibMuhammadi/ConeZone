@@ -1,30 +1,50 @@
 .edit-item__wrapper {
+    min-height: 65vh;
     height: 100%;
-    background-color: var(--pink);
+    background-color: var(--purple);
     margin: 0 auto;
     padding: 4rem 0rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .edit-item {
     width: 80%;
     max-width: 620px;
     background-color: var(--white);
-    margin: 2rem auto;
+    margin: 0 auto;
     padding: 2rem;
     border-radius: 9px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     font-family: "Inter", sans-serif;
     position: relative;
     gap: 1rem;
+}
+
+.edit-item__heading {
+    font-size: 2.5rem;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+.edit-item__line {
+    margin: auto;
+    width: 90%;
+    align-self: center;
 }
 
 .edit-item__product {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: .5rem;
+    gap: .7rem;
+    font-size: 1.2rem;
 }
 
 .edit-item__edit {
@@ -35,7 +55,6 @@
     opacity: 0.6;
     top: 1rem;
     right: 1rem;
-    font-size: 1rem;
 }
 
 .edit-item__components {
@@ -47,7 +66,7 @@
 }
 
 .edit-item__edit-img {
-    height: 2rem;
+    height: 3rem;
     cursor: pointer;
     transition: all .5s ease-in-out;
 }
@@ -58,20 +77,8 @@
 }
 
 .edit-item__img {
-    width: 20vw;
-}
-
-.edit-item__heading {
-    font-size: 40px;
-    text-align: center;
-    font-weight: 700;
-    margin-bottom: 2rem;
-}
-
-.edit-item__line {
-    margin: auto;
-    width: 90%;
-    align-self: center;
+    width: 30vw;
+    min-width: 10rem;
 }
 
 .strong {
@@ -92,6 +99,7 @@
     display: flex;
     flex-direction: row;
     gap: 1rem;
+    font-size: 1.2rem;
 }
 
 .edit-item__label {
@@ -99,24 +107,35 @@
     flex-direction: column;
     align-items: left;
     justify-content: center;
+    font-family: "Inter", sans-serif;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
 }
 
 .edit-item__input {
-    background-color: var(--pink);
+    background-color: var(--pink70);
     padding: 1rem;
+    margin: 0.5rem 0rem;
     border-radius: 10px;
+    font-family: "Inter", sans-serif;
+    font-size: 1.2rem;
 }
 
 .edit-item__textarea {
-    background-color: var(--pink);
+    margin: 0.5rem 0rem;
+    background-color: var(--pink70);
     padding: 1rem;
     border-radius: 10px;
     min-height: 100px;
+    font-family: "Inter", sans-serif;
+    font-size: 1rem;
 }
+
 .edit-item__button {
     border-radius: 10px;
-    margin: 0.5rem;
-    padding: 1.5rem;
+    margin: 2rem;
+    padding: 1rem;
+    font-size: 1.5rem;
     background-color: var(--black);
     color: var(--white);
     cursor: pointer;
@@ -124,23 +143,31 @@
     width: 200px;
     align-self: center;
 }
+
 .edit-item__loading {
     min-height: calc(100vh - 20vh - 286.71px);
+    font-family: "Inter", sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
+.edit-item__componentHeader {
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
 .edit-item__component-item {
-    background-color: rgba(249, 40, 40, 0.779);
-    margin: 1rem 0;
+    background-color: var(--green);
+    margin: 0.5rem 0;
     padding: .5rem;
     border-radius: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
+
 .edit-item__delete-btn {
     background-color: transparent;
     border: none;
@@ -151,15 +178,18 @@
     background-color: var(--green);
     border-radius: 10px;
     border: none;
-    padding: 2rem;
+    padding: 1rem;
     width: 200px;
+    font-weight: 600;
+    font-size: 1.2rem;
     align-self: center;
+    font-family: "Inter", sans-serif;
 }
 
 @media (max-width: 768px) {
     .edit-item {
         width: 90%;
-        font-size: 18px;
+        font-size: 1rem;
         margin: 2rem auto;
     }
 
@@ -167,9 +197,6 @@
         margin: 0;
     }
 
-    .edit-item__img {
-        width: 30vw;
-    }
 }
 
 @media (max-width: 500px) {

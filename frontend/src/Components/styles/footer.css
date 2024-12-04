@@ -16,7 +16,7 @@
 .footer__description,
 .footer__social-title {
     color: var(--white);
-    font-family: inter, sans-serif;
+    font-family: "inter", sans-serif;
 }
 
 .footer__description-title,

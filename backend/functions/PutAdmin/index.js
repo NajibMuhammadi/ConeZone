@@ -18,8 +18,8 @@ const handler = async (event, context) => {
         }
 
         try {
-            const  {isApproved, isDone, kitchenMessage} = JSON.parse(event.body)
-            console.log('Data received from frontend:', { isApproved, isDone, kitchenMessage });
+            const  {isApproved, isDone, isPickedUp, kitchenMessage} = JSON.parse(event.body)
+            console.log('Data received from frontend:', { isApproved, isDone, isPickedUp, kitchenMessage });
             const response = await db.get({
                 TableName: 'conezoneorder-db',
                 Key: {
@@ -38,6 +38,7 @@ const handler = async (event, context) => {
                     ...oldOrder,
                     ...(isApproved !== undefined && {isApproved}),
                     ...(isDone !== undefined && {isDone}),
+                    ...(isPickedUp !== undefined && {isPickedUp}),
                     ...(kitchenMessage !== undefined && {kitchenMessage})
                 }
 

@@ -28,6 +28,7 @@ function AddItemPage() {
         event.preventDefault();
         setNewComponent(event.target.value)
     }
+
     const addComponent = (event: React.FormEvent) => {
         event.preventDefault();
         if (newComponent) {
@@ -126,10 +127,11 @@ function AddItemPage() {
                                     />
                                 </label>
                             </section>
-                            <p>Components</p>
-                                <ul>
-                                    {componentArray.map((component, index) => (
-                                        <label className="add-item__componentlabel"><li key={index}
+                            <p className='add-item__componentHeader'>Components:</p>
+                            <ul>
+                                {componentArray.map((component, index) => (
+                                    <label className="add-item__componentlabel">
+                                        <li key={index}
                                             className="add-item__component-item"
                                         >
                                             {component}
@@ -143,8 +145,8 @@ function AddItemPage() {
                                                 }}
                                             >X</button>
                                         </li></label>
-                                    ))}
-                                </ul>
+                                ))}
+                            </ul>
                             <label className="add-item__label">
                                 Add new component:
                                 <input
@@ -177,3 +179,6 @@ export default AddItemPage;
  * Har skapat en sida där admin kan lägga till nya produkter att sälja
  * Kontrollerar om användaren är admin innan nya föremål kan läggas till i databasen
  */
+
+// Författare: Lisa
+// Styling + removeComponent
