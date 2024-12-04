@@ -1,8 +1,13 @@
 .edit-item__wrapper {
+    min-height: 65vh;
     height: 100%;
     background-color: var(--pink);
     margin: 0 auto;
     padding: 4rem 0rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .edit-item {
@@ -113,6 +118,7 @@
     border-radius: 10px;
     min-height: 100px;
 }
+
 .edit-item__button {
     border-radius: 10px;
     margin: 0.5rem;
@@ -124,6 +130,7 @@
     width: 200px;
     align-self: center;
 }
+
 .edit-item__loading {
     min-height: calc(100vh - 20vh - 286.71px);
     display: flex;
@@ -141,6 +148,7 @@
     justify-content: space-between;
     align-items: center;
 }
+
 .edit-item__delete-btn {
     background-color: transparent;
     border: none;
