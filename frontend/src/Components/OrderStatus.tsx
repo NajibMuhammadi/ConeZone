@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { deleteOrder } from '../services/deleteOrder';
 import './styles/orderStatus.css';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Order } from '../types/interfaces';
 import { fetchOrder } from '../services/fetchOrder';
 
@@ -10,6 +10,8 @@ interface Props {
 }
 
 function OrderStatus({ sk }: Props) {
+    const [newSk, setNewSk] = useState<string>('');
+    // const [newSk, setNewSk] = useState<string>(sk || '');
     const pk = 'guest';
     const [isCanceled, setIsCanceled] = useState(false);
     const [isApproved, setIsApproved] = useState(false);
@@ -20,19 +22,19 @@ function OrderStatus({ sk }: Props) {
 
     const cancelOrder = async () => {
         try {
-            console.log(`Your order with the id `, sk, ` has been deleted`);
-            await deleteOrder('ordersUrl', pk, sk);
+            console.log(`Your order with the id `, newSk, ` has been deleted`);
+            await deleteOrder('ordersUrl', pk, newSk);
             setIsCanceled(true);
-            handleOrderPickedUp();
+            sessionStorage.removeItem('orderNumber')
         } catch (error) {
             console.error('Failed to cancel the order', error);
         }
     };
 
-    const getOrder = async () => {
+    const getOrder = async (orderNumber: string) => {
         try {
-            console.log('Fetching order with pk:', pk, 'and sk:', sk);
-            const response = await fetchOrder('ordersUrl', pk, sk);
+            console.log('Fetching order with pk:', pk, 'and sk:', orderNumber);
+            const response = await fetchOrder('ordersUrl', pk, orderNumber);
             if (response) {
                 setOrderDetails(response);
             }
@@ -43,15 +45,30 @@ function OrderStatus({ sk }: Props) {
 
     useEffect(() => {
         if (sk) {
-            sessionStorage.setItem('orderNumber', sk)
+            setNewSk(sk);
+            sessionStorage.setItem('orderNumber', sk);
+        } else {
+            const storedSk = sessionStorage.getItem('orderNumber');
+            if (storedSk) {
+                setNewSk(storedSk);
+            } else {
+                console.error("No orderNumber found in sessionStorage");
+            }
         }
-    }, [sk])
+    }, [sk]);
+
+    useEffect(() => {
+        if (newSk) {
+            getOrder(newSk);
+        }
+    }, [newSk]);
+
 
     useEffect(() => {
         if (isEditing) {
-            getOrder();
+            getOrder(newSk);
         }
-    }, [isEditing, sk]);
+    }, [isEditing, newSk]);
 
     useEffect(() => {
         if (orderDetails?.isApproved) {
@@ -66,14 +83,9 @@ function OrderStatus({ sk }: Props) {
             setIsApproved(false);
             setIsDone(false);
             setIsPickedUp(true);
-            handleOrderPickedUp()
+            sessionStorage.removeItem('orderNumber')
         }
     }, [orderDetails]);
-
-
-    const handleOrderPickedUp = () => {
-        sessionStorage.removeItem('orderNumber')
-    }
 
     return (
         <div className='order__wrapper'>
@@ -82,7 +94,7 @@ function OrderStatus({ sk }: Props) {
                     <h1 className='order__title'>Order Status</h1>
                     <span className='order__divider'></span>
                     <section className='order__info-container'>
-                        <p className='order__info-title'>Your order with ordernumber {sk} has been canceled!</p>
+                        <p className='order__info-title'>Your order with ordernumber {newSk} has been canceled!</p>
                         <p className='order__info-subtitle'>You need to go back to menu if you want to order something else</p>
                     </section>
                 </main>
@@ -91,7 +103,7 @@ function OrderStatus({ sk }: Props) {
                     <h1 className='order__title'>Order Status</h1>
                     <span className='order__divider'></span>
                     <section className='order__info-container'>
-                        <p className='order__info-title'>Your order with ordernumber {sk} has been Approved!</p>
+                        <p className='order__info-title'>Your order with ordernumber {newSk} has been Approved!</p>
                     </section>
                 </main>
             ) : isDone ? (
@@ -99,7 +111,7 @@ function OrderStatus({ sk }: Props) {
                     <h1 className='order__title'>Order Status</h1>
                     <span className='order__divider'></span>
                     <section className='order__info-container'>
-                        <p className='order__info-title'>Your order with ordernumber {sk} is ready to be picked!</p>
+                        <p className='order__info-title'>Your order with ordernumber {newSk} is ready to be picked up!</p>
                     </section>
                 </main>
             ) : (
@@ -107,12 +119,12 @@ function OrderStatus({ sk }: Props) {
                     <h1 className='order__title'>Order Status</h1>
                     <span className='order__divider'></span>
                     <section className='order__info-container'>
-                        <p className='order__info-title'>Your order with ordernumber {sk} has been created!</p>
+                        <p className='order__info-title'>Your order with ordernumber {newSk} has been created!</p>
                         <p className='order__info-subtitle'>Wait until staff sees and confirms your order.</p>
                         <p className='order__info-subtitle'>You can still change or delete your order until it is approved.</p>
                     </section>
                     <section className='order__button-container'>
-                        <Link to={`/order/${pk}/${sk}`} onClick={() => setIsEditing(true)}>
+                        <Link to={`/order/${pk}/${newSk}`} onClick={() => setIsEditing(true)}>
                             <button className='order__btn order__btn--change'>Change order</button>
                         </Link>
                         <button className='order__btn' onClick={cancelOrder}>Cancel order</button>
