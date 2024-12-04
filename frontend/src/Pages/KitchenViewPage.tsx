@@ -91,7 +91,7 @@ function KitchenViewPage() {
         }
     };
 
-    const orderIsPickedUp = async (sk: string) => {
+    const orderIsPickedUp = async (pk: string, sk: string) => {
         if(isAdmin) {
             try {
                 let newOrder = {
@@ -222,7 +222,7 @@ function KitchenViewPage() {
                                                         </li>
                                                     ))}
                                                 </ul>
-                                                <button className="done__btn" onClick={() => order.sk && orderIsPickedUp(order.sk)}>Remove</button>
+                                                <button className="done__btn" onClick={() => order.pk && order.sk && orderIsPickedUp(order.pk, order.sk)}>Remove</button>
                                             </div>
                                         ))
                                     )}
