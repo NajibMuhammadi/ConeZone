@@ -15,10 +15,8 @@ function EditItemPage() {
     const [item, setItem] = useState<ItemType | undefined>(undefined);
     const token = sessionStorage.getItem('token');
     const [edit, setEdit] = useState(false);
-
     const [newComponent, setNewComponent] = useState('')
     const [componentArray, setComponentArray] = useState<string[]>([])
-
 
     const [newItem, setNewItem] = useState<NewItem>({
         name: '',
@@ -77,14 +75,11 @@ function EditItemPage() {
     const addComponent = (event: React.FormEvent) => {
         event.preventDefault();
         if (newComponent) {
-            setComponentArray((items) => {
-                const updatedArray = [...items, newComponent]
-                setNewItem((item) => ({
-                    ...item,
-                    components: updatedArray
-                }))
-                return updatedArray
-            })
+            const updatedComponents = [...componentArray, newComponent];
+            setComponentArray(updatedComponents);
+            setNewItem((item) => ({
+                ...item, components: updatedComponents
+            }))
             setNewComponent('')
         }
     }
@@ -156,9 +151,9 @@ function EditItemPage() {
                     </section>
                 ) : (
                     <section className="edit-item__wrapper">
-                        <h2 className="edit-item__heading">Edit {item.name}</h2>
-                        <hr className="edit-item__line" />
                         <article className="edit-item">
+                            <h2 className="edit-item__heading">Edit {item.name}</h2>
+                            <hr className="edit-item__line" />
                             <form className="edit-item__form">
                                 <label className="edit-item__label"> Name:
                                     <input type="text"
@@ -188,7 +183,28 @@ function EditItemPage() {
                                         onChange={(event) => setItem({ ...item, image: event.target.value })}
                                     />
                                 </label>
-                                <p>Components</p>
+                                <section className="form__popular">
+                                    <p>Popular:</p>
+                                    <label className="edit-item__label"> True
+                                        <input type="radio"
+                                            id="true"
+                                            name="popular"
+                                            value="true"
+                                            checked={item.popular === true}
+                                            onChange={() => setItem({ ...item, popular: true })}
+                                        />
+                                    </label>
+                                    <label className="edit-item__label"> False
+                                        <input type="radio"
+                                            id="false"
+                                            name="popular"
+                                            value="false"
+                                            checked={item.popular === false}
+                                            onChange={() => setItem({ ...item, popular: false })}
+                                        />
+                                    </label>
+                                </section>
+                                <p className='edit-item__componentHeader'>Components</p>
                                 <ul>
                                     {componentArray.map((component, index) => (
                                         <label className="edit-item__label">
@@ -209,6 +225,7 @@ function EditItemPage() {
                                     )
                                     )}
                                 </ul>
+
                                 <label className="edit-item__label">
                                     Add a new component:
                                     <input
@@ -223,27 +240,6 @@ function EditItemPage() {
                                         className="edit-item__component-btn"
                                     > Add new component</button>
                                 </label>
-                                <section className="form__popular">
-                                    <p>Popular:</p>
-                                    <label className="edit-item__label"> True:
-                                        <input type="radio"
-                                            id="true"
-                                            name="popular"
-                                            value="true"
-                                            checked={item.popular === true}
-                                            onChange={() => setItem({ ...item, popular: true })}
-                                        />
-                                    </label>
-                                    <label className="edit-item__label"> False:
-                                        <input type="radio"
-                                            id="false"
-                                            name="popular"
-                                            value="false"
-                                            checked={item.popular === false}
-                                            onChange={() => setItem({ ...item, popular: false })}
-                                        />
-                                    </label>
-                                </section>
                                 <button className="edit-item__button" onClick={changeItem}>Save Changes</button>
                             </form>
                         </article>
@@ -265,3 +261,6 @@ export default EditItemPage;
  * Författare Ida
  * Har skapat en sida där admin kan editera items
  */
+
+// Författare: Lisa
+// Styling
