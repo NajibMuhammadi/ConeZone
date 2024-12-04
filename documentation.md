@@ -80,3 +80,11 @@ Välkommen till vår applikation! Denna guide hjälper dig att komma igång, oav
 
 6. **Logga ut**
    - Klicka på admin ikon och sen "Log out".
+
+### Inloggningsuppgifter för kund
+   - användarnamn: 
+   - lösenord:
+
+### Inloggningsuppgifter för admin
+   - användarnamn: 
+   - lösenord:
