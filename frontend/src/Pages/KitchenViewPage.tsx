@@ -60,25 +60,36 @@ function KitchenViewPage() {
     const pk = 'guest';
 
     const approveOrder = async (sk: string) => {
-        let newOrder = {
-            sk: sk,
-            isApproved: true,
-            kitchenMessage: newMessage,
-        };
-        console.log(`Your order with the id `, sk, ` has been approved with the following `, newMessage);
-        await adminUpdate('adminOrdersUrl', pk, sk, newOrder);
-        location.reload();
+        if (isAdmin) {
+            try {
+                let newOrder = {
+                    sk: sk,
+                    isApproved: true,
+                    kitchenMessage: newMessage,
+                };
+                console.log(`Your order with the id `, sk, ` has been approved with the following `, newMessage);
+                await adminUpdate('adminOrdersUrl', pk, sk, newOrder);
+                location.reload();
+            } catch (error) {
+                console.error('Error adding item', error)
+            }
+        }
     };
 
     const orderDone = async (sk: string) => {
-        let newOrder = {
-            sk: sk,
-            isApproved: true,
-            isDone: true
-        };
-
-        await adminUpdate('adminOrdersUrl', pk, sk, newOrder)
-        location.reload()
+        if (isAdmin) {
+            try {
+                let newOrder = {
+                    sk: sk,
+                    isApproved: true,
+                    isDone: true
+                };
+                await adminUpdate('adminOrdersUrl', pk, sk, newOrder)
+                location.reload()
+            } catch (error) {
+                console.error('Error adding item', error)
+            }
+        }
 }
 
     return (
