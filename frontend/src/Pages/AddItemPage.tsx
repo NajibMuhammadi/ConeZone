@@ -126,10 +126,10 @@ function AddItemPage() {
                                     />
                                 </label>
                             </section>
-                            <label className="add-item__componentlabel">Components
+                            <p>Components</p>
                                 <ul>
                                     {componentArray.map((component, index) => (
-                                        <li key={index}
+                                        <label className="add-item__componentlabel"><li key={index}
                                             className="add-item__component-item"
                                         >
                                             {component}
@@ -142,10 +142,9 @@ function AddItemPage() {
                                                     removeComponent(index)
                                                 }}
                                             >X</button>
-                                        </li>
+                                        </li></label>
                                     ))}
                                 </ul>
-                            </label>
                             <label className="add-item__label">
                                 Add new component:
                                 <input

@@ -10,7 +10,7 @@ const deleteOrder = async (ordersUrl: string, pk: string, sk:string) : Promise<b
     } 
 
     try {
-       const response = await axios.delete(`${url}/${pk}/${sk}`)
+       const response = await axios.delete(`${url}/${pk}/${sk}?key=key-6GRf3`)
        if (response.status === 200) {
         return true;
         } else {

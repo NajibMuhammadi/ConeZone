@@ -28,7 +28,7 @@ const postFetch = async (urlKey: string, data: RegisterType | LoginType): Promis
     }
 
     try {
-        const response = await axios.post(url, data);
+        const response = await axios.post(`${url}?key=key-6GRf3`, data);
         return response.data;
     } catch (error) {
         if (axios.isAxiosError(error) && error.response) {

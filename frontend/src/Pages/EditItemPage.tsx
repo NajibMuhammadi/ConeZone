@@ -19,6 +19,7 @@ function EditItemPage() {
     const [newComponent, setNewComponent] = useState('')
     const [componentArray, setComponentArray] = useState<string[]>([])
 
+
     const [newItem, setNewItem] = useState<NewItem>({
         name: '',
         desc: '',
@@ -76,31 +77,32 @@ function EditItemPage() {
     const addComponent = (event: React.FormEvent) => {
         event.preventDefault();
         if (newComponent) {
-            setComponentArray(items => [...items, newComponent])
+            setComponentArray((items) => {
+                const updatedArray = [...items, newComponent]
+                setNewItem((item) => ({
+                    ...item,
+                    components: updatedArray
+                }))
+                return updatedArray
+            })
             setNewComponent('')
         }
-
     }
 
     const deleteComponent = (componentItem: string) => {
+        console.log(componentItem)
         const updatedComponents = componentArray.filter(component => component !== componentItem);
         setComponentArray(updatedComponents)
+        setNewItem((item) => ({
+            ...item,
+            components: updatedComponents
+        }))
     }
 
     const changeItem = async (event: React.FormEvent) => {
         event.preventDefault();
-
-        setNewItem({
-            ...newItem,
-            name: item?.name || '',
-            desc: item?.desc || '',
-            price: item?.price || 0,
-            popular: item?.popular || false,
-            image: item?.image || '',
-            components: componentArray,
-        });
         console.log('New items saved', newItem)
-        uploadItem(newItem)
+        await uploadItem(newItem)
         navigate('/editmenu');
     }
 
@@ -186,9 +188,10 @@ function EditItemPage() {
                                         onChange={(event) => setItem({ ...item, image: event.target.value })}
                                     />
                                 </label>
-                                <label className="edit-item__label">Components
-                                    <ul>
-                                        {componentArray.map((component, index) => (
+                                <p>Components</p>
+                                <ul>
+                                    {componentArray.map((component, index) => (
+                                        <label className="edit-item__label">
                                             <li key={index}
                                                 className="edit-item__component-item"
                                             >
@@ -196,12 +199,16 @@ function EditItemPage() {
                                                 <button
                                                     type="button"
                                                     className="edit-item__delete-btn"
-                                                    onClick={() => deleteComponent(component)}
-                                                >Delete</button>
+                                                    onClick={() => {
+                                                        console.log('clicked component:', component, 'index:', index)
+                                                        deleteComponent(component)
+                                                    }}
+                                                >X</button>
                                             </li>
-                                        ))}
-                                    </ul>
-                                </label>
+                                        </label>
+                                    )
+                                    )}
+                                </ul>
                                 <label className="edit-item__label">
                                     Add a new component:
                                     <input

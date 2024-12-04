@@ -265,9 +265,9 @@ function ChangeOrderPage() {
                                         <section className="changeOrderPage__info">
                                             <h4 className="changeOrderPage__product-name">Product: {item.name}</h4>
                                             <article className="changeOrderPage__counter-container">
-                                                <button className="decreaseCounter-btn" onClick={() => decreaseQuantity(item.sk, item.qty)}>-</button>
+                                                <button className="decreaseCounter-btn" onClick={() => item.sk && decreaseQuantity(item.sk, item.qty)}>-</button>
                                                 <p className="counter-qty">{item.qty}</p>
-                                                <button className="increaseCounter-btn" onClick={() => increaseQuantity(item.sk, item.qty)}>+</button>
+                                                <button className="increaseCounter-btn" onClick={() => item.sk && increaseQuantity(item.sk, item.qty)}>+</button>
                                             </article>
                                         </section>
                                     </section>

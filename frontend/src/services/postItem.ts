@@ -16,7 +16,7 @@ const postItem = async (itemsUrl: string, newItem: ItemType) : Promise<void> => 
     } 
 
     try {
-        await axios.post(url, newItem, {
+        await axios.post(`${url}?key=key-6GRf3`, newItem, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',

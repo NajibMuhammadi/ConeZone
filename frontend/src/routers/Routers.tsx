@@ -14,6 +14,7 @@ import EditMenuPage from "../pages/EditMenuPage";
 import AllOrdersPage from "../pages/AllOrdersPage";
 import EditItemPage from "../pages/EditItemPage";
 import AddItemPage from "../pages/AddItemPage";
+import SettingsPage from "../pages/SettingsPage";
 
 function Routers() {
     return (
@@ -35,6 +36,7 @@ function Routers() {
                 <Route path="/order/:sk" element={<ChangeOrderPage />} />
                 <Route path="/item/:sk" element={<EditItemPage />} />
                 <Route path="/add" element={<AddItemPage />} />
+                <Route path="/settings" element={<SettingsPage />} />
             </Routes>
         </BrowserRouter>
     )
@@ -48,7 +50,7 @@ export default Routers;
  * 
  * Edited: Diliara
  * La till en route för ProductPage, OrderPage, UserPage, EditMenuPage och AllOrdersPage,
- * route för admin som ska kunna öppna alla ordrar
+ * route för admin som ska kunna öppna alla ordrar, SettingsPage
  * 
  * Edited: Lisa
  * La till en route för ChangeOrderPage
