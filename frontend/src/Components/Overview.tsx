@@ -77,7 +77,7 @@ function Overview({ onNext }: { onNext: (sk: string) => void }) {
                 customerDetails.email
             );
             setEditingCustomer(false);
-        } catch (error){
+        } catch (error) {
             const validationError = error as ErrorProps;
             setErrorMsg(validationError.msg || 'Something went wrong.');
         }

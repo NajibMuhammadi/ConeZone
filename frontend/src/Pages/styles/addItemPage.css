@@ -135,6 +135,11 @@
     cursor: pointer;
 }
 
+.add-item__component-btn:active,
+.add-item__button:active {
+    scale: 0.9;
+}
+
 .add-item__button {
     border-radius: 10px;
     margin-top: 3rem;

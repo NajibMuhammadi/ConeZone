@@ -80,7 +80,18 @@
     border: 1px solid var(--black);
     font-size: 1.5rem;
     position: sticky;
+}
 
+.incoming__btn:hover,
+.ongoing__btn:hover,
+.done__btn:hover {
+    opacity: 0.7;
+}
+
+.incoming__btn:active,
+.ongoing__btn:active,
+.done__btn:active {
+    scale: 0.9;
 }
 
 .order__incoming li,

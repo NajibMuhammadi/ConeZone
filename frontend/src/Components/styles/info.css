@@ -74,6 +74,10 @@
     font-size: 1rem;
 }
 
+.info__submit:active {
+    scale: 0.9;
+}
+
 @media screen and (max-width: 600px) {
     .info__form {
         width: 90%;

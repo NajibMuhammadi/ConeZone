@@ -74,7 +74,13 @@
 .order__btn--change {
     background-color: var(--white);
     color: var(--black);
-    border: 2px solid var(--black);
+    box-shadow: #808080a8 2px 4px;
+    border: 1px solid var(--black);
+}
+
+.order__btn:active,
+.order__btn--change:active {
+    scale: 0.9;
 }
 
 @media only screen and (max-width: 600px) {
