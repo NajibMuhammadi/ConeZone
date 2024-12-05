@@ -75,7 +75,6 @@ function KitchenViewPage() {
                     kitchenMessage: newMessage,
                 };
                 await adminUpdate('adminOrdersUrl', pk, sk, newOrder);
-                location.reload();
             } catch (error) {
                 console.error('Error approving order:', error);
             }
@@ -94,7 +93,6 @@ function KitchenViewPage() {
                     isPickedUp: false,
                 };
                 await adminUpdate('adminOrdersUrl', pk, sk, newOrder);
-                location.reload();
             } catch (error) {
                 console.error('Error marking order as done:', error);
             }
@@ -115,7 +113,6 @@ function KitchenViewPage() {
 
                 await adminUpdate('adminOrdersUrl', pk, sk, newOrder)
                 setFilter('isPickedUp')
-                location.reload()
             } catch(error) {
                 console.error('Error editing order', error)
             }
