@@ -37,7 +37,6 @@ function AdminHeader() {
     }, []);
 
     const logout = (): void => {
-        console.log('You have clicked the logout button');
         sessionStorage.removeItem('token');
         setIsLoggedIn(false);
         setIsUserMenuOpen(false);

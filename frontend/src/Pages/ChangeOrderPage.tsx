@@ -39,7 +39,6 @@ function ChangeOrderPage() {
                     setUsername(pk || 'guest');
                 }
                 setIsAdmin(decoded.isAdmin);
-                console.log('Decoded token:', decoded);
                 setPkReady(true);
             } catch (err) {
                 console.error('Error parsing token:', err);
@@ -52,7 +51,6 @@ function ChangeOrderPage() {
     useEffect(() => {
         const loadOrder = async (): Promise<void> => {
             if (!pkReady) {
-                console.log('pk is still guest or not ready, waiting for it to be set...');
                 return;
             }
             try {
@@ -66,13 +64,11 @@ function ChangeOrderPage() {
                     setStoredPk(fetchedOrder.pk || null);
                 } else {
                     const fetchPk = username;
-                    console.log('Fetching order with pk:', fetchPk, 'and sk:', sk);
                     fetchedOrder = await fetchOrder('ordersUrl', fetchPk, sk as string);
                 }
                 setOrder(fetchedOrder);
                 setTotalPrice(fetchedOrder.totalPrice);
                 setPaymentMethodImg(`../../src/assets/${fetchedOrder.paymentMethod}.svg`);
-                console.log('Fetched order:', fetchedOrder);
             } catch (error) {
                 console.error('Error fetching order', error);
             } finally {
@@ -88,7 +84,6 @@ function ChangeOrderPage() {
         if (order) {
             const newPrice = order.items.reduce((total, item) => total + item.price * item.qty, 0);
             setTotalPrice(newPrice);
-            console.log('New total price:', newPrice);
         }
     }, [order]);
 
@@ -132,7 +127,6 @@ function ChangeOrderPage() {
 
     const decreaseQuantity = (id: string, qty: number) => {
         updateItemQuantity(id, qty - 1);
-        console.log('Decreased quantity:', id, qty);
     };
 
     const increaseQuantity = (id: string, qty: number) => {
@@ -149,7 +143,6 @@ function ChangeOrderPage() {
             })
             .filter(item => item.qty >= 1);
         setOrder({ ...order, items: updatedOrder });
-        console.log('Updated order:', updatedOrder);
     };
 
     const validateCustomerDetails = (): string | null => {
@@ -183,7 +176,6 @@ function ChangeOrderPage() {
                 totalPrice: totalPrice
             };
             const pkToUse = isAdmin ? (storedPk || 'guest') : username;
-            console.log('sendChangedOrder is clicked', pkToUse, sk, newOrder);
             if (items.length === 0) {
                 const response = await deleteOrder('ordersUrl', pkToUse, sk as string);
                 if (!response) {

@@ -20,7 +20,6 @@ const useMenuStore = create<MenuStore>((set, get) => ({
             // Lägg till ny vara med kvantitet 1
             const updatedCart = [...currentCart, { ...item, qty: 1 }];
             set({ cart: updatedCart });
-            console.log('Cart after adding item:', updatedCart);
         }
     },
     removeFromCart: (sk: string) => {

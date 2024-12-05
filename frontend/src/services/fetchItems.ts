@@ -10,7 +10,6 @@ const fetchItems = async (itemsUrl: string) : Promise<ItemType[]> => {
     }
     try {
         const response = await axios.get<ItemType[]>(`${url}?key=key-6GRf3`); 
-        console.log(response.data);
         return response.data;
     } catch (error) {
         throw new Error('Ett fel inträffade vid hämtning av data');

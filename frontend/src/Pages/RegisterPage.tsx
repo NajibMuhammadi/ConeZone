@@ -38,7 +38,6 @@ function Register() {
             };
             const response = await postFetch('registersUrl', data);
 
-            console.log('Response:', response);
             setSuccess(response.body.message);
 
         } catch (err) {

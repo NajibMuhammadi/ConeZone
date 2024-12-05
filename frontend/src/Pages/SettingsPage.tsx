@@ -18,7 +18,6 @@ function SettingsPage() {
             try {
                 const decoded: { username: string } = jwtDecode(token);
                 setUsername(decoded.username);
-                console.log('Decoded token:', decoded);
             } catch (err) {
                 console.error('Error parsing token:', err);
             }
