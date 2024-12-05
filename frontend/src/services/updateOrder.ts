@@ -11,7 +11,6 @@ const updateOrder = async (ordersUrl: string, pk: string, sk:string, order: upda
     
     try {
         const response = await axios.put<updatedOrder>(`${url}/${pk}/${sk}?key=key-6GRf3`, order)
-        console.log(response.data)
         if (response.status === 200) {
             return true;
         } else {

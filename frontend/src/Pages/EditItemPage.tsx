@@ -33,13 +33,11 @@ function EditItemPage() {
             try {
                 const decoded: { isAdmin: boolean } = jwtDecode(token);
                 const isAdmin = decoded.isAdmin;
-                console.log('isAdmin:', isAdmin);
                 if (isAdmin) {
                     const loadItems = async () => {
                         try {
                             const fetchedItem = await fetchItem('itemsUrl', sk as string)
                             setItem(fetchedItem)
-                            console.log(fetchedItem)
                         } catch (error) {
                             console.error(error)
                         }
@@ -89,7 +87,6 @@ function EditItemPage() {
     }
 
     const deleteComponent = (componentItem: string) => {
-        console.log(componentItem)
         const updatedComponents = componentArray.filter(component => component !== componentItem);
         setComponentArray(updatedComponents)
         setNewItem((item) => ({
@@ -108,7 +105,6 @@ function EditItemPage() {
             try {
                 const decoded: { isAdmin: boolean } = jwtDecode(token);
                 const isAdmin = decoded.isAdmin;
-                console.log('isAdmin:', isAdmin);
                 if (isAdmin) {
                     try {
                         updateItem('itemsUrl', sk as string, newItem)
@@ -221,7 +217,6 @@ function EditItemPage() {
                                                     type="button"
                                                     className="edit-item__delete-btn"
                                                     onClick={() => {
-                                                        console.log('clicked component:', component, 'index:', index)
                                                         deleteComponent(component)
                                                     }}
                                                 >X</button>

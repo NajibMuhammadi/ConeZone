@@ -52,12 +52,10 @@ function AddItemPage() {
 
     const saveItem = async (event: React.FormEvent) => {
         event.preventDefault();
-        console.log('save Item pressed:', item)
         if (token) {
             try {
                 const decoded: { isAdmin: boolean } = jwtDecode(token);
                 const isAdmin = decoded.isAdmin;
-                console.log('isAdmin:', isAdmin);
 
                 if (isAdmin) {
                     try {

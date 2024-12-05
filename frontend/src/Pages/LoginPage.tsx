@@ -23,7 +23,6 @@ function LoginPage() {
 
                 const isAdmin = decoded.isAdmin;
 
-                console.log('isAdmin:', isAdmin);   
             } catch (err) {
                 console.error('Error parsing token:', err);
             }
@@ -43,14 +42,12 @@ function LoginPage() {
             };
             const response = await postFetch('loginsUrl', loginData);
 
-            console.log('Response:', response);
             setSuccess(response.data.message);
 
             if (response.data.success) {
                 saveTokenToSessionStorage(response.token);
 
                 const decoded: {isAdmin: boolean, UserId: string, username: string} = jwtDecode(response.token);
-                console.log('isAdmin:', decoded.isAdmin);
                 if(decoded.isAdmin) {
                     navigate('/kitchenview');
                 } else {

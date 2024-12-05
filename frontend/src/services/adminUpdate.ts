@@ -15,7 +15,6 @@ const adminUpdate = async (adminOrdersUrl: string, pk: string, sk:string, order:
     } 
 
     try {
-        console.log('Order data being sent to backend:', order);
         await axios.put(`${url}/${pk}/${sk}?key=key-6GRf3`, order, {
             headers: {
                 Authorization: `Bearer ${token}`,

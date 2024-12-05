@@ -25,7 +25,6 @@ const postOrder = async (
         try {
             const decoded: { username: string } = jwtDecode(token);
             username = decoded.username;
-            console.log('Decoded token:', decoded);
         } catch (err) {
             console.error('Error decoding token:', err);
         }
@@ -43,11 +42,9 @@ const postOrder = async (
         isPickedUp: false,
     };
 
-    console.log('Order data:', orderData);
 
     try {
         const response = await axios.post(`${url}?key=key-6GRf3`, orderData);
-        console.log('Response data:', response.data);
         return response.data;
     } catch (error: AxiosError | any) {
         console.error("Error:", error.response?.data || error.message);

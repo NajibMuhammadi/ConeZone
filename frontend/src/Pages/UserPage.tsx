@@ -18,7 +18,6 @@ function UserPage() {
             try {
                 const decoded: { username: string } = jwtDecode(token);
                 setUsername(decoded.username);
-                console.log('Decoded token:', decoded);
             } catch (err) {
                 console.error('Error parsing token:', err);
             }
@@ -31,7 +30,6 @@ function UserPage() {
             try {
                 const fetchedOrders = await fetchOrders();
                 const userOrders = fetchedOrders.filter(order => order.pk === username);
-                console.log('Fetched Orders:', userOrders);
                 setOrders(userOrders);
             } catch (err) {
                 console.error('Error loading orders:', err);

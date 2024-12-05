@@ -27,7 +27,6 @@ function OrderStatus({ sk }: Props) {
             try {
                 const decoded: { username: string } = jwtDecode(token);
                 setPk(decoded.username);
-                console.log('Decoded token:', decoded);
             } catch (err) {
                 console.error('Error parsing token:', err);
             }
@@ -36,7 +35,6 @@ function OrderStatus({ sk }: Props) {
 
     const cancelOrder = async () => {
         try {
-            console.log(`Your order with the id `, newSk, ` has been deleted`);
             await deleteOrder('ordersUrl', pk, newSk);
             setIsCanceled(true);
             sessionStorage.removeItem('orderNumber')
@@ -47,7 +45,6 @@ function OrderStatus({ sk }: Props) {
 
     const getOrder = async (orderNumber: string) => {
         try {
-            console.log('Fetching order with pk:', pk, 'and sk:', orderNumber);
             const response = await fetchOrder('ordersUrl', pk, orderNumber);
             if (response) {
                 setOrderDetails(response);

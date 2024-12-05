@@ -26,13 +26,11 @@ function EditMenuPage() {
     }, [url]);
 
     const removeItem = async (sk : string) => {
-        console.log('removeItem clicked', sk)
 
         if(token) {
             try {
                 const decoded: {isAdmin: boolean} = jwtDecode(token);
                 const isAdmin = decoded.isAdmin;
-                console.log('isAdmin:', isAdmin);  
 
                 if(isAdmin) {
                     try {     
