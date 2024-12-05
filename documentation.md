@@ -20,6 +20,10 @@ Välkommen till vår applikation! Denna guide hjälper dig att komma igång, oav
    - Kolla igenom overview av din order, där kan du ändra info, betalningsmetod och antal produkter.
    - Klicka på "Send order" för att genomföra köpet.
 
+   OBS! För att testa "Approve", "Done" och "Remove" - öppna två flikar:
+   
+en flik som user/guest för att skapa order och följa order status samt en flik inlogg som admin för att kunna se ordrar och uppdatera deras status.
+
 4. **Ändra eller ta bort din Beställning**
    - Klicka på "Change order" för att göra ändringar i din beställning.
    - Klicka på "Change order" för att spara ändringar.

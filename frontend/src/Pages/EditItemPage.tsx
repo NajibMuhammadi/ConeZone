@@ -81,7 +81,8 @@ function EditItemPage() {
             setItem((item) => {
                 if (item) {
                     return { ...item, components: updatedComponents };
-            }})
+                }
+            })
             setNewComponent('')
         }
     }
@@ -96,7 +97,8 @@ function EditItemPage() {
         setItem((item) => {
             if (item) {
                 return { ...item, components: updatedComponents };
-        }})
+            }
+        })
     }
 
     const changeItem = async (event: React.FormEvent) => {
@@ -138,7 +140,7 @@ function EditItemPage() {
                                 <img className='edit-item__edit-img' src="../../src/assets/edit.png" alt="Redigera" />
                             </button>
                             <section>
-                                <img className="edit-item__img" src={item.image} />
+                                <img className="edit-item__img" src={item.image} alt='IceCream' />
                             </section>
                             <section className="edit-item__product">
                                 <p className="edit-item__name"><span className="strong">Name</span>: {item.name}</p>

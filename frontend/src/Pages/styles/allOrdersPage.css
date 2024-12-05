@@ -1,5 +1,5 @@
 .all-orders__wrapper {
-    background-color: var(--pink70);
+    background-color: var(--purple);
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -39,7 +39,7 @@
     margin: 2rem;
 }
 
-.all-orders__item{
+.all-orders__item {
     background-color: var(--gray30);
     padding: 1rem;
     border-radius: 10px;

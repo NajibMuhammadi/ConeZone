@@ -49,6 +49,7 @@ function Register() {
             }
         } finally {
             setIsLoading(false);
+            navigate('/login');
         }
     };
 
