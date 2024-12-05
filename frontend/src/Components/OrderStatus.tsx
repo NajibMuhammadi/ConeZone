@@ -81,8 +81,6 @@ function OrderStatus({ sk }: Props) {
     useEffect(() => {
         if (isEditing) {
             getOrder(newSk);
-            const interval = setInterval(getOrder, 10000, newSk);
-            return () => clearInterval(interval);
         }
     }, [isEditing, newSk]);
 
@@ -102,6 +100,7 @@ function OrderStatus({ sk }: Props) {
             sessionStorage.removeItem('orderNumber')
             navigate('/cart');
         }
+        getOrder(newSk)
     }, [orderDetails, navigate]);
 
     return (
@@ -160,6 +159,7 @@ export default OrderStatus;
  *
  *  Författare: Ida
  * Skapat en funktion som gör att man kan radera ordern från databasen när man klickar på cancel order knappen
+ * Kallar på funktionen getOrder(sk) när orderDetails ändras
  */
 
 /* Edited: Diliara
