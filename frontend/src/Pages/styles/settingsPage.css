@@ -133,6 +133,12 @@
     
 }
 
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .settings__wrapper {
+        height: 100%;
+    }
+}
+
 @media screen and (min-width: 1024px) and (max-width: 1300px) {
     .settings__wrapper {
         height: 100%;
@@ -146,3 +152,8 @@
         margin: 4rem 0 3rem 0;
     }
 }
+
+/* 
+    bugfix: Najib
+    - fixade så att height på settings__wrapper är 100% på ipadläge
+ */

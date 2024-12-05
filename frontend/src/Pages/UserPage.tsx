@@ -74,7 +74,7 @@ function UserPage() {
                                         <section className="user__order-info">
                                             <p className="user__date">
                                                 <strong>{randomDate.toLocaleDateString()}</strong>
-                                                <span className="user__date">{randomDate.toLocaleTimeString()}</span>
+                                                <span className="user__date"> {randomDate.toLocaleTimeString()}</span>
                                             </p>
                                             <p className="user__total">
                                                 <strong>Total</strong>
@@ -96,6 +96,11 @@ function UserPage() {
 
 export default UserPage;
 
-// Författare Diliara
-// Här visas användarens tidigare ordrar,
-// hämtar riktig data från databasen och visar den på sidan
+/**
+ * Författare Diliara
+ * Här visas användarens tidigare ordrar,
+ * hämtar riktig data från databasen och visar den på sidan
+ * 
+ * Edit: Ida
+ * La till ett mellanrum mellan datum och tid
+*/
