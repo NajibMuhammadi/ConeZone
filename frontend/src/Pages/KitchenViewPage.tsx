@@ -8,6 +8,8 @@ import { adminUpdate } from '../services/adminUpdate';
 import { Link } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 
+import editIcon from '../assets/edit.png';
+
 function KitchenViewPage() {
     const [orders, setOrders] = useState<Order[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
@@ -15,6 +17,7 @@ function KitchenViewPage() {
     const [filter, setFilter] = useState<string>('all');
     const [isAdmin, setIsAdmin] = useState<boolean>(false);
     const [username, setUsername] = useState<string | null>(null);
+    console.log('username:', username);
 
     useEffect(() => {
         const token = sessionStorage.getItem('token');
@@ -62,33 +65,40 @@ function KitchenViewPage() {
     const [newMessage, setNewMessage] = useState('');
 
     const approveOrder = async (pk: string, sk: string) => {
-        let newOrder = {
-            sk: sk,
-            isApproved: true,
-            kitchenMessage: newMessage,
-        };
-
-        try {
-            await adminUpdate('adminOrdersUrl', pk, sk, newOrder);
-            location.reload();
-        } catch (error) {
-            console.error('Error approving order:', error);
+        if(isAdmin){
+            try {
+                let newOrder = {
+                    sk: sk,
+                    isApproved: true,
+                    isDone : false,
+                    isPickedUp: false,
+                    kitchenMessage: newMessage,
+                };
+                await adminUpdate('adminOrdersUrl', pk, sk, newOrder);
+            } catch (error) {
+                console.error('Error approving order:', error);
+            }
         }
+        
     };
 
     const orderDone = async (pk: string, sk: string) => {
-        let newOrder = {
-            sk: sk,
-            isApproved: true,
-            isDone: true
-        };
 
-        try {
-            await adminUpdate('adminOrdersUrl', pk, sk, newOrder);
-            location.reload();
-        } catch (error) {
-            console.error('Error marking order as done:', error);
+        if(isAdmin){
+            try {
+                let newOrder = {
+                    sk: sk,
+                    isApproved: true,
+                    isDone: true,
+                    isPickedUp: false,
+                };
+                await adminUpdate('adminOrdersUrl', pk, sk, newOrder);
+            } catch (error) {
+                console.error('Error marking order as done:', error);
+            }
         }
+
+        
     };
 
     const orderIsPickedUp = async (pk: string, sk: string) => {
@@ -103,7 +113,6 @@ function KitchenViewPage() {
 
                 await adminUpdate('adminOrdersUrl', pk, sk, newOrder)
                 setFilter('isPickedUp')
-                location.reload()
             } catch(error) {
                 console.error('Error editing order', error)
             }
@@ -138,7 +147,7 @@ function KitchenViewPage() {
                                             <div key={order.sk} className="order__incoming">
                                                 <Link to={isAdmin ? `/order/${order.sk}` : `/order/${order.pk}/${order.sk}`}>
                                                     <button className="kitchenViewPage__edit">
-                                                        <img className='kitchenViewPage__edit-img' src="../../src/assets/edit.png" alt="Redigera" />
+                                                        <img className='kitchenViewPage__edit-img' src={editIcon} alt="Redigera" />
                                                     </button>
                                                 </Link>
                                                 <p>Order ID: {order.sk}</p>

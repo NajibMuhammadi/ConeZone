@@ -10,6 +10,11 @@ import { jwtDecode } from 'jwt-decode';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
+import swishIcon from '../assets/swish.svg';
+import cardIcon from '../assets/card.svg';
+import cashIcon from '../assets/cash.svg';
+import klarnaIcon from '../assets/klarna.svg';
+
 function ChangeOrderPage() {
     const navigate = useNavigate();
     const { pk, sk } = useParams<{ pk?: string; sk: string }>();
@@ -68,7 +73,15 @@ function ChangeOrderPage() {
                 }
                 setOrder(fetchedOrder);
                 setTotalPrice(fetchedOrder.totalPrice);
-                setPaymentMethodImg(`../../src/assets/${fetchedOrder.paymentMethod}.svg`);
+                if (fetchedOrder.paymentMethod === 'Card') {
+                    setPaymentMethodImg(cardIcon);
+                } else if (fetchedOrder.paymentMethod === 'Cash') {
+                    setPaymentMethodImg(cashIcon);
+                } else if (fetchedOrder.paymentMethod === 'Swish') {
+                    setPaymentMethodImg(swishIcon);
+                } else if (fetchedOrder.paymentMethod === 'Klarna') {
+                    setPaymentMethodImg(klarnaIcon);
+                }
             } catch (error) {
                 console.error('Error fetching order', error);
             } finally {
@@ -107,7 +120,15 @@ function ChangeOrderPage() {
                 ...order,
                 paymentMethod: newMethod,
             });
-            setPaymentMethodImg(`../../src/assets/${newMethod}.svg`);
+            if (newMethod === 'Card') {
+                setPaymentMethodImg(cardIcon);
+            } else if (newMethod === 'Cash') {
+                setPaymentMethodImg(cashIcon);
+            } else if (newMethod === 'Swish') {
+                setPaymentMethodImg(swishIcon);
+            } else if (newMethod === 'Klarna') {
+                setPaymentMethodImg(klarnaIcon);
+            }
         }
     };
 

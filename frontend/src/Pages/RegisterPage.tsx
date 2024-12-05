@@ -39,6 +39,9 @@ function Register() {
             const response = await postFetch('registersUrl', data);
 
             setSuccess(response.body.message);
+            if(response.body.success){
+                navigate('/login');
+            }
 
         } catch (err) {
             console.error('Error:', err);
@@ -49,7 +52,6 @@ function Register() {
             }
         } finally {
             setIsLoading(false);
-            navigate('/login');
         }
     };
 

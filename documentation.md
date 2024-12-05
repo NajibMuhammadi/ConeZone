@@ -80,16 +80,13 @@ en flik som user/guest för att skapa order och följa order status samt en flik
    - Klicka på "Add item".
    - Fyll in all info.
    - Klicka på "Add item".
+   - länk till ny produkt som ni kan lägga till: https://myuploaded-images-api.s3.eu-north-1.amazonaws.com/Vanillicious.png
 
    - Gå till "Show all orders" för att se alla beställningar.
 
 6. **Logga ut**
    - Klicka på admin ikon och sen "Log out".
 
-### Inloggningsuppgifter för kund
-   - användarnamn: 
-   - lösenord:
-
 ### Inloggningsuppgifter för admin
-   - användarnamn: 
-   - lösenord:
+   - användarnamn: admin
+   - lösenord: password123
