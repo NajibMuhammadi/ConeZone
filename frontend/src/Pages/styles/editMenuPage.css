@@ -32,6 +32,7 @@
 }
 
 .edit-menu__menu-image {
+    border-radius: 10px;
     width: 70%;
     box-shadow: 0 4px 4px 0 rgba(138, 138, 138, 0.25);
 }
@@ -40,8 +41,17 @@
     width: 40px;
 }
 
+.edit-menu__menu-edit:active {
+    scale: 0.9;
+}
+
 .edit-menu__menu-delete {
-    width: 40px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.edit-menu__menu-delete:active {
+    scale: 0.9;
 }
 
 .edit-menu__menu-item {
@@ -76,6 +86,15 @@
     font-weight: 600;
 }
 
+.edit-menu__add-btn:hover {
+    opacity: 0.8;
+}
+
+.edit-menu__add-btn:active {
+    scale: 0.9;
+    box-shadow: 0 2px 2px 0 rgba(138, 138, 138, 0.25);
+}
+
 .edit-menu__menu-changes {
     display: flex;
     flex-direction: row;
@@ -101,7 +120,7 @@
     .edit-menu__menu-edit {
         width: 30px;
     }
-    
+
     .edit-menu__menu-delete {
         width: 30px;
     }

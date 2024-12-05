@@ -79,6 +79,7 @@
 .edit-item__img {
     width: 30vw;
     min-width: 10rem;
+    border-radius: 10px;
 }
 
 .strong {
@@ -144,6 +145,10 @@
     align-self: center;
 }
 
+.edit-item__button:active {
+    scale: 0.9;
+}
+
 .edit-item__loading {
     min-height: calc(100vh - 20vh - 286.71px);
     font-family: "Inter", sans-serif;
@@ -171,6 +176,7 @@
 .edit-item__delete-btn {
     background-color: transparent;
     border: none;
+    cursor: pointer;
 }
 
 .edit-item__component-btn {
@@ -184,6 +190,11 @@
     font-size: 1.2rem;
     align-self: center;
     font-family: "Inter", sans-serif;
+    cursor: pointer;
+}
+
+.edit-item__component-btn:active {
+    scale: 0.9;
 }
 
 @media (max-width: 768px) {

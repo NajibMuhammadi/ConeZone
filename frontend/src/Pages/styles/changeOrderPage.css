@@ -185,6 +185,7 @@
 .changeOrderPage__submit-green {
     background-color: var(--green);
     color: var(--black);
+    box-shadow: #808080a8 2px 4px;
 }
 
 .changeOrderPage__submit-white {
@@ -195,11 +196,18 @@
     max-width: 430px;
     width: 80%;
     color: var(--black);
-    border: 2px solid var(--black);
+    border: 1px solid var(--black);
     font-family: "Inter", sans-serif;
     font-weight: 700;
     cursor: pointer;
     margin: 0.5rem;
+    box-shadow: #808080a8 2px 4px;
+}
+
+.changeOrderPage__submit:active,
+.changeOrderPage__submit-green:active,
+.changeOrderPage__submit-white:active {
+    scale: 0.9;
 }
 
 .slick-list {

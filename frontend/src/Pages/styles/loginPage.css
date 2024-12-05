@@ -59,6 +59,8 @@
     max-width: 430px;
     width: 80%;
     font-weight: 700;
+    box-shadow: #808080a8 1px 2px;
+    cursor: pointer;
 }
 
 .login__register {
@@ -71,6 +73,26 @@
     font-size: 1.2rem;
     text-align: center;
 }
+
+.login__register:hover {
+    background-color: var(--black);
+    color: var(--white);
+}
+
+.login__register:active,
+.login__submit:active {
+    scale: 0.9;
+}
+
+/* border: none;
+box-shadow: #808080a8 2px 4px;
+}
+
+.product__button:active,
+.product__back-btn:active {
+scale: 0.9;
+box-shadow: #808080a8 1px 2px;
+} */
 
 @media screen and (max-width: 600px) {
     .login__header {

@@ -159,6 +159,10 @@
     text-align: center;
 }
 
+.cart__checkout:active {
+    scale: 0.9;
+}
+
 .cart__empty {
     font-size: 1.5rem;
     font-weight: 700;
