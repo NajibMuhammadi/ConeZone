@@ -189,6 +189,10 @@
     }
 }
 
+.header__user {
+    margin-top: 2rem;
+}
+
 @media (max-width: 768px) {
     .user-menu {
         top: 120%;

@@ -16,7 +16,8 @@ function Header() {
 
     useEffect(() => {
         setQuantity(totalQuantity());
-        setOrderNumber(sessionStorage.getItem('orderNumber'));
+        const updatedOrderNumber = sessionStorage.getItem('orderNumber')
+        setOrderNumber(updatedOrderNumber)
     }, [cart, totalQuantity]);
 
     const [isOpen, setIsOpen] = useState(false);

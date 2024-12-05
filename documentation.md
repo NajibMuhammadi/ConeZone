@@ -26,6 +26,7 @@ Välkommen till vår applikation! Denna guide hjälper dig att komma igång, oav
    - Klicka på "Back to order status" för att komma tillbaka till Order status.
    OBS! Ändringar kan inte göras efter order blivit godkännd av admin.
    - Klicka på "Cancel order" om du har ångrat dig.
+   - möjlighet finns att navigera på sidan medans du väntar på uppdateringar för din order. En knapp som heter "your order" dyker upp om du lämnar orderStatus sidan, på denna kan du ta dig tillbaka till din orderStatus. 
 
 5. **Se din beställninghistorik och setting**
    - Klicka på "My orders" för att se din orderhistorik.
