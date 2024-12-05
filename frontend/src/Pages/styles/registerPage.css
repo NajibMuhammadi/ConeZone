@@ -60,6 +60,11 @@
     max-width: 430px;
     width: 80%;
     font-weight: 700;
+    cursor: pointer;
+}
+
+.register__submit:active {
+    scale: 0.9;
 }
 
 .register__success-message {
