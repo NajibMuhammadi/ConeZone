@@ -137,3 +137,8 @@
         margin-top: 5rem;
     }
 }
+
+/* 
+    bugfix: Najib
+    - fixade så att height på settings__wrapper är 100% på ipadläge
+ */
