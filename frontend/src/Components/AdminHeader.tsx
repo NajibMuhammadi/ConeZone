@@ -31,6 +31,8 @@ function AdminHeader() {
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+    console.log(isLoggedIn);
+
     useEffect(() => {
         const token = sessionStorage.getItem('token');
         setIsLoggedIn(!!token);

@@ -15,6 +15,7 @@ function KitchenViewPage() {
     const [filter, setFilter] = useState<string>('all');
     const [isAdmin, setIsAdmin] = useState<boolean>(false);
     const [username, setUsername] = useState<string | null>(null);
+    console.log('username:', username);
 
     useEffect(() => {
         const token = sessionStorage.getItem('token');

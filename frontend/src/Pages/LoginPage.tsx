@@ -23,6 +23,8 @@ function LoginPage() {
 
                 const isAdmin = decoded.isAdmin;
 
+                console.log('isAdmin', isAdmin);
+
             } catch (err) {
                 console.error('Error parsing token:', err);
             }

@@ -31,6 +31,7 @@ function Header() {
             try {
                 const decoded: { isAdmin: boolean } = jwtDecode(token);
                 const isAdmin = decoded.isAdmin;
+                console.log('isAdmin:', isAdmin);
             } catch (err) {
                 console.error('Error parsing token:', err);
             }

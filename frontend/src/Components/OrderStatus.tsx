@@ -21,6 +21,8 @@ function OrderStatus({ sk }: Props) {
     const [isEditing, setIsEditing] = useState(false);
     const navigate = useNavigate();
 
+    console.log('isPickedUp', isPickedUp);
+
     useEffect(() => {
         const token = sessionStorage.getItem('token');
         if (token) {
