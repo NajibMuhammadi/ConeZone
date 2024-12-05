@@ -188,3 +188,4 @@ export default Header;
 
 // Författare Najib
 // hämtade token från sessionstorage och dekodade den för att se om användaren är admin eller inte
+// bugfixade så att your order knappen finns även i mobilläge
