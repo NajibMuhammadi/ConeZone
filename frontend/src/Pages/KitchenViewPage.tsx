@@ -23,7 +23,6 @@ function KitchenViewPage() {
                 const decoded: { isAdmin: boolean, username: string } = jwtDecode(token);
                 setIsAdmin(decoded.isAdmin);
                 setUsername(decoded.username);
-                console.log('Decoded token:', decoded);
             } catch (err) {
                 console.error('Error parsing token:', err);
             }
@@ -34,7 +33,6 @@ function KitchenViewPage() {
         const loadOrders = async () => {
             try {
                 const fetchedOrders = await fetchOrders();
-                console.log('Fetched Orders:', fetchedOrders);
                 setOrders(Array.isArray(fetchedOrders) ? fetchedOrders : []);
             } catch (err) {
                 console.error('Error loading orders:', err);
@@ -43,8 +41,10 @@ function KitchenViewPage() {
                 setLoading(false);
             }
         };
-
         loadOrders();
+
+        const interval = setInterval(loadOrders, 5000);
+        return () => clearInterval(interval)
     }, []);
 
     const incomingOrders = orders.filter(order => !order.isApproved);
@@ -67,7 +67,7 @@ function KitchenViewPage() {
             isApproved: true,
             kitchenMessage: newMessage,
         };
-        console.log('Approving order with pk:', pk, 'and sk:', sk);
+
         try {
             await adminUpdate('adminOrdersUrl', pk, sk, newOrder);
             location.reload();
@@ -101,7 +101,6 @@ function KitchenViewPage() {
                     isPickedUp: true,
                 }
 
-                console.log('Order skickas:', newOrder)
                 await adminUpdate('adminOrdersUrl', pk, sk, newOrder)
                 setFilter('isPickedUp')
                 location.reload()
