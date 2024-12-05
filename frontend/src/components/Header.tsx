@@ -125,6 +125,11 @@ function Header() {
                             <div className='badge'>{quantity}</div>
                         )}
                     </NavLink>
+                    {orderNumber && (
+                        <button className="nav__link nav__button" onClick={() => navigate('/order', { state: { slideIndex: 3, sk: sk } })}>
+                            Your Order
+                        </button>
+                    )}
                     {isLoggedIn ? (
                         <>
                             <button className="nav__button" onClick={toggleUserMenu}>
