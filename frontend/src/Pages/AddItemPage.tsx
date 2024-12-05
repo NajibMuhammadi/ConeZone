@@ -71,6 +71,10 @@ function AddItemPage() {
         }
     }
 
+    const goBack = () => {
+        navigate('/editmenu')
+    }
+
     return (
         <>
             <Header />
@@ -159,8 +163,8 @@ function AddItemPage() {
                                     className="add-item__component-btn"
                                 > Add new component</button>
                             </label>
-
                             <button className="add-item__button" onClick={saveItem}>Add Item</button>
+                            <button className="add-item__button" onClick={goBack}>Back</button>
                         </form>
                     </article>
                 </section>

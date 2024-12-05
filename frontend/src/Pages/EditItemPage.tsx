@@ -119,6 +119,10 @@ function EditItemPage() {
         }
     }
 
+    const goBack = () => {
+        navigate('/editmenu')
+    }
+
 
 
     return (
@@ -147,6 +151,7 @@ function EditItemPage() {
                                         <li className="edit-item__component-item" key={index}>{component}</li>
                                     ))}
                                 </ul>
+                                <button className="edit-item__button" onClick={goBack}>Back</button>
                             </section>
                         </article>
                     </section>
@@ -241,6 +246,7 @@ function EditItemPage() {
                                     > Add new component</button>
                                 </label>
                                 <button className="edit-item__button" onClick={changeItem}>Save Changes</button>
+                                <button className="edit-item__button" onClick={goBack}>Back</button>
                             </form>
                         </article>
                     </section>
