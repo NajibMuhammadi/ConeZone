@@ -87,6 +87,22 @@ Kommunikationen med teamet.
 Medverkande: Najib, Diliara, Ida, Lisa
 
 
+# Sprint 4 (vecka 49)
+
+Sprint planering genomfördes på Fredag sprint 3 (efter sprint review och retrospective).
+
+![alt text](./screenshots/monday-week49.png)
+
+# Sprint review
+Kunden var nöjd med hur långt vi hade kommit och fokus ligger denna vecka på att göra klart projektet så att kunden får en färdig produkt. Saker vi ska fokusera på är att se över så att designen är enhetlig och storleksmässigt bra, vi ska se över sidan med wave och även kontrollera att vi använder typeScript korrekt överallt. 
+
+# Sprint Retrospektiv
+
+
+## Vad kan förbättras?
+
+Medverkande: Najib, Diliara, Ida, Lisa
+
 
 
 
