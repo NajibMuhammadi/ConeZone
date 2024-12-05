@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { deleteOrder } from '../services/deleteOrder';
 import './styles/orderStatus.css';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Order } from '../types/interfaces';
 import { fetchOrder } from '../services/fetchOrder';
+import { jwtDecode } from 'jwt-decode';
 
 interface Props {
     sk: string;
@@ -11,7 +12,7 @@ interface Props {
 
 function OrderStatus({ sk }: Props) {
     const [newSk, setNewSk] = useState<string>('');
-    const pk = 'guest';
+    const [pk, setPk] = useState<string>('guest');
     const [isCanceled, setIsCanceled] = useState(false);
     const [isApproved, setIsApproved] = useState(false);
     const [isDone, setIsDone] = useState(false);
@@ -19,6 +20,19 @@ function OrderStatus({ sk }: Props) {
     const [orderDetails, setOrderDetails] = useState<Order | null>(null);
     const [isEditing, setIsEditing] = useState(false);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const token = sessionStorage.getItem('token');
+        if (token) {
+            try {
+                const decoded: { username: string } = jwtDecode(token);
+                setPk(decoded.username);
+                console.log('Decoded token:', decoded);
+            } catch (err) {
+                console.error('Error parsing token:', err);
+            }
+        }
+    }, []);
 
     const cancelOrder = async () => {
         try {
@@ -61,7 +75,7 @@ function OrderStatus({ sk }: Props) {
         if (newSk) {
             getOrder(newSk);
         }
-    }, [newSk]);
+    }, [newSk, pk]);
 
 
     useEffect(() => {
@@ -137,8 +151,6 @@ function OrderStatus({ sk }: Props) {
 }
 
 export default OrderStatus;
-
-
 /**
  *  Författare: Najib
  * en komponent som visar orderstatusen för användaren och möjligheten att avbryta eller bekräfta ordern
