@@ -9,6 +9,12 @@ interface ErrorProps {
     msg: string;
 }
 
+import editIcon from '../assets/edit.png';
+import swishIcon from '../assets/swish.svg';
+import cardIcon from '../assets/card.svg';
+import klarnaIcon from '../assets/klarna.svg';
+import cashIcon from '../assets/cash.svg';
+
 function Overview({ onNext }: { onNext: (sk: string) => void }) {
 
     const cart = useMenuStore(state => state.cart)
@@ -108,7 +114,7 @@ function Overview({ onNext }: { onNext: (sk: string) => void }) {
                                     <p className="overview__customer-info"><strong>Phone number:</strong> {order.customerDetails.phone}</p>
                                     <p className="overview__customer-info"><strong>Email:</strong> {order.customerDetails.email}</p>
                                     <button className="overview__edit" onClick={() => setEditingCustomer(true)}>
-                                        <img className='overview__edit-img' src="../../src/assets/edit.png" alt="Redigera" />
+                                        <img className='overview__edit-img' src={editIcon} alt="Redigera" />
                                     </button>
                                 </section>
                             ) : (
@@ -167,7 +173,7 @@ function Overview({ onNext }: { onNext: (sk: string) => void }) {
                                                         onClick={() => setEditingQty(true)}>
                                                         <img
                                                             className="overview__edit-img"
-                                                            src="../../src/assets/edit.png"
+                                                            src={editIcon}
                                                             alt="Edit" />
                                                     </button>
                                                 )}
@@ -193,9 +199,12 @@ function Overview({ onNext }: { onNext: (sk: string) => void }) {
                         {!editingPayment ? (
                             <section className="overview__payment">
                                 {paymentMethod && <p className="overview__method-details">{paymentMethod}</p>}
-                                {paymentMethod && <img src={`../../src/assets/${(paymentMethod)}.svg`} alt={paymentMethod} className="overview__method-img" />}
+                                {paymentMethod === 'Swish' && <img src={swishIcon} alt={paymentMethod} className="overview__method-img" />}
+                                {paymentMethod === 'Card' && <img src={cardIcon} alt={paymentMethod} className="overview__method-img" />}
+                                {paymentMethod === 'Klarna' && <img src={klarnaIcon} alt={paymentMethod} className="overview__method-img" />}
+                                {paymentMethod === 'Cash' && <img src={cashIcon} alt={paymentMethod} className="overview__method-img" />}
                                 <button className="overview__edit" onClick={() => setEditingPayment(true)}>
-                                    <img className='overview__edit-img' src="../../src/assets/edit.png" alt="Redigera" />
+                                    <img className='overview__edit-img' src={editIcon} alt="Redigera" />
                                 </button>
                             </section>
                         ) : (

@@ -8,6 +8,8 @@ import Footer from '../components/Footer';
 import './styles/editItemPage.css';
 import { updateItem } from '../services/updateItem';
 
+import editIcon from '../assets/edit.png';
+
 function EditItemPage() {
     const navigate = useNavigate();
     const itemId = useParams();
@@ -137,7 +139,7 @@ function EditItemPage() {
                             <h2 className="edit-item__heading">Edit {item.name}</h2>
                             <hr className="edit-item__line" />
                             <button className="edit-item__edit" onClick={() => setEdit(true)}>
-                                <img className='edit-item__edit-img' src="../../src/assets/edit.png" alt="Redigera" />
+                                <img className='edit-item__edit-img' src={editIcon} alt="Redigera" />
                             </button>
                             <section>
                                 <img className="edit-item__img" src={item.image} alt='IceCream' />

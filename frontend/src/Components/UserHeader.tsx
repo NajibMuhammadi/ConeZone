@@ -5,6 +5,11 @@ import './styles/userHeader.css'
 import useMenuStore from '../stores/cartStore';
 import { useEffect } from 'react';
 
+import hamburgerIcon from '../assets/hamburger.svg';
+import logo from '../assets/logo.svg';
+import userIcon from '../assets/user.svg';
+import basketIcon from '../assets/basket.svg';
+
 function UserHeader() {
     const cart = useMenuStore(state => state.cart);
     const totalQuantity = useMenuStore(state => state.totalQuantity);
@@ -33,35 +38,35 @@ function UserHeader() {
 
     return (
         <header className="header">
-            <button className="header__button" onClick={toggleNav}><img className="button__hamburger" src="../../src/assets/hamburger.svg" /></button>
+            <button className="header__button" onClick={toggleNav}><img className="button__hamburger" src={hamburgerIcon} /></button>
             <nav className="header__nav">
-                <NavLink to="/" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}><img className="header__logo" src="../../../src/assets/logo.svg"/></NavLink>
+                <NavLink to="/" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}><img className="header__logo" src={logo}/></NavLink>
                 <NavLink to="/menu" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>Menu</NavLink>
                 <NavLink to="/about" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>About Us</NavLink>
                 <NavLink to="/cart" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>
-                    <img className="header__basket" src="../../src/assets/basket.svg"/>
+                    <img className="header__basket" src={basketIcon}/>
                     {quantity > 0 && (
                         <div className='badge'>{quantity}</div>
                     )}
                 </NavLink>
-                <button className="nav__button" onClick={toggleUserMenu}>  <img className="header__user" src="../../src/assets/user.svg"/><p>User</p></button>
+                <button className="nav__button" onClick={toggleUserMenu}>  <img className="header__user" src={userIcon}/><p>User</p></button>
                 <nav className={`nav__user-nav ${isUserMenuOpen ? 'showMenu' : ''}`}>
                     <NavLink to="/orderhistory" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>My Orders</NavLink>
                     <button className="nav__logout nav__link" onClick={logout}>Log Out</button>
                 </nav>
             </nav>
             <nav className="header__nav header__nav--mobile">
-                <NavLink to="/" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}><img className="header__logo" src="../../../src/assets/logo.svg"/></NavLink>
+                <NavLink to="/" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}><img className="header__logo" src={logo}/></NavLink>
                 <section className={`header__section ${isOpen ? 'open' : ''}`}>
                     <NavLink to="/menu" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>Menu</NavLink>
                     <NavLink to="/about" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>About Us</NavLink>
                     <NavLink to="/cart" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>
-                        <img className="header__basket" src="../../src/assets/basket.svg"/>
+                        <img className="header__basket" src={basketIcon}/>
                         {quantity > 0 && (
                             <div className='badge'>{quantity}</div>
                         )}
                     </NavLink>
-                    <button className="nav__button" onClick={toggleUserMenu}>  <img className="header__user" src="../../src/assets/user.svg"/><p>User</p></button>
+                    <button className="nav__button" onClick={toggleUserMenu}>  <img className="header__user" src={userIcon}/><p>User</p></button>
                     <nav className={`nav__user-nav nav__user-nav--mobile ${isUserMenuOpen ? 'showMenu' : ''}`}>
                         <NavLink to="/orderhistory" className={({ isActive }: NavLinkRenderProps) => isActive ? 'nav__link nav__link--active' : 'nav__link'}>My Orders</NavLink>
                         <button className="nav__logout nav__link" onClick={logout}>Log Out</button>

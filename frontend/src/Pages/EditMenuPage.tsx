@@ -8,6 +8,9 @@ import { Link } from 'react-router-dom';
 import { deleteItem } from '../services/deleteItem';
 import {jwtDecode} from 'jwt-decode';
 
+import editIcon from '../assets/edit.png';
+import vector from '../assets/Vector.png';
+
 function EditMenuPage() {
     const url = 'itemsUrl';
     const token = sessionStorage.getItem('token');
@@ -65,8 +68,8 @@ function EditMenuPage() {
                                             <p className="edit-menu__menu-price">{item.price} kr</p>
                                         </article>
                                         <article className="edit-menu__menu-changes">
-                                            <Link to={`/item/${item.sk}`}><img className='edit-menu__menu-edit' src="../../src/assets/edit.png" alt="Redigera" /></Link>
-                                            <img className="edit-menu__menu-delete" src="../../src/assets/Vector.png" alt="Delete" onClick={() => item.sk && removeItem(item.sk)} />
+                                            <Link to={`/item/${item.sk}`}><img className='edit-menu__menu-edit' src={editIcon} alt="Redigera" /></Link>
+                                            <img className="edit-menu__menu-delete" src={vector} alt="Delete" onClick={() => item.sk && removeItem(item.sk)} />
                                         </article>
                                     </article>
                                 </>

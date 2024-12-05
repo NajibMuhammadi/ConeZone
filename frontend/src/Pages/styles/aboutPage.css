@@ -46,7 +46,7 @@
 }
 
 .employees {
-    background-image: url(../../src/assets/strossel.png);
+    background-image: url(../../assets/strossel.png);
     background-size: contain;
     width: 100%;
     padding: 50px;
