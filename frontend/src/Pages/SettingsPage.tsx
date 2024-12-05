@@ -52,7 +52,7 @@ function SettingsPage() {
             <Header />
             <section className="settings__wrapper">
                 <section className="settings">
-                    <h1 className="settings__header">Settings</h1>
+                    <h1 className="settings__header">Info</h1>
                     <section className="settings__content">
                     {loading ? (
                         <p>Loading...</p>
@@ -77,13 +77,6 @@ function SettingsPage() {
                         <p>No customer details found.</p>
                     )}
                     </section>
-                    <section className="settings__bottom">
-                        <section className="settings__notification">
-                            <h2 className="notification">Allow notifications</h2>
-                            <img src="../../src/assets/toggle.svg" alt="toggle icon" className="toggle"/>
-                        </section>
-                        <h2 className="settings__delete">Delete account</h2>
-                    </section>
                 </section>
             </section>
             <Footer />
@@ -92,3 +85,8 @@ function SettingsPage() {
 }
 
 export default SettingsPage;
+
+/**
+ * Författare: Diliara
+ * En sida där användaren kan se sina uppgifter
+ */
