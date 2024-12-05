@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { deleteOrder } from '../services/deleteOrder';
 import './styles/orderStatus.css';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Order } from '../types/interfaces';
 import { fetchOrder } from '../services/fetchOrder';
 

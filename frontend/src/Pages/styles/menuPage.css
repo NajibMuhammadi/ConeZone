@@ -48,6 +48,7 @@
 
 .main__menu-image {
     width: 100%;
+    border-radius: 10px;
 }
 
 .main__menu-des {

@@ -41,6 +41,7 @@
 
 .cart__item-image {
     height: 200px;
+    border-radius: 10px;
 }
 
 .cart__item-details,
