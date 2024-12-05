@@ -36,7 +36,7 @@ function Routers() {
                 <Route path="/order/:sk" element={<ChangeOrderPage />} />
                 <Route path="/item/:sk" element={<EditItemPage />} />
                 <Route path="/add" element={<AddItemPage />} />
-                <Route path="/settings" element={<SettingsPage />} />
+                <Route path="/my-info" element={<SettingsPage />} />
             </Routes>
         </BrowserRouter>
     )

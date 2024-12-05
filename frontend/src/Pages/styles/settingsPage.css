@@ -16,7 +16,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
     padding: 2rem 3rem 3rem 3rem;
 }
 
@@ -60,6 +59,7 @@
     flex-direction: column;
     align-items: start;
     justify-content: center;
+    place-content: center;
 }
 
 .settings__notification {
@@ -120,6 +120,17 @@
     .settings__notification {
         gap: 1rem;
     }
+
+    .settings__content {
+        margin: 4rem 0 4rem 0;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .settings__content {
+        margin: 5rem 0 2rem 0;
+    }
+    
 }
 
 @media screen and (min-width: 1024px) and (max-width: 1300px) {
@@ -129,5 +140,9 @@
 
     .settings__bottom {
         margin-top: 5rem;
+    }
+
+    .settings__content {
+        margin: 4rem 0 3rem 0;
     }
 }

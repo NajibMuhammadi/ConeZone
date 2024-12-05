@@ -81,6 +81,8 @@ function OrderStatus({ sk }: Props) {
     useEffect(() => {
         if (isEditing) {
             getOrder(newSk);
+            const interval = setInterval(getOrder, 10000, newSk);
+            return () => clearInterval(interval);
         }
     }, [isEditing, newSk]);
 
@@ -151,6 +153,7 @@ function OrderStatus({ sk }: Props) {
 }
 
 export default OrderStatus;
+
 /**
  *  Författare: Najib
  * en komponent som visar orderstatusen för användaren och möjligheten att avbryta eller bekräfta ordern
