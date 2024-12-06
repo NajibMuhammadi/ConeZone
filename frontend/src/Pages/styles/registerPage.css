@@ -1,0 +1,107 @@
+.register__wrapper {
+    background-color: var(--pink70);
+    margin: auto;
+    min-height: 65vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Inter", sans-serif;
+}
+
+.register__form {
+    width: 80%;
+    max-width: 560px;
+    background-color: var(--white);
+    margin: 2rem auto;
+    padding: 2rem;
+    border-radius: 9px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.register__header {
+    color: var(--black);
+    font-size: 2.5rem;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+.register__form label {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--black70);
+    margin-bottom: 1rem;
+}
+
+.register__form input {
+    font-size: 1.2rem;
+    color: var(--black70);
+    padding: .5rem;
+    border-radius: 21px;
+    background-color: var(--gray30);
+    margin-bottom: 2rem;
+    border: none;
+    padding: 1rem;
+}
+
+.register__form input:focus {
+    outline: 3px solid var(--blue)
+}
+
+.register__form .register__submit {
+    background-color: var(--blue);
+    font-size: 1.5rem;
+    margin: 2rem auto 0;
+    border-radius: 10px;
+    padding: 1rem;
+    max-width: 430px;
+    width: 80%;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.register__submit:active {
+    scale: 0.9;
+}
+
+.register__success-message {
+    color: green;
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.register__error-message {
+    color: red;
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 1rem 0;
+}
+
+@media screen and (max-width: 600px) {
+    .register__header {
+        /* font-size: 30px; */
+        margin-bottom: 1rem;
+    }
+
+    /* 
+    .register__form label {
+        font-size: 20px;
+    }
+
+    .register__form input {
+        font-size: 20px;
+        height: 70px;
+    } */
+
+    .register__form .register__submit {
+        /* font-size: 30px;
+        height: 90px; */
+        margin: 1rem auto;
+    }
+}
+
+/* Edited Diliara, la till error och success meddelande styling */

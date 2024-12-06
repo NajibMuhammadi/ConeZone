@@ -1,0 +1,118 @@
+.login__wrapper {
+    background-color: var(--pink70);
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Inter", sans-serif;
+    min-height: 65vh;
+}
+
+.login__form {
+    width: 80%;
+    max-width: 560px;
+    background-color: var(--white);
+    margin: 2rem auto;
+    padding: 2rem;
+    border-radius: 9px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login__header {
+    color: var(--black);
+    font-size: 2.5rem;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.login__form label {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--black70);
+    margin: 1rem 0;
+}
+
+.login__form input {
+    font-size: 1.2rem;
+    color: var(--black70);
+    padding: 1rem;
+    border-radius: 21px;
+    background-color: var(--gray30);
+    margin-bottom: 1rem;
+    border: none;
+}
+
+.login__form input:focus {
+    outline: 3px solid var(--purple)
+}
+
+.login__form .login__submit {
+    background-color: var(--purple);
+    font-size: 1.5rem;
+    margin: 1rem auto 0;
+    border-radius: 10px;
+    padding: 1rem;
+    max-width: 430px;
+    width: 80%;
+    font-weight: 700;
+    box-shadow: #808080a8 1px 2px;
+    cursor: pointer;
+}
+
+.login__register {
+    background-color: var(--white);
+    margin: 0rem 2rem 4rem 2rem;
+    padding: 1rem;
+    border-radius: 10px;
+    font-weight: 700;
+    color: var(--black);
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.login__register:hover {
+    background-color: var(--black);
+    color: var(--white);
+}
+
+.login__register:active,
+.login__submit:active {
+    scale: 0.9;
+}
+
+/* border: none;
+box-shadow: #808080a8 2px 4px;
+}
+
+.product__button:active,
+.product__back-btn:active {
+scale: 0.9;
+box-shadow: #808080a8 1px 2px;
+} */
+
+@media screen and (max-width: 600px) {
+    .login__header {
+        margin-bottom: 1rem;
+    }
+
+    .login__form label {
+        font-size: 1.2rem;
+    }
+
+    .login__form input {
+        font-size: 1.2rem;
+    }
+
+    .login__form .login__submit {
+        font-size: 1.5rem;
+        margin: 1rem auto;
+    }
+
+    .login__register {
+        font-size: 1.2rem;
+    }
+}

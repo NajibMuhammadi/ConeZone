@@ -1,0 +1,264 @@
+.about-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.history {
+    margin-top: 2rem;
+}
+
+.history__container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0 50px 50px 50px;
+}
+
+.history__heading {
+    text-align: center;
+    font-family: "Inter", sans-serif;
+    font-size: 2.5rem;
+}
+
+.employees__heading {
+    text-align: center;
+    font-family: "Inter", sans-serif;
+    font-size: 1.5rem;
+}
+
+.history__img {
+    border-radius: 11px;
+    width: 400px;
+    height: 500px;
+    margin: 30px;
+}
+
+.history__text {
+    margin: 30px;
+    font-family: "Inter", sans-serif;
+    font-size: 1.2rem;
+    text-align: justify;
+    line-height: 1.7rem;
+}
+
+.employees {
+    background-image: url(../../assets/strossel.png);
+    background-size: contain;
+    width: 100%;
+    padding: 50px;
+}
+
+.employees__heading {
+    font-size: 2.5rem;
+}
+
+.employees__container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 50px;
+}
+
+/* .employees__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 50px;
+} */
+
+.employees__desc-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 50px;
+    background-color: white;
+    text-align: center;
+    padding: 15px;
+    border-radius: 5px;
+    border: 2px solid gray;
+    font-size: 1.2rem;
+    min-width: 200px;
+}
+
+.employees__img {
+    border-radius: 5px;
+    width: 15rem;
+    /* margin: 30px; */
+}
+
+.employees__name {
+    color: var(--black);
+    font-size: 2rem;
+    padding: 10px;
+    font-family: "Inter", sans-serif;
+}
+
+.employees__position {
+    font-size: 1.2rem;
+    color: black;
+    padding: 10px;
+    font-family: "Inter", sans-serif;
+}
+
+.ice-cream {
+    margin: 0;
+    width: 100%;
+}
+
+.ice-cream__img {
+    height: 100%;
+    width: 100%;
+    display: block;
+}
+
+.quote {
+    text-align: center;
+    border: 20px dotted var(--purple);
+    margin: 1rem;
+    padding: 6rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: "Calligraffitti", cursive;
+    font-weight: 400;
+    font-style: normal;
+    width: 100%;
+}
+
+.quote__text {
+    font-size: 2rem;
+    padding: 70px;
+}
+
+@media (max-width: 768px) {
+
+    .history__heading {
+        margin: 30px 0 10px 0;
+    }
+
+    .history__container {
+        flex-direction: column;
+        margin: 0;
+    }
+
+    .history__img {
+        width: 100vw;
+        height: auto;
+        margin: 0;
+        border-radius: 0;
+    }
+
+    .history__text {
+        margin: 0 20px 20px 20px;
+        padding: 20px;
+    }
+
+    .employees {
+        padding: 20px;
+        background-position: center;
+        background-size: contain;
+    }
+
+    .employees__heading {
+        margin-top: 2rem;
+    }
+
+    .employees__container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+    }
+
+    .employees__item {
+        margin: 20px;
+    }
+
+    .employees__img {
+        width: 40vw;
+        margin: 20px 0;
+    }
+
+    .employees__desc-container {
+        padding: 0 10px;
+        font-size: 16px;
+    }
+
+    .ice-cream {
+        margin: 0;
+    }
+
+    .ice-cream__img {
+        width: 100%;
+        height: auto;
+    }
+
+    .quote {
+        padding: 20px;
+        height: 300px;
+        width: 100%;
+    }
+
+    .quote__text {
+        padding: 20px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .employees__container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        align-items: center;
+        margin: 0;
+
+    }
+
+    .quote__text {
+        padding: 30px;
+    }
+
+    .history__img {
+        width: 300px;
+        height: 350px;
+        margin: 30px;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1299px) {
+    .employees__container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        align-items: center;
+        margin: 0;
+    }
+
+    .quote__text {
+        padding: 40px;
+    }
+}
+
+@media (min-width: 1300px) and (max-width: 1800px) {
+    .employees__container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-evenly;
+        margin: 0;
+    }
+}
+
+/*
+/* Författare: Diliara
+/* About us sidas styling.
+*/

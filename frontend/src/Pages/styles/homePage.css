@@ -1,0 +1,215 @@
+.homePage__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    /* max-width: 1300px; */
+    margin: 0 auto;
+}
+
+.homePage__jumbotron {
+    background-color: var(--pink70);
+    min-height: 40vh;
+    padding: 3rem 0rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.homePage__jumbotron-header {
+    font-family: "Calligraffitti", cursive;
+    font-weight: 400;
+    font-size: 3rem;
+    font-style: italic;
+    margin: 3rem;
+    border: 10px dotted var(--white);
+    padding: 2rem;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.homePage__jumbotron-text {
+    font-family: "Inter", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 2rem 4rem;
+    margin-bottom: 5rem;
+    text-align: center;
+}
+
+.homePage__content {
+    display: flex;
+    background-color: white;
+}
+
+.homePage__picture {
+    max-width: 50vw;
+}
+
+.homePage__aside {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem;
+}
+
+.homePage__text {
+    font-family: "Inter", sans-serif;
+    margin-bottom: 3rem;
+    text-align: center;
+    font-size: 1.2rem;
+    line-height: 1.7rem;
+}
+
+.homePage__link {
+    text-decoration: none;
+}
+
+.homePage__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-radius: 3rem;
+    border: none;
+    box-shadow: #808080a8 2px 4px;
+    background-color: var(--blue);
+}
+
+.homePage__button:active {
+    scale: 0.9;
+    box-shadow: #808080a8 1px 2px;
+}
+
+.homePage__button-text {
+    font-family: "Inter", sans-serif;
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: var(--black);
+}
+
+.homePage__arrow {
+    width: 2rem;
+    margin-left: 1rem;
+}
+
+.homePage__slogan {
+    background-image: linear-gradient(var(--purple), white);
+    width: 100%;
+    padding: 10rem 3rem;
+}
+
+.homePage__slogan-text {
+    font-family: "Calligraffitti", cursive;
+    font-weight: 400;
+    padding: 3rem 2rem;
+    font-size: 2.5rem;
+    font-style: italic;
+    margin: 1rem;
+    text-align: center;
+    border-radius: 5px;
+
+}
+
+.homePage__reviews {
+    /* background-image: url('../../assets/sprinkles.png'); */
+    background-image: linear-gradient(to top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%), url('../../assets/sprinkles.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 50vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 5rem 0rem;
+}
+
+.homePage__ourRating {
+    background-color: var(--black);
+    width: 11rem;
+    padding: 1.5rem;
+    border-radius: 5px;
+    margin-left: 1rem;
+}
+
+.homePage__ourRating-header {
+    color: var(--white);
+    font-family: "Inter", sans-serif;
+    text-align: center;
+    margin-bottom: 0.8rem;
+    font-size: 2rem;
+}
+
+.homePage__ourRating-starsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.homePage__ourRating-stars {
+    width: 2rem;
+    height: 2rem;
+    margin: 0.2rem;
+}
+
+.homePage__review {
+    background-color: var(--pink70);
+    margin: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1rem;
+    border-radius: 5px;
+    padding: 1rem;
+    align-items: center;
+    max-width: 400px;
+}
+
+.homePage__review-img {
+    height: 8rem;
+    border-radius: 5px;
+}
+
+.homePage__review-text {
+    font-family: "Inter", sans-serif;
+    color: rgba(53, 53, 53, 0.5);
+    font-size: 1.2rem;
+}
+
+.homePage__review-boldtext {
+    color: rgba(53, 53, 53);
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+@media screen and (max-width:600px) {
+
+    .homePage__reviews {
+        padding: 3rem;
+        flex-direction: column;
+    }
+
+    .homePage__content {
+        flex-direction: column-reverse;
+        align-items: center;
+        margin-top: 3rem;
+    }
+
+    .homePage__button {
+        margin-bottom: 3rem;
+    }
+
+    .homePage__ourRating {
+        margin-top: 3rem;
+    }
+
+    .homePage__picture {
+        max-width: 100%;
+    }
+}
+
+/* Design och utförande i frontend gjord av Lisa */

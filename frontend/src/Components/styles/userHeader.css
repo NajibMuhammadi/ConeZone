@@ -1,0 +1,58 @@
+.nav__button {
+    background-color: transparent;
+    border: none;
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 1.5rem;
+}
+
+.header-nav {
+    position: relative;
+}
+
+.nav__user-nav {
+    position: absolute;
+    right: 0;
+    top: 20vh;
+    min-width: 18vw;
+    padding: 0 3rem;
+    transform: translateY(-100vh);
+    background-color: var(--black);
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav__user-nav--mobile {
+    transform: translateY(-100vh);
+    position: absolute;
+    left: 0;
+    margin-top: 10rem;
+    bottom: 100%;
+    height: 15vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+}
+
+.showMenu {
+    transform: translateY(0);
+}
+
+.nav__logout {
+    background-color: transparent;
+    border: none;
+    margin-bottom: 2rem;
+}
+
+.nav__user-nav.nav__user-nav--mobile.showMenu {
+    margin-top: 14rem;
+}
+
+/**
+* Författare Ida
+* Styling för userHeader
+*/

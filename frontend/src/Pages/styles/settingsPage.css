@@ -1,0 +1,159 @@
+.settings__wrapper {
+    background-color: var(--blue);
+    height: 70vh;
+    margin: 0 auto;
+    padding: 3rem 3.3rem 3rem 3.3rem;
+    font-family: "Inter", sans-serif;
+}
+
+.settings {
+    width: 100%;
+    height: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 3rem 3rem 3rem;
+}
+
+.settings__header {
+    color: var(--black);
+    font-size: 2rem;
+    text-align: center;
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    padding: 0 2rem 0 2rem;
+    font-size: 40px;
+}
+
+.error-msg {
+    color: red;
+    margin: 1rem;
+}
+
+.settings__item {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+    align-items: start;
+    width: 100%;
+}
+
+.settings__item p {
+    background-color: var(--green40);
+    padding: 1rem;
+    border-radius: 15px;
+    width: 50vw;
+    max-width: 400px;
+    margin: 5px 0 5px 0;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    font-size: 20px;
+}
+
+.settings__content {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    place-content: center;
+}
+
+.settings__notification {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+
+.settings__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 11rem;
+    margin: 2rem;
+}
+
+.toggle {
+    width: 70px;
+    cursor: pointer;
+}
+
+.settings__delete {
+    color: red;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .settings__wrapper {
+        height: 100%;
+    }
+
+    .settings__bottom {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .settings__header {
+        font-size: 30px;
+    }
+
+    .settings__item h2 {
+        font-size: 20px;
+    }
+
+    .settings__item p {
+        font-size: 16px;
+    }
+
+    .settings__bottom h2 {
+        font-size: 16px;
+    }
+
+    .toggle {
+        width: 50px;
+    }
+
+    .settings__notification {
+        gap: 1rem;
+    }
+
+    .settings__content {
+        margin: 4rem 0 4rem 0;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .settings__content {
+        margin: 5rem 0 2rem 0;
+    }
+    
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .settings__wrapper {
+        height: 100%;
+    }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1300px) {
+    .settings__wrapper {
+        height: 100%;
+    }
+
+    .settings__bottom {
+        margin-top: 5rem;
+    }
+
+    .settings__content {
+        margin: 4rem 0 3rem 0;
+    }
+}
+
+/* 
+    bugfix: Najib
+    - fixade så att height på settings__wrapper är 100% på ipadläge
+ */

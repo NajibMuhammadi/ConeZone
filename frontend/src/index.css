@@ -1,5 +1,27 @@
-*{
+@import "../node_modules/slick-carousel/slick/slick.css";
+@import "../node_modules/slick-carousel/slick/slick-theme.css";
+
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
+:root {
+  --pink: #F0C9C4;
+  --pink70: rgba(240, 201, 196, 0.7);
+  --pink40: rgba(240, 201, 196, 0.4);
+  --white: #ffffff;
+  --black: #353535;
+  --black70: rgba(0, 0, 0, 0.7);
+  --blue: #C4EBF0;
+  --blue40: rgba(196, 235, 240, 0.4);
+  --purple: #DFC4F0;
+  --gray: #D9d9d9;
+  --gray30: rgb(217, 217, 217, 0.3);
+  --green: #D5F0C4;
+  --green40: rgba(213, 240, 196, 0.4);
+}
+
+/* Edited: Diliara
+La till import av slick-carousel */

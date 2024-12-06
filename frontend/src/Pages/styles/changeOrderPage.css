@@ -1,0 +1,313 @@
+.changeOrderPage__wrapper {
+    height: 100%;
+    background-color: var(--pink);
+    margin: 0 auto;
+    padding: 4rem 0rem;
+}
+
+.changeOrderPage {
+    width: 80%;
+    max-width: 620px;
+    background-color: var(--white);
+    margin: 0 auto;
+    padding: 2rem;
+    border-radius: 9px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: "Inter", sans-serif;
+}
+
+.changeOrderPage__heading {
+    font-size: 2.5rem;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+.changeOrderPage__line {
+    width: 90%;
+    align-self: center;
+}
+
+.changeOrderPage__customer-container-top {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+}
+
+.changeOrderPage__customer {
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: 700;
+    margin: 2rem;
+    align-self: center;
+}
+
+.changeOrderPage__input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.changeOrderPage__input input {
+    margin: 10px;
+    max-width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+    font-size: 1rem;
+}
+
+.changeOrderPage__input label {
+    display: flex;
+    align-items: center;
+}
+
+
+.changeOrderPage__input:focus {
+    border-color: var(--pink70);
+    outline: none;
+    box-shadow: 2px 2px 2px pink;
+}
+
+.changeOrderPage__product-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    position: relative;
+}
+
+.changeOrderPage__product {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-left: 5rem;
+}
+
+.changeOrderPage__img {
+    width: 15vw;
+    min-width: 10rem;
+    margin-bottom: 1rem;
+}
+
+.changeOrderPage__info-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    /* margin: 5px; */
+    font-size: 1.2rem;
+}
+
+.changeOrderPage__info {
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
+.changeOrderPage__counter-container {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-left: 0.4rem;
+}
+
+.changeOrderPage__payment-wrapper {
+    position: relative;
+}
+
+.changeOrderPage__payment {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 10px;
+    margin: 30px;
+}
+
+.changeOrderPage__payment select {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.changeOrderPage__method-img {
+    width: 50px;
+}
+
+.changeOrderPage__total {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    font-size: 1.5rem;
+}
+
+.changeOrderPage__total-price {
+    margin: 20px;
+}
+
+.changeOrderPage__errormsg {
+    color: red;
+    text-align: center;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+}
+
+.changeOrderPage__successmsg {
+    font-size: 1rem;
+}
+
+.changeOrderPage__submit {
+    background-color: var(--black);
+    font-size: 1.5rem;
+    border-radius: 10px;
+    padding: 1rem;
+    max-width: 430px;
+    width: 80%;
+    color: white;
+    border: none;
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    margin: 0.5rem;
+}
+
+.changeOrderPage__submit-green {
+    background-color: var(--green);
+    color: var(--black);
+    box-shadow: #808080a8 2px 4px;
+}
+
+.changeOrderPage__submit-white {
+    background-color: var(--white);
+    font-size: 1.5rem;
+    border-radius: 10px;
+    padding: 1rem;
+    max-width: 430px;
+    width: 80%;
+    color: var(--black);
+    border: 1px solid var(--black);
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    margin: 0.5rem;
+    box-shadow: #808080a8 2px 4px;
+}
+
+.changeOrderPage__submit:active,
+.changeOrderPage__submit-green:active,
+.changeOrderPage__submit-white:active {
+    scale: 0.9;
+}
+
+.slick-list {
+    height: 100%;
+}
+
+@media (max-width: 768px) {
+    .changeOrderPage__wrapper {
+        margin: 0;
+    }
+
+    .changeOrderPage {
+        width: 90%;
+        margin: 2rem auto;
+    }
+
+    .changeOrderPage__input label {
+        flex-direction: column;
+    }
+
+    .changeOrderPage__product-wrapper {
+        align-items: center;
+    }
+
+    .changeOrderPage__name,
+    .changeOrderPage__phone,
+    .changeOrderPage__email {
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
+    }
+
+    .changeOrderPage__edit {
+        width: 5vw;
+        align-self: flex-end;
+    }
+
+    .changeOrderPage__product {
+        flex-direction: column;
+        margin-left: 0px;
+    }
+
+    .changeOrderPage__img {
+        width: 30vw;
+        margin-bottom: 0;
+    }
+
+    .changeOrderPage__info {
+        gap: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+    .changeOrderPage__info-wrapper {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .changeOrderPage__method {
+        text-align: center;
+    }
+
+    .changeOrderPage__counter-container {
+        margin-bottom: 1.5rem;
+    }
+
+    .changeOrderPage__payment {
+        flex-direction: column;
+    }
+
+    .changeOrderPage__heading {
+        font-size: 2rem;
+    }
+
+    .changeOrderPage__submit {
+        margin: 1rem;
+    }
+
+    .changeOrderPage__submit-white {
+        margin: 1rem;
+    }
+
+    .changeOrderPage__product-name {
+        text-align: center;
+    }
+}
+
+@media (min-width: 1300px) {
+    .changeOrderPage__product {
+        margin-left: 30px;
+    }
+}
+
+/*
+/* Författare: Diliara
+/* About us sidas styling.
+*/
+
+/* Författare: Lisa
+Gör egen stylingsida till changePageOrder */

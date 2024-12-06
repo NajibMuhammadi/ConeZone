@@ -1,0 +1,146 @@
+.wrapper {
+    background-color: var(--pink);
+}
+
+.main {
+    background-color: var(--white);
+    width: 80%;
+    margin: 0 auto;
+    padding: 3rem;
+    border-radius: 1rem;
+    margin: 2rem auto;
+    font-family: "Inter", sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.main__title {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 59px;
+    color: var(--black);
+    text-align: center;
+}
+
+.main__span {
+    height: 3px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: block;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    border-radius: 1rem;
+}
+
+.main__menu-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4rem;
+    place-content: center;
+    max-width: 900px;
+}
+
+.main__menu {
+    max-width: 400px;
+}
+
+.main__menu-image {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.main__menu-des {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: .7rem;
+}
+
+.main__menu-title {
+    font-size: 1.2rem;
+}
+
+.main__menu-btn {
+    padding: 1rem 2rem;
+    margin-left: 0.5rem;
+    border: none;
+    background-color: var(--blue);
+    color: var(--black);
+    font-family: inter, sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+.main__menu-link {
+    text-decoration: none;
+    color: var(--black);
+}
+
+
+@media (min-width: 800px) and (max-width: 1000px) {
+    .main {
+        padding: 2rem;
+        width: 90%;
+    }
+
+    .main__menu-btn {
+        font-size: 1.1rem;
+    }
+}
+
+@media (min-width: 700px) and (max-width: 800px) {
+    .main {
+        padding: 2rem;
+        width: 90%;
+    }
+
+    .main__menu-btn {
+        padding: .7rem 1.5rem;
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 700px) {
+    .main {
+        padding: 1rem;
+        width: 90%;
+    }
+
+    .main__menu-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .main__menu-btn {
+        font-size: 1rem;
+    }
+
+    .main__menu {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        max-width: 400px;
+    }
+
+    .main__menu-image {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .main__menu-des {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+/* Författare: Najib
+Edited: Diliara
+La till .main__menu-link styling
+*/
+
+/* Författare: Lisa
+Ändringar för att få enhetlig styling på sidan */
