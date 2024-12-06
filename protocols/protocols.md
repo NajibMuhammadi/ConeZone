@@ -104,7 +104,7 @@ Ida: Det har känts bra. Har dock nojat över om vi verkligen levererat alling s
 
 ## Vad kan förbättras?
 Göra färgändringar på bakåtknappen och edit item knappen. 
-Mer space på discription
+Mer space på description
 
 
 Medverkande: Najib, Diliara, Ida, Lisa
