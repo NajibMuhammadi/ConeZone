@@ -124,7 +124,7 @@ function Overview({ onNext }: { onNext: (sk: string) => void }) {
                                         <input
                                             className="overview__customer-input"
                                             type="text"
-                                            value={customerDetails.name || ''}
+                                            value={order.customerDetails.name || ''}
                                             onChange={(e) => setCustomerDetails({ ...customerDetails, name: e.target.value })}
                                         />
                                     </article>
@@ -133,7 +133,7 @@ function Overview({ onNext }: { onNext: (sk: string) => void }) {
                                         <input
                                             className="overview__customer-input"
                                             type="text"
-                                            value={customerDetails.phone || ''}
+                                            value={order.customerDetails.phone || ''}
                                             onChange={(e) => setCustomerDetails({ ...customerDetails, phone: e.target.value })}
                                         />
                                     </article>
@@ -142,7 +142,7 @@ function Overview({ onNext }: { onNext: (sk: string) => void }) {
                                         <input
                                             className="overview__customer-input"
                                             type="email"
-                                            value={customerDetails.email || ''}
+                                            value={order.customerDetails.email || ''}
                                             onChange={(e) => setCustomerDetails({ ...customerDetails, email: e.target.value })}
                                         />
                                     </article>
