@@ -132,6 +132,13 @@
     font-size: 1rem;
 }
 
+.edit-item__buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
 .edit-item__button {
     border-radius: 10px;
     margin: 2rem;
@@ -142,7 +149,15 @@
     cursor: pointer;
     border: none;
     width: 200px;
+    height: 60px;
     align-self: center;
+}
+
+.edit-item__button--back {
+    color: var(--black);
+    background-color: var(--white);
+    border: 1px solid var(--black);
+    box-shadow: #808080a8 2px 4px;
 }
 
 .edit-item__button:active {
@@ -206,12 +221,11 @@
 
     .edit-item__wrapper {
         margin: 0;
+        padding: 0;
     }
 
-}
-
-@media (max-width: 500px) {
-    .edit-item {
-        flex-direction: column;
+    .edit-item__buttons {
+        flex-direction: column-reverse;
+        
     }
 }

@@ -102,6 +102,11 @@ Diliara: Det har känts stressigt på grund av alla små buggar. Rädd för att 
 Najib: Det känns bra. Känns som om vi jobbat på bra och att vi hållt oss på rätt spår. Kommunikationen mellan oss har fungerat rätt så bra den här gången. Bra jobbat av allihopa.
 Ida: Det har känts bra. Har dock nojat över om vi verkligen levererat alling som kunden vill ha, men överlag nöjd. Känner att vi fått till en bra produkt.
 
+## Vad kan förbättras?
+Göra färgändringar på bakåtknappen och edit item knappen. 
+Mer space på discription
+
+
 Medverkande: Najib, Diliara, Ida, Lisa
 
 
