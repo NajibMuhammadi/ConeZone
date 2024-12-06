@@ -79,7 +79,7 @@ function AddItemPage() {
         <>
             <Header />
             <section className="add-item__wrapper">
-                <section className='add-itemPage'>
+                <section className='add-item__page'>
                     <h2 className="add-item__heading">Add New Item</h2>
                     <hr className="add-item__line" />
                     <article className="add-item">
@@ -163,8 +163,10 @@ function AddItemPage() {
                                     className="add-item__component-btn"
                                 > Add new component</button>
                             </label>
-                            <button className="add-item__button" onClick={saveItem}>Add Item</button>
-                            <button className="add-item__button" onClick={goBack}>Back</button>
+                            <section className="add-item__buttons">
+                                <button className="add-item__button add-item__button--back" onClick={goBack}>Back</button>
+                                <button className="add-item__button" onClick={saveItem}>Add</button>
+                            </section>
                         </form>
                     </article>
                 </section>

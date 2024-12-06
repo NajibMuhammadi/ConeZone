@@ -42,7 +42,6 @@ function EditMenuPage() {
                         console.error('Error adding item', error)
                     }
                 }
-                location.reload()
             } catch (error) {
                 console.error('Error parsing token', error)
             }
@@ -64,8 +63,6 @@ function EditMenuPage() {
                                         <img className="edit-menu__menu-image" src={item.image} alt="IceCream" />
                                         <article className="edit-menu__menu-des">
                                             <h2 className="edit-menu__menu-title">{item.name}</h2>
-                                            <p className="edit-menu__menu-desc">{item.desc}</p>
-                                            <p className="edit-menu__menu-price">{item.price} kr</p>
                                         </article>
                                         <article className="edit-menu__menu-changes">
                                             <Link to={`/item/${item.sk}`}><img className='edit-menu__menu-edit' src={editIcon} alt="Redigera" /></Link>

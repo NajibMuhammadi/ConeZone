@@ -116,7 +116,7 @@ function EditItemPage() {
                         console.error('Error updating item', error)
                     }
                 }
-                navigate('/editmenu');
+                setEdit(false)
             } catch (err) {
                 console.error('Error parsing token:', err);
             }
@@ -155,7 +155,7 @@ function EditItemPage() {
                                         <li className="edit-item__component-item" key={index}>{component}</li>
                                     ))}
                                 </ul>
-                                <button className="edit-item__button" onClick={goBack}>Back</button>
+                                <button className="edit-item__button edit-item__button--back" onClick={goBack}>Back</button>
                             </section>
                         </article>
                     </section>
@@ -249,8 +249,10 @@ function EditItemPage() {
                                         className="edit-item__component-btn"
                                     > Add new component</button>
                                 </label>
-                                <button className="edit-item__button" onClick={changeItem}>Save Changes</button>
-                                <button className="edit-item__button" onClick={goBack}>Back</button>
+                                <section className="edit-item__buttons">
+                                    <button className="edit-item__button edit-item__button--back" onClick={goBack}>Back</button>
+                                    <button className="edit-item__button" onClick={changeItem}>Save</button>
+                                </section>
                             </form>
                         </article>
                     </section>
