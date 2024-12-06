@@ -5,7 +5,7 @@
     padding: 4rem 0rem;
 }
 
-.add-itemPage {
+.add-item__page {
     width: 80%;
     max-width: 620px;
     background-color: var(--white);
@@ -35,6 +35,7 @@
     width: 80%;
     max-width: 620px;
     margin: 2rem auto;
+    margin-bottom: 0;
     padding: 2rem;
     border-radius: 9px;
     display: flex;
@@ -140,9 +141,18 @@
     scale: 0.9;
 }
 
+.add-item__buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
 .add-item__button {
     border-radius: 10px;
-    margin-top: 3rem;
+    margin: 2rem;
     padding: 1rem;
     font-size: 1.5rem;
     background-color: var(--black);
@@ -150,29 +160,35 @@
     cursor: pointer;
     border: none;
     width: 200px;
+    height: 60px;
     align-self: center;
 }
 
+.add-item__button--back {
+    color: var(--black);
+    background-color: var(--white);
+    border: 1px solid var(--black);
+    box-shadow: #808080a8 2px 4px;
+}
+
 @media (max-width: 768px) {
-    .add-item {
+    .add-item__page {
         width: 90%;
+    }
+    
+    .add-item {
+        width: 100%;
         font-size: 18px;
-        margin: 2rem auto;
+        margin: 2rem 0;
     }
 
     .add-item__wrapper {
         margin: 0;
-    }
-}
-
-@media (max-width: 500px) {
-    .add-item {
-        flex-direction: column;
+        padding: 2rem 0;
     }
 
-    .form__popular {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+    .add-item__buttons {
+        flex-direction: column-reverse;
+        
     }
 }

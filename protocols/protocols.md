@@ -97,9 +97,15 @@ Sprint planering genomfördes på Fredag sprint 3 (efter sprint review och retro
 Kunden var nöjd med hur långt vi hade kommit och fokus ligger denna vecka på att göra klart projektet så att kunden får en färdig produkt. Saker vi ska fokusera på är att se över så att designen är enhetlig och storleksmässigt bra, vi ska se över sidan med wave och även kontrollera att vi använder typeScript korrekt överallt. 
 
 # Sprint Retrospektiv
-
+Lisa: Den här veckan har det känts som om vi var klara tidigt i veckan, men vi har ändå jobbat in i det sista för att få det som vi vill ha det. Vi har jobbat på små detaljerna. Det har känts bra. 
+Diliara: Det har känts stressigt på grund av alla små buggar. Rädd för att allting skulle krascha. Vi kämpade på och det blev bra tillslut. 
+Najib: Det känns bra. Känns som om vi jobbat på bra och att vi hållt oss på rätt spår. Kommunikationen mellan oss har fungerat rätt så bra den här gången. Bra jobbat av allihopa.
+Ida: Det har känts bra. Har dock nojat över om vi verkligen levererat alling som kunden vill ha, men överlag nöjd. Känner att vi fått till en bra produkt.
 
 ## Vad kan förbättras?
+Göra färgändringar på bakåtknappen och edit item knappen. 
+Mer space på description
+
 
 Medverkande: Najib, Diliara, Ida, Lisa
 
