@@ -34,8 +34,6 @@ export interface CustomerDetails {
     email: string;
 }
 
-// interface OrderItem extends CartItem { }
-
 export interface Order {
     pk?: string,
     sk?: string,
@@ -48,11 +46,6 @@ export interface Order {
     isPickedUp?: boolean;
     kitchenMessage?: string
 }
-
-// export interface OrderInput {
-//     items: { name: string; qty: number; price: number }[];
-//     customerDetails: CustomerDetails;
-// }
 
 export interface MenuStore {
     cart: CartItem[];
