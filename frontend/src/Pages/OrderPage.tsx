@@ -35,32 +35,6 @@ function OrderPage() {
                 <ul className="custom-dots">{dots}</ul>
             </div>
         ),
-        // responsive: [
-        //     {
-        //         breakpoint: 1024,
-        //         settings: {
-        //             slidesToShow: 1,
-        //             slidesToScroll: 1,
-        //             infinite: true,
-        //             dots: true
-        //         }
-        //     },
-        //     {
-        //         breakpoint: 600,
-        //         settings: {
-        //             slidesToShow: 1,
-        //             slidesToScroll: 1,
-        //             initialSlide: 1
-        //         }
-        //     },
-        //     {
-        //         breakpoint: 480,
-        //         settings: {
-        //             slidesToShow: 1,
-        //             slidesToScroll: 1
-        //         }
-        //     }
-        // ]
     };
 
     const handleNext = (sk?: string) => {

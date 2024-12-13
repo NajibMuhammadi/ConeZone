@@ -7,7 +7,6 @@ import AdminHeader from '../components/AdminHeader';
 import { adminUpdate } from '../services/adminUpdate';
 import { Link } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
-
 import editIcon from '../assets/edit.png';
 
 function KitchenViewPage() {
@@ -33,22 +32,20 @@ function KitchenViewPage() {
     }, []);
 
     useEffect(() => {
-        const loadOrders = async () => {
-            try {
-                const fetchedOrders = await fetchOrders();
-                setOrders(Array.isArray(fetchedOrders) ? fetchedOrders : []);
-            } catch (err) {
-                console.error('Error loading orders:', err);
-                setError('Kunde inte hämta order');
-            } finally {
-                setLoading(false);
-            }
-        };
         loadOrders();
-
-        const interval = setInterval(loadOrders, 5000);
-        return () => clearInterval(interval)
     }, []);
+
+    const loadOrders = async () => {
+        try {
+            const fetchedOrders = await fetchOrders();
+            setOrders(Array.isArray(fetchedOrders) ? fetchedOrders : []);
+        } catch (err) {
+            console.error('Error loading orders:', err);
+            setError('Kunde inte hämta order');
+        } finally {
+            setLoading(false);
+        }
+    };
 
     const incomingOrders = orders.filter(order => !order.isApproved);
     const ongoingOrders = orders.filter(order => order.isApproved && !order.isDone);
@@ -58,19 +55,19 @@ function KitchenViewPage() {
     const filteredOrders = filter === 'incoming' ? incomingOrders :
         filter === 'ongoing' ? ongoingOrders :
             filter === 'done' ? doneOrders : orders;
-            filter === 'isPickedUp' ? pickedUpOrders : orders;
+    filter === 'isPickedUp' ? pickedUpOrders : orders;
 
     console.log('Filtered orders:', filteredOrders);
 
     const [newMessage, setNewMessage] = useState('');
 
     const approveOrder = async (pk: string, sk: string) => {
-        if(isAdmin){
+        if (isAdmin) {
             try {
                 let newOrder = {
                     sk: sk,
                     isApproved: true,
-                    isDone : false,
+                    isDone: false,
                     isPickedUp: false,
                     kitchenMessage: newMessage,
                 };
@@ -79,12 +76,11 @@ function KitchenViewPage() {
                 console.error('Error approving order:', error);
             }
         }
-        
+        loadOrders()
     };
 
     const orderDone = async (pk: string, sk: string) => {
-
-        if(isAdmin){
+        if (isAdmin) {
             try {
                 let newOrder = {
                     sk: sk,
@@ -97,12 +93,11 @@ function KitchenViewPage() {
                 console.error('Error marking order as done:', error);
             }
         }
-
-        
+        loadOrders()
     };
 
     const orderIsPickedUp = async (pk: string, sk: string) => {
-        if(isAdmin) {
+        if (isAdmin) {
             try {
                 let newOrder = {
                     sk: sk,
@@ -112,11 +107,11 @@ function KitchenViewPage() {
                 }
 
                 await adminUpdate('adminOrdersUrl', pk, sk, newOrder)
-                setFilter('isPickedUp')
-            } catch(error) {
+            } catch (error) {
                 console.error('Error editing order', error)
             }
         }
+        loadOrders()
     }
 
     return (

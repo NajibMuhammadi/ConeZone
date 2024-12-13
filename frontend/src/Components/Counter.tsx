@@ -16,7 +16,6 @@ function Counter({ item }: CounterProps) {
             );
             setCart(updatedCart);
         } else {
-            // Tar bort om quantity går under 1
             const updatedCart = cart.filter((cartItem) => cartItem.name !== item.name);
             setCart(updatedCart);
         }
